@@ -1,43 +1,38 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { prisma } from "@/lib/prisma";
 
 // Validation Schema
-const submissionSchema = z.object({
+const projectSchema = z.object({
   type: z.string(),
   features: z.array(z.string()),
   budget: z.string(),
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  details: z.string().optional(),
+  name: z.string().min(2),
+  email: z.string().email(),
+  message: z.string().optional(),
 });
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    
-    // Validate data
-    const validatedData = submissionSchema.parse(body);
+    const validatedData = projectSchema.parse(body);
 
-    // TODO: Integrate Resend here
-    // const { data, error } = await resend.emails.send({ ... });
+    // Save to Database
+    await prisma.lead.create({
+      data: {
+        name: validatedData.name,
+        email: validatedData.email,
+        type: validatedData.type,
+        budget: validatedData.budget,
+        features: JSON.stringify(validatedData.features),
+        message: validatedData.message || "",
+        status: "NEW"
+      }
+    });
 
-    // For now, log to console to simulate sending
-    console.log("--- NEW PROJECT LEAD ---");
-    console.log("Type:", validatedData.type);
-    console.log("Budget:", validatedData.budget);
-    console.log("Contact:", validatedData.name, validatedData.email);
-    console.log("Features:", validatedData.features);
-    console.log("------------------------");
-
-    // Simulate network delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    return NextResponse.json({ success: true, message: "Project submitted successfully" });
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Submission error:", error);
-    return NextResponse.json(
-      { success: false, message: "Invalid submission data" },
-      { status: 400 }
-    );
+    console.error(error);
+    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 }
