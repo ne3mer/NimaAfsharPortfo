@@ -1,11 +1,11 @@
-const { PrismaClient } = require('@prisma/client');
-const bcrypt = require('bcryptjs');
+const { PrismaClient } = require("@prisma/client");
+const bcrypt = require("bcryptjs");
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = 'admin@nimastudio.com';
-  const password = 'password123';
+  const email = "ne3mer@gmail.com";
+  const password = "912A3060859n";
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const user = await prisma.admin.upsert({
@@ -14,7 +14,7 @@ async function main() {
     create: {
       email,
       password: hashedPassword,
-      name: 'Nima Admin',
+      name: "Nima Admin",
     },
   });
 

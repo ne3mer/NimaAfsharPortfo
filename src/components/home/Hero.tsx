@@ -1,79 +1,163 @@
-"use client";
-
 import { Button } from "@/components/ui/Button";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Code2, Layers, Zap } from "lucide-react";
-import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
+import { ArrowRight, Cpu, Gauge, Workflow } from "lucide-react";
+
+const CAPABILITIES = [
+  { label: "AI Engineering", icon: Cpu },
+  { label: "Product Systems", icon: Workflow },
+  { label: "Realtime Infra", icon: Gauge },
+];
+
+const EXPERIENCE_PANELS = [
+  {
+    title: "Custom SaaS",
+    desc: "Bespoke platforms, dashboards, and multi-tenant apps for ambitious operators.",
+    accent: "from-blue-500/40 to-cyan-400/10",
+  },
+  {
+    title: "Automation & AI",
+    desc: "Copilots, workflow orchestration, and internal tools built on modern AI stacks.",
+    accent: "from-purple-500/40 to-pink-500/10",
+  },
+  {
+    title: "Launch & Scale",
+    desc: "Ops playbooks, DevOps pipelines, and reliability engineering baked in.",
+    accent: "from-emerald-500/40 to-teal-400/10",
+  },
+];
+
+const STAT_BLOCKS = [
+  { label: "Products shipped", value: "48", suffix: "+" },
+  { label: "Avg. load", value: "< 1", suffix: "s" },
+  { label: "Launch window", value: "6", suffix: "weeks" },
+];
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
-      {/* Animated Background */}
-      <BackgroundBeams />
-      
-      {/* Radial Gradient Overlay for text readability */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000_100%)] z-0 pointer-events-none" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-black via-[#05040a] to-black py-24 text-white">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(36,99,255,0.25),_transparent_55%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_bottom,_rgba(56,189,248,0.15),_transparent_60%)]" />
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
+      </div>
 
-      <div className="container relative z-10 px-4 text-center">
-        <div>
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-muted-foreground mb-8 backdrop-blur-sm"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            Available for new projects
+      <div className="container relative z-10 px-4">
+        <div className="flex flex-col gap-16 lg:flex-row">
+          <div className="max-w-2xl space-y-10">
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
+              <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
+              NIMA Studio
+            </div>
+
+            <div className="space-y-6">
+              <h1 className="text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+                Premium engineering partners for teams that outgrow templates.
+              </h1>
+              <p className="text-lg leading-relaxed text-white/70 sm:text-xl">
+                We architect and ship high-performance software—crafted systems
+                that feel cinematic, scale with your roadmap, and keep ops calm.
+                Every pixel, animation, and pipeline is bespoke.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <Button
+                variant="premium"
+                size="lg"
+                className="h-12 rounded-full px-8 text-base shadow-[0_20px_60px_rgba(37,99,235,0.35)]"
+                asChild
+              >
+                <Link href="/start">
+                  Start your build
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-12 rounded-full border-white/20 bg-white/5 px-8 text-base text-white hover:bg-white/10"
+                asChild
+              >
+                <Link href="/work">View case studies</Link>
+              </Button>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              {CAPABILITIES.map((capability) => (
+                <span
+                  key={capability.label}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/70"
+                >
+                  <capability.icon className="h-4 w-4 text-white/70" />
+                  {capability.label}
+                </span>
+              ))}
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-3">
+              {STAT_BLOCKS.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent px-4 py-5"
+                >
+                  <p className="text-sm uppercase tracking-wide text-white/50">
+                    {stat.label}
+                  </p>
+                  <p className="text-3xl font-bold text-white">
+                    {stat.value}
+                    <span className="text-lg text-white/60">{stat.suffix}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-          
-          <h1 
-            className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white"
-          >
-            Pure Engineering.<br />
-            <span className="text-primary">No Templates.</span>
-          </h1>
-          
-          <p 
-            className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            NIMA Studio builds scalable, custom software for startups and businesses. 
-            We replace generic WordPress sites with high-performance digital products.
-          </p>
-          
-          <div 
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Button variant="premium" size="lg" className="h-12 px-8 text-base" asChild>
-              <Link href="/start">
-                Start Your Project <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" className="h-12 px-8 text-base border-white/10 hover:bg-white/5" asChild>
-              <Link href="/work">View Portfolio</Link>
-            </Button>
+
+          <div className="flex-1">
+            <div className="rounded-[40px] border border-white/10 bg-white/[0.02] p-6 shadow-[0_25px_120px_rgba(2,6,23,0.65)] backdrop-blur-xl">
+              <div className="grid gap-6">
+                {EXPERIENCE_PANELS.map((panel) => (
+                  <div
+                    key={panel.title}
+                    className="rounded-3xl border border-white/10 bg-gradient-to-r p-6 text-white shadow-inner"
+                    style={{
+                      backgroundImage: `linear-gradient(120deg, ${panel.accent})`,
+                    }}
+                  >
+                    <div className="flex items-center gap-3 text-sm uppercase tracking-[0.2em] text-white/60">
+                      <div className="h-2 w-2 rounded-full bg-white/70" />
+                      Capability
+                    </div>
+                    <h3 className="mt-3 text-2xl font-semibold">{panel.title}</h3>
+                    <p className="mt-2 text-sm text-white/80">{panel.desc}</p>
+                    <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
+                      <span className="inline-flex h-1.5 w-6 rounded-full bg-white/40" />
+                      NIMA
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 rounded-3xl border border-white/10 bg-black/50 p-6">
+                <p className="text-sm uppercase tracking-[0.4em] text-white/50">
+                  Delivery loop
+                </p>
+                <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/70">
+                  {["Blueprint", "Prototype", "Ship", "Scale"].map((phase, i) => (
+                    <div
+                      key={phase}
+                      className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5"
+                    >
+                      <span className="text-xs text-white/50">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      {phase}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Feature Pills */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
-        >
-          {[
-            { icon: Code2, title: "Custom Architecture", desc: "Built from scratch for your specific needs." },
-            { icon: Zap, title: "High Performance", desc: "Optimized for speed and scalability." },
-            { icon: Layers, title: "Full-Stack Solution", desc: "From UI/UX to Backend & DevOps." },
-          ].map((feature, i) => (
-            <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors text-left">
-              <feature.icon className="h-8 w-8 text-primary mb-4" />
-              <h3 className="font-semibold text-white">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground">{feature.desc}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
