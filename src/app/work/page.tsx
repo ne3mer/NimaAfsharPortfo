@@ -1,12 +1,21 @@
+import { portfolioData } from "@/data/portfolio";
+import { PortfolioCard } from "@/components/work/PortfolioCard";
+
 export default function WorkPage() {
   return (
     <div className="container mx-auto px-4 py-20">
-      <h1 className="text-4xl font-bold text-white mb-8">Selected Work</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="aspect-video bg-white/5 rounded-xl border border-white/10 flex items-center justify-center">
-            <span className="text-muted-foreground">Project {i} Placeholder</span>
-          </div>
+      <div className="max-w-2xl mb-12">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">
+          Selected Work
+        </h1>
+        <p className="text-muted-foreground text-lg">
+          A collection of custom software, high-performance web apps, and digital products built for ambitious clients.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {portfolioData.map((project) => (
+          <PortfolioCard key={project.id} project={project} />
         ))}
       </div>
     </div>

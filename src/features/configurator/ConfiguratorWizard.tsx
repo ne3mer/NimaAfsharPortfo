@@ -66,6 +66,47 @@ export function ConfiguratorWizard() {
     setConfig((prev) => ({ ...prev, [field]: value }));
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/submit-project", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(config),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Network error. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSuccess) {
+    return (
+      <div className="w-full max-w-4xl mx-auto bg-card border border-white/10 rounded-2xl p-12 text-center">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/20 mb-6">
+          <Check className="h-10 w-10 text-green-500" />
+        </div>
+        <h2 className="text-3xl font-bold text-white mb-4">Request Received!</h2>
+        <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+          Thanks {config.name}. We have received your project details. Nima will review your requirements and get back to you at {config.email} within 24 hours.
+        </p>
+        <Button variant="outline" onClick={() => window.location.href = "/"}>
+          Back to Home
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full max-w-4xl mx-auto bg-card border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
       {/* Progress Bar */}
@@ -158,6 +199,7 @@ export function ConfiguratorWizard() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {budgetRanges.map((range) => (
                   <button
+                    type="button"
                     key={range.id}
                     onClick={() => updateField("budget", range.id)}
                     className={cn(
@@ -224,7 +266,7 @@ export function ConfiguratorWizard() {
         {/* Navigation Buttons */}
         <div className="flex justify-between mt-8 pt-8 border-t border-white/5">
           {step > 1 ? (
-            <Button variant="ghost" onClick={prevStep}>
+            <Button variant="ghost" onClick={prevStep} disabled={isSubmitting}>
               <ArrowLeft className="mr-2 h-4 w-4" /> Back
             </Button>
           ) : (
@@ -243,8 +285,13 @@ export function ConfiguratorWizard() {
               Next Step <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           ) : (
-            <Button variant="premium" onClick={() => alert("Submission Logic Here!")}>
-              Submit Project <Rocket className="ml-2 h-4 w-4" />
+            <Button 
+              variant="premium" 
+              onClick={handleSubmit} 
+              disabled={!config.name || !config.email || isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Submit Project"} 
+              {!isSubmitting && <Rocket className="ml-2 h-4 w-4" />}
             </Button>
           )}
         </div>
