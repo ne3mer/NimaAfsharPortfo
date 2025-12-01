@@ -1,150 +1,151 @@
+"use client";
+
 import { buttonVariants } from "@/components/ui/Button";
 import Link from "next/link";
-import { ArrowRight, Cpu, Gauge, Workflow } from "lucide-react";
+import { ArrowRight, Cpu, Gauge, Terminal, Zap, Globe } from "lucide-react";
+import HeroCyberGrid from "@/components/home/HeroCyberGrid";
+import { motion } from "framer-motion";
+import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 
 const CAPABILITIES = [
-  { label: "AI Engineering", icon: Cpu },
-  { label: "Product Systems", icon: Workflow },
+  { label: "AI Systems", icon: Cpu },
   { label: "Realtime Infra", icon: Gauge },
-];
-
-const EXPERIENCE_PANELS = [
-  {
-    title: "Custom SaaS",
-    desc: "Bespoke platforms, dashboards, and multi-tenant apps for ambitious operators.",
-    accent: "from-blue-500/40 to-cyan-400/10",
-  },
-  {
-    title: "Automation & AI",
-    desc: "Copilots, workflow orchestration, and internal tools built on modern AI stacks.",
-    accent: "from-purple-500/40 to-pink-500/10",
-  },
-  {
-    title: "Launch & Scale",
-    desc: "Ops playbooks, DevOps pipelines, and reliability engineering baked in.",
-    accent: "from-emerald-500/40 to-teal-400/10",
-  },
-];
-
-const STAT_BLOCKS = [
-  { label: "Products shipped", value: "48", suffix: "+" },
-  { label: "Avg. load", value: "< 1", suffix: "s" },
-  { label: "Launch window", value: "6", suffix: "weeks" },
+  { label: "Global Scale", icon: Globe },
 ];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-black via-[#05040a] to-black py-24 text-white">
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(36,99,255,0.25),_transparent_55%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_bottom,_rgba(56,189,248,0.15),_transparent_60%)]" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5" />
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black text-white">
+      {/* Dynamic Background Layer */}
+      <div className="absolute inset-0 z-0">
+        <HeroCyberGrid />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent" />
       </div>
 
-      <div className="container relative z-10 px-4">
-        <div className="flex flex-col gap-16 lg:flex-row">
-          <div className="max-w-2xl space-y-10">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
-              <span className="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
-              NIMA Studio
-            </div>
+      <div className="container relative z-10 px-4 pt-20">
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+          
+          {/* Left Column: Content */}
+          <div className="space-y-8">
+            <motion.div 
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-emerald-400 backdrop-blur-md"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              System Online
+            </motion.div>
 
-            <div className="space-y-6">
-              <h1 className="text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Premium engineering partners for teams that outgrow templates.
-              </h1>
-              <p className="text-lg leading-relaxed text-white/70 sm:text-xl">
-                We architect and ship high-performance software—crafted systems
-                that feel cinematic, scale with your roadmap, and keep ops calm.
-                Every pixel, animation, and pipeline is bespoke.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Link href="/start" className={buttonVariants({ variant: "premium", size: "lg", className: "h-12 rounded-full px-8 text-base shadow-[0_20px_60px_rgba(37,99,235,0.35)]" })}>
-                  Start your build
-                  <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-              <Link href="/work" className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 rounded-full border-white/20 bg-white/5 px-8 text-base text-white hover:bg-white/10" })}>
-                  View case studies
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap gap-3">
-              {CAPABILITIES.map((capability) => (
-                <span
-                  key={capability.label}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/70"
-                >
-                  <capability.icon className="h-4 w-4 text-white/70" />
-                  {capability.label}
+            <div className="space-y-4">
+              <motion.h1 
+                initial={{ opacity: 1, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="text-5xl md:text-7xl font-black tracking-tighter leading-[1.1]"
+              >
+                Build the <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 animate-gradient-x">
+                  Impossible.
                 </span>
-              ))}
+              </motion.h1>
+              
+              <div className="text-lg md:text-xl text-white/60 max-w-xl leading-relaxed">
+                <TextGenerateEffect 
+                  words="We architect high-performance digital systems for ambitious operators. No templates. No limits. Just pure engineering velocity."
+                  className="text-white/70 font-normal"
+                />
+              </div>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-3">
-              {STAT_BLOCKS.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent px-4 py-5"
+            <motion.div 
+                initial={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="flex flex-col sm:flex-row gap-4 pt-4"
+              >
+              <Link href="/start" className={buttonVariants({ variant: "premium", size: "lg", className: "h-14 px-8 rounded-full text-base font-semibold shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_-10px_rgba(59,130,246,0.7)] transition-all duration-300" })}>
+                  Initialize Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+              <Link href="/work" className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 rounded-full border-white/10 bg-white/5 hover:bg-white/10 text-base backdrop-blur-sm" })}>
+                  Explore Archives
+              </Link>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="pt-8 flex items-center gap-6 text-sm text-white/40 font-mono"
+            >
+              {CAPABILITIES.map((cap, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <cap.icon className="h-4 w-4" />
+                  <span>{cap.label}</span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Column: Visuals */}
+          <div className="relative hidden lg:block h-[600px]">
+            {/* Floating Cards / Abstract UI */}
+            <motion.div 
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full"
+            >
+              <div className="relative w-full h-full">
+                {/* Central Core */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
+                
+                {/* Floating Code Card */}
+                <motion.div 
+                  animate={{ y: [0, -20, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-20 right-10 w-72 bg-black/80 border border-white/10 rounded-xl p-4 backdrop-blur-xl shadow-2xl"
                 >
-                  <p className="text-sm uppercase tracking-wide text-white/50">
-                    {stat.label}
-                  </p>
-                  <p className="text-3xl font-bold text-white">
-                    {stat.value}
-                    <span className="text-lg text-white/60">{stat.suffix}</span>
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <div className="rounded-[40px] border border-white/10 bg-white/[0.02] p-6 shadow-[0_25px_120px_rgba(2,6,23,0.65)] backdrop-blur-xl">
-              <div className="grid gap-6">
-                {EXPERIENCE_PANELS.map((panel) => (
-                  <div
-                    key={panel.title}
-                    className="rounded-3xl border border-white/10 bg-gradient-to-r p-6 text-white shadow-inner"
-                    style={{
-                      backgroundImage: `linear-gradient(120deg, ${panel.accent})`,
-                    }}
-                  >
-                    <div className="flex items-center gap-3 text-sm uppercase tracking-[0.2em] text-white/60">
-                      <div className="h-2 w-2 rounded-full bg-white/70" />
-                      Capability
-                    </div>
-                    <h3 className="mt-3 text-2xl font-semibold">{panel.title}</h3>
-                    <p className="mt-2 text-sm text-white/80">{panel.desc}</p>
-                    <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
-                      <span className="inline-flex h-1.5 w-6 rounded-full bg-white/40" />
-                      NIMA
-                    </div>
+                  <div className="flex items-center gap-2 mb-3 border-b border-white/10 pb-2">
+                    <Terminal className="h-4 w-4 text-emerald-400" />
+                    <span className="text-xs text-white/50 font-mono">deploy_sequence.sh</span>
                   </div>
-                ))}
-              </div>
+                  <div className="space-y-2 font-mono text-xs">
+                    <div className="text-emerald-400">$ init_core_systems</div>
+                    <div className="text-white/60">Loading modules... [OK]</div>
+                    <div className="text-white/60">Optimizing runtime... [OK]</div>
+                    <div className="text-blue-400">System ready.</div>
+                  </div>
+                </motion.div>
 
-              <div className="mt-8 rounded-3xl border border-white/10 bg-black/50 p-6">
-                <p className="text-sm uppercase tracking-[0.4em] text-white/50">
-                  Delivery loop
-                </p>
-                <div className="mt-4 flex flex-wrap gap-3 text-sm text-white/70">
-                  {["Blueprint", "Prototype", "Ship", "Scale"].map((phase, i) => (
-                    <div
-                      key={phase}
-                      className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5"
-                    >
-                      <span className="text-xs text-white/50">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      {phase}
-                    </div>
-                  ))}
-                </div>
+                {/* Floating Stats Card */}
+                <motion.div 
+                  animate={{ y: [0, 30, 0] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  className="absolute bottom-32 left-0 w-64 bg-black/80 border border-white/10 rounded-xl p-4 backdrop-blur-xl shadow-2xl"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-white/50 uppercase tracking-wider">Performance</span>
+                    <Zap className="h-4 w-4 text-yellow-400" />
+                  </div>
+                  <div className="text-3xl font-bold text-white mb-1">99.9%</div>
+                  <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-full w-[99%] bg-gradient-to-r from-yellow-400 to-orange-500" />
+                  </div>
+                </motion.div>
+
+                {/* Decorative Elements */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white/5 rounded-full animate-[spin_60s_linear_infinite]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] border border-dashed border-white/10 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
               </div>
-            </div>
+            </motion.div>
           </div>
+
         </div>
       </div>
     </section>
