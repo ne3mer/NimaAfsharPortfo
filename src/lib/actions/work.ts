@@ -84,7 +84,7 @@ export async function updateWork(id: string, formData: FormData) {
     typeof tags !== "string" ||
     typeof content !== "string"
   ) {
-    throw new Error("Missing required fields");
+    return { success: false, error: "Missing required fields" };
   }
 
   const slug =
@@ -92,23 +92,30 @@ export async function updateWork(id: string, formData: FormData) {
       ? generateSlug(slugInput)
       : generateSlug(title);
 
-  await prisma.work.update({
-    where: { id },
-    data: {
-      title,
-      client,
-      description,
-      tags,
-      content,
-      slug,
-      status,
-      image: image || null,
-    },
-  });
+  try {
+    await prisma.work.update({
+      where: { id },
+      data: {
+        title,
+        client,
+        description,
+        tags,
+        content,
+        slug,
+        status,
+        image: image || null,
+      },
+    });
 
-  revalidatePath("/work");
-  revalidatePath("/work/[slug]");
-  revalidatePath("/admin/dashboard");
-  revalidatePath("/admin/work");
-  revalidatePath(`/admin/work/${id}`);
+    revalidatePath("/work");
+    revalidatePath("/work/[slug]");
+    revalidatePath("/admin/dashboard");
+    revalidatePath("/admin/work");
+    revalidatePath(`/admin/work/${id}`);
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating work:", error);
+    return { success: false, error: "Failed to update project. Slug might be duplicate." };
+  }
 }
