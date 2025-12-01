@@ -1,9 +1,9 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Navbar } from "@/components/layout/Navbar";
+import { AdminNavbar } from "@/components/layout/AdminNavbar";
 import { Footer } from "@/components/layout/Footer";
 import { Geist, Geist_Mono } from "next/font/google";
-import "../../globals.css";
+import "@/app/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +33,10 @@ export default async function AdminLayout({
     <html lang="en" className="dark">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}>
          <NextIntlClientProvider messages={messages}>
-            <Navbar /> 
+            <AdminNavbar /> 
             <main className="flex-1 pt-16">
               {children}
             </main>
-            <Footer />
          </NextIntlClientProvider>
       </body>
     </html>

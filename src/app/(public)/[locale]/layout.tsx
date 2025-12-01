@@ -5,7 +5,7 @@ import { routing } from '@/i18n/routing';
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
-import "../../globals.css";
+import "@/app/globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
