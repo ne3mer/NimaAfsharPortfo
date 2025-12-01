@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
+import NextImage from "next/image";
+
 export type WorkCardData = {
   id: string;
   slug: string;
   title: string;
   description: string;
   tags: string[];
+  image: string | null;
 };
 
 export function PortfolioCard({ project }: { project: WorkCardData }) {
@@ -17,7 +20,20 @@ export function PortfolioCard({ project }: { project: WorkCardData }) {
     >
       {/* Image Placeholder */}
       <div className="aspect-video bg-secondary w-full relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+        {project.image ? (
+          <NextImage
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
+        )}
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+        
         <div className="absolute bottom-0 left-0 p-6 z-20">
           <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
             {project.title}

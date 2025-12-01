@@ -22,6 +22,7 @@ export default async function WorkPage({params}: {params: Promise<{locale: strin
     title: work.title,
     description: work.description,
     tags: mapTags(work.tags),
+    image: work.image,
   }));
 
   return (

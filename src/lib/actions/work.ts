@@ -15,6 +15,8 @@ export async function createWork(formData: FormData) {
   console.log("createWork action called");
   const title = formData.get("title");
   const client = formData.get("client");
+  const services = formData.get("services") as string | null;
+  const year = formData.get("year") as string | null;
   const description = formData.get("description");
   const tags = formData.get("tags");
   const content = formData.get("content");
@@ -22,7 +24,7 @@ export async function createWork(formData: FormData) {
   const status = (formData.get("status") as string) || "Draft";
   const image = formData.get("image") as string | null;
 
-  console.log("Received data:", { title, client, description, tags, content, slugInput, status, image });
+  console.log("Received data:", { title, client, services, year, description, tags, content, slugInput, status, image });
 
   if (
     typeof title !== "string" ||
@@ -47,6 +49,8 @@ export async function createWork(formData: FormData) {
       data: {
         title,
         client,
+        services,
+        year,
         description,
         tags,
         content,
@@ -70,6 +74,8 @@ export async function createWork(formData: FormData) {
 export async function updateWork(id: string, formData: FormData) {
   const title = formData.get("title");
   const client = formData.get("client");
+  const services = formData.get("services") as string | null;
+  const year = formData.get("year") as string | null;
   const description = formData.get("description");
   const tags = formData.get("tags");
   const content = formData.get("content");
@@ -98,6 +104,8 @@ export async function updateWork(id: string, formData: FormData) {
       data: {
         title,
         client,
+        services,
+        year,
         description,
         tags,
         content,

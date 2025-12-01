@@ -34,6 +34,8 @@ model Work {
   slug        String   @unique
   description String
   client      String
+  services    String?  // New field
+  year        String?  // New field
   tags        String
   image       String?
   content     String

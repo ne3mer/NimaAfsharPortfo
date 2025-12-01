@@ -11,6 +11,8 @@ interface Work {
   title: string;
   slug: string;
   client: string;
+  services: string | null;
+  year: string | null;
   description: string;
   tags: string;
   content: string;
@@ -67,6 +69,27 @@ export function EditWorkForm({ work }: { work: Work }) {
             defaultValue={work.client}
             required
             className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors"
+          />
+        </div>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <div>
+          <label className="text-xs uppercase tracking-[0.35em] text-white/50">Services</label>
+          <input
+            name="services"
+            defaultValue={work.services || ""}
+            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors"
+            placeholder="e.g. Full Stack Dev, UI/UX"
+          />
+        </div>
+        <div>
+          <label className="text-xs uppercase tracking-[0.35em] text-white/50">Year</label>
+          <input
+            name="year"
+            defaultValue={work.year || ""}
+            className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors"
+            placeholder="e.g. 2024"
           />
         </div>
       </div>

@@ -108,11 +108,11 @@ export default async function ProjectPage({
                 </div>
                 <div>
                   <span className="block text-muted-foreground">{t("services")}</span>
-                  <span className="text-white font-medium">Full Stack Dev, UI/UX</span>
+                  <span className="text-white font-medium">{project.services || "Full Stack Dev, UI/UX"}</span>
                 </div>
                 <div>
                   <span className="block text-muted-foreground">{t("year")}</span>
-                  <span className="text-white font-medium">2024</span>
+                  <span className="text-white font-medium">{project.year || "2024"}</span>
                 </div>
               </div>
             </div>
