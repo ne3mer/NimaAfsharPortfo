@@ -2,12 +2,24 @@
 
 Your project is now configured for deployment on Vercel with PostgreSQL.
 
-## 1. Database Setup (Vercel Postgres)
-1. Go to your Vercel project dashboard.
-2. Click on **Storage** tab.
-3. Click **Connect Database** -> **Create New** -> **Postgres**.
-4. Follow the prompts to create the database.
-5. Once created, go to the **.env.local** tab in the database view and copy the variables.
+## 1. Database Setup
+You have a few excellent options from the Vercel Marketplace.
+
+**Recommended: Neon (Serverless Postgres)**
+This is the engine behind Vercel's native Postgres.
+1. Select **Neon** from the Marketplace.
+2. Click **Add Integration**.
+3. Follow the setup steps.
+4. It will automatically add the necessary environment variables (`POSTGRES_PRISMA_URL`, etc.) to your project.
+
+**Alternative: Supabase**
+1. Select **Supabase**.
+2. Follow setup.
+3. **Note**: You may need to update `prisma/schema.prisma` to use `DATABASE_URL` instead of `POSTGRES_PRISMA_URL` if Supabase provides different variable names.
+
+**Alternative: Prisma Postgres**
+1. Select **Prisma Postgres**.
+2. Follow setup.
 
 ## 2. Environment Variables
 In your Vercel Project Settings -> **Environment Variables**, ensure you have the following:
