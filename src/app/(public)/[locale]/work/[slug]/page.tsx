@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import NextImage from "next/image";
 
 function splitTags(tags: string | null | undefined) {
   if (!tags) return [];
@@ -65,9 +66,21 @@ export default async function ProjectPage({
               ))}
             </div>
 
-            <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed mb-12">
               {project.description}
             </p>
+
+            {project.image && (
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <NextImage
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            )}
           </div>
         </div>
 
