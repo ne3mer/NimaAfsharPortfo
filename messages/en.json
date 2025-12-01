@@ -1,0 +1,193 @@
+{
+  "Hero": {
+    "systemOnline": "System Online",
+    "title": "Build the <br />Impossible.",
+    "subtitle": "We architect high-performance digital systems for ambitious operators. No templates. No limits. Just pure engineering velocity.",
+    "ctaPrimary": "Initialize Project",
+    "ctaSecondary": "Explore Archives",
+    "capabilities": {
+      "ai": "AI Systems",
+      "infra": "Realtime Infra",
+      "scale": "Global Scale"
+    }
+  },
+  "Navbar": {
+    "work": "Work",
+    "services": "Services",
+    "about": "About",
+    "start": "Start Project"
+  },
+  "Services": {
+    "title": "Transparent Pricing.<br /><span class='text-primary'>Professional Execution.</span>",
+    "subtitle": "Choose the package that fits your stage. From simple custom sites to complex SaaS platforms.",
+    "tiers": {
+      "small": {
+        "name": "Small Custom Projects",
+        "description": "For early-stage ideas and personal brands.",
+        "cta": "Get Started",
+        "features": {
+          "0": "Custom Landing Pages",
+          "1": "Simple Web Systems",
+          "2": "Admin Panels",
+          "3": "Lead Capture Systems",
+          "4": "No WordPress / Templates"
+        }
+      },
+      "business": {
+        "name": "Business Systems",
+        "description": "For growing companies needing automation.",
+        "cta": "Build System",
+        "badge": "Most Popular",
+        "features": {
+          "0": "Custom Dashboards",
+          "1": "CRM Systems",
+          "2": "Booking & Reservations",
+          "3": "Payment Integrations",
+          "4": "Multi-user Roles & Permissions"
+        }
+      },
+      "saas": {
+        "name": "SaaS & Startup MVP",
+        "description": "Full product development for serious founders.",
+        "cta": "Launch Startup",
+        "features": {
+          "0": "Product Strategy & Roadmap",
+          "1": "Full UI/UX Design",
+          "2": "Advanced Backend & API",
+          "3": "Auth, Subscriptions, Analytics",
+          "4": "Cloud Deployment & Scaling"
+        }
+      },
+      "retainer": {
+        "name": "Monthly Retainer",
+        "description": "Ongoing support and development.",
+        "cta": "Subscribe",
+        "features": {
+          "0": "Regular Maintenance",
+          "1": "Feature Updates",
+          "2": "Server Monitoring",
+          "3": "Priority Support",
+          "4": "Consulting Sessions"
+        }
+      }
+    }
+  },
+  "TechStack": {
+    "title": "Powering Next-Gen Applications"
+  },
+  "Testimonials": {
+    "title": "Trusted by Founders.",
+    "subtitle": "We build long-term technical partnerships. Here is what our clients say.",
+    "items": {
+      "0": {
+        "quote": "NIMA Studio didn't just build an app; they built our entire business infrastructure. The level of engineering quality is unmatched.",
+        "role": "CEO, Nova Finance",
+        "company": "Fintech Series B"
+      },
+      "1": {
+        "quote": "We wasted 6 months with a cheap agency before finding Nima. He fixed our architecture in 2 weeks and launched our MVP a month later.",
+        "role": "Founder, CopyFlow",
+        "company": "AI Startup"
+      },
+      "2": {
+        "quote": "The attention to detail in the UI/UX is incredible. Our customers constantly compliment the speed and feel of the platform.",
+        "role": "Product Director",
+        "company": "Aura Fashion"
+      }
+    }
+  },
+  "About": {
+    "title": "The Studio Behind<br /><span class='text-primary'>The Code.</span>",
+    "subtitle": "NIMA Studio is a distributed collective of senior engineers and designers, led by Nima Afsharfar. We don't just write code; we build businesses.",
+    "founder": {
+      "role": "Founder & Lead Architect",
+      "p1": "With over 12 years of experience in full-stack development, I've seen the good, the bad, and the ugly of software engineering.",
+      "p2": "I started NIMA Studio with a simple mission: to provide startups and businesses with the kind of engineering quality usually reserved for Silicon Valley giants.",
+      "p3": "We reject the \"agency model\" of outsourcing to junior devs. When you work with us, you work with senior architects who understand your business goals."
+    },
+    "values": {
+      "global": {
+        "title": "Distributed & Global",
+        "desc": "We recruit the best talent regardless of location. Our team spans Europe and the Middle East, offering 24/7 development cycles."
+      },
+      "speed": {
+        "title": "Speed & Quality",
+        "desc": "We use a pre-built \"Launchpad\" stack (Next.js, Supabase, Stripe) to ship MVPs in weeks, not months, without technical debt."
+      },
+      "partners": {
+        "title": "Partners, Not Vendors",
+        "desc": "We don't just take tickets. We challenge assumptions, suggest features, and help you pivot based on market feedback."
+      }
+    },
+    "cta": {
+      "title": "Ready to build something great?",
+      "button": "Start Your Project"
+    }
+  },
+  "Contact": {
+    "title": "Get in Touch",
+    "subtitle": "Have a question or want to discuss a partnership? We'd love to hear from you.",
+    "info": {
+      "title": "Contact Information",
+      "email": "Email",
+      "phone": "Phone",
+      "office": "Office",
+      "officeDesc": "Distributed Team<br />Based in Europe & Middle East"
+    },
+    "cta": {
+      "title": "Ready to start a project?",
+      "desc": "Use our project configurator to get a custom estimate.",
+      "button": "Start Project Configurator"
+    },
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message"
+    }
+  },
+  "Work": {
+    "title": "Selected Work",
+    "subtitle": "A collection of custom software, high-performance web apps, and digital products built for ambitious clients.",
+    "empty": "No work published yet. Add your first case study from the admin panel."
+  },
+  "Start": {
+    "title": "Build Your Product",
+    "subtitle": "Use our interactive configurator to define your project scope and get an estimated roadmap."
+  },
+  "Stats": {
+    "experience": "Years Experience",
+    "projects": "Projects Delivered",
+    "clients": "Happy Clients",
+    "satisfaction": "Client Satisfaction"
+  },
+  "Process": {
+    "title": "How We Work",
+    "subtitle": "A transparent, agile process designed to deliver high-quality software at speed.",
+    "steps": {
+      "discovery": {
+        "title": "Discovery",
+        "desc": "We dive deep into your business goals and technical requirements."
+      },
+      "design": {
+        "title": "Design",
+        "desc": "We craft intuitive user interfaces and robust system architectures."
+      },
+      "development": {
+        "title": "Development",
+        "desc": "We build with modern tech stacks, focusing on performance and scalability."
+      },
+      "launch": {
+        "title": "Launch",
+        "desc": "We deploy your product and provide ongoing support for growth."
+      }
+    }
+  },
+  "CTA": {
+    "title": "Ready to Scale?",
+    "subtitle": "Let's turn your vision into a high-performance digital reality.",
+    "primary": "Start Your Project",
+    "secondary": "Contact Sales"
+  }
+}

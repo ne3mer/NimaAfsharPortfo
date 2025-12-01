@@ -1,22 +1,25 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link } from "@/i18n/routing";
+import { usePathname } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
-const navLinks = [
-  { name: "Work", href: "/work" },
-  { name: "Services", href: "/#services" },
-  { name: "About", href: "/about" },
-];
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("Navbar");
+
+  const navLinks = [
+    { name: t("work"), href: "/work" },
+    { name: t("services"), href: "/#services" },
+    { name: t("about"), href: "/about" },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
@@ -40,16 +43,20 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link href="/start" className={buttonVariants({ variant: "premium", size: "sm" })}>Start Project</Link>
+          <LanguageSwitcher />
+          <Link href="/start" className={buttonVariants({ variant: "premium", size: "sm" })}>{t("start")}</Link>
         </nav>
 
         {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+            <LanguageSwitcher />
+            <button
+            className="text-white"
+            onClick={() => setIsOpen(!isOpen)}
+            >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -70,7 +77,7 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link href="/start" onClick={() => setIsOpen(false)} className={buttonVariants({ variant: "premium", className: "w-full" })}>Start Project</Link>
+          <Link href="/start" onClick={() => setIsOpen(false)} className={buttonVariants({ variant: "premium", className: "w-full" })}>{t("start")}</Link>
         </motion.div>
       )}
     </header>

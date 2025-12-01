@@ -1,6 +1,6 @@
 "use client";
 
-
+import { useTranslations } from "next-intl";
 
 const technologies = [
   "Next.js", "React", "TypeScript", "Node.js", "Tailwind CSS", 
@@ -9,11 +9,13 @@ const technologies = [
 ];
 
 export function TechStack() {
+  const t = useTranslations("TechStack");
+
   return (
     <section className="py-20 bg-black border-y border-white/5 overflow-hidden">
       <div className="container mx-auto px-4 mb-10 text-center">
         <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
-          Powering Next-Gen Applications
+          {t("title")}
         </p>
       </div>
       

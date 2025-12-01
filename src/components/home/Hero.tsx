@@ -1,19 +1,22 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/Button";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ArrowRight, Cpu, Gauge, Terminal, Zap, Globe } from "lucide-react";
 import HeroCyberGrid from "@/components/home/HeroCyberGrid";
 import { motion } from "framer-motion";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-
-const CAPABILITIES = [
-  { label: "AI Systems", icon: Cpu },
-  { label: "Realtime Infra", icon: Gauge },
-  { label: "Global Scale", icon: Globe },
-];
+import { useTranslations } from "next-intl";
 
 export function Hero() {
+  const t = useTranslations("Hero");
+
+  const CAPABILITIES = [
+    { label: t("capabilities.ai"), icon: Cpu },
+    { label: t("capabilities.infra"), icon: Gauge },
+    { label: t("capabilities.scale"), icon: Globe },
+  ];
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black text-white">
       {/* Dynamic Background Layer */}
@@ -38,7 +41,7 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              System Online
+              {t("systemOnline")}
             </motion.div>
 
             <div className="space-y-4">
@@ -47,16 +50,13 @@ export function Hero() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 className="text-5xl md:text-7xl font-black tracking-tighter leading-[1.1]"
+                dangerouslySetInnerHTML={{ __html: t.raw("title") }}
               >
-                Build the <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 animate-gradient-x">
-                  Impossible.
-                </span>
               </motion.h1>
               
               <div className="text-lg md:text-xl text-white/60 max-w-xl leading-relaxed">
                 <TextGenerateEffect 
-                  words="We architect high-performance digital systems for ambitious operators. No templates. No limits. Just pure engineering velocity."
+                  words={t("subtitle")}
                   className="text-white/70 font-normal"
                 />
               </div>
@@ -69,11 +69,11 @@ export function Hero() {
                 className="flex flex-col sm:flex-row gap-4 pt-4"
               >
               <Link href="/start" className={buttonVariants({ variant: "premium", size: "lg", className: "h-14 px-8 rounded-full text-base font-semibold shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_-10px_rgba(59,130,246,0.7)] transition-all duration-300" })}>
-                  Initialize Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  {t("ctaPrimary")}
+                  <ArrowRight className="ml-2 h-5 w-5 rtl:rotate-180" />
               </Link>
               <Link href="/work" className={buttonVariants({ variant: "outline", size: "lg", className: "h-14 px-8 rounded-full border-white/10 bg-white/5 hover:bg-white/10 text-base backdrop-blur-sm" })}>
-                  Explore Archives
+                  {t("ctaSecondary")}
               </Link>
             </motion.div>
 

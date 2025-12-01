@@ -1,38 +1,41 @@
 "use client";
 
 import { Star } from "lucide-react";
-
-const testimonials = [
-  {
-    quote: "NIMA Studio didn't just build an app; they built our entire business infrastructure. The level of engineering quality is unmatched.",
-    author: "Sarah Jenkins",
-    role: "CEO, Nova Finance",
-    company: "Fintech Series B"
-  },
-  {
-    quote: "We wasted 6 months with a cheap agency before finding Nima. He fixed our architecture in 2 weeks and launched our MVP a month later.",
-    author: "David Chen",
-    role: "Founder, CopyFlow",
-    company: "AI Startup"
-  },
-  {
-    quote: "The attention to detail in the UI/UX is incredible. Our customers constantly compliment the speed and feel of the platform.",
-    author: "Elena Rodriguez",
-    role: "Product Director",
-    company: "Aura Fashion"
-  }
-];
+import { useTranslations } from "next-intl";
 
 export function Testimonials() {
+  const t = useTranslations("Testimonials");
+
+  const testimonials = [
+    {
+      quote: t("items.0.quote"),
+      author: "Sarah Jenkins",
+      role: t("items.0.role"),
+      company: t("items.0.company")
+    },
+    {
+      quote: t("items.1.quote"),
+      author: "David Chen",
+      role: t("items.1.role"),
+      company: t("items.1.company")
+    },
+    {
+      quote: t("items.2.quote"),
+      author: "Elena Rodriguez",
+      role: t("items.2.role"),
+      company: t("items.2.company")
+    }
+  ];
+
   return (
     <section className="py-24 bg-background border-t border-white/5">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-4">
-            Trusted by Founders.
+            {t("title")}
           </h2>
           <p className="text-muted-foreground">
-            We build long-term technical partnerships. Here is what our clients say.
+            {t("subtitle")}
           </p>
         </div>
 

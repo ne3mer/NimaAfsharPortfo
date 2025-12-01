@@ -2,80 +2,84 @@
 
 import { buttonVariants } from "@/components/ui/Button";
 import { Check } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-
-const tiers = [
-  {
-    name: "Small Custom Projects",
-    price: "€400 - €1,200",
-    description: "For early-stage ideas and personal brands.",
-    features: [
-      "Custom Landing Pages",
-      "Simple Web Systems",
-      "Admin Panels",
-      "Lead Capture Systems",
-      "No WordPress / Templates",
-    ],
-    cta: "Get Started",
-    href: "/start?type=small",
-  },
-  {
-    name: "Business Systems",
-    price: "€1,500 - €5,000",
-    description: "For growing companies needing automation.",
-    features: [
-      "Custom Dashboards",
-      "CRM Systems",
-      "Booking & Reservations",
-      "Payment Integrations",
-      "Multi-user Roles & Permissions",
-    ],
-    cta: "Build System",
-    href: "/start?type=business",
-    featured: true,
-  },
-  {
-    name: "SaaS & Startup MVP",
-    price: "€6,000+",
-    description: "Full product development for serious founders.",
-    features: [
-      "Product Strategy & Roadmap",
-      "Full UI/UX Design",
-      "Advanced Backend & API",
-      "Auth, Subscriptions, Analytics",
-      "Cloud Deployment & Scaling",
-    ],
-    cta: "Launch Startup",
-    href: "/start?type=saas",
-  },
-  {
-    name: "Monthly Retainer",
-    price: "€150 - €800/mo",
-    description: "Ongoing support and development.",
-    features: [
-      "Regular Maintenance",
-      "Feature Updates",
-      "Server Monitoring",
-      "Priority Support",
-      "Consulting Sessions",
-    ],
-    cta: "Subscribe",
-    href: "/contact",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function Services() {
+  const t = useTranslations("Services");
+
+  const tiers = [
+    {
+      name: t("tiers.small.name"),
+      price: "€400 - €1,200",
+      description: t("tiers.small.description"),
+      features: [
+        t("tiers.small.features.0"),
+        t("tiers.small.features.1"),
+        t("tiers.small.features.2"),
+        t("tiers.small.features.3"),
+        t("tiers.small.features.4"),
+      ],
+      cta: t("tiers.small.cta"),
+      href: "/start?type=small",
+    },
+    {
+      name: t("tiers.business.name"),
+      price: "€1,500 - €5,000",
+      description: t("tiers.business.description"),
+      features: [
+        t("tiers.business.features.0"),
+        t("tiers.business.features.1"),
+        t("tiers.business.features.2"),
+        t("tiers.business.features.3"),
+        t("tiers.business.features.4"),
+      ],
+      cta: t("tiers.business.cta"),
+      href: "/start?type=business",
+      featured: true,
+      badge: t("tiers.business.badge"),
+    },
+    {
+      name: t("tiers.saas.name"),
+      price: "€6,000+",
+      description: t("tiers.saas.description"),
+      features: [
+        t("tiers.saas.features.0"),
+        t("tiers.saas.features.1"),
+        t("tiers.saas.features.2"),
+        t("tiers.saas.features.3"),
+        t("tiers.saas.features.4"),
+      ],
+      cta: t("tiers.saas.cta"),
+      href: "/start?type=saas",
+    },
+    {
+      name: t("tiers.retainer.name"),
+      price: "€150 - €800/mo",
+      description: t("tiers.retainer.description"),
+      features: [
+        t("tiers.retainer.features.0"),
+        t("tiers.retainer.features.1"),
+        t("tiers.retainer.features.2"),
+        t("tiers.retainer.features.3"),
+        t("tiers.retainer.features.4"),
+      ],
+      cta: t("tiers.retainer.cta"),
+      href: "/contact",
+    },
+  ];
+
   return (
     <section id="services" className="py-24 bg-black relative">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-white">
-            Transparent Pricing.<br />
-            <span className="text-primary">Professional Execution.</span>
-          </h2>
+          <h2 
+            className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-white"
+            dangerouslySetInnerHTML={{ __html: t.raw("title") }}
+          />
           <p className="text-muted-foreground">
-            Choose the package that fits your stage. From simple custom sites to complex SaaS platforms.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -92,7 +96,7 @@ export function Services() {
             >
               {tier.featured && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-xs font-bold rounded-full">
-                  Most Popular
+                  {tier.badge}
                 </div>
               )}
               

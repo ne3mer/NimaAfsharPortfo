@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { PortfolioCard, WorkCardData } from "@/components/work/PortfolioCard";
+import { getTranslations } from "next-intl/server";
 
 function mapTags(tags: string) {
   return tags
@@ -9,6 +10,7 @@ function mapTags(tags: string) {
 }
 
 export default async function WorkPage() {
+  const t = await getTranslations("Work");
   const works = await prisma.work.findMany({
     orderBy: { createdAt: "desc" },
   });
@@ -25,17 +27,16 @@ export default async function WorkPage() {
     <div className="container mx-auto px-4 py-20">
       <div className="max-w-2xl mb-12">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">
-          Selected Work
+          {t("title")}
         </h1>
         <p className="text-muted-foreground text-lg">
-          A collection of custom software, high-performance web apps, and
-          digital products built for ambitious clients.
+          {t("subtitle")}
         </p>
       </div>
 
       {cards.length === 0 ? (
         <div className="rounded-3xl border border-white/10 bg-black/40 p-10 text-center text-muted-foreground">
-          No work published yet. Add your first case study from the admin panel.
+          {t("empty")}
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
