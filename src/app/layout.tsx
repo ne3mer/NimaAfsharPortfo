@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -15,12 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "NIMA Studio | Custom Software Development",
   description: "Premium custom software development studio by Nima Afsharfar. Specialized in scalable web applications, SaaS platforms, and digital products. No templates, just engineering.",
   openGraph: {
     title: "NIMA Studio | Custom Software Development",
     description: "Premium custom software development studio. No templates, just engineering.",
-    url: "https://nimastudio.com",
+    url: siteUrl,
     siteName: "NIMA Studio",
     images: [
       {

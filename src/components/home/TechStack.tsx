@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+
 
 const technologies = [
   "Next.js", "React", "TypeScript", "Node.js", "Tailwind CSS", 

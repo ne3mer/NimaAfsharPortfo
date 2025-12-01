@@ -45,7 +45,7 @@ export function Testimonials() {
                 ))}
               </div>
               <p className="text-lg text-white mb-6 leading-relaxed">
-                "{t.quote}"
+                &quot;{t.quote}&quot;
               </p>
               <div>
                 <div className="font-bold text-white">{t.author}</div>

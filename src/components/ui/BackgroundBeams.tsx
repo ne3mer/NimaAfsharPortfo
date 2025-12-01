@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 export const BackgroundBeams = ({ className }: { className?: string }) => {
   const beamsRef = useRef<HTMLCanvasElement>(null);
@@ -12,56 +12,48 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: Particle[] = [];
+    let particles: ReturnType<typeof createParticle>[] = [];
     
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
 
-    class Particle {
-      x: number;
-      y: number;
-      speedX: number;
-      speedY: number;
-      size: number;
-      color: string;
+    const createParticle = () => {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const speedX = Math.random() * 0.5 - 0.25;
+      const speedY = Math.random() * 0.5 - 0.25;
+      const size = Math.random() * 2;
+      const colors = ["#2563eb", "#4f46e5", "#ffffff"];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      
+      return { x, y, speedX, speedY, size, color };
+    };
 
-      constructor() {
-        this.x = Math.random() * canvas!.width;
-        this.y = Math.random() * canvas!.height;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.size = Math.random() * 2;
-        // Blue/Purple/White particles
-        const colors = ["#2563eb", "#4f46e5", "#ffffff"];
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-      }
+    const updateParticle = (p: ReturnType<typeof createParticle>) => {
+      p.x += p.speedX;
+      p.y += p.speedY;
 
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.y > canvas.height) p.y = 0;
+      if (p.y < 0) p.y = canvas.height;
+    };
 
-        if (this.x > canvas!.width) this.x = 0;
-        if (this.x < 0) this.x = canvas!.width;
-        if (this.y > canvas!.height) this.y = 0;
-        if (this.y < 0) this.y = canvas!.height;
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 0.5;
-      }
-    }
+    const drawParticle = (p: ReturnType<typeof createParticle>) => {
+      if (!ctx) return;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 0.5;
+    };
 
     const init = () => {
       particles = [];
       for (let i = 0; i < 50; i++) {
-        particles.push(new Particle());
+        particles.push(createParticle());
       }
     };
 
@@ -87,8 +79,8 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
       }
 
       particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
+        updateParticle(particle);
+        drawParticle(particle);
       });
 
       animationFrameId = requestAnimationFrame(animate);

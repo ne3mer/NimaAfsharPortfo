@@ -25,6 +25,20 @@ model Lead {
   status    String   @default("NEW") // NEW, CONTACTED, CLOSED
 }
 
+model Work {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  slug        String   @unique
+  description String
+  client      String
+  tags        String
+  image       String?
+  content     String
+  status      String   @default("Live")
+}
+
 model Admin {
   id        String   @id @default(cuid())
   email     String   @unique

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactPage() {
@@ -9,7 +9,7 @@ export default function ContactPage() {
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Get in Touch</h1>
             <p className="text-xl text-muted-foreground">
-              Have a question or want to discuss a partnership? We'd love to hear from you.
+              Have a question or want to discuss a partnership? We&apos;d love to hear from you.
             </p>
           </div>
 
@@ -53,9 +53,7 @@ export default function ContactPage() {
                 <p className="text-sm text-muted-foreground mb-4">
                   Use our project configurator to get a custom estimate.
                 </p>
-                <Button variant="premium" className="w-full" asChild>
-                  <a href="/start">Start Project Configurator</a>
-                </Button>
+                <a href="/start" className={buttonVariants({ variant: "premium", className: "w-full" })}>Start Project Configurator</a>
               </div>
             </div>
 

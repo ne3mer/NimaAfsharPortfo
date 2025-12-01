@@ -62,7 +62,7 @@ export function ConfiguratorWizard() {
     }));
   };
 
-  const updateField = (field: keyof ConfigState, value: any) => {
+  const updateField = <K extends keyof ConfigState>(field: K, value: ConfigState[K]) => {
     setConfig((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -83,7 +83,7 @@ export function ConfiguratorWizard() {
       } else {
         alert("Something went wrong. Please try again.");
       }
-    } catch (error) {
+    } catch {
       alert("Network error. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -136,7 +136,7 @@ export function ConfiguratorWizard() {
                   <button
                     type="button"
                     key={type.id}
-                    onClick={() => updateField("type", type.id)}
+                    onClick={() => updateField("type", type.id as ProjectType)}
                     className={cn(
                       "p-6 rounded-xl border text-left transition-all hover:border-primary/50",
                       config.type === type.id
@@ -201,7 +201,7 @@ export function ConfiguratorWizard() {
                   <button
                     type="button"
                     key={range.id}
-                    onClick={() => updateField("budget", range.id)}
+                    onClick={() => updateField("budget", range.id as BudgetRange)}
                     className={cn(
                       "p-6 rounded-xl border text-left transition-all",
                       config.budget === range.id

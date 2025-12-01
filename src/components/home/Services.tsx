@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -111,13 +111,7 @@ export function Services() {
                 ))}
               </ul>
 
-              <Button 
-                variant={tier.featured ? "default" : "outline"} 
-                className="w-full"
-                asChild
-              >
-                <Link href={tier.href}>{tier.cta}</Link>
-              </Button>
+                <Link href={tier.href} className={buttonVariants({ variant: tier.featured ? "default" : "outline", className: "w-full" })}>{tier.cta}</Link>
             </div>
           ))}
         </div>

@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
-import { format } from "date-fns"; // We might need to install this or use native date
-import { Badge } from "@/components/ui/Badge"; // Need to create Badge
-import { Button } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
+import Link from "next/link";
 
 export default async function LeadsPage() {
   const leads = await prisma.lead.findMany({
@@ -52,7 +51,7 @@ export default async function LeadsPage() {
                   </span>
                 </td>
                 <td className="px-6 py-4">
-                  <Button variant="outline" className="h-8 text-xs">View</Button>
+                  <Link href={`/admin/leads/${lead.id}`} className={buttonVariants({ variant: "outline", className: "h-8 text-xs" })}>View</Link>
                 </td>
               </tr>
             ))}

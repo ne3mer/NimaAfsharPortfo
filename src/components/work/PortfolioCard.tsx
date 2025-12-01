@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { CaseStudy } from "@/data/portfolio";
 
-export function PortfolioCard({ project }: { project: CaseStudy }) {
+export type WorkCardData = {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  tags: string[];
+};
+
+export function PortfolioCard({ project }: { project: WorkCardData }) {
   return (
     <Link 
       href={`/work/${project.slug}`}

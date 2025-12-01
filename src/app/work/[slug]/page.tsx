@@ -1,12 +1,23 @@
+
 import { notFound } from "next/navigation";
-import { portfolioData } from "@/data/portfolio";
-import { Button } from "@/components/ui/Button";
+import { prisma } from "@/lib/prisma";
+import { buttonVariants } from "@/components/ui/Button";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-// This is required for static site generation with dynamic routes in Next.js App Router
-export function generateStaticParams() {
-  return portfolioData.map((project) => ({
+function splitTags(tags: string) {
+  return tags
+    .split(",")
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+}
+
+export async function generateStaticParams() {
+  const works = await prisma.work.findMany({
+    select: { slug: true },
+  });
+
+  return works.map((project) => ({
     slug: project.slug,
   }));
 }
@@ -17,7 +28,9 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = portfolioData.find((p) => p.slug === slug);
+  const project = await prisma.work.findUnique({
+    where: { slug },
+  });
 
   if (!project) {
     notFound();
@@ -40,7 +53,7 @@ export default async function ProjectPage({
           </h1>
           
           <div className="flex flex-wrap gap-4 mb-8">
-            {project.tags.map((tag) => (
+            {splitTags(project.tags).map((tag) => (
               <span key={tag} className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium">
                 {tag}
               </span>
@@ -91,9 +104,7 @@ export default async function ProjectPage({
             <p className="text-sm text-muted-foreground mb-4">
               Start your project today and get a custom roadmap.
             </p>
-            <Button variant="premium" className="w-full" asChild>
-              <Link href="/start">Start Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
-            </Button>
+            <Link href="/start" className={buttonVariants({ variant: "premium", className: "w-full" })}>Start Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
           </div>
         </div>
       </div>

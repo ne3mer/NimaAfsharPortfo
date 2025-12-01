@@ -1,7 +1,26 @@
-import { portfolioData } from "@/data/portfolio";
-import { PortfolioCard } from "@/components/work/PortfolioCard";
+import { prisma } from "@/lib/prisma";
+import { PortfolioCard, WorkCardData } from "@/components/work/PortfolioCard";
 
-export default function WorkPage() {
+function mapTags(tags: string) {
+  return tags
+    .split(",")
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+}
+
+export default async function WorkPage() {
+  const works = await prisma.work.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+
+  const cards: WorkCardData[] = works.map((work) => ({
+    id: work.id,
+    slug: work.slug,
+    title: work.title,
+    description: work.description,
+    tags: mapTags(work.tags),
+  }));
+
   return (
     <div className="container mx-auto px-4 py-20">
       <div className="max-w-2xl mb-12">
@@ -9,15 +28,22 @@ export default function WorkPage() {
           Selected Work
         </h1>
         <p className="text-muted-foreground text-lg">
-          A collection of custom software, high-performance web apps, and digital products built for ambitious clients.
+          A collection of custom software, high-performance web apps, and
+          digital products built for ambitious clients.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {portfolioData.map((project) => (
-          <PortfolioCard key={project.id} project={project} />
-        ))}
-      </div>
+      {cards.length === 0 ? (
+        <div className="rounded-3xl border border-white/10 bg-black/40 p-10 text-center text-muted-foreground">
+          No work published yet. Add your first case study from the admin panel.
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {cards.map((project) => (
+            <PortfolioCard key={project.id} project={project} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

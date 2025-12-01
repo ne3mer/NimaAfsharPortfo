@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { portfolioData } from "@/data/portfolio";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import {
@@ -10,16 +9,23 @@ import {
   FolderGit2,
 } from "lucide-react";
 
-const STATUS_META = [
-  { label: "Live", variant: "success" as const },
-  { label: "In QA", variant: "warning" as const },
-  { label: "Concept", variant: "default" as const },
-];
+const STATUS_META: Record<
+  string,
+  { label: string; variant: "default" | "success" | "warning" }
+> = {
+  Live: { label: "Live", variant: "success" },
+  "In Review": { label: "In Review", variant: "warning" },
+  Draft: { label: "Draft", variant: "default" },
+};
 
-const WORK_PROGRESS = [92, 78, 61];
+const STATUS_PROGRESS: Record<string, number> = {
+  Live: 95,
+  "In Review": 70,
+  Draft: 35,
+};
 
 export default async function DashboardPage() {
-  const [leadCounts, latestLeads] = await Promise.all([
+  const [leadCounts, latestLeads, works] = await Promise.all([
     prisma.lead.groupBy({
       by: ["status"],
       _count: { _all: true },
@@ -28,17 +34,27 @@ export default async function DashboardPage() {
       orderBy: { createdAt: "desc" },
       take: 5,
     }),
+    prisma.work.findMany({
+      orderBy: { updatedAt: "desc" },
+      take: 5,
+    }),
   ]);
 
   const totalLeads = leadCounts.reduce((acc, curr) => acc + curr._count._all, 0);
   const newLeadCount =
     leadCounts.find((c) => c.status === "NEW")?._count._all ?? 0;
-
-  const works = portfolioData.slice(0, 3).map((work, idx) => ({
-    ...work,
-    status: STATUS_META[idx % STATUS_META.length],
-    progress: WORK_PROGRESS[idx % WORK_PROGRESS.length],
-  }));
+  const workRows = works.map((work) => {
+    const meta = STATUS_META[work.status] ?? STATUS_META["Draft"];
+    return {
+      id: work.id,
+      title: work.title,
+      client: work.client,
+      slug: work.slug,
+      status: meta,
+      progress: STATUS_PROGRESS[work.status] ?? 50,
+      tags: work.tags,
+    };
+  });
 
   return (
     <div className="space-y-10">
@@ -118,11 +134,13 @@ export default async function DashboardPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
-                {works.map((work) => (
+                {workRows.map((work) => (
                   <tr key={work.id} className="bg-transparent">
                     <td className="px-6 py-5">
                       <div className="font-semibold text-white">{work.title}</div>
-                      <div className="text-xs text-white/50">{work.tags.join(", ")}</div>
+                      <div className="text-xs text-white/50">
+                        {work.tags}
+                      </div>
                     </td>
                     <td className="px-6 py-5 text-white/70">{work.client}</td>
                     <td className="px-6 py-5">

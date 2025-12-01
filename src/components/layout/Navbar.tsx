@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -40,9 +40,7 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Button variant="premium" size="sm" asChild>
-            <Link href="/start">Start Project</Link>
-          </Button>
+          <Link href="/start" className={buttonVariants({ variant: "premium", size: "sm" })}>Start Project</Link>
         </nav>
 
         {/* Mobile Toggle */}
@@ -72,9 +70,7 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Button variant="premium" className="w-full" asChild>
-            <Link href="/start" onClick={() => setIsOpen(false)}>Start Project</Link>
-          </Button>
+          <Link href="/start" onClick={() => setIsOpen(false)} className={buttonVariants({ variant: "premium", className: "w-full" })}>Start Project</Link>
         </motion.div>
       )}
     </header>

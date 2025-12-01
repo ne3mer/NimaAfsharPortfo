@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { Github, Linkedin, Twitter } from "lucide-react";
+
+import { Github, Linkedin, Twitter, type LucideIcon } from "lucide-react";
 
 export function Footer() {
   return (
@@ -49,7 +49,8 @@ export function Footer() {
   );
 }
 
-function SocialLink({ href, icon: Icon }: { href: string, icon: any }) {
+
+function SocialLink({ href, icon: Icon }: { href: string, icon: LucideIcon }) {
   return (
     <a 
       href={href} 

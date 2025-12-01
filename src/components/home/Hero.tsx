@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import Link from "next/link";
 import { ArrowRight, Cpu, Gauge, Workflow } from "lucide-react";
 
@@ -61,25 +61,13 @@ export function Hero() {
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Button
-                variant="premium"
-                size="lg"
-                className="h-12 rounded-full px-8 text-base shadow-[0_20px_60px_rgba(37,99,235,0.35)]"
-                asChild
-              >
-                <Link href="/start">
+              <Link href="/start" className={buttonVariants({ variant: "premium", size: "lg", className: "h-12 rounded-full px-8 text-base shadow-[0_20px_60px_rgba(37,99,235,0.35)]" })}>
                   Start your build
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="h-12 rounded-full border-white/20 bg-white/5 px-8 text-base text-white hover:bg-white/10"
-                asChild
-              >
-                <Link href="/work">View case studies</Link>
-              </Button>
+              </Link>
+              <Link href="/work" className={buttonVariants({ variant: "outline", size: "lg", className: "h-12 rounded-full border-white/20 bg-white/5 px-8 text-base text-white hover:bg-white/10" })}>
+                  View case studies
+              </Link>
             </div>
 
             <div className="flex flex-wrap gap-3">

@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { useState } from "react";
 // We'll use server actions for login in a real app, but for now we'll use a simple form
 // that calls signIn from next-auth/react (which we need to wrap or use server actions)
 // For simplicity in this step, we'll use a server action in a separate file or inline if possible.

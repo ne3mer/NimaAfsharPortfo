@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { buttonVariants } from "@/components/ui/Button";
 import Link from "next/link";
 import { Home } from "lucide-react";
 
@@ -15,11 +15,9 @@ export default function NotFound() {
         The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
       </p>
       
-      <Button variant="premium" size="lg" asChild>
-        <Link href="/">
+      <Link href="/" className={buttonVariants({ variant: "premium", size: "lg" })}>
           <Home className="mr-2 h-4 w-4" /> Return Home
-        </Link>
-      </Button>
+      </Link>
     </div>
   );
 }
