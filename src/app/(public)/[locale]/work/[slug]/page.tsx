@@ -14,15 +14,15 @@ function splitTags(tags: string | null | undefined) {
     .filter(Boolean);
 }
 
-export async function generateStaticParams() {
-  const works = await prisma.work.findMany({
-    select: { slug: true },
-  });
+// export async function generateStaticParams() {
+//   const works = await prisma.work.findMany({
+//     select: { slug: true },
+//   });
 
-  return works.map((project) => ({
-    slug: project.slug,
-  }));
-}
+//   return works.map((project) => ({
+//     slug: project.slug,
+//   }));
+// }
 
 export default async function ProjectPage({
   params,
