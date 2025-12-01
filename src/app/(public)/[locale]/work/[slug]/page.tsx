@@ -2,8 +2,9 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { buttonVariants } from "@/components/ui/Button";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 function splitTags(tags: string) {
   return tags
@@ -28,6 +29,8 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const t = await getTranslations("Project");
+  
   const project = await prisma.work.findUnique({
     where: { slug },
   });
@@ -45,7 +48,7 @@ export default async function ProjectPage({
             href="/work" 
             className="inline-flex items-center text-sm text-muted-foreground hover:text-white mb-8 transition-colors"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Work
+            <ArrowLeft className="mr-2 h-4 w-4 rtl:rotate-180" /> {t("back")}
           </Link>
           
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
@@ -82,29 +85,31 @@ export default async function ProjectPage({
         {/* Sidebar */}
         <div className="space-y-8">
           <div className="p-6 rounded-xl bg-card border border-white/10">
-            <h3 className="font-semibold text-white mb-4">Project Info</h3>
+            <h3 className="font-semibold text-white mb-4">{t("info")}</h3>
             <div className="space-y-4 text-sm">
               <div>
-                <span className="block text-muted-foreground">Client</span>
+                <span className="block text-muted-foreground">{t("client")}</span>
                 <span className="text-white font-medium">{project.client}</span>
               </div>
               <div>
-                <span className="block text-muted-foreground">Services</span>
+                <span className="block text-muted-foreground">{t("services")}</span>
                 <span className="text-white font-medium">Full Stack Dev, UI/UX</span>
               </div>
               <div>
-                <span className="block text-muted-foreground">Year</span>
+                <span className="block text-muted-foreground">{t("year")}</span>
                 <span className="text-white font-medium">2024</span>
               </div>
             </div>
           </div>
 
           <div className="p-6 rounded-xl bg-gradient-to-br from-primary/20 to-purple-500/10 border border-primary/20">
-            <h3 className="font-bold text-white mb-2">Ready to build?</h3>
+            <h3 className="font-bold text-white mb-2">{t("ready")}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Start your project today and get a custom roadmap.
+              {t("readyDesc")}
             </p>
-            <Link href="/start" className={buttonVariants({ variant: "premium", className: "w-full" })}>Start Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <Link href="/start" className={buttonVariants({ variant: "premium", className: "w-full" })}>
+              {t("start")} <ArrowRight className="ml-2 h-4 w-4 rtl:rotate-180" />
+            </Link>
           </div>
         </div>
       </div>

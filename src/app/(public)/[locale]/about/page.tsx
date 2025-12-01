@@ -1,11 +1,11 @@
-
 import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Globe, Users, Zap } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function AboutPage() {
-  const t = useTranslations("About");
+export default async function AboutPage({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  const t = await getTranslations({locale, namespace: "About"});
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -38,6 +38,9 @@ export default function AboutPage() {
               <p>{t("founder.p1")}</p>
               <p>{t("founder.p2")}</p>
               <p>{t("founder.p3")}</p>
+              <p className="text-white font-medium border-s-2 border-primary ps-4 italic">
+                {t("founder.p4")}
+              </p>
             </div>
             <div className="mt-8 flex gap-4">
               <a href="https://linkedin.com" target="_blank" className={buttonVariants({ variant: "outline" })}>LinkedIn</a>

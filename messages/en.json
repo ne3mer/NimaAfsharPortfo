@@ -101,9 +101,10 @@
     "subtitle": "NIMA Studio is a distributed collective of senior engineers and designers, led by Nima Afsharfar. We don't just write code; we build businesses.",
     "founder": {
       "role": "Founder & Lead Architect",
-      "p1": "With over 12 years of experience in full-stack development, I've seen the good, the bad, and the ugly of software engineering.",
-      "p2": "I started NIMA Studio with a simple mission: to provide startups and businesses with the kind of engineering quality usually reserved for Silicon Valley giants.",
-      "p3": "We reject the \"agency model\" of outsourcing to junior devs. When you work with us, you work with senior architects who understand your business goals."
+      "p1": "With over 12 years of experience in software development, I've seen the real challenges of the engineering world.",
+      "p2": "My goal in founding Nima Studio was simple: to bring Silicon Valley quality engineering to startups and businesses worldwide.",
+      "p3": "We stand against traditional, low-quality outsourcing models. Here, you work with senior architects who deeply understand your business concerns.",
+      "p4": "While our vision is global, we are committed to bridging the gap between local potential and international standards, ensuring that world-class technology is accessible to visionaries everywhere."
     },
     "values": {
       "global": {
@@ -189,5 +190,73 @@
     "subtitle": "Let's turn your vision into a high-performance digital reality.",
     "primary": "Start Your Project",
     "secondary": "Contact Sales"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: November 30, 2025",
+    "intro": {
+      "title": "1. Introduction",
+      "content": "Welcome to NIMA Studio. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you."
+    },
+    "data": {
+      "title": "2. Data We Collect",
+      "content": "We may collect, use, store and transfer different kinds of personal data about you which we have grouped together follows:",
+      "items": {
+        "identity": "<b>Identity Data</b> includes first name, last name, username or similar identifier.",
+        "contact": "<b>Contact Data</b> includes email address and telephone number.",
+        "technical": "<b>Technical Data</b> includes internet protocol (IP) address, browser type and version, time zone setting and location."
+      }
+    },
+    "usage": {
+      "title": "3. How We Use Your Data",
+      "content": "We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:",
+      "items": {
+        "contract": "Where we need to perform the contract we are about to enter into or have entered into with you.",
+        "legitimate": "Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests."
+      }
+    }
+  },
+  "Terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: November 30, 2025",
+    "agreement": {
+      "title": "1. Agreement to Terms",
+      "content": "By accessing our website at nimastudio.com, you agree to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws."
+    },
+    "license": {
+      "title": "2. Use License",
+      "content": "Permission is granted to temporarily download one copy of the materials (information or software) on NIMA Studio's website for personal, non-commercial transitory viewing only."
+    },
+    "disclaimer": {
+      "title": "3. Disclaimer",
+      "content": "The materials on NIMA Studio's website are provided on an 'as is' basis. NIMA Studio makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights."
+    }
+  },
+  "Project": {
+    "back": "Back to Work",
+    "info": "Project Info",
+    "client": "Client",
+    "services": "Services",
+    "year": "Year",
+    "ready": "Ready to build?",
+    "readyDesc": "Start your project today and get a custom roadmap.",
+    "start": "Start Project"
+  },
+  "Footer": {
+    "description": "Premium custom software development for startups and visionaries. We replace generic templates with high-performance engineering.",
+    "explore": {
+      "title": "Explore",
+      "portfolio": "Portfolio",
+      "about": "About Us",
+      "start": "Start Project",
+      "contact": "Contact"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "copyright": "Nima Studio. All rights reserved.",
+    "designed": "Designed & Engineered in Europe."
   }
 }

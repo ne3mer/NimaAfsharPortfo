@@ -1,8 +1,13 @@
-import Link from "next/link";
+"use client";
 
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { Github, Linkedin, Twitter, type LucideIcon } from "lucide-react";
 
 export function Footer() {
+  const t = useTranslations("Footer");
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="border-t border-white/5 bg-black pt-20 pb-10">
       <div className="container mx-auto px-4">
@@ -12,7 +17,7 @@ export function Footer() {
               NIMA <span className="text-primary">STUDIO</span>
             </Link>
             <p className="text-muted-foreground max-w-sm mb-8 leading-relaxed">
-              Premium custom software development for startups and visionaries. We replace generic templates with high-performance engineering.
+              {t("description")}
             </p>
             <div className="flex gap-4">
               <SocialLink href="#" icon={Linkedin} />
@@ -22,27 +27,27 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="font-bold text-white mb-6">Explore</h3>
+            <h3 className="font-bold text-white mb-6">{t("explore.title")}</h3>
             <ul className="space-y-4 text-sm text-muted-foreground">
-              <li><Link href="/work" className="hover:text-white transition-colors">Portfolio</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/start" className="hover:text-white transition-colors">Start Project</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="/work" className="hover:text-white transition-colors">{t("explore.portfolio")}</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">{t("explore.about")}</Link></li>
+              <li><Link href="/start" className="hover:text-white transition-colors">{t("explore.start")}</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">{t("explore.contact")}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-bold text-white mb-6">Legal</h3>
+            <h3 className="font-bold text-white mb-6">{t("legal.title")}</h3>
             <ul className="space-y-4 text-sm text-muted-foreground">
-              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">{t("legal.privacy")}</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">{t("legal.terms")}</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p>© {new Date().getFullYear()} Nima Studio. All rights reserved.</p>
-          <p>Designed & Engineered in Europe.</p>
+          <p>© {currentYear} {t("copyright")}</p>
+          <p>{t("designed")}</p>
         </div>
       </div>
     </footer>

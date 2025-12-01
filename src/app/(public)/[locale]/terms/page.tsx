@@ -1,24 +1,29 @@
-export default function TermsPage() {
+import { getTranslations } from "next-intl/server";
+
+export default async function TermsPage({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  const t = await getTranslations({locale, namespace: "Terms"});
+
   return (
     <div className="min-h-screen bg-background pt-20 pb-20">
       <div className="container mx-auto px-4 max-w-3xl">
-        <h1 className="text-4xl font-bold text-white mb-8">Terms of Service</h1>
+        <h1 className="text-4xl font-bold text-white mb-8">{t("title")}</h1>
         <div className="prose prose-invert prose-lg">
-          <p className="text-muted-foreground mb-6">Last updated: November 30, 2025</p>
+          <p className="text-muted-foreground mb-6">{t("lastUpdated")}</p>
           
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">1. Agreement to Terms</h2>
+          <h2 className="text-2xl font-bold text-white mt-8 mb-4">{t("agreement.title")}</h2>
           <p className="text-muted-foreground mb-4">
-            By accessing our website at nimastudio.com, you agree to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.
+            {t("agreement.content")}
           </p>
 
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">2. Use License</h2>
+          <h2 className="text-2xl font-bold text-white mt-8 mb-4">{t("license.title")}</h2>
           <p className="text-muted-foreground mb-4">
-            Permission is granted to temporarily download one copy of the materials (information or software) on NIMA Studio&apos;s website for personal, non-commercial transitory viewing only.
+            {t("license.content")}
           </p>
 
-          <h2 className="text-2xl font-bold text-white mt-8 mb-4">3. Disclaimer</h2>
+          <h2 className="text-2xl font-bold text-white mt-8 mb-4">{t("disclaimer.title")}</h2>
           <p className="text-muted-foreground mb-4">
-            The materials on NIMA Studio&apos;s website are provided on an &apos;as is&apos; basis. NIMA Studio makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+            {t("disclaimer.content")}
           </p>
         </div>
       </div>

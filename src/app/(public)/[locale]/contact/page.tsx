@@ -1,10 +1,11 @@
 import { Link } from "@/i18n/routing";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { Mail, MapPin, Phone } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function ContactPage() {
-  const t = useTranslations("Contact");
+export default async function ContactPage({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  const t = await getTranslations({locale, namespace: "Contact"});
 
   return (
     <div className="min-h-screen bg-background pt-20 pb-20">

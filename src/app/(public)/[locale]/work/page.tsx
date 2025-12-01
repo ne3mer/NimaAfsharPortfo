@@ -9,8 +9,9 @@ function mapTags(tags: string) {
     .filter(Boolean);
 }
 
-export default async function WorkPage() {
-  const t = await getTranslations("Work");
+export default async function WorkPage({params}: {params: Promise<{locale: string}>}) {
+  const {locale} = await params;
+  const t = await getTranslations({locale, namespace: "Work"});
   const works = await prisma.work.findMany({
     orderBy: { createdAt: "desc" },
   });
