@@ -15,7 +15,7 @@ interface ConfigState {
   budget: BudgetRange | null;
   name: string;
   email: string;
-  details: string;
+  message: string;
 }
 
 const projectTypes = [
@@ -47,7 +47,7 @@ export function ConfiguratorWizard() {
     budget: null,
     name: "",
     email: "",
-    details: "",
+    message: "",
   });
 
   const nextStep = () => setStep((s) => s + 1);
@@ -227,7 +227,7 @@ export function ConfiguratorWizard() {
             >
               <h2 className="text-3xl font-bold text-white mb-2">Final Step</h2>
               <p className="text-muted-foreground mb-8">Where should we send your project roadmap?</p>
-              
+
               <div className="space-y-4 max-w-md">
                 <div>
                   <label className="block text-sm font-medium text-muted-foreground mb-1">Your Name</label>
@@ -252,8 +252,8 @@ export function ConfiguratorWizard() {
                 <div>
                   <label className="block text-sm font-medium text-muted-foreground mb-1">Project Details (Optional)</label>
                   <textarea 
-                    value={config.details}
-                    onChange={(e) => updateField("details", e.target.value)}
+                    value={config.message}
+                    onChange={(e) => updateField("message", e.target.value)}
                     className="w-full bg-secondary border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary min-h-[100px]"
                     placeholder="Tell us more about your idea..."
                   />
