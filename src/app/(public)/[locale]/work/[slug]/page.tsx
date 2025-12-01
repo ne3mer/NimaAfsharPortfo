@@ -6,7 +6,8 @@ import { Link } from "@/i18n/routing";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-function splitTags(tags: string) {
+function splitTags(tags: string | null | undefined) {
+  if (!tags) return [];
   return tags
     .split(",")
     .map((tag) => tag.trim())
@@ -73,7 +74,7 @@ export default async function ProjectPage({
       <div className="container mx-auto px-4 py-16 grid md:grid-cols-[1fr_300px] gap-12">
         <div className="prose prose-invert prose-lg max-w-none">
           {/* Simple Markdown Rendering */}
-          {project.content.split('\n').map((line, i) => {
+          {(project.content || "").split('\n').map((line, i) => {
             if (line.startsWith('# ')) return <h2 key={i} className="text-3xl font-bold text-white mt-12 mb-6">{line.replace('# ', '')}</h2>;
             if (line.startsWith('## ')) return <h3 key={i} className="text-2xl font-bold text-white mt-8 mb-4">{line.replace('## ', '')}</h3>;
             if (line.startsWith('- ')) return <li key={i} className="ml-4 list-disc text-muted-foreground mb-2">{line.replace('- ', '')}</li>;
