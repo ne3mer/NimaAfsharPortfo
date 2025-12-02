@@ -50,8 +50,9 @@ export async function POST(request: Request) {
         react: ContactUserEmail({ firstName: validatedData.firstName }),
       });
     } catch (emailError) {
-      console.error("Failed to send emails:", emailError);
-      return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+      console.error("Failed to send emails. Error details:", JSON.stringify(emailError, null, 2));
+      // We don't return 500 here because the message was saved to DB successfully.
+      // We just log the error so the admin knows.
     }
 
     return NextResponse.json({ success: true });
