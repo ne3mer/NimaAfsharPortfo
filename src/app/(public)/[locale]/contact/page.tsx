@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/routing";
 import { Button, buttonVariants } from "@/components/ui/Button";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { ContactForm } from "@/components/contact/ContactForm";
 import { getTranslations } from "next-intl/server";
 
 export default async function ContactPage({params}: {params: Promise<{locale: string}>}) {
@@ -60,29 +61,7 @@ export default async function ContactPage({params}: {params: Promise<{locale: st
             </div>
 
             {/* Simple Form */}
-            <div className="p-8 rounded-2xl bg-card border border-white/10">
-              <form className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">{t("form.firstName")}</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg bg-black border border-white/10 text-white focus:outline-none focus:border-primary" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">{t("form.lastName")}</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg bg-black border border-white/10 text-white focus:outline-none focus:border-primary" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-muted-foreground mb-2">{t("form.email")}</label>
-                  <input type="email" className="w-full px-4 py-3 rounded-lg bg-black border border-white/10 text-white focus:outline-none focus:border-primary" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-muted-foreground mb-2">{t("form.message")}</label>
-                  <textarea rows={4} className="w-full px-4 py-3 rounded-lg bg-black border border-white/10 text-white focus:outline-none focus:border-primary"></textarea>
-                </div>
-                <Button variant="premium" className="w-full">{t("form.submit")}</Button>
-              </form>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </div>
