@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     try {
       // 1. Send Admin Notification
       await resend.emails.send({
-        from: 'Nima Studio <onboarding@resend.dev>',
+        from: `Nima Studio <${process.env.RESEND_FROM_EMAIL}>`,
         to: 'ne3mer@gmail.com',
         subject: `New Contact Message: ${validatedData.firstName} ${validatedData.lastName}`,
         react: ContactAdminEmail({
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
 
       // 2. Send User Confirmation
       await resend.emails.send({
-        from: 'Nima Studio <onboarding@resend.dev>',
+        from: `Nima Studio <${process.env.RESEND_FROM_EMAIL}>`,
         to: validatedData.email,
         subject: 'We received your message! 👋',
         react: ContactUserEmail({ firstName: validatedData.firstName }),
