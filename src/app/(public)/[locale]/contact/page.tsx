@@ -29,23 +29,16 @@ export default async function ContactPage({params}: {params: Promise<{locale: st
                     <Mail className="h-6 w-6 text-primary shrink-0" />
                     <div>
                       <div className="font-medium text-white">{t("info.email")}</div>
-                      <a href="mailto:hello@nimastudio.com" className="text-muted-foreground hover:text-white transition-colors">
-                        hello@nimastudio.com
+                      <a href="mailto:ne3mer@gmail.com" className="text-muted-foreground hover:text-white transition-colors">
+                        ne3mer@gmail.com
                       </a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-primary shrink-0" />
-                    <div>
-                      <div className="font-medium text-white">{t("info.phone")}</div>
-                      <span className="text-muted-foreground">+1 (555) 123-4567</span>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <MapPin className="h-6 w-6 text-primary shrink-0" />
                     <div>
                       <div className="font-medium text-white">{t("info.office")}</div>
-                      <span className="text-muted-foreground" dangerouslySetInnerHTML={{ __html: t.raw("info.officeDesc") }} />
+                      <span className="text-muted-foreground">Budapest, Hungary</span>
                     </div>
                   </div>
                 </div>

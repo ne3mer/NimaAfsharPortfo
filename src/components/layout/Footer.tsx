@@ -70,15 +70,11 @@ export function Footer() {
             <ul className="space-y-4 text-muted-foreground">
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <a href="mailto:hello@nimastudio.com" className="hover:text-white transition-colors">hello@nimastudio.com</a>
-              </li>
-              <li className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>+1 (555) 123-4567</span>
+                <a href="mailto:ne3mer@gmail.com" className="hover:text-white transition-colors">ne3mer@gmail.com</a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>San Francisco, CA</span>
+                <span>Budapest, Hungary</span>
               </li>
             </ul>
           </div>
