@@ -48,3 +48,13 @@ model Admin {
   password  String   // Hashed password
   name      String?
 }
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  firstName String
+  lastName  String
+  email     String
+  message   String
+  status    String   @default("NEW") // NEW, READ, ARCHIVED
+}

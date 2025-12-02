@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { resend } from "@/lib/resend";
+import { prisma } from "@/lib/prisma";
 import { ContactAdminEmail, ContactUserEmail } from "@/emails/ContactNotification";
 
 // Validation Schema
@@ -15,6 +16,16 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
+
+    // Save to Database
+    await prisma.contactMessage.create({
+      data: {
+        firstName: validatedData.firstName,
+        lastName: validatedData.lastName,
+        email: validatedData.email,
+        message: validatedData.message,
+      },
+    });
 
     // Send Emails
     try {
