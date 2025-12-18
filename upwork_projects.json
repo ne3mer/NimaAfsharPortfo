@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Example Project Title",
+    "client": "Client Name",
+    "services": "Web Development, UI/UX",
+    "year": "2024",
+    "description": "A short, catchy summary of the project for the card view.",
+    "tags": "React, Next.js, TypeScript",
+    "content": "# Project Title\n\nWrite your detailed markdown content here.\n\n## Features\n- Feature 1\n- Feature 2",
+    "slug": "example-project-slug",
+    "status": "Published",
+    "image": "/images/work/placeholder.jpg"
+  }
+]
