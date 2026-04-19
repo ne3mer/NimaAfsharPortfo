@@ -22,17 +22,8 @@ export default async function WorkPage({params}: {params: Promise<{locale: strin
     where: { slug: { in: jsonRows.map((r) => r.slug) } },
   });
   const works = mergeWorksWithJson(dbRows, jsonRows);
-  const jsonBySlug = new Map(jsonRows.map((r) => [r.slug, r]));
-
   const cards: WorkCardData[] = works.map((work) => {
     const copy = resolveWorkCopyForLocale(work, locale);
-    const row = jsonBySlug.get(work.slug);
-    const en = locale === "en";
-    const pick = (fa?: string, enVal?: string) => {
-      if (!fa && !enVal) return undefined;
-      if (en) return (enVal ?? fa)?.trim() || undefined;
-      return (fa ?? enVal)?.trim() || undefined;
-    };
     return {
       id: work.id,
       slug: work.slug,
@@ -40,10 +31,6 @@ export default async function WorkPage({params}: {params: Promise<{locale: strin
       description: copy.description,
       tags: mapTags(copy.tags),
       image: work.image,
-      problem: pick(row?.problem, row?.problemEn),
-      built: pick(row?.built, row?.builtEn),
-      outcome: pick(row?.outcome, row?.outcomeEn),
-      outcomeExtra: pick(row?.outcomeExtra, row?.outcomeExtraEn),
     };
   });
 

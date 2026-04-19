@@ -286,6 +286,7 @@
     "readyDesc": "Reach out with the role or product context — I respond personally.",
     "start": "Contact",
     "livePreviewTitle": "Live site preview",
+    "impactSummaryTitle": "Impact at a glance",
     "livePreviewHint": "Scroll inside the frame to explore the full page, like a real browser window.",
     "openLiveSite": "Open in new tab",
     "showcaseTerminalHint": "Illustrative sample output — not a live or production connection.",

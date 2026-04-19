@@ -19,6 +19,7 @@ import {
 } from "@/data/project-showcases";
 import { RepoSourceCard } from "@/components/work/RepoSourceCard";
 import { CaseStudyContent } from "@/components/work/CaseStudyContent";
+import { WorkImpactSummary } from "@/components/work/WorkImpactSummary";
 import { ProjectInteractiveLab } from "@/components/work/ProjectInteractiveLab";
 import {
   hasInteractiveLab,
@@ -92,6 +93,14 @@ export default async function ProjectPage({
   }
 
   const copy = resolveWorkCopyForLocale(project, locale);
+
+  const jsonRow = loadUpworkProjects().find((r) => r.slug === project.slug);
+  const en = locale === "en";
+  const pickImpact = (fa?: string, enVal?: string) => {
+    if (!fa && !enVal) return undefined;
+    if (en) return (enVal ?? fa)?.trim() || undefined;
+    return (fa ?? enVal)?.trim() || undefined;
+  };
 
   const liveSiteUrl = LIVE_SITE_URL_BY_SLUG[project.slug];
     const fullPageImageDisk = path.join(
@@ -217,6 +226,16 @@ export default async function ProjectPage({
         {/* Content */}
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-[1fr_300px] gap-12">
           <div className="space-y-10">
+            <WorkImpactSummary
+              locale={locale}
+              problem={pickImpact(jsonRow?.problem, jsonRow?.problemEn)}
+              built={pickImpact(jsonRow?.built, jsonRow?.builtEn)}
+              outcome={pickImpact(jsonRow?.outcome, jsonRow?.outcomeEn)}
+              outcomeExtra={pickImpact(
+                jsonRow?.outcomeExtra,
+                jsonRow?.outcomeExtraEn
+              )}
+            />
             {repoUrl ? <RepoSourceCard repoUrl={repoUrl} /> : null}
             {interactiveLabConfig ? (
               <ProjectInteractiveLab
