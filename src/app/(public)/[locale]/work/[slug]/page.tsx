@@ -10,6 +10,7 @@ import { getTranslations } from "next-intl/server";
 import NextImage from "next/image";
 
 import { LiveSitePreview } from "@/components/work/LiveSitePreview";
+import { resolveWorkCopyForLocale } from "@/lib/work-locale";
 
 /** Live URLs for portfolio case studies — iframe preview scrolls like a real browser. */
 const LIVE_SITE_URL_BY_SLUG: Record<string, string> = {
@@ -39,9 +40,9 @@ function splitTags(tags: string | null | undefined) {
 export default async function ProjectPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const t = await getTranslations("Project");
 
   let project;
@@ -65,6 +66,8 @@ export default async function ProjectPage({
   if (!project) {
     notFound();
   }
+
+  const copy = resolveWorkCopyForLocale(project, locale);
 
   const liveSiteUrl = LIVE_SITE_URL_BY_SLUG[project.slug];
     const fullPageImageDisk = path.join(
@@ -102,11 +105,11 @@ export default async function ProjectPage({
             >
               <div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-                  {project.title}
+                  {copy.title}
                 </h1>
                 
                 <div className="flex flex-wrap gap-2 mb-8">
-                  {splitTags(project.tags).map((tag) => (
+                  {splitTags(copy.tags).map((tag) => (
                     <span key={tag} className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium">
                       {tag}
                     </span>
@@ -114,7 +117,7 @@ export default async function ProjectPage({
                 </div>
 
                 <p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
-                  {project.description}
+                  {copy.description}
                 </p>
               </div>
 
@@ -122,7 +125,7 @@ export default async function ProjectPage({
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl ring-1 ring-white/5 lg:aspect-[4/3] lg:max-h-[280px] lg:justify-self-end">
                   <NextImage
                     src={project.image}
-                    alt={project.title}
+                    alt={copy.title}
                     fill
                     className="object-cover object-top"
                     priority
@@ -135,7 +138,7 @@ export default async function ProjectPage({
             {liveSiteUrl ? (
               <LiveSitePreview
                 url={liveSiteUrl}
-                title={project.title}
+                title={copy.title}
                 sectionTitle={t("livePreviewTitle")}
                 hint={t("livePreviewHint")}
                 openLabel={t("openLiveSite")}
@@ -168,7 +171,7 @@ export default async function ProjectPage({
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-[1fr_300px] gap-12">
           <div className="prose prose-invert prose-lg max-w-none">
             {/* Simple Markdown Rendering */}
-            {(project.content || "").split('\n').map((line, i) => {
+            {(copy.content || "").split('\n').map((line, i) => {
               const trimmed = line.trim();
               const imageMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
               if (imageMatch) {
@@ -181,7 +184,7 @@ export default async function ProjectPage({
                   >
                     <NextImage
                       src={src}
-                      alt={alt || project.title}
+                      alt={alt || copy.title}
                       fill
                       className="object-cover object-top"
                       sizes="(max-width: 768px) 100vw, 66vw"
@@ -208,7 +211,7 @@ export default async function ProjectPage({
                 </div>
                 <div>
                   <span className="block text-muted-foreground">{t("services")}</span>
-                  <span className="text-white font-medium">{project.services || "Full Stack Dev, UI/UX"}</span>
+                  <span className="text-white font-medium">{copy.services || "Full Stack Dev, UI/UX"}</span>
                 </div>
                 <div>
                   <span className="block text-muted-foreground">{t("year")}</span>

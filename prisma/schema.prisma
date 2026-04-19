@@ -40,6 +40,12 @@ model Work {
   image       String?
   content     String
   status      String   @default("Live")
+  /// English copy for `/en/...` routes (optional; falls back to primary fields)
+  titleEn       String?
+  descriptionEn String?
+  contentEn     String?
+  servicesEn    String?
+  tagsEn        String?
 }
 
 model Admin {

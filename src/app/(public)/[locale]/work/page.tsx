@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { resolveWorkCopyForLocale } from "@/lib/work-locale";
 import { PortfolioCard, WorkCardData } from "@/components/work/PortfolioCard";
 import { getTranslations } from "next-intl/server";
 
@@ -16,14 +17,17 @@ export default async function WorkPage({params}: {params: Promise<{locale: strin
     orderBy: { createdAt: "desc" },
   });
 
-  const cards: WorkCardData[] = works.map((work) => ({
-    id: work.id,
-    slug: work.slug,
-    title: work.title,
-    description: work.description,
-    tags: mapTags(work.tags),
-    image: work.image,
-  }));
+  const cards: WorkCardData[] = works.map((work) => {
+    const copy = resolveWorkCopyForLocale(work, locale);
+    return {
+      id: work.id,
+      slug: work.slug,
+      title: copy.title,
+      description: copy.description,
+      tags: mapTags(copy.tags),
+      image: work.image,
+    };
+  });
 
   return (
     <div className="container mx-auto px-4 py-20">

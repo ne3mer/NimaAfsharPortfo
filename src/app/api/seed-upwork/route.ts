@@ -7,12 +7,17 @@ import path from "path";
 // This mirrors the 'Work' model but makes optional fields explicit
 type ProjectData = {
   title: string;
+  titleEn?: string;
   client: string;
   services?: string;
+  servicesEn?: string;
   year?: string;
   description: string;
+  descriptionEn?: string;
   tags: string;
+  tagsEn?: string;
   content: string;
+  contentEn?: string;
   slug: string;
   status: string;
   image?: string;
@@ -56,6 +61,11 @@ export async function GET() {
                 slug: project.slug,
                 status: project.status || "Draft",
                 image: project.image || null,
+                titleEn: project.titleEn?.trim() || null,
+                descriptionEn: project.descriptionEn?.trim() || null,
+                contentEn: project.contentEn?.trim() || null,
+                servicesEn: project.servicesEn?.trim() || null,
+                tagsEn: project.tagsEn?.trim() || null,
             },
         });
         results.push({ slug: project.slug, status: "Created" });

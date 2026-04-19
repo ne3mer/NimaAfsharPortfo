@@ -18,6 +18,11 @@ interface Work {
   content: string;
   status: string;
   image: string | null;
+  titleEn: string | null;
+  descriptionEn: string | null;
+  contentEn: string | null;
+  servicesEn: string | null;
+  tagsEn: string | null;
 }
 
 const STATUS_OPTIONS = ["Live", "In Review", "Draft"];
@@ -150,6 +155,56 @@ export function EditWorkForm({ work }: { work: Work }) {
           className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors font-mono"
           rows={12}
         />
+      </div>
+
+      <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 space-y-6">
+        <p className="text-sm font-medium text-primary">
+          English copy (optional) — shown on <code className="text-xs">/en</code> routes
+        </p>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="md:col-span-2">
+            <label className="text-xs uppercase tracking-[0.35em] text-white/50">Title (EN)</label>
+            <input
+              name="titleEn"
+              defaultValue={work.titleEn || ""}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors"
+            />
+          </div>
+          <div>
+            <label className="text-xs uppercase tracking-[0.35em] text-white/50">Services (EN)</label>
+            <input
+              name="servicesEn"
+              defaultValue={work.servicesEn || ""}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors"
+            />
+          </div>
+          <div>
+            <label className="text-xs uppercase tracking-[0.35em] text-white/50">Tags (EN)</label>
+            <input
+              name="tagsEn"
+              defaultValue={work.tagsEn || ""}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label className="text-xs uppercase tracking-[0.35em] text-white/50">Description (EN)</label>
+            <textarea
+              name="descriptionEn"
+              defaultValue={work.descriptionEn || ""}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors"
+              rows={3}
+            />
+          </div>
+          <div className="md:col-span-2">
+            <label className="text-xs uppercase tracking-[0.35em] text-white/50">Content (EN, Markdown)</label>
+            <textarea
+              name="contentEn"
+              defaultValue={work.contentEn || ""}
+              className="mt-2 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white focus:border-primary/40 focus:outline-none transition-colors font-mono"
+              rows={12}
+            />
+          </div>
+        </div>
       </div>
 
       <div>

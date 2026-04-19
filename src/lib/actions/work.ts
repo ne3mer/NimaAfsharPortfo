@@ -44,6 +44,12 @@ export async function createWork(formData: FormData) {
 
   console.log("Generated slug:", slug);
 
+  const titleEn = formData.get("titleEn") as string | null;
+  const descriptionEn = formData.get("descriptionEn") as string | null;
+  const contentEn = formData.get("contentEn") as string | null;
+  const servicesEn = formData.get("servicesEn") as string | null;
+  const tagsEn = formData.get("tagsEn") as string | null;
+
   try {
     const newWork = await prisma.work.create({
       data: {
@@ -57,6 +63,11 @@ export async function createWork(formData: FormData) {
         slug,
         status,
         image: image || null,
+        titleEn: titleEn?.trim() || null,
+        descriptionEn: descriptionEn?.trim() || null,
+        contentEn: contentEn?.trim() || null,
+        servicesEn: servicesEn?.trim() || null,
+        tagsEn: tagsEn?.trim() || null,
       },
     });
     console.log("Work created successfully:", newWork);
@@ -98,6 +109,12 @@ export async function updateWork(id: string, formData: FormData) {
       ? generateSlug(slugInput)
       : generateSlug(title);
 
+  const titleEn = formData.get("titleEn") as string | null;
+  const descriptionEn = formData.get("descriptionEn") as string | null;
+  const contentEn = formData.get("contentEn") as string | null;
+  const servicesEn = formData.get("servicesEn") as string | null;
+  const tagsEn = formData.get("tagsEn") as string | null;
+
   try {
     await prisma.work.update({
       where: { id },
@@ -112,6 +129,11 @@ export async function updateWork(id: string, formData: FormData) {
         slug,
         status,
         image: image || null,
+        titleEn: titleEn?.trim() || null,
+        descriptionEn: descriptionEn?.trim() || null,
+        contentEn: contentEn?.trim() || null,
+        servicesEn: servicesEn?.trim() || null,
+        tagsEn: tagsEn?.trim() || null,
       },
     });
 
