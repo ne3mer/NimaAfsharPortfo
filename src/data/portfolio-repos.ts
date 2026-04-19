@@ -15,4 +15,8 @@
 export const PORTFOLIO_REPO_BY_SLUG: Record<string, string> = {
   "dataflow-pipeline-dashboard":
     "https://github.com/ne3mer/DataFlow-Control-Automation-Data-Pipeline-Dashboard",
+  "spanish-football-news-scraper": "https://github.com/ne3mer/news-scrapper",
+  "echoless-tech": "https://github.com/ne3mer/echoless-tech",
+  "automated-pdf-extraction-engine":
+    "https://github.com/ne3mer/Automated-PDF-Data-Extraction-Validation-Engine",
 };

@@ -272,7 +272,12 @@
     "forksLabel": "فورک",
     "languagesLabel": "زبان‌ها",
     "homepageLabel": "صفحهٔ اصلی پروژه",
-    "repoMetaUnavailable": "آمار زنده بارگذاری نشد (ریپو خصوصی یا محدودیت API). از دکمه بالا می‌توانید مخزن را باز کنید."
+    "repoMetaUnavailable": "آمار زنده بارگذاری نشد (ریپو خصوصی یا محدودیت API). از دکمه بالا می‌توانید مخزن را باز کنید.",
+    "interactiveLabBadge": "لَب تعاملی",
+    "interactiveLabRun": "اجرای دمو",
+    "interactiveLabReset": "پاک کردن",
+    "interactiveLabFetching": "در حال فراخوانی API نمونه…",
+    "interactiveLabFootnote": "JSON نمونه از مسیر /api/portfolio-demo همین سایت — نه اجرای پایتون روی سیستم شما."
   },
   "Footer": {
     "description": "پورتفولیوی شخصی نیما افشرفر — مهندسی محصول‌محور، روایت دو زبانه، نمونه‌کار با پیش‌نمایش زنده.",

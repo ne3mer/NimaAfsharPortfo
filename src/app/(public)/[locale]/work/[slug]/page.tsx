@@ -18,6 +18,11 @@ import {
   PROJECT_SHOWCASE_BY_SLUG,
 } from "@/data/project-showcases";
 import { RepoSourceCard } from "@/components/work/RepoSourceCard";
+import { ProjectInteractiveLab } from "@/components/work/ProjectInteractiveLab";
+import {
+  hasInteractiveLab,
+  PROJECT_INTERACTIVE_LAB_BY_SLUG,
+} from "@/data/project-interactive-labs";
 import {
   loadUpworkProjects,
   workFromJsonRow,
@@ -108,6 +113,10 @@ export default async function ProjectPage({
     : undefined;
 
   const repoUrl = PORTFOLIO_REPO_BY_SLUG[project.slug];
+  const interactiveLabRaw = PROJECT_INTERACTIVE_LAB_BY_SLUG[project.slug];
+  const interactiveLabConfig = hasInteractiveLab(interactiveLabRaw)
+    ? interactiveLabRaw
+    : undefined;
 
   return (
     <article className="min-h-screen pb-20">
@@ -208,6 +217,13 @@ export default async function ProjectPage({
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-[1fr_300px] gap-12">
           <div className="space-y-10">
             {repoUrl ? <RepoSourceCard repoUrl={repoUrl} /> : null}
+            {interactiveLabConfig ? (
+              <ProjectInteractiveLab
+                workSlug={project.slug}
+                config={interactiveLabConfig}
+                locale={locale}
+              />
+            ) : null}
             <div className="prose prose-invert prose-lg max-w-none">
             {/* Simple Markdown Rendering */}
             {(copy.content || "").split('\n').map((line, i) => {
