@@ -44,20 +44,10 @@ export function TechStack() {
             </span>
           ))}
           
-          {/* Duplicate set for seamless loop */}
+          {/* Second copy — enough for a seamless marquee without visual triple-repeat */}
           {technologies.map((tech, i) => (
-            <span 
-              key={`dup-${i}`} 
-              className="text-2xl font-bold text-white/20 hover:text-white transition-colors cursor-default"
-            >
-              {tech}
-            </span>
-          ))}
-          
-          {/* Triplicate set for wide screens */}
-           {technologies.map((tech, i) => (
-            <span 
-              key={`tri-${i}`} 
+            <span
+              key={`dup-${i}`}
               className="text-2xl font-bold text-white/20 hover:text-white transition-colors cursor-default"
             >
               {tech}

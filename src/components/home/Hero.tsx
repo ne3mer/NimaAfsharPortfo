@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 import { useTranslations } from "next-intl";
 
+import { HeroQuickLinks } from "@/components/home/HeroQuickLinks";
+
 export function Hero() {
   const t = useTranslations("Hero");
 
@@ -76,6 +78,8 @@ export function Hero() {
                   {t("ctaSecondary")}
               </Link>
             </motion.div>
+
+            <HeroQuickLinks />
 
             <motion.div 
               initial={{ opacity: 1 }}

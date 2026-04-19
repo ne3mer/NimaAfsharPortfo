@@ -1,7 +1,9 @@
 import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
-import { ArrowRight, Globe, Users, Zap } from "lucide-react";
+import { ArrowRight, FileText, Globe, Users, Zap } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+
+import { PROFILE_LINKS } from "@/lib/profile-links";
 
 export default async function AboutPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
@@ -97,9 +99,19 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
 
         <div className="mt-24 text-center space-y-6">
           <h2 className="text-3xl font-bold text-white">{t("cta.title")}</h2>
+          <p className="mx-auto max-w-lg text-sm text-muted-foreground">
+            {t("cta.downloadCvHint")}
+          </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className={buttonVariants({ variant: "premium", size: "lg" })}>
-              {t("cta.button")} <ArrowRight className="ml-2 h-4 w-4 rtl:rotate-180" />
+            <a
+              href={PROFILE_LINKS.cvRequest}
+              className={buttonVariants({ variant: "premium", size: "lg" })}
+            >
+              <FileText className="me-2 h-4 w-4" />
+              {t("cta.downloadCv")}
+            </a>
+            <Link href="/contact" className={buttonVariants({ variant: "outline", size: "lg" })}>
+              {t("cta.button")} <ArrowRight className="ms-2 h-4 w-4 rtl:rotate-180" />
             </Link>
             <a
               href="mailto:ne3mer@gmail.com?subject=CV%20%2F%20introduction"

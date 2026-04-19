@@ -14,7 +14,13 @@
     "contentEn": "# NomadSpot Budapest\n\nMore than a café list: a **discovery engine** with work modes, search/sort, an interactive map, and Mission Control with honest empty states — the product explains *why* it’s empty, not just that it is.\n\nScroll the live preview at the top — that’s the real deployed surface.\n\n## Technical outcomes\n- Frontend architecture that supports **rich filter states** without performance debt.\n- **Map + list** coherence so UI state and data never fight each other.\n- Layout patterns that are **geo-extensible** (same bones, new city).\n- Shipping cadence tuned for **rapid product hypothesis tests** on real users.\n\n## Business & strategy value\n- Clear story for the **digital-nomad segment** — trust, speed, and “will I waste my afternoon?”.\n- Lower **decision cost** for users: filters + map replace guesswork.\n- Pitch-ready framing for **revenue paths, venue partnerships, and expansion** when the room isn’t technical.\n\n## Post-MBA read\nWith the MBA closed, I frame NomadSpot as a **measurable venture**: value hypothesis, demo slices that survive investor questions, and metrics that prove *which pain* discovery actually removes — not only that the UI looks premium.\n\n## Link\n- https://wfc-dun.vercel.app/",
     "slug": "nomadspot-budapest",
     "status": "Live",
-    "image": "/images/work/nomadspot-budapest/01-hero.png"
+    "image": "/images/work/nomadspot-budapest/01-hero.png",
+    "problem": "کشف مکان معتبر برای نومدها بدون گم شدن در لیست‌های بی‌پایان.",
+    "problemEn": "Nomads need trustworthy discovery—not endless unvetted lists.",
+    "built": "نقشه زنده، فیلتر حالت کار، Mission Control؛ استقرار روی Vercel.",
+    "builtEn": "Live map, work-mode filters, Mission Control; shipped to Vercel.",
+    "outcome": "برش محصول آماده تست کاربر و دمو برای ذی‌نفع غیرفنی.",
+    "outcomeEn": "Shipped product slice ready for user tests and stakeholder demos."
   },
   {
     "title": "OptiSupply — داشبورد ESG زنجیره تأمین",
@@ -31,7 +37,13 @@
     "contentEn": "# OptiSupply\n\nOptiSupply is both a **demo-ready product** and a **research artifact**: a rule-based scoring engine for suppliers, a dashboard that holds KPIs, data quality, ethical distribution, risk, and E/S/G pillars in one glance, and PDF/Excel exports for rooms where slides aren’t enough.\n\nScroll the live preview — the full dashboard loads in-frame.\n\n## Technical outcomes\n- **Data-dense UI** that stays legible for noisy ESG inputs and high-risk procurement scenarios.\n- Visualization choices that reduce **cognitive load** instead of impressing with chart soup.\n- Reporting paths for **audit narratives** and non-technical stakeholders.\n- Research alignment: **high linear concordance with expert benchmarks** (Pearson r ≈ 0.81 in the thesis evaluation).\n\n## Business & strategy value\n- Addresses **aggregate confusion** in commercial ESG ratings — transparency as a feature, not a footnote.\n- A shared language between **procurement, sustainability, and the board**.\n- Hooks into **CSRD / supply-chain governance** conversations without a black-box model.\n\n## Post-MBA read\nThe MBA isn’t decoration here: **Design Science Research, TAM extensions with transparency & trust, and explainability** are what turn OptiSupply from “pretty dashboard” into a **defensible decision system in the conference room**.\n\n## Link\n- https://optisupply.vercel.app/dashboard",
     "slug": "optisupply-dashboard",
     "status": "Live",
-    "image": "/images/work/optisupply-dashboard/01-dashboard-top.png"
+    "image": "/images/work/optisupply-dashboard/01-dashboard-top.png",
+    "problem": "ذی‌نفعان ESG به شفافیت قابل‌دفاع در اتاق نیاز دارند، نه فقط نمودار.",
+    "problemEn": "ESG stakeholders need defensible transparency in the room—not only charts.",
+    "built": "داشبورد Next.js با امتیازدهی توضیح‌پذیر، خروجی PDF/Excel، دمو زنده.",
+    "builtEn": "Next.js dashboard with explainable scoring, PDF/Excel exports, live demo.",
+    "outcome": "هم‌ترازی ~r≈0.81 با داوری خبره در ارزیابی تز.",
+    "outcomeEn": "~0.81 linear alignment with expert benchmarks (thesis evaluation)."
   },
   {
     "title": "GameClub ایران — فروشگاه اکانت قانونی PS5",
@@ -48,7 +60,13 @@
     "contentEn": "# GameClub Iran\n\nA storefront for a market where **trust is expensive**: full RTL, hero slider, catalog, subscription upsell, and trust blocks for legal PSN accounts — UX aimed squarely at **perceived purchase risk**.\n\nThe live preview above is the real shop.\n\n## Technical outcomes\n- **End-to-end RTL** without breaking component boundaries or SEO structure.\n- Conversion patterns along **hero → trust → action**.\n- Front-end durability for **dynamic catalog content**.\n- Foundations for **delivery automation & integrations** as volume grows.\n\n## Business & strategy value\n- Reduces **psychological friction** in Persian-language digital commerce.\n- Visual language that signals **serious brand + lower risk**.\n- Narrative hooks for **CAC, conversion, retention** — not just aesthetics.\n\n## Post-MBA read\nPost-MBA, I read GameClub as **value proposition aligned with the purchase journey**: every section answers “why now / why us?” — the same questions marketing and finance ask in the room.\n\n## Link\n- https://nextplay-eight.vercel.app/",
     "slug": "gameclub-iran",
     "status": "Live",
-    "image": "/images/work/gameclub-iran/01-hero-slider.png"
+    "image": "/images/work/gameclub-iran/01-hero-slider.png",
+    "problem": "خرید دیجیتال در بازار فارسی به اعتماد و RTL واقعی نیاز دارد.",
+    "problemEn": "Persian-market digital purchases need trust and real RTL—not a translated template.",
+    "built": "فروشگاه Next.js با مسیر قهرمان → اعتماد → اقدام و پیش‌نمایش زنده.",
+    "builtEn": "Next.js storefront, hero→trust→action flow, live preview.",
+    "outcome": "مسیر تبدیل روشن برای تیم رشد؛ متریک‌های خودتان را وصل کنید.",
+    "outcomeEn": "Clear conversion path for growth—plug in your funnel metrics."
   },
   {
     "title": "DataFlow — داشبورد اتوماسیون خط لوله داده",
@@ -65,7 +83,13 @@
     "contentEn": "# DataFlow\n\nDataFlow is a **data operations control room**: cron, pipeline dependencies, manual runs, history, and live logs over WebSockets — for teams that can’t afford “we’ll check tomorrow” when scrapers or ETL burn money.\n\nStack: **FastAPI + SQLModel + PostgreSQL**, **Celery + Redis**, **React 19 + TypeScript + Tailwind**, **Docker Compose**, JWT + RBAC.\n\n## Technical outcomes\n- Clean separation of **scheduling, execution, and observability** for faster debugging.\n- **WebSockets** for status + log streaming without manual refresh.\n- Redis-backed queueing with a worker model that scales with load.\n- Explicit API contracts (**OpenAPI**) for future integrations.\n\n## Business & strategy value\n- Lowers **cognitive MTTR**: one cockpit instead of scattered threads.\n- Surfaces the **opportunity cost** of failed jobs — critical for data & growth teams.\n- Pitch-ready for **SLAs, data ownership, and platform-team roadmaps**.\n\n## Post-MBA read\nThrough an MBA lens, DataFlow is **auditable infrastructure**: every run leaves a trail, decisions are defensible, and “why this job?” survives an ops review — close to what finance expects from serious automation.\n\n## Source & run\nGitHub card above. Local: API `http://localhost:8000` (`/docs`), frontend `http://localhost:5173`.",
     "slug": "dataflow-pipeline-dashboard",
     "status": "Live",
-    "image": null
+    "image": null,
+    "problem": "جاب‌های داده پراکنده در چند ابزار، زمان نجات را می‌خورند.",
+    "problemEn": "Data jobs scattered across tools inflate triage time.",
+    "built": "FastAPI + Celery + React؛ لاگ و وضعیت زنده با WebSocket.",
+    "builtEn": "FastAPI + Celery + React; live logs & status via WebSockets.",
+    "outcome": "یک داشبورد برای کاهش MTTR شناختی (طراحی برای تیم‌های ops).",
+    "outcomeEn": "Single cockpit designed to reduce cognitive MTTR for ops teams."
   },
   {
     "title": "اسکرپر خبر فوتبال اسپانیا — مجموعه داده دو زبانه",
@@ -82,7 +106,13 @@
     "contentEn": "# Crawl → filter → translate → store\n\nThis is a **data asset pipeline**: multi-source crawl, football/La Liga-aware filtering, full-article extraction, swappable translation providers (OpenAI / DeepL / Google), dedup, dated JSON — ready for ML, sentiment, or media products.\n\n## Technical outcomes\n- Modular crawlers with **selector resilience** when sites shift.\n- Keyword / semantic filtering to **cut noise before expensive translation**.\n- Stable JSON **contract** for bilingual downstream consumers.\n- Logging & recovery patterns for **scheduled / cron** operation.\n\n## Business & strategy value\n- Turns fragmented content into a **licensable / analyzable asset**.\n- Controls **translation API burn** via provider choice and article volume.\n- Narrative hooks for **sports analytics, market intel, or B2B data products**.\n\n## Post-MBA read\nPost-MBA, I read this as **unit economics of data ingestion**: every article must justify its marginal cost; dedupe + filtering is where margin is manufactured — not just Python scripts.\n\n## Lab & repo\nInteractive lab on this site; repository: [GitHub](https://github.com/ne3mer/news-scrapper)",
     "slug": "spanish-football-news-scraper",
     "status": "Live",
-    "image": null
+    "image": null,
+    "problem": "خبر ورزشی پراکنده؛ تیم‌ها به داده ساخت‌یافته و کنترل هزینه ترجمه نیاز دارند.",
+    "problemEn": "Fragmented sports news—teams need structured data and translation cost control.",
+    "built": "پایتون/Playwright، فیلتر، ترجمه چند ارائه‌دهنده، JSON دو زبانه.",
+    "builtEn": "Python/Playwright pipeline, filters, multi-provider translation, bilingual JSON.",
+    "outcome": "دارایی قابل تحلیل با قرارداد پایدار برای downstream.",
+    "outcomeEn": "Analyzable asset with a stable contract for downstream use."
   },
   {
     "title": "Echoless Tech — سطح محصول، بی‌سر و صدا",
@@ -99,7 +129,13 @@
     "contentEn": "# Echoless\n\n**Echoless** is intentional subtraction: typography, rhythm, whitespace, motion that builds **trust** instead of spectacle. For teams that must convince **end users and investors** they’re serious — without painting the screen neon.\n\n## Technical outcomes\n- Component system + **design tokens** for repeatable campaigns.\n- Motion with **reduced-motion** respect.\n- Content architecture for **SEO + technical storytelling**.\n- Ready to wire **analytics & experimentation** in growth phases.\n\n## Business & strategy value\n- Differentiation in a market where everyone screams “AI” — **tone as moat**.\n- Lower **trust acquisition cost** in B2B sales: the page does part of the deck’s job.\n- One narrative across **marketing, product, and engineering**.\n\n## Post-MBA read\nPositioning: Echoless sits in the same frame I use for OptiSupply — the message must land for **finance and engineering at once**; visual quiet is loud reasoning.\n\n## Lab & repo\nInteractive lab on this site; [GitHub](https://github.com/ne3mer/echoless-tech)",
     "slug": "echoless-tech",
     "status": "Live",
-    "image": null
+    "image": null,
+    "problem": "محصولات فنی باید به کاربر و سرمایه‌گذار هم‌زمان اعتماد بدهند.",
+    "problemEn": "Technical products must earn trust from users and investors at once.",
+    "built": "فرانت Next.js، توکن طراحی، موشن، لَب تعاملی روی همین سایت.",
+    "builtEn": "Next.js surface, design tokens, motion, interactive lab on this site.",
+    "outcome": "روایت بصری برای pitch و محصول بدون شلوغی تزئینی.",
+    "outcomeEn": "Pitch + product narrative without decorative noise."
   },
   {
     "title": "موتور استخراج و اعتبارسنجی داده از PDF",
@@ -116,6 +152,12 @@
     "contentEn": "# From `input_pdfs/` to signed-off reports\n\nBuilt for **high volume and high accountability**: text vs scan paths, 15+ business fields, normalization, a rules engine (required, format, business logic), dedupe, JSON/Excel plus validation workbooks — where one bad document must not halt the batch.\n\n## Technical outcomes\n- PDF ingestion with **fallback strategies** for messy scans.\n- Modular **rules engine** so compliance can evolve without rewrite.\n- Split logging for **extraction vs validation** failures — faster RCA.\n- **Audit-shaped outputs** for non-technical reviewers.\n\n## Business & strategy value\n- Cuts **manual hours** on repetitive invoices/contracts.\n- Reduces **data-error risk** before ERP/BI ingestion.\n- Shared artifact for **finance, procurement, and IT**.\n\n## Post-MBA read\nI read this as **software internal control**: every rule must survive an auditor’s “why?”; validation scores are where **data quality meets financial risk** — the exact junction MBA supply-chain and governance courses point to.\n\n## Lab & repo\nTwo-scenario lab on this site; [GitHub](https://github.com/ne3mer/Automated-PDF-Data-Extraction-Validation-Engine)",
     "slug": "automated-pdf-extraction-engine",
     "status": "Live",
-    "image": null
+    "image": null,
+    "problem": "فاکتور و قرارداد تکراری؛ خطا قبل از ERP گران تمام می‌شود.",
+    "problemEn": "Repetitive invoices/contracts—errors before ERP are expensive.",
+    "built": "موتور پایتون با قواعد ماژولار، JSON/Excel، لَب دو سناریویی.",
+    "builtEn": "Python rules engine, JSON/Excel outputs, two-scenario lab.",
+    "outcome": "خروجی قابل‌ممیزی؛ جداسازی خطای استخراج از اعتبارسنجی برای RCA سریع‌تر.",
+    "outcomeEn": "Audit-shaped outputs; split extraction vs validation errors for faster RCA."
   }
 ]

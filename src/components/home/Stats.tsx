@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 
 const stats = [
-  { key: "yearsTrack", value: "8+" },
+  { key: "yearsTrack", value: "~8" },
   { key: "programs", value: "20+" },
   { key: "bench", value: "r≈0.81" },
   { key: "languages", value: "3" },

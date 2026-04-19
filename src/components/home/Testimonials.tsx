@@ -1,60 +1,56 @@
 "use client";
 
-import { Star } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+/**
+ * Pattern cards — not attributed to named individuals (avoids placeholder-name risk).
+ */
 export function Testimonials() {
   const t = useTranslations("Testimonials");
 
-  const testimonials = [
+  const cards = [
     {
-      quote: t("items.0.quote"),
-      author: "Sarah Jenkins",
-      role: t("items.0.role"),
-      company: t("items.0.company")
+      headline: t("items.0.role"),
+      context: t("items.0.company"),
+      body: t("items.0.quote"),
     },
     {
-      quote: t("items.1.quote"),
-      author: "David Chen",
-      role: t("items.1.role"),
-      company: t("items.1.company")
+      headline: t("items.1.role"),
+      context: t("items.1.company"),
+      body: t("items.1.quote"),
     },
     {
-      quote: t("items.2.quote"),
-      author: "Elena Rodriguez",
-      role: t("items.2.role"),
-      company: t("items.2.company")
-    }
+      headline: t("items.2.role"),
+      context: t("items.2.company"),
+      body: t("items.2.quote"),
+    },
   ];
 
   return (
-    <section className="py-24 bg-background border-t border-white/5">
+    <section className="border-t border-white/5 bg-background py-24">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-4">
+        <div className="mx-auto mb-16 max-w-2xl text-center">
+          <h2 className="mb-4 text-3xl font-bold tracking-tighter text-white md:text-5xl">
             {t("title")}
           </h2>
-          <p className="text-muted-foreground">
-            {t("subtitle")}
-          </p>
+          <p className="text-muted-foreground">{t("subtitle")}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
-            <div key={i} className="p-8 rounded-2xl bg-white/5 border border-white/5 relative">
-              <div className="flex gap-1 mb-6">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star key={star} className="h-4 w-4 fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="text-lg text-white mb-6 leading-relaxed">
-                &quot;{t.quote}&quot;
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-8"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary/90">
+                {card.headline}
               </p>
-              <div>
-                <div className="font-bold text-white">{t.author}</div>
-                <div className="text-sm text-muted-foreground">{t.role}</div>
-                <div className="text-xs text-primary mt-1">{t.company}</div>
-              </div>
+              <p className="mb-4 mt-1 text-xs text-muted-foreground">
+                {card.context}
+              </p>
+              <p className="text-lg leading-relaxed text-white">
+                &quot;{card.body}&quot;
+              </p>
             </div>
           ))}
         </div>

@@ -2,9 +2,11 @@
 
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { Github, Linkedin, Twitter, ArrowUp, Mail, MapPin, Phone, type LucideIcon } from "lucide-react";
+import { FileText, Github, Linkedin, Mail, MapPin, Twitter, ArrowUp, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
+
+import { PROFILE_LINKS } from "@/lib/profile-links";
 
 export function Footer() {
   const t = useTranslations("Footer");
@@ -46,10 +48,28 @@ export function Footer() {
             <p className="text-muted-foreground max-w-sm leading-relaxed">
               {t("description")}
             </p>
-            <div className="flex gap-4 pt-4">
-              <SocialLink href="https://www.linkedin.com/in/nima-afsharfar" icon={Linkedin} />
-              <SocialLink href="https://twitter.com" icon={Twitter} />
-              <SocialLink href="https://github.com/ne3mer" icon={Github} />
+            <div className="flex flex-wrap gap-4 pt-4">
+              <SocialLink href={PROFILE_LINKS.linkedin} icon={Linkedin} label="LinkedIn" />
+              <SocialLink href={PROFILE_LINKS.github} icon={Github} label="GitHub" />
+              <SocialLink href="https://twitter.com" icon={Twitter} label="Twitter" />
+            </div>
+            <div className="flex flex-wrap gap-3 pt-4 text-sm">
+              <a
+                href={PROFILE_LINKS.cvRequest}
+                className="inline-flex items-center gap-1.5 text-muted-foreground transition hover:text-white"
+              >
+                <FileText className="h-4 w-4" aria-hidden />
+                {t("requestCv")}
+              </a>
+              <span className="text-white/15" aria-hidden>
+                ·
+              </span>
+              <a
+                href={PROFILE_LINKS.introCall}
+                className="text-muted-foreground transition hover:text-white"
+              >
+                {t("introCallShort")}
+              </a>
             </div>
           </div>
 
@@ -105,13 +125,22 @@ export function Footer() {
   );
 }
 
-function SocialLink({ href, icon: Icon }: { href: string, icon: LucideIcon }) {
+function SocialLink({
+  href,
+  icon: Icon,
+  label,
+}: {
+  href: string;
+  icon: LucideIcon;
+  label: string;
+}) {
   return (
-    <a 
-      href={href} 
-      target="_blank" 
+    <a
+      href={href}
+      target="_blank"
       rel="noopener noreferrer"
-      className="h-10 w-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-muted-foreground hover:bg-white hover:text-black hover:scale-110 transition-all duration-300"
+      aria-label={label}
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition-all duration-300 hover:scale-110 hover:bg-white hover:text-black"
     >
       <Icon className="h-5 w-5" />
     </a>

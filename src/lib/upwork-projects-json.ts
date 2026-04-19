@@ -22,6 +22,13 @@ export type UpworkProjectJson = {
   contentEn?: string;
   status?: string;
   image?: string | null;
+  /** One-line card hints for /work grid (optional; bilingual) */
+  problem?: string;
+  problemEn?: string;
+  built?: string;
+  builtEn?: string;
+  outcome?: string;
+  outcomeEn?: string;
 };
 
 export const loadUpworkProjects = cache((): UpworkProjectJson[] => {

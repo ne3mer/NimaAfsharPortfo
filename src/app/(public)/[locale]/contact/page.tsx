@@ -1,7 +1,8 @@
 import { Link } from "@/i18n/routing";
-import { Button, buttonVariants } from "@/components/ui/Button";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { buttonVariants } from "@/components/ui/Button";
+import { Mail, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { HeroQuickLinks } from "@/components/home/HeroQuickLinks";
 import { getTranslations } from "next-intl/server";
 
 export default async function ContactPage({params}: {params: Promise<{locale: string}>}) {
@@ -50,6 +51,13 @@ export default async function ContactPage({params}: {params: Promise<{locale: st
                   {t("cta.desc")}
                 </p>
                 <Link href="/work" className={buttonVariants({ variant: "premium", className: "w-full" })}>{t("cta.button")}</Link>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+                <h3 className="mb-4 text-lg font-bold text-white">
+                  {t("quickLinksTitle")}
+                </h3>
+                <HeroQuickLinks hideStrip />
               </div>
             </div>
 
