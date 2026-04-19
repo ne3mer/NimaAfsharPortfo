@@ -10,6 +10,11 @@ import { getTranslations } from "next-intl/server";
 import NextImage from "next/image";
 
 import { LiveSitePreview } from "@/components/work/LiveSitePreview";
+import { ProjectShowcaseSection } from "@/components/work/ProjectShowcaseSection";
+import {
+  hasProjectShowcaseContent,
+  PROJECT_SHOWCASE_BY_SLUG,
+} from "@/data/project-showcases";
 import { resolveWorkCopyForLocale } from "@/lib/work-locale";
 
 /** Live URLs for portfolio case studies — iframe preview scrolls like a real browser. */
@@ -83,6 +88,11 @@ export default async function ProjectPage({
   const fullPageImageSrc = hasFullPageImage
     ? `/images/work/${project.slug}/full-page.png`
     : null;
+
+  const showcaseRaw = PROJECT_SHOWCASE_BY_SLUG[project.slug];
+  const showcaseConfig = hasProjectShowcaseContent(showcaseRaw)
+    ? showcaseRaw
+    : undefined;
 
   return (
     <article className="min-h-screen pb-20">
@@ -166,6 +176,18 @@ export default async function ProjectPage({
             ) : null}
           </div>
         </div>
+
+        {showcaseConfig ? (
+          <div className="border-b border-white/5 bg-gradient-to-b from-zinc-950/40 to-transparent">
+            <div className="container mx-auto px-4 py-12 md:py-16">
+              <ProjectShowcaseSection
+                config={showcaseConfig}
+                locale={locale}
+                terminalHint={t("showcaseTerminalHint")}
+              />
+            </div>
+          </div>
+        ) : null}
 
         {/* Content */}
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-[1fr_300px] gap-12">
