@@ -1,14 +1,38 @@
 [
   {
-    "title": "Example Project Title",
-    "client": "Client Name",
-    "services": "Web Development, UI/UX",
-    "year": "2024",
-    "description": "A short, catchy summary of the project for the card view.",
-    "tags": "React, Next.js, TypeScript",
-    "content": "# Project Title\n\nWrite your detailed markdown content here.\n\n## Features\n- Feature 1\n- Feature 2",
-    "slug": "example-project-slug",
-    "status": "Published",
-    "image": "/images/work/placeholder.jpg"
+    "title": "NomadSpot Budapest",
+    "client": "NomadSpot",
+    "services": "Product Design, Frontend Development, UX Strategy",
+    "year": "2026",
+    "description": "A location-focused discovery experience for digital nomads to find work-friendly cafes in Budapest with Wi-Fi and power reliability signals.",
+    "tags": "Next.js, UX, Discovery, Geospatial UI",
+    "content": "# NomadSpot Budapest\n\nNomadSpot helps remote workers quickly discover where to work across Budapest by focusing on practical decision factors like internet quality, power outlet availability, and atmosphere.\n\n## Key Highlights\n- Mission-control style browsing and filtering\n- Fast scanning by vibe and workspace intent\n- Location-aware discovery with clear empty-state handling\n\n## Live Website\n- https://wfc-dun.vercel.app/",
+    "slug": "nomadspot-budapest",
+    "status": "Live",
+    "image": "https://image.thum.io/get/width/1200/https://wfc-dun.vercel.app/"
+  },
+  {
+    "title": "OptiSupply Dashboard",
+    "client": "OptiSupply",
+    "services": "Dashboard Design, Data Visualization, Web App Development",
+    "year": "2026",
+    "description": "An ethical supply-chain intelligence dashboard experience focused on operational visibility, decision confidence, and scalable monitoring workflows.",
+    "tags": "Dashboard, Analytics, Supply Chain, SaaS",
+    "content": "# OptiSupply Dashboard\n\nOptiSupply is positioned as an ethical supply-chain intelligence platform. The dashboard is designed for operational clarity, combining actionable insights with a clean enterprise UX.\n\n## Key Highlights\n- KPI-first dashboard workflow\n- Operational monitoring for supply-chain decisions\n- Enterprise-oriented layout and interaction patterns\n\n## Live Website\n- https://optisupply.vercel.app/dashboard",
+    "slug": "optisupply-dashboard",
+    "status": "Live",
+    "image": "https://image.thum.io/get/width/1200/https://optisupply.vercel.app/dashboard"
+  },
+  {
+    "title": "GameClub Iran",
+    "client": "GameClub Iran",
+    "services": "Ecommerce UX, Localization, Conversion Optimization",
+    "year": "2026",
+    "description": "A Persian-language PS5 account storefront with instant delivery messaging, trust-building conversion sections, and category-led merchandising.",
+    "tags": "Ecommerce, Next.js, Persian, Conversion",
+    "content": "# GameClub Iran\n\nGameClub Iran is a conversion-oriented ecommerce experience for legal PS5 accounts in the Iranian market, with localized content and strong trust messaging.\n\n## Key Highlights\n- Persian-first storefront and content architecture\n- Fast-delivery and support-focused purchase journey\n- Promotion and category modules designed for higher conversion\n\n## Live Website\n- https://nextplay-eight.vercel.app/",
+    "slug": "gameclub-iran",
+    "status": "Live",
+    "image": "https://image.thum.io/get/width/1200/https://nextplay-eight.vercel.app/"
   }
 ]
