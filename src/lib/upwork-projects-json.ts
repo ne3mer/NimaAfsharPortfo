@@ -29,6 +29,9 @@ export type UpworkProjectJson = {
   builtEn?: string;
   outcome?: string;
   outcomeEn?: string;
+  /** Second outcome / impact line for work cards (optional) */
+  outcomeExtra?: string;
+  outcomeExtraEn?: string;
 };
 
 export const loadUpworkProjects = cache((): UpworkProjectJson[] => {

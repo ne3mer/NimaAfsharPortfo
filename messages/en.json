@@ -2,7 +2,7 @@
   "Hero": {
     "systemOnline": "Open to EU-remote roles · product-minded full-stack",
     "title": "Ship the product.<br /><span class='text-primary'>Earn the room.</span>",
-    "subtitle": "I'm Mohammad Afsharfar — I go by Nima. Full-stack engineer and MBA graduate (Management) in Budapest: React & Node platforms, data and automation pipelines, and research-backed decision systems (my thesis built OptiSupply — explainable ESG scoring aligned with expert benchmarks). Primary audience here: hiring teams and collaborators reviewing proof (live demos, repos, case studies). For commissioned build work, reach out with context and constraints.",
+    "subtitle": "I'm Mohammad Afsharfar — I go by Nima. I ship outcomes you can verify: React & Node platforms, data and automation pipelines, and research-backed decision systems (thesis: OptiSupply — explainable ESG scoring aligned with expert benchmarks, r ≈ 0.81). This site is proof for hiring teams and collaborators (live demos, repos, case studies). Commissioned builds: start from Contact with goals and constraints.",
     "ctaPrimary": "Start a conversation",
     "ctaSecondary": "See selected work",
     "capabilities": {
@@ -16,7 +16,10 @@
     "services": "Expertise",
     "about": "About",
     "start": "Connect",
-    "ctaContact": "Contact"
+    "ctaContact": "Contact",
+    "linkedinAria": "LinkedIn profile",
+    "githubAria": "GitHub profile",
+    "cvShort": "CV"
   },
   "Services": {
     "title": "Where I go <span class='text-primary'>deepest.</span>",
@@ -81,24 +84,23 @@
     "title": "Stack I reach for most days"
   },
   "SelectedResults": {
-    "title": "Selected results",
-    "subtitle": "Concrete signals you can scan in seconds — tie them to your interview questions if helpful.",
+    "title": "Selected impact",
+    "subtitle": "What changed — not just what was built. Ask me for CV / LinkedIn alignment in interview.",
     "items": {
-      "0": "Built an explainable ESG decision-support prototype aligned with expert benchmarks (Pearson r ≈ 0.81 in thesis evaluation).",
-      "1": "Contributed across 20+ cross-functional programs in a large retail organization (strategy ↔ ops ↔ tech).",
-      "2": "Shipped React/Node platforms from concept to live demo — portfolio case studies with code and narrative.",
-      "3": "Works comfortably across EN / FA / HU environments with EU-friendly collaboration rhythms."
+      "0": "Delivered an explainable ESG decision system whose scores tracked expert judgment (Pearson r ≈ 0.81 in thesis validation).",
+      "1": "Helped coordinate 20+ cross-functional initiatives in retail — fewer hand-offs lost between strategy, ops, and tech.",
+      "2": "Shipped full-stack platforms from idea to live demo — each case study ties problem → build → measurable signal.",
+      "3": "Delivered in EN / FA / HU contexts with EU-friendly async collaboration — less friction for distributed teams."
     }
   },
   "TargetRoles": {
-    "title": "Where I fit best",
-    "intro": "I'm most relevant when the role blends product sense, delivery, and stakeholder communication — not pure ticket execution.",
+    "kicker": "I'm most relevant for",
+    "title": "Where to place me on the org chart",
+    "intro": "If the role needs translation between code and business — and a bias toward shipped demos — we're aligned.",
     "roles": {
-      "0": "Product-minded full-stack / software engineer (web platforms, internal tools)",
-      "1": "Business analyst & digital transformation (requirements, process, light data)",
-      "2": "Program / project coordination with technical literacy (retail or scale-up context)",
-      "3": "Data & automation engineering adjacent roles (pipelines, governance-aware tooling)",
-      "4": "Roles that value MBA + engineering hybrid narrative (startups, innovation units)"
+      "0": "Business analyst & digital transformation roles (requirements, process, stakeholder bridges)",
+      "1": "Product / program roles with delivery ownership (roadmaps, thin slices, cross-functional rhythm)",
+      "2": "Tech-driven strategy & internal tooling (dashboards, data ops, governance-aware software)"
     }
   },
   "ProfileLinks": {
@@ -108,27 +110,6 @@
     "requestCv": "Request CV",
     "introCall": "Book intro (email)"
   },
-  "Testimonials": {
-    "title": "What hiring teams actually test for.",
-    "subtitle": "Recurring collaboration patterns — not paid endorsements. Framed from retail strategy, startup delivery, high-traffic media work, and MBA research (explainable ESG tooling).",
-    "items": {
-      "0": {
-        "quote": "Trade-offs are written where everyone can see them: scope, risk, and what “done” means for both the roadmap and the repo.",
-        "role": "Clarity under ambiguity",
-        "company": "Exec ↔ engineering"
-      },
-      "1": {
-        "quote": "Comfortable owning a wide arc — product narrative, API contracts, frontend polish, and the operational story for non-technical stakeholders.",
-        "role": "End-to-end ownership",
-        "company": "Builder–leader hybrid"
-      },
-      "2": {
-        "quote": "Research-literate without getting stuck in the lab: methodology when it earns its place (DSR, validation against benchmarks), shipping when the clock is real.",
-        "role": "Rigor without paralysis",
-        "company": "OptiSupply · thesis-grade work"
-      }
-    }
-  },
   "About": {
     "title": "Engineer · strategist<br /><span class='text-primary'>· researcher.</span>",
     "subtitle": "Budapest-based. Iranian. BSc in software engineering (strong GPA), MBA in management (Merit), and founder of NomadSpot. I've worked on digital and technical initiatives for a major retail holding, co-founded e-commerce, contributed at Zoomit-scale traffic, and completed thesis-grade work on explainable AI for sustainable supply chains.",
@@ -137,7 +118,7 @@
       "role": "Founder NomadSpot · MBA (Management) · strategic tech & delivery background",
       "p1": "My path crosses code and stakeholder rooms: co-founded Shoppermo, worked as a strategic manager with exposure across 20+ cross-functional programs at Arash Holding, shipped high-traffic features at Zoomit, and today I architect NomadSpot (React, Node.js, MongoDB) alongside MBA research on explainable decision systems (Design Science).",
       "p2": "Technically: React/Next, Node & REST, Python for data and automation, SQL/NoSQL, pipelines and observability — fundamentals done carefully. On the business side: digital transformation, stakeholder communication, and ESG / procurement analytics informed by regulatory direction (e.g. EU AI Act framing in research).",
-      "p3": "I prefer thin vertical slices, written trade-offs, and demos that reduce uncertainty early — whether you're a CTO, PM, or procurement lead.",
+      "p3": "I prefer thin vertical slices, written trade-offs, and demos that reduce uncertainty early — whether you're a CTO, PM, or procurement owner.",
       "p4": "Languages: English (fluent, academic & professional), Persian (native), Hungarian (foundational). EU-friendly hours; async-first with crisp writing."
     },
     "credentialsTitle": "Credentials & anchors",
@@ -193,7 +174,7 @@
   },
   "Work": {
     "title": "Selected work",
-    "subtitle": "Each item: problem → what shipped → outcome signal. Live or interactive demos where available — the same walkthrough I'd give a hiring manager, tech lead, or procurement stakeholder.",
+    "subtitle": "Each item: problem → what shipped → outcome. Live or interactive demos where available — the same walkthrough I'd give a hiring manager, technical reviewer, or procurement stakeholder.",
     "cardProblem": "Problem",
     "cardBuilt": "What I built",
     "cardOutcome": "Outcome",

@@ -15,19 +15,22 @@ export type WorkCardData = {
   problem?: string;
   built?: string;
   outcome?: string;
+  outcomeExtra?: string;
 };
 
 function CardMeta({
   problem,
   built,
   outcome,
+  outcomeExtra,
 }: {
   problem?: string;
   built?: string;
   outcome?: string;
+  outcomeExtra?: string;
 }) {
   const t = useTranslations("Work");
-  if (!problem && !built && !outcome) return null;
+  if (!problem && !built && !outcome && !outcomeExtra) return null;
 
   return (
     <div className="mt-3 space-y-1.5 border-t border-white/5 pt-3 text-left">
@@ -49,6 +52,11 @@ function CardMeta({
             {t("cardOutcome")}
           </span>{" "}
           {outcome}
+        </p>
+      ) : null}
+      {outcomeExtra ? (
+        <p className="text-[11px] leading-snug text-emerald-200/75 md:text-xs">
+          {outcomeExtra}
         </p>
       ) : null}
     </div>
@@ -87,6 +95,7 @@ export function PortfolioCard({ project }: { project: WorkCardData }) {
             problem={project.problem}
             built={project.built}
             outcome={project.outcome}
+            outcomeExtra={project.outcomeExtra}
           />
         </div>
 

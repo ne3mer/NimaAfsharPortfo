@@ -19,8 +19,10 @@
     "problemEn": "Nomads need trustworthy discovery—not endless unvetted lists.",
     "built": "نقشه زنده، فیلتر حالت کار، Mission Control؛ استقرار روی Vercel.",
     "builtEn": "Live map, work-mode filters, Mission Control; shipped to Vercel.",
-    "outcome": "برش محصول آماده تست کاربر و دمو برای ذی‌نفع غیرفنی.",
-    "outcomeEn": "Shipped product slice ready for user tests and stakeholder demos."
+    "outcome": "از ایده تا محصول مستقر روی Vercel؛ همان سطحی که برای تست کاربر و دمو به سرمایه‌گذار نشان داده می‌شود.",
+    "outcomeEn": "Moved from concept to a deployed Vercel app so map + filter flows could be validated in real sessions (same surface as the live preview).",
+    "outcomeExtra": "جریان کشف و فیلتر طوری چیده شده که زمان «حدس زدن» کم شود و انتخاب مکان سریع‌تر شود.",
+    "outcomeExtraEn": "Structured discovery states (filters, map sync, honest empty states) to cut guesswork and speed shortlisting."
   },
   {
     "title": "OptiSupply — داشبورد ESG زنجیره تأمین",
@@ -33,8 +35,8 @@
     "descriptionEn": "Research-grade ESG decision support as a product: transparent scoring, exportable narratives, and software aligned with expert judgment (thesis backbone).",
     "tags": "Dashboard, ESG, Analytics, Supply Chain, Next.js",
     "tagsEn": "Dashboard, ESG, Analytics, Supply Chain, Next.js",
-    "content": "# OptiSupply\n\nOptiSupply هم **محصول قابل دمو** است و هم **اثر پژوهشی**: موتور امتیازدهی قانون‌محور برای تامین‌کنندگان، داشبوردی که KPI، کیفیت داده، توزیع اخلاقی، ریسک و ستون‌های E/S/G را در یک نگاه می‌گیرد، و خروجی PDF/Excel برای جلساتی که پاورپوینت کافی نیست.\n\nپیش‌نمایش زنده را در بالای صفحه ببینید — کل داشبورد داخل قاب قابل اسکرول است.\n\n## دستاوردهای فنی\n- طراحی **داده‌محور** برای مجموعه‌های پرنویز ESG و سناریوهای تامین پرریسک.\n- لایهٔ تجسم که **بدون شلوغی** به تصمیم نزدیک می‌شود (خوانایی در دادهٔ متراکم).\n- مسیر **گزارش‌گیری** برای حسابرسی داخلی و ذی‌نفع غیرفنی.\n- هم‌راستایی با کار پژوهشی: **همبستگی خطی با داوری خبره** در حد r≈0.81 (طبق کار تز).\n\n## ارزش برای کسب‌وکار و استراتژی\n- پاسخ به **سردرگمی تجمیعی** رتبه‌بندی‌های ESG تجاری — شفافیت به‌عنوان ویژگی، نه شعار.\n- زبان مشترک بین **تدارکات، پایداری، و هیئت‌مدیره**.\n- قابلیت اتصال به مکالمه‌های **CSRD / حاکمیت زنجیره تأمین** بدون فرو رفتن در جعبه‌سیاه.\n\n## نگاه پس از MBA\nMBA اینجا فقط مدل ذهنی نیست؛ **DSR، توسعه TAM با شفافیت و اعتماد، و قابلیت توضیح پذیری** همان چیزی است که OptiSupply را از «داشبورد زیبا» تبدیل می‌کند به **ابزار تصمیم قابل دفاع در اتاق کنفرانس**.\n\n## لینک\n- https://optisupply.vercel.app/dashboard",
-    "contentEn": "# OptiSupply\n\nOptiSupply is both a **demo-ready product** and a **research artifact**: a rule-based scoring engine for suppliers, a dashboard that holds KPIs, data quality, ethical distribution, risk, and E/S/G pillars in one glance, and PDF/Excel exports for rooms where slides aren’t enough.\n\nScroll the live preview — the full dashboard loads in-frame.\n\n## Technical outcomes\n- **Data-dense UI** that stays legible for noisy ESG inputs and high-risk procurement scenarios.\n- Visualization choices that reduce **cognitive load** instead of impressing with chart soup.\n- Reporting paths for **audit narratives** and non-technical stakeholders.\n- Research alignment: **high linear concordance with expert benchmarks** (Pearson r ≈ 0.81 in the thesis evaluation).\n\n## Business & strategy value\n- Addresses **aggregate confusion** in commercial ESG ratings — transparency as a feature, not a footnote.\n- A shared language between **procurement, sustainability, and the board**.\n- Hooks into **CSRD / supply-chain governance** conversations without a black-box model.\n\n## Post-MBA read\nThe MBA isn’t decoration here: **Design Science Research, TAM extensions with transparency & trust, and explainability** are what turn OptiSupply from “pretty dashboard” into a **defensible decision system in the conference room**.\n\n## Link\n- https://optisupply.vercel.app/dashboard",
+    "content": "# OptiSupply\n\nOptiSupply هم **محصول قابل دمو** است و هم **اثر پژوهشی**: موتور امتیازدهی قانون‌محور برای تامین‌کنندگان، داشبوردی که KPI، کیفیت داده، توزیع اخلاقی، ریسک و ستون‌های E/S/G را در یک نگاه می‌گیرد، و خروجی PDF/Excel برای جلساتی که پاورپوینت کافی نیست.\n\nپیش‌نمایش زنده را در بالای صفحه ببینید — کل داشبورد داخل قاب قابل اسکرول است.\n\n## کیس: مسئله → رویکرد → نتیجه\n\n- **مسئله:** تیم‌های تدارکات و پایداری به **سیگنال توضیح‌پذیر** برای تامین‌کنندگان نیاز داشتند — نه فقط نمودار — و خروجی قابل دفاع در جلسه.\n- **رویکرد:** نمونهٔ اولیه مبتنی بر **Design Science** در Next.js: امتیازدهی قانون‌محور، لایهٔ تحلیلی متراکم ولی خوانا، خروجی PDF/Excel؛ ارزیابی در برابر **داوران خبره** در تز.\n- **نتیجه:** **هم‌ترازی قوی با داوری خبره** در اجرای تز (**همبستگی پیرسون حدود r≈0.81**)؛ مسیری که ذی‌نفع در چند دقیقه می‌تواند ببیند.\n\n\n## دستاوردهای فنی\n- طراحی **داده‌محور** برای مجموعه‌های پرنویز ESG و سناریوهای تامین پرریسک.\n- لایهٔ تجسم که **بدون شلوغی** به تصمیم نزدیک می‌شود (خوانایی در دادهٔ متراکم).\n- مسیر **گزارش‌گیری** برای حسابرسی داخلی و ذی‌نفع غیرفنی.\n- هم‌راستایی با کار پژوهشی: **همبستگی خطی با داوری خبره** در حد r≈0.81 (طبق کار تز).\n\n## ارزش برای کسب‌وکار و استراتژی\n- پاسخ به **سردرگمی تجمیعی** رتبه‌بندی‌های ESG تجاری — شفافیت به‌عنوان ویژگی، نه شعار.\n- زبان مشترک بین **تدارکات، پایداری، و هیئت‌مدیره**.\n- قابلیت اتصال به مکالمه‌های **CSRD / حاکمیت زنجیره تأمین** بدون فرو رفتن در جعبه‌سیاه.\n\n## نگاه پس از MBA\nMBA اینجا فقط مدل ذهنی نیست؛ **DSR، توسعه TAM با شفافیت و اعتماد، و قابلیت توضیح پذیری** همان چیزی است که OptiSupply را از «داشبورد زیبا» تبدیل می‌کند به **ابزار تصمیم قابل دفاع در اتاق کنفرانس**.\n\n## لینک\n- https://optisupply.vercel.app/dashboard",
+    "contentEn": "# OptiSupply\n\nOptiSupply is both a **demo-ready product** and a **research artifact**: a rule-based scoring engine for suppliers, a dashboard that holds KPIs, data quality, ethical distribution, risk, and E/S/G pillars in one glance, and PDF/Excel exports for rooms where slides aren’t enough.\n\nScroll the live preview — the full dashboard loads in-frame.\n\n## Case arc (problem → approach → result)\n\n- **Problem:** Procurement and sustainability reviewers needed **explainable** supplier signals—not chart soup—and exports they could defend in a meeting.\n- **Approach:** A **Design Science**-shaped prototype in Next.js: rule-based scoring, dense-but-readable analytics layer, PDF/Excel hand-offs; evaluated against **expert benchmarks** in the thesis.\n- **Result:** **Strong agreement with expert evaluation** in the thesis run (**Pearson r ≈ 0.81**); a demo stakeholders can walk in minutes.\n\n\n## Technical outcomes\n- **Data-dense UI** that stays legible for noisy ESG inputs and high-risk procurement scenarios.\n- Visualization choices that reduce **cognitive load** instead of impressing with chart soup.\n- Reporting paths for **audit narratives** and non-technical stakeholders.\n- Research alignment: **high linear concordance with expert benchmarks** (Pearson r ≈ 0.81 in the thesis evaluation).\n\n## Business & strategy value\n- Addresses **aggregate confusion** in commercial ESG ratings — transparency as a feature, not a footnote.\n- A shared language between **procurement, sustainability, and the board**.\n- Hooks into **CSRD / supply-chain governance** conversations without a black-box model.\n\n## Post-MBA read\nThe MBA isn’t decoration here: **Design Science Research, TAM extensions with transparency & trust, and explainability** are what turn OptiSupply from “pretty dashboard” into a **defensible decision system in the conference room**.\n\n## Link\n- https://optisupply.vercel.app/dashboard",
     "slug": "optisupply-dashboard",
     "status": "Live",
     "image": "/images/work/optisupply-dashboard/01-dashboard-top.png",
@@ -42,8 +44,10 @@
     "problemEn": "ESG stakeholders need defensible transparency in the room—not only charts.",
     "built": "داشبورد Next.js با امتیازدهی توضیح‌پذیر، خروجی PDF/Excel، دمو زنده.",
     "builtEn": "Next.js dashboard with explainable scoring, PDF/Excel exports, live demo.",
-    "outcome": "هم‌ترازی ~r≈0.81 با داوری خبره در ارزیابی تز.",
-    "outcomeEn": "~0.81 linear alignment with expert benchmarks (thesis evaluation)."
+    "outcome": "در ارزیابی تز، هم‌ترازی قوی با داوری خبرگان روی تامین‌کنندگان (حدود r≈0.81).",
+    "outcomeEn": "Thesis evaluation showed strong agreement with expert supplier judgments (Pearson r ≈ 0.81 vs benchmarks).",
+    "outcomeExtra": "تصمیم روی تامین‌کننده شفاف‌تر می‌شود: امتیاز توضیح‌پذیر + خروجی PDF/Excel برای اتاق جلسه.",
+    "outcomeExtraEn": "Improves transparency in supplier decisions: explainable scores plus meeting-ready PDF/Excel—not a black-box rank."
   },
   {
     "title": "GameClub ایران — فروشگاه اکانت قانونی PS5",
@@ -65,8 +69,10 @@
     "problemEn": "Persian-market digital purchases need trust and real RTL—not a translated template.",
     "built": "فروشگاه Next.js با مسیر قهرمان → اعتماد → اقدام و پیش‌نمایش زنده.",
     "builtEn": "Next.js storefront, hero→trust→action flow, live preview.",
-    "outcome": "مسیر تبدیل روشن برای تیم رشد؛ متریک‌های خودتان را وصل کنید.",
-    "outcomeEn": "Clear conversion path for growth—plug in your funnel metrics."
+    "outcome": "فروشگاه RTL همان پیش‌نمایش زنده است؛ تیم رشد می‌تواند قیف و تبدیل را روی یک سطح واقعی اندازه بگیرد.",
+    "outcomeEn": "Shipped the storefront as the live preview—growth can attach funnel metrics to a real conversion path.",
+    "outcomeExtra": "مسیر قهرمان → اعتماد → اقدام برای کم کردن ریسک ادراک‌شده در خرید حساس.",
+    "outcomeExtraEn": "Hero → trust → action flow aimed at perceived purchase risk in a trust-sensitive vertical."
   },
   {
     "title": "DataFlow — داشبورد اتوماسیون خط لوله داده",
@@ -88,8 +94,10 @@
     "problemEn": "Data jobs scattered across tools inflate triage time.",
     "built": "FastAPI + Celery + React؛ لاگ و وضعیت زنده با WebSocket.",
     "builtEn": "FastAPI + Celery + React; live logs & status via WebSockets.",
-    "outcome": "یک داشبورد برای کاهش MTTR شناختی (طراحی برای تیم‌های ops).",
-    "outcomeEn": "Single cockpit designed to reduce cognitive MTTR for ops teams."
+    "outcome": "یک اتاق عمل برای وضعیت و لاگ؛ کمتر پراکندگی بین ابزارها یعنی تریاژ سریع‌تر هنگام خرابی جاب.",
+    "outcomeEn": "Single cockpit for status + logs reduces cross-tool triage when jobs fail (built for faster ops response).",
+    "outcomeExtra": "OpenAPI و Docker برای اتصال بعدی به پلتفرم داده وقتی حجم جاب‌ها بالا می‌رود.",
+    "outcomeExtraEn": "OpenAPI + containerized services so the control plane can grow with pipeline complexity."
   },
   {
     "title": "اسکرپر خبر فوتبال اسپانیا — مجموعه داده دو زبانه",
@@ -111,8 +119,10 @@
     "problemEn": "Fragmented sports news—teams need structured data and translation cost control.",
     "built": "پایتون/Playwright، فیلتر، ترجمه چند ارائه‌دهنده، JSON دو زبانه.",
     "builtEn": "Python/Playwright pipeline, filters, multi-provider translation, bilingual JSON.",
-    "outcome": "دارایی قابل تحلیل با قرارداد پایدار برای downstream.",
-    "outcomeEn": "Analyzable asset with a stable contract for downstream use."
+    "outcome": "خروجی JSON دو زبانه با قرارداد پایدار؛ مدل و آنالیتیکس downstream با دریفت اسکیما مواجه نمی‌شوند.",
+    "outcomeEn": "Stable bilingual JSON contract so downstream ML/analytics isn’t fighting schema drift.",
+    "outcomeExtra": "فیلتر و ددیوب قبل از ترجمه، هزینه API را کنترل می‌کند و حاشیه را حفظ می‌کند.",
+    "outcomeExtraEn": "Noise cuts + dedupe before paid translation protect margin when API costs matter."
   },
   {
     "title": "Echoless Tech — سطح محصول، بی‌سر و صدا",
@@ -134,8 +144,10 @@
     "problemEn": "Technical products must earn trust from users and investors at once.",
     "built": "فرانت Next.js، توکن طراحی، موشن، لَب تعاملی روی همین سایت.",
     "builtEn": "Next.js surface, design tokens, motion, interactive lab on this site.",
-    "outcome": "روایت بصری برای pitch و محصول بدون شلوغی تزئینی.",
-    "outcomeEn": "Pitch + product narrative without decorative noise."
+    "outcome": "یک روایت بصری منسجم (توکن + موشن + لَب) که جدیت محصول را بدون شلوغی تبلیغاتی نشان می‌دهد.",
+    "outcomeEn": "One coherent product narrative (tokens + motion + lab) that signals seriousness without gimmicks.",
+    "outcomeExtra": "مارکتینگ و مهندسی به یک سطح مشترک ارجاع می‌دهند؛ هماهنگی زودتر ارزان‌تر می‌شود.",
+    "outcomeExtraEn": "Marketing and engineering can point to the same surface—less back-and-forth in early GTM."
   },
   {
     "title": "موتور استخراج و اعتبارسنجی داده از PDF",
@@ -157,7 +169,9 @@
     "problemEn": "Repetitive invoices/contracts—errors before ERP are expensive.",
     "built": "موتور پایتون با قواعد ماژولار، JSON/Excel، لَب دو سناریویی.",
     "builtEn": "Python rules engine, JSON/Excel outputs, two-scenario lab.",
-    "outcome": "خروجی قابل‌ممیزی؛ جداسازی خطای استخراج از اعتبارسنجی برای RCA سریع‌تر.",
-    "outcomeEn": "Audit-shaped outputs; split extraction vs validation errors for faster RCA."
+    "outcome": "پردازش batchامن: خطای یک سند کل واردات را نمی‌خواباند؛ ایزوله برای RCA سریع‌تر.",
+    "outcomeEn": "Batch-safe runs: one bad document doesn’t poison the whole import—errors are isolated for faster RCA.",
+    "outcomeExtra": "جداسازی خطای استخراج از اعتبارسنجی؛ داده قبل از قفل ERP قابل اصلاح است.",
+    "outcomeExtraEn": "Split extraction vs validation signals so finance can fix data before ERP lock-in."
   }
 ]

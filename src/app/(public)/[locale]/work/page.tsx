@@ -43,6 +43,7 @@ export default async function WorkPage({params}: {params: Promise<{locale: strin
       problem: pick(row?.problem, row?.problemEn),
       built: pick(row?.built, row?.builtEn),
       outcome: pick(row?.outcome, row?.outcomeEn),
+      outcomeExtra: pick(row?.outcomeExtra, row?.outcomeExtraEn),
     };
   });
 

@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
+import { NavbarHiringLinks } from "@/components/layout/NavbarHiringLinks";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -44,11 +45,13 @@ export function Navbar() {
             </Link>
           ))}
           <LanguageSwitcher />
+          <NavbarHiringLinks className="hidden lg:flex" />
           <Link href="/contact" className={buttonVariants({ variant: "premium", size: "sm" })}>{t("ctaContact")}</Link>
         </nav>
 
         {/* Mobile Toggle */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
+            <NavbarHiringLinks />
             <LanguageSwitcher />
             <button
             className="text-white"
