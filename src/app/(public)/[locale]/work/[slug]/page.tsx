@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
@@ -6,6 +8,15 @@ import { Link } from "@/i18n/routing";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import NextImage from "next/image";
+
+import { LiveSitePreview } from "@/components/work/LiveSitePreview";
+
+/** Live URLs for portfolio case studies — iframe preview scrolls like a real browser. */
+const LIVE_SITE_URL_BY_SLUG: Record<string, string> = {
+  "nomadspot-budapest": "https://wfc-dun.vercel.app/",
+  "optisupply-dashboard": "https://optisupply.vercel.app/dashboard",
+  "gameclub-iran": "https://nextplay-eight.vercel.app/",
+};
 
 function splitTags(tags: string | null | undefined) {
   if (!tags) return [];
@@ -30,22 +41,50 @@ export default async function ProjectPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
+  const t = await getTranslations("Project");
+
+  let project;
   try {
-    const { slug } = await params;
-    const t = await getTranslations("Project");
-    
-    const project = await prisma.work.findUnique({
+    project = await prisma.work.findUnique({
       where: { slug },
     });
-
-    if (!project) {
-      notFound();
-    }
-
+  } catch (error) {
+    console.error("Error loading project:", error);
     return (
-      <article className="min-h-screen pb-20">
+      <div className="min-h-screen flex flex-col items-center justify-center text-white p-4">
+        <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>
+        <pre className="bg-black/50 p-4 rounded text-red-400 max-w-2xl overflow-auto">
+          {error instanceof Error ? error.message : String(error)}
+        </pre>
+        <p className="text-muted-foreground mt-4">Check Vercel logs for more details.</p>
+      </div>
+    );
+  }
+
+  if (!project) {
+    notFound();
+  }
+
+  const liveSiteUrl = LIVE_SITE_URL_BY_SLUG[project.slug];
+    const fullPageImageDisk = path.join(
+      process.cwd(),
+      "public",
+      "images",
+      "work",
+      project.slug,
+      "full-page.png"
+    );
+    const hasFullPageImage =
+      !liveSiteUrl && fs.existsSync(fullPageImageDisk);
+  const fullPageImageSrc = hasFullPageImage
+    ? `/images/work/${project.slug}/full-page.png`
+    : null;
+
+  return (
+    <article className="min-h-screen pb-20">
         {/* Hero Header */}
-        <div className="bg-secondary/30 border-b border-white/5 py-20">
+        <div className="border-b border-white/5 bg-gradient-to-b from-secondary/40 via-secondary/20 to-background py-16 md:py-20">
           <div className="container mx-auto px-4">
             <Link 
               href="/work" 
@@ -54,33 +93,74 @@ export default async function ProjectPage({
               <ArrowLeft className="mr-2 h-4 w-4 rtl:rotate-180" /> {t("back")}
             </Link>
             
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-              {project.title}
-            </h1>
-            
-            <div className="flex flex-wrap gap-4 mb-8">
-              {splitTags(project.tags).map((tag) => (
-                <span key={tag} className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium">
-                  {tag}
-                </span>
-              ))}
+            <div
+              className={
+                project.image && !liveSiteUrl && !hasFullPageImage
+                  ? "grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,380px)] lg:items-start lg:gap-12"
+                  : "grid gap-10"
+              }
+            >
+              <div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+                  {project.title}
+                </h1>
+                
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {splitTags(project.tags).map((tag) => (
+                    <span key={tag} className="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+
+              {project.image && !liveSiteUrl && !hasFullPageImage && (
+                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl ring-1 ring-white/5 lg:aspect-[4/3] lg:max-h-[280px] lg:justify-self-end">
+                  <NextImage
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover object-top"
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 380px"
+                  />
+                </div>
+              )}
             </div>
 
-            <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed mb-12">
-              {project.description}
-            </p>
-
-            {project.image && (
-              <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <NextImage
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
+            {liveSiteUrl ? (
+              <LiveSitePreview
+                url={liveSiteUrl}
+                title={project.title}
+                sectionTitle={t("livePreviewTitle")}
+                hint={t("livePreviewHint")}
+                openLabel={t("openLiveSite")}
+              />
+            ) : hasFullPageImage && fullPageImageSrc ? (
+              <div className="mt-10 space-y-3">
+                <h2 className="text-lg font-semibold text-white md:text-xl">
+                  {t("livePreviewTitle")}
+                </h2>
+                <div className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 shadow-2xl ring-1 ring-white/5">
+                  <div className="max-h-[min(85vh,920px)] overflow-y-auto overscroll-y-contain [scrollbar-gutter:stable]">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- tall stitched screenshot; avoid layout shift from unknown height */}
+                    <img
+                      src={fullPageImageSrc}
+                      alt=""
+                      className="block h-auto w-full select-none"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="border-t border-white/5 bg-black/35 px-4 py-3 text-center text-xs text-muted-foreground md:text-sm">
+                    {t("livePreviewHint")}
+                  </p>
+                </div>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
 
@@ -149,17 +229,5 @@ export default async function ProjectPage({
           </div>
         </div>
       </article>
-    );
-  } catch (error) {
-    console.error("Error rendering ProjectPage:", error);
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-white p-4">
-        <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>
-        <pre className="bg-black/50 p-4 rounded text-red-400 max-w-2xl overflow-auto">
-          {error instanceof Error ? error.message : String(error)}
-        </pre>
-        <p className="text-muted-foreground mt-4">Check Vercel logs for more details.</p>
-      </div>
-    );
-  }
+  );
 }

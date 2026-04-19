@@ -239,7 +239,10 @@
     "year": "Year",
     "ready": "Ready to build?",
     "readyDesc": "Start your project today and get a custom roadmap.",
-    "start": "Start Project"
+    "start": "Start Project",
+    "livePreviewTitle": "Live site preview",
+    "livePreviewHint": "Scroll inside the frame to explore the full page, like a real browser window.",
+    "openLiveSite": "Open in new tab"
   },
   "Footer": {
     "description": "Premium custom software development for startups and visionaries. We replace generic templates with high-performance engineering.",
