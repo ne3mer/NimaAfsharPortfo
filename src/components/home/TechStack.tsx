@@ -3,9 +3,22 @@
 import { useTranslations } from "next-intl";
 
 const technologies = [
-  "Next.js", "React", "TypeScript", "Node.js", "Tailwind CSS", 
-  "PostgreSQL", "MongoDB", "Docker", "AWS", "Framer Motion",
-  "Stripe", "OpenAI", "Supabase", "Prisma", "GraphQL"
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Node.js",
+  "Python",
+  "FastAPI",
+  "PostgreSQL",
+  "MongoDB",
+  "Prisma",
+  "Celery",
+  "Redis",
+  "Docker",
+  "Tailwind CSS",
+  "Framer Motion",
+  "ESG analytics",
+  "Design Science (DSR)",
 ];
 
 export function TechStack() {

@@ -4,10 +4,10 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 
 const stats = [
-  { key: "experience", value: "12+" },
-  { key: "projects", value: "50+" },
-  { key: "clients", value: "30+" },
-  { key: "satisfaction", value: "100%" },
+  { key: "yearsTrack", value: "8+" },
+  { key: "programs", value: "20+" },
+  { key: "bench", value: "r≈0.81" },
+  { key: "languages", value: "3" },
 ];
 
 export function Stats() {

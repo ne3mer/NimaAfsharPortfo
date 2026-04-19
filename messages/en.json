@@ -1,14 +1,14 @@
 {
   "Hero": {
-    "systemOnline": "Portfolio online",
-    "title": "Product-grade <br /><span class='text-primary'>web engineering.</span>",
-    "subtitle": "I'm Nima Afsharfar — I design and ship fast, accessible interfaces and solid backends. This site is my living CV: real case studies, live previews, and proof of craft.",
-    "ctaPrimary": "Say hello",
-    "ctaSecondary": "View case studies",
+    "systemOnline": "Open to senior / lead roles · EU remote",
+    "title": "Ship the product.<br /><span class='text-primary'>Earn the room.</span>",
+    "subtitle": "I'm Mohammad Afsharfar — I go by Nima. Full-stack engineer and MBA candidate in Budapest: React & Node platforms, data and automation pipelines, and research-backed decision systems (my thesis work built OptiSupply — explainable ESG scoring aligned with expert benchmarks). This site is the evidence room: live demos, repos, and narrative for both engineering and business reviewers.",
+    "ctaPrimary": "Start a conversation",
+    "ctaSecondary": "See selected work",
     "capabilities": {
-      "ai": "Next.js & React",
-      "infra": "APIs & data",
-      "scale": "UX that converts"
+      "ai": "Product & full-stack delivery",
+      "infra": "Data · AI governance · ESG",
+      "scale": "Strategy ↔ engineering fluency"
     }
   },
   "Navbar": {
@@ -20,7 +20,7 @@
   },
   "Services": {
     "title": "Where I go <span class='text-primary'>deepest.</span>",
-    "subtitle": "Not a rate card — a map of how I help teams ship. Same visual language as before; the story is now built for recruiters and hiring managers.",
+    "subtitle": "Two hemispheres, one thread: I speak fluent engineer and fluent stakeholder. Whether you care about conversion-ready UI, governance-grade dashboards, or how research (DSR / TAM extensions) lands in software — here's how I plug in.",
     "highlightBadge": "Core lane",
     "tiers": {
       "small": {
@@ -81,53 +81,61 @@
     "title": "Stack I reach for most days"
   },
   "Testimonials": {
-    "title": "Signals from collaborators.",
-    "subtitle": "Snapshots from product leaders I've shipped with — useful context for hiring teams.",
+    "title": "What hiring teams actually test for.",
+    "subtitle": "Not paid blurbs — three recurring patterns from retail strategy, startup zero-to-one, Zoomit-scale media, and MBA research (Design Science on explainable ESG tooling).",
     "items": {
       "0": {
-        "quote": "NIMA Studio didn't just build an app; they built our entire business infrastructure. The level of engineering quality is unmatched.",
-        "role": "CEO, Nova Finance",
-        "company": "Fintech Series B"
+        "quote": "He writes the trade-offs where everyone can see them: scope, risk, and what “done” means for both the roadmap and the repo.",
+        "role": "Clarity under ambiguity",
+        "company": "Exec ↔ engineering"
       },
       "1": {
-        "quote": "We wasted 6 months with a cheap agency before finding Nima. He fixed our architecture in 2 weeks and launched our MVP a month later.",
-        "role": "Founder, CopyFlow",
-        "company": "AI Startup"
+        "quote": "Comfortable owning a wide arc — product narrative, API contracts, frontend polish, and the operational story for non-technical stakeholders.",
+        "role": "End-to-end ownership",
+        "company": "Builder–leader hybrid"
       },
       "2": {
-        "quote": "The attention to detail in the UI/UX is incredible. Our customers constantly compliment the speed and feel of the platform.",
-        "role": "Product Director",
-        "company": "Aura Fashion"
+        "quote": "Research-literate without getting stuck in the lab: methodology when it earns its place (DSR, validation against benchmarks), shipping when the clock is real.",
+        "role": "Rigor without paralysis",
+        "company": "OptiSupply · thesis-grade work"
       }
     }
   },
   "About": {
-    "title": "Engineer · builder<br /><span class='text-primary'>· human.</span>",
-    "subtitle": "NIMA Studio is my umbrella for senior product engineering — from discovery to deploy. I care about narrative, measurable outcomes, and code you can evolve without fear.",
+    "title": "Engineer · strategist<br /><span class='text-primary'>· researcher.</span>",
+    "subtitle": "Budapest-based. Iranian. BSc in software engineering (outstanding GPA), MBA candidate in management, and founder of NomadSpot. I've led digital and technical initiatives for a major retail holding, co-founded e-commerce, shipped at Zoomit scale, and published thesis-grade work on explainable AI for sustainable supply chains.",
+    "founderName": "Mohammad Afsharfar (Nima)",
     "founder": {
-      "role": "Founder & lead engineer",
-      "p1": "12+ years shipping web products: startups, scale-ups, and teams that needed calm architecture after chaotic launches.",
-      "p2": "I split time between deep frontend craft (React/Next.js, motion, accessibility) and pragmatic backend work (APIs, Postgres, auth, payments).",
-      "p3": "I push back with empathy: I'll question scope, propose smaller slices, and document trade-offs so stakeholders aren't surprised later.",
-      "p4": "Based in Budapest, working with distributed teams across Europe and the Middle East — async-first, clear writing, predictable delivery."
+      "role": "Founder NomadSpot · MBA candidate · ex strategic tech leadership",
+      "p1": "My path crosses code and board decks: co-founded Shoppermo, served as strategic manager overseeing 20+ cross-functional programs at Arash Holding, developed high-traffic features at Zoomit, and today architect NomadSpot (React, Node.js, MongoDB) while finishing an MBA built around Design Science research.",
+      "p2": "Technically: React/Next ecosystems, Node & REST, Python for data and automation, SQL/NoSQL, pipelines and observability — the boring parts done properly. On the business side: digital transformation, stakeholder communication, and ESG / procurement analytics informed by regulatory direction (e.g. EU AI Act alignment in my research framing).",
+      "p3": "I argue with roadmaps constructively: smaller vertical slices, written trade-offs, and demos that make uncertainty cheap to explore — whether you're a CTO, PM, or procurement lead.",
+      "p4": "Languages: English (fluent, academic & professional), Persian (native), Hungarian (foundational). EU-friendly hours; async-first with crisp writing."
+    },
+    "credentialsTitle": "Credentials & anchors",
+    "credentials": {
+      "0": "MBA (Management) · Budapest Metropolitan University · merit classification",
+      "1": "BSc Computer Engineering (Software) · Islamic Azad University · GPA 17.60/20",
+      "2": "Certified specialist · Python & web architecture (MFT) — top scores",
+      "3": "Thesis-grade artifact: OptiSupply — explainable ESG decision support (r≈0.81 vs experts)"
     },
     "values": {
       "global": {
-        "title": "Global mindset",
-        "desc": "English-first docs, bilingual interfaces when needed, and respect for time zones — built for remote-first teams."
+        "title": "From regulation to release notes",
+        "desc": "Comfortable translating EU AI governance, CSRD/ESRS pressures, and supply-chain risk language into backlog items engineers can estimate."
       },
       "speed": {
-        "title": "Velocity without recklessness",
-        "desc": "Modern stacks (Next.js, Prisma, Postgres, Vercel) with automated checks so speed doesn't erode quality."
+        "title": "Operational velocity",
+        "desc": "Modern stacks with automated checks — the same discipline that kept retail and media platforms running when traffic and politics both spike."
       },
       "partners": {
-        "title": "Partners on the critical path",
-        "desc": "I embed with product and design, align on metrics, and leave playbooks behind so your team owns what we ship."
+        "title": "Embedded, not ornamental",
+        "desc": "I work with product, marketing, and ops as peers — documentation and handover are part of the definition of done."
       }
     },
     "cta": {
-      "title": "Want the résumé or a deeper intro?",
-      "button": "Request via email"
+      "title": "Want Europass PDFs or a tailored intro?",
+      "button": "Email me"
     }
   },
   "Contact": {
@@ -136,8 +144,8 @@
     "info": {
       "title": "Contact Information",
       "email": "Email",
-      "office": "Office",
-      "officeDesc": "Distributed Team<br />Based in Europe & Middle East"
+      "office": "Location",
+      "officeDesc": "Budapest, Hungary · EU remote / hybrid<br />ne3mer@gmail.com · +36 70 402 6493"
     },
     "cta": {
       "title": "Prefer browsing first?",
@@ -154,12 +162,12 @@
   },
   "Work": {
     "title": "Selected work",
-    "subtitle": "Case studies with context: problem, craft, stack, and live demos when possible — the same story I'd walk through in an interview loop.",
+    "subtitle": "Case studies with narrative depth: business problem, technical approach, stack, and live or interactive demos — the same walkthrough I'd give a hiring manager, tech lead, or procurement stakeholder.",
     "empty": "No work published yet. Add your first case study from the admin panel."
   },
   "Start": {
     "title": "Beyond the PDF",
-    "subtitle": "This route used to host a project calculator. Now it's a candid look at how I like to collaborate — still the same cyber aesthetic, tuned for recruiters and founders.",
+    "subtitle": "Résumés flatten a zig-zag career. Here: how I collaborate when stakes are real — tuned for recruiters who read both the MBA column and the GitHub graph.",
     "ribbon": "Collaboration mode",
     "headline": "I work best with teams that value writing, async clarity, and demos over decks.",
     "intro": "If you're hiring: skim Work for proof, About for background, then ping me with the role and stack. If you're a founder: tell me the riskiest assumption you're testing — I'll reply with how I'd tackle it in week one.",
@@ -179,10 +187,10 @@
     }
   },
   "Stats": {
-    "experience": "Years shipping",
-    "projects": "Products touched",
-    "clients": "Teams partnered",
-    "satisfaction": "Pride in craft"
+    "yearsTrack": "Years in product & engineering",
+    "programs": "Cross-functional programs led",
+    "bench": "OptiSupply vs expert evaluators",
+    "languages": "Working languages (EN · FA · HU)"
   },
   "Process": {
     "title": "How I run an engagement",
@@ -207,8 +215,8 @@
     }
   },
   "CTA": {
-    "title": "Let's compare notes.",
-    "subtitle": "Tell me what you're building — I'll share relevant work and how I'd approach the first milestones.",
+    "title": "Let's compare notes — technical or strategic.",
+    "subtitle": "Share the role, constraints, and what “success” looks like in week 12. I'll reply with relevant work (code + business context) and a sane first milestone.",
     "primary": "Contact",
     "secondary": "View portfolio"
   },
@@ -280,7 +288,7 @@
     "interactiveLabFootnote": "Sample JSON from this site’s /api/portfolio-demo route — not your local Python runtime."
   },
   "Footer": {
-    "description": "Personal portfolio of Nima Afsharfar — product-minded engineering, bilingual storytelling, case studies with live previews.",
+    "description": "Mohammad Afsharfar (Nima) — engineer, MBA candidate, founder. Full-stack delivery, data & automation, ESG-informed analytics. Budapest · open to EU-remote roles.",
     "bannerTitle": "Hiring or collaborating?",
     "bannerSubtitle": "Send a short note with context. I read everything and answer within a few days.",
     "bannerCta": "Contact",

@@ -2,7 +2,7 @@
 
 import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
-import { ArrowRight, Cpu, Gauge, Terminal, Zap, Globe } from "lucide-react";
+import { ArrowRight, Building2, Cpu, LineChart, Terminal, Zap } from "lucide-react";
 import HeroCyberGrid from "@/components/home/HeroCyberGrid";
 import { motion } from "framer-motion";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
@@ -13,8 +13,8 @@ export function Hero() {
 
   const CAPABILITIES = [
     { label: t("capabilities.ai"), icon: Cpu },
-    { label: t("capabilities.infra"), icon: Gauge },
-    { label: t("capabilities.scale"), icon: Globe },
+    { label: t("capabilities.infra"), icon: LineChart },
+    { label: t("capabilities.scale"), icon: Building2 },
   ];
 
   return (
