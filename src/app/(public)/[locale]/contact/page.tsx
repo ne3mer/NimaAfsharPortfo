@@ -49,7 +49,7 @@ export default async function ContactPage({params}: {params: Promise<{locale: st
                 <p className="text-sm text-muted-foreground mb-4">
                   {t("cta.desc")}
                 </p>
-                <Link href="/start" className={buttonVariants({ variant: "premium", className: "w-full" })}>{t("cta.button")}</Link>
+                <Link href="/work" className={buttonVariants({ variant: "premium", className: "w-full" })}>{t("cta.button")}</Link>
               </div>
             </div>
 

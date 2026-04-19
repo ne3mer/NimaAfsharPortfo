@@ -43,8 +43,8 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
               </p>
             </div>
             <div className="mt-8 flex gap-4">
-              <a href="https://linkedin.com" target="_blank" className={buttonVariants({ variant: "outline" })}>LinkedIn</a>
-              <a href="https://github.com" target="_blank" className={buttonVariants({ variant: "outline" })}>GitHub</a>
+              <a href="https://www.linkedin.com/in/nima-afsharfar" target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "outline" })}>LinkedIn</a>
+              <a href="https://github.com/ne3mer" target="_blank" rel="noopener noreferrer" className={buttonVariants({ variant: "outline" })}>GitHub</a>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
 
         <div className="mt-24 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">{t("cta.title")}</h2>
-          <Link href="/start" className={buttonVariants({ variant: "premium", size: "lg" })}>
+          <Link href="/contact" className={buttonVariants({ variant: "premium", size: "lg" })}>
               {t("cta.button")} <ArrowRight className="ml-2 h-4 w-4 rtl:rotate-180" />
           </Link>
         </div>

@@ -68,7 +68,7 @@ export function Hero() {
                 transition={{ duration: 0.5, delay: 0.6 }}
                 className="flex flex-col sm:flex-row gap-4 pt-4"
               >
-              <Link href="/start" className={buttonVariants({ variant: "premium", size: "lg", className: "h-14 px-8 rounded-full text-base font-semibold shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_-10px_rgba(59,130,246,0.7)] transition-all duration-300" })}>
+              <Link href="/contact" className={buttonVariants({ variant: "premium", size: "lg", className: "h-14 px-8 rounded-full text-base font-semibold shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_-10px_rgba(59,130,246,0.7)] transition-all duration-300" })}>
                   {t("ctaPrimary")}
                   <ArrowRight className="ml-2 h-5 w-5 rtl:rotate-180" />
               </Link>
@@ -113,13 +113,13 @@ export function Hero() {
                 >
                   <div className="flex items-center gap-2 mb-3 border-b border-white/10 pb-2">
                     <Terminal className="h-4 w-4 text-emerald-400" />
-                    <span className="text-xs text-white/50 font-mono">deploy_sequence.sh</span>
+                    <span className="text-xs text-white/50 font-mono">release_notes.md</span>
                   </div>
                   <div className="space-y-2 font-mono text-xs">
-                    <div className="text-emerald-400">$ init_core_systems</div>
-                    <div className="text-white/60">Loading modules... [OK]</div>
-                    <div className="text-white/60">Optimizing runtime... [OK]</div>
-                    <div className="text-blue-400">System ready.</div>
+                    <div className="text-emerald-400">$ ship_portfolio_build</div>
+                    <div className="text-white/60">Typecheck… [OK]</div>
+                    <div className="text-white/60">Lighthouse perf… [OK]</div>
+                    <div className="text-blue-400">Ready for review.</div>
                   </div>
                 </motion.div>
 
@@ -130,7 +130,7 @@ export function Hero() {
                   className="absolute bottom-32 left-0 w-64 bg-black/80 border border-white/10 rounded-xl p-4 backdrop-blur-xl shadow-2xl"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-white/50 uppercase tracking-wider">Performance</span>
+                    <span className="text-xs text-white/50 uppercase tracking-wider">Craft</span>
                     <Zap className="h-4 w-4 text-yellow-400" />
                   </div>
                   <div className="text-3xl font-bold text-white mb-1">99.9%</div>

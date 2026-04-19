@@ -44,7 +44,7 @@ export function Navbar() {
             </Link>
           ))}
           <LanguageSwitcher />
-          <Link href="/start" className={buttonVariants({ variant: "premium", size: "sm" })}>{t("start")}</Link>
+          <Link href="/contact" className={buttonVariants({ variant: "premium", size: "sm" })}>{t("ctaContact")}</Link>
         </nav>
 
         {/* Mobile Toggle */}
@@ -77,7 +77,7 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link href="/start" onClick={() => setIsOpen(false)} className={buttonVariants({ variant: "premium", className: "w-full" })}>{t("start")}</Link>
+          <Link href="/contact" onClick={() => setIsOpen(false)} className={buttonVariants({ variant: "premium", className: "w-full" })}>{t("ctaContact")}</Link>
         </motion.div>
       )}
     </header>

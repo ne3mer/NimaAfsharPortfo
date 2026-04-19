@@ -1,83 +1,88 @@
 {
   "Hero": {
-    "systemOnline": "System Online",
-    "title": "Build the <br />Impossible.",
-    "subtitle": "We architect high-performance digital systems for ambitious operators. No templates. No limits. Just pure engineering velocity.",
-    "ctaPrimary": "Initialize Project",
-    "ctaSecondary": "Explore Archives",
+    "systemOnline": "Portfolio online",
+    "title": "Product-grade <br /><span class='text-primary'>web engineering.</span>",
+    "subtitle": "I'm Nima Afsharfar — I design and ship fast, accessible interfaces and solid backends. This site is my living CV: real case studies, live previews, and proof of craft.",
+    "ctaPrimary": "Say hello",
+    "ctaSecondary": "View case studies",
     "capabilities": {
-      "ai": "AI Systems",
-      "infra": "Realtime Infra",
-      "scale": "Global Scale"
+      "ai": "Next.js & React",
+      "infra": "APIs & data",
+      "scale": "UX that converts"
     }
   },
   "Navbar": {
     "work": "Work",
-    "services": "Services",
+    "services": "Expertise",
     "about": "About",
-    "start": "Start Project"
+    "start": "Connect",
+    "ctaContact": "Contact"
   },
   "Services": {
-    "title": "Transparent Pricing.<br /><span class='text-primary'>Professional Execution.</span>",
-    "subtitle": "Choose the package that fits your stage. From simple custom sites to complex SaaS platforms.",
+    "title": "Where I go <span class='text-primary'>deepest.</span>",
+    "subtitle": "Not a rate card — a map of how I help teams ship. Same visual language as before; the story is now built for recruiters and hiring managers.",
+    "highlightBadge": "Core lane",
     "tiers": {
       "small": {
-        "name": "Small Custom Projects",
-        "description": "For early-stage ideas and personal brands.",
-        "cta": "Get Started",
+        "name": "Product surfaces & marketing web",
+        "tagline": "Landing · funnels · storytelling",
+        "description": "High-impact pages and lightweight apps that load fast, rank well, and feel premium.",
+        "cta": "Discuss a fit",
         "features": {
-          "0": "Custom Landing Pages",
-          "1": "Simple Web Systems",
-          "2": "Admin Panels",
-          "3": "Lead Capture Systems",
-          "4": "No WordPress / Templates"
+          "0": "Next.js / React with intentional motion",
+          "1": "SEO-ready structure & performance budgets",
+          "2": "Design systems & reusable UI primitives",
+          "3": "Analytics hooks for measurable conversion",
+          "4": "Accessible, RTL-friendly layouts when needed"
         }
       },
       "business": {
-        "name": "Business Systems",
-        "description": "For growing companies needing automation.",
-        "cta": "Build System",
-        "badge": "Most Popular",
+        "name": "Dashboards & internal tools",
+        "tagline": "Clarity under complexity",
+        "description": "Operational views, role-based access, and integrations that keep teams aligned.",
+        "cta": "Talk through scope",
         "features": {
-          "0": "Custom Dashboards",
-          "1": "CRM Systems",
-          "2": "Booking & Reservations",
-          "3": "Payment Integrations",
-          "4": "Multi-user Roles & Permissions"
+          "0": "Data-dense UIs that stay readable",
+          "1": "Auth patterns & audit-friendly flows",
+          "2": "Charts, exports, and operational alerts",
+          "3": "Payments, webhooks, and third-party APIs",
+          "4": "Hardening for real traffic and edge cases"
         }
       },
       "saas": {
-        "name": "SaaS & Startup MVP",
-        "description": "Full product development for serious founders.",
-        "cta": "Launch Startup",
+        "name": "Full-stack product slices",
+        "tagline": "From idea to shippable",
+        "description": "MVPs and vertical slices that prove the model before you scale the org.",
+        "cta": "Share roadmap",
         "features": {
-          "0": "Product Strategy & Roadmap",
-          "1": "Full UI/UX Design",
-          "2": "Advanced Backend & API",
-          "3": "Auth, Subscriptions, Analytics",
-          "4": "Cloud Deployment & Scaling"
+          "0": "Product narrative & technical roadmap",
+          "1": "Service boundaries & API contracts",
+          "2": "Postgres / Prisma data modeling",
+          "3": "Auth, billing hooks, observability",
+          "4": "Deploy pipelines tuned for iteration speed"
         }
       },
       "retainer": {
-        "name": "Monthly Retainer",
-        "description": "Ongoing support and development.",
-        "cta": "Subscribe",
+        "name": "Ongoing craft & mentorship",
+        "tagline": "Long-arc quality",
+        "description": "For teams that want a senior eye on architecture, reviews, and incremental delivery.",
+        "cta": "Open conversation",
         "features": {
-          "0": "Regular Maintenance",
-          "1": "Feature Updates",
-          "2": "Server Monitoring",
-          "3": "Priority Support",
-          "4": "Consulting Sessions"
+          "0": "Code & architecture review cadence",
+          "1": "Refactors with zero drama releases",
+          "2": "Performance & cost guardrails",
+          "3": "Pairing with your in-house engineers",
+          "4": "Hiring support: take-homes & rubrics"
         }
       }
     }
   },
   "TechStack": {
-    "title": "Powering Next-Gen Applications"
+    "title": "Stack I reach for most days"
   },
   "Testimonials": {
-    "title": "Trusted by Founders.",
-    "subtitle": "We build long-term technical partnerships. Here is what our clients say.",
+    "title": "Signals from collaborators.",
+    "subtitle": "Snapshots from product leaders I've shipped with — useful context for hiring teams.",
     "items": {
       "0": {
         "quote": "NIMA Studio didn't just build an app; they built our entire business infrastructure. The level of engineering quality is unmatched.",
@@ -97,37 +102,37 @@
     }
   },
   "About": {
-    "title": "The Studio Behind<br /><span class='text-primary'>The Code.</span>",
-    "subtitle": "NIMA Studio is a distributed collective of senior engineers and designers, led by Nima Afsharfar. We don't just write code; we build businesses.",
+    "title": "Engineer · builder<br /><span class='text-primary'>· human.</span>",
+    "subtitle": "NIMA Studio is my umbrella for senior product engineering — from discovery to deploy. I care about narrative, measurable outcomes, and code you can evolve without fear.",
     "founder": {
-      "role": "Founder & Lead Architect",
-      "p1": "With over 12 years of experience in software development, I've seen the real challenges of the engineering world.",
-      "p2": "My goal in founding Nima Studio was simple: to bring Silicon Valley quality engineering to startups and businesses worldwide.",
-      "p3": "We stand against traditional, low-quality outsourcing models. Here, you work with senior architects who deeply understand your business concerns.",
-      "p4": "While our vision is global, we are committed to bridging the gap between local potential and international standards, ensuring that world-class technology is accessible to visionaries everywhere."
+      "role": "Founder & lead engineer",
+      "p1": "12+ years shipping web products: startups, scale-ups, and teams that needed calm architecture after chaotic launches.",
+      "p2": "I split time between deep frontend craft (React/Next.js, motion, accessibility) and pragmatic backend work (APIs, Postgres, auth, payments).",
+      "p3": "I push back with empathy: I'll question scope, propose smaller slices, and document trade-offs so stakeholders aren't surprised later.",
+      "p4": "Based in Budapest, working with distributed teams across Europe and the Middle East — async-first, clear writing, predictable delivery."
     },
     "values": {
       "global": {
-        "title": "Distributed & Global",
-        "desc": "We recruit the best talent regardless of location. Our team spans Europe and the Middle East, offering 24/7 development cycles."
+        "title": "Global mindset",
+        "desc": "English-first docs, bilingual interfaces when needed, and respect for time zones — built for remote-first teams."
       },
       "speed": {
-        "title": "Speed & Quality",
-        "desc": "We use a pre-built \"Launchpad\" stack (Next.js, Supabase, Stripe) to ship MVPs in weeks, not months, without technical debt."
+        "title": "Velocity without recklessness",
+        "desc": "Modern stacks (Next.js, Prisma, Postgres, Vercel) with automated checks so speed doesn't erode quality."
       },
       "partners": {
-        "title": "Partners, Not Vendors",
-        "desc": "We don't just take tickets. We challenge assumptions, suggest features, and help you pivot based on market feedback."
+        "title": "Partners on the critical path",
+        "desc": "I embed with product and design, align on metrics, and leave playbooks behind so your team owns what we ship."
       }
     },
     "cta": {
-      "title": "Ready to build something great?",
-      "button": "Start Your Project"
+      "title": "Want the résumé or a deeper intro?",
+      "button": "Request via email"
     }
   },
   "Contact": {
     "title": "Get in Touch",
-    "subtitle": "Have a question or want to discuss a partnership? We'd love to hear from you.",
+    "subtitle": "Hiring? Collaborating? Or just want to compare notes on product engineering — send a note. I read every message.",
     "info": {
       "title": "Contact Information",
       "email": "Email",
@@ -135,9 +140,9 @@
       "officeDesc": "Distributed Team<br />Based in Europe & Middle East"
     },
     "cta": {
-      "title": "Ready to start a project?",
-      "desc": "Use our project configurator to get a custom estimate.",
-      "button": "Start Project Configurator"
+      "title": "Prefer browsing first?",
+      "desc": "Jump into case studies with live previews and narrative breakdowns.",
+      "button": "Open portfolio"
     },
     "form": {
       "firstName": "First Name",
@@ -148,47 +153,64 @@
     }
   },
   "Work": {
-    "title": "Selected Work",
-    "subtitle": "A collection of custom software, high-performance web apps, and digital products built for ambitious clients.",
+    "title": "Selected work",
+    "subtitle": "Case studies with context: problem, craft, stack, and live demos when possible — the same story I'd walk through in an interview loop.",
     "empty": "No work published yet. Add your first case study from the admin panel."
   },
   "Start": {
-    "title": "Build Your Product",
-    "subtitle": "Use our interactive configurator to define your project scope and get an estimated roadmap."
+    "title": "Beyond the PDF",
+    "subtitle": "This route used to host a project calculator. Now it's a candid look at how I like to collaborate — still the same cyber aesthetic, tuned for recruiters and founders.",
+    "ribbon": "Collaboration mode",
+    "headline": "I work best with teams that value writing, async clarity, and demos over decks.",
+    "intro": "If you're hiring: skim Work for proof, About for background, then ping me with the role and stack. If you're a founder: tell me the riskiest assumption you're testing — I'll reply with how I'd tackle it in week one.",
+    "primaryCta": "Email me",
+    "secondaryCta": "Browse case studies",
+    "card1": {
+      "title": "Proof over promises",
+      "desc": "Live previews, screenshots, and bilingual write-ups so reviewers see the real surface area."
+    },
+    "card2": {
+      "title": "Stack transparency",
+      "desc": "Next.js, TypeScript, Prisma, Postgres, modern CSS — boring on purpose so teams know what they're getting."
+    },
+    "card3": {
+      "title": "Timezone friendly",
+      "desc": "Budapest-based, EU-friendly hours, comfortable collaborating US ↔ EU with written rituals."
+    }
   },
   "Stats": {
-    "experience": "Years Experience",
-    "projects": "Projects Delivered",
-    "clients": "Happy Clients",
-    "satisfaction": "Client Satisfaction"
+    "experience": "Years shipping",
+    "projects": "Products touched",
+    "clients": "Teams partnered",
+    "satisfaction": "Pride in craft"
   },
   "Process": {
-    "title": "How We Work",
-    "subtitle": "A transparent, agile process designed to deliver high-quality software at speed.",
+    "title": "How I run an engagement",
+    "subtitle": "A lightweight loop you can map to sprint calendars — discovery first, thin vertical slices, instrumentation early.",
     "steps": {
       "discovery": {
-        "title": "Discovery",
-        "desc": "We dive deep into your business goals and technical requirements."
+        "title": "Discover",
+        "desc": "Align on outcomes, constraints, and risk — usually async docs plus a focused workshop."
       },
       "design": {
-        "title": "Design",
-        "desc": "We craft intuitive user interfaces and robust system architectures."
+        "title": "Shape",
+        "desc": "Flows, UI states, and API contracts sketched tight enough to estimate without hand-wavy magic."
       },
       "development": {
-        "title": "Development",
-        "desc": "We build with modern tech stacks, focusing on performance and scalability."
+        "title": "Build",
+        "desc": "Vertical slices with tests where they matter, telemetry where it informs decisions."
       },
       "launch": {
-        "title": "Launch",
-        "desc": "We deploy your product and provide ongoing support for growth."
+        "title": "Ship & learn",
+        "desc": "Release, watch metrics, iterate — with runbooks so your team isn't locked to me."
       }
     }
   },
   "CTA": {
-    "title": "Ready to Scale?",
-    "subtitle": "Let's turn your vision into a high-performance digital reality.",
-    "primary": "Start Your Project",
-    "secondary": "Contact Sales"
+    "title": "Let's compare notes.",
+    "subtitle": "Tell me what you're building — I'll share relevant work and how I'd approach the first milestones.",
+    "primary": "Contact",
+    "secondary": "View portfolio"
   },
   "Privacy": {
     "title": "Privacy Policy",
@@ -237,20 +259,24 @@
     "client": "Client",
     "services": "Services",
     "year": "Year",
-    "ready": "Ready to build?",
-    "readyDesc": "Start your project today and get a custom roadmap.",
-    "start": "Start Project",
+    "ready": "Similar energy for your team?",
+    "readyDesc": "Reach out with the role or product context — I respond personally.",
+    "start": "Contact",
     "livePreviewTitle": "Live site preview",
     "livePreviewHint": "Scroll inside the frame to explore the full page, like a real browser window.",
     "openLiveSite": "Open in new tab"
   },
   "Footer": {
-    "description": "Premium custom software development for startups and visionaries. We replace generic templates with high-performance engineering.",
+    "description": "Personal portfolio of Nima Afsharfar — product-minded engineering, bilingual storytelling, case studies with live previews.",
+    "bannerTitle": "Hiring or collaborating?",
+    "bannerSubtitle": "Send a short note with context. I read everything and answer within a few days.",
+    "bannerCta": "Contact",
     "explore": {
       "title": "Explore",
       "portfolio": "Portfolio",
       "about": "About Us",
       "start": "Start Project",
+      "collab": "Collaboration",
       "contact": "Contact"
     },
     "legal": {

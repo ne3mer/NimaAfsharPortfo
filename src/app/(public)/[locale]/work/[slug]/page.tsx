@@ -225,7 +225,7 @@ export default async function ProjectPage({
               <p className="text-sm text-muted-foreground mb-4">
                 {t("readyDesc")}
               </p>
-              <Link href="/start" className={buttonVariants({ variant: "premium", className: "w-full" })}>
+              <Link href="/contact" className={buttonVariants({ variant: "premium", className: "w-full" })}>
                 {t("start")} <ArrowRight className="ml-2 h-4 w-4 rtl:rotate-180" />
               </Link>
             </div>

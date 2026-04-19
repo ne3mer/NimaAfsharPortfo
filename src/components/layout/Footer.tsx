@@ -24,15 +24,15 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-24 border-b border-white/5 pb-24">
           <div className="text-center md:text-left">
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tighter mb-4">
-              Have an idea?
+              {t("bannerTitle")}
             </h2>
             <p className="text-xl text-muted-foreground">
-              Let's build something amazing together.
+              {t("bannerSubtitle")}
             </p>
           </div>
-          <Link href="/start">
+          <Link href="/contact">
             <Button size="lg" variant="premium" className="rounded-full px-8 py-8 text-lg">
-              Start a Project
+              {t("bannerCta")}
             </Button>
           </Link>
         </div>
@@ -47,9 +47,9 @@ export function Footer() {
               {t("description")}
             </p>
             <div className="flex gap-4 pt-4">
-              <SocialLink href="https://linkedin.com" icon={Linkedin} />
+              <SocialLink href="https://www.linkedin.com/in/nima-afsharfar" icon={Linkedin} />
               <SocialLink href="https://twitter.com" icon={Twitter} />
-              <SocialLink href="https://github.com" icon={Github} />
+              <SocialLink href="https://github.com/ne3mer" icon={Github} />
             </div>
           </div>
 
@@ -59,7 +59,7 @@ export function Footer() {
             <ul className="space-y-4 text-muted-foreground">
               <li><Link href="/work" className="hover:text-white transition-colors block py-1">{t("explore.portfolio")}</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors block py-1">{t("explore.about")}</Link></li>
-              <li><Link href="/start" className="hover:text-white transition-colors block py-1">{t("explore.start")}</Link></li>
+              <li><Link href="/start" className="hover:text-white transition-colors block py-1">{t("explore.collab")}</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors block py-1">{t("explore.contact")}</Link></li>
             </ul>
           </div>

@@ -45,7 +45,7 @@ export function CTA() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link 
-              href="/start" 
+              href="/contact" 
               className={buttonVariants({ 
                 variant: "premium", 
                 size: "lg", 
@@ -56,7 +56,7 @@ export function CTA() {
               <ArrowRight className="ml-2 h-5 w-5 rtl:rotate-180" />
             </Link>
             <Link 
-              href="/contact" 
+              href="/work" 
               className={buttonVariants({ 
                 variant: "outline", 
                 size: "lg", 
