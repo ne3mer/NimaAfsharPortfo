@@ -11,10 +11,12 @@ import NextImage from "next/image";
 
 import { LiveSitePreview } from "@/components/work/LiveSitePreview";
 import { ProjectShowcaseSection } from "@/components/work/ProjectShowcaseSection";
+import { PORTFOLIO_REPO_BY_SLUG } from "@/data/portfolio-repos";
 import {
   hasProjectShowcaseContent,
   PROJECT_SHOWCASE_BY_SLUG,
 } from "@/data/project-showcases";
+import { RepoSourceCard } from "@/components/work/RepoSourceCard";
 import { resolveWorkCopyForLocale } from "@/lib/work-locale";
 
 /** Live URLs for portfolio case studies — iframe preview scrolls like a real browser. */
@@ -93,6 +95,8 @@ export default async function ProjectPage({
   const showcaseConfig = hasProjectShowcaseContent(showcaseRaw)
     ? showcaseRaw
     : undefined;
+
+  const repoUrl = PORTFOLIO_REPO_BY_SLUG[project.slug];
 
   return (
     <article className="min-h-screen pb-20">
@@ -191,7 +195,9 @@ export default async function ProjectPage({
 
         {/* Content */}
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-[1fr_300px] gap-12">
-          <div className="prose prose-invert prose-lg max-w-none">
+          <div className="space-y-10">
+            {repoUrl ? <RepoSourceCard repoUrl={repoUrl} /> : null}
+            <div className="prose prose-invert prose-lg max-w-none">
             {/* Simple Markdown Rendering */}
             {(copy.content || "").split('\n').map((line, i) => {
               const trimmed = line.trim();
@@ -220,6 +226,7 @@ export default async function ProjectPage({
               if (line.trim() === '') return <br key={i} />;
               return <p key={i} className="text-muted-foreground mb-4 leading-relaxed">{line}</p>;
             })}
+            </div>
           </div>
 
           {/* Sidebar */}

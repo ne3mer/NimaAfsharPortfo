@@ -265,7 +265,14 @@
     "livePreviewTitle": "Live site preview",
     "livePreviewHint": "Scroll inside the frame to explore the full page, like a real browser window.",
     "openLiveSite": "Open in new tab",
-    "showcaseTerminalHint": "Illustrative sample output — not a live or production connection."
+    "showcaseTerminalHint": "Illustrative sample output — not a live or production connection.",
+    "sourceRepoTitle": "Source repository",
+    "viewOnGitHub": "View on GitHub",
+    "starsLabel": "Stars",
+    "forksLabel": "Forks",
+    "languagesLabel": "Languages",
+    "homepageLabel": "Homepage",
+    "repoMetaUnavailable": "Live stats could not be loaded (private repo or rate limit). You can still open the repository from the button above."
   },
   "Footer": {
     "description": "Personal portfolio of Nima Afsharfar — product-minded engineering, bilingual storytelling, case studies with live previews.",

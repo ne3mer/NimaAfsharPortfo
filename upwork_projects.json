@@ -49,5 +49,22 @@
     "slug": "gameclub-iran",
     "status": "Live",
     "image": "/images/work/gameclub-iran/01-hero-slider.png"
+  },
+  {
+    "title": "DataFlow — داشبورد اتوماسیون خط لوله داده",
+    "titleEn": "DataFlow — Data pipeline automation dashboard",
+    "client": "Open source",
+    "services": "FastAPI، Celery، React، PostgreSQL، WebSocket، Docker",
+    "servicesEn": "FastAPI, Celery, React, PostgreSQL, WebSockets, Docker",
+    "year": "2025",
+    "description": "پلتفرم فول‌استک برای هماهنگی و مانیتورینگ جاب‌های اسکرپ، ETL و اسکریپت با زمان‌بندی کران، صف Celery، تاریخچه اجرا و داشبورد زنده.",
+    "descriptionEn": "Full-stack orchestration for scrapers, ETL, and custom jobs: cron scheduling, Celery workers, PostgreSQL run history, JWT/RBAC, and live WebSocket dashboards.",
+    "tags": "FastAPI, Celery, React, PostgreSQL, Docker",
+    "tagsEn": "FastAPI, Celery, React, PostgreSQL, Docker",
+    "content": "# DataFlow\n\nپلتفرم سطح سازمانی برای **مدیریت جاب و خط لوله**: تعریف کران، زنجیر کردن وابستگی‌ها، اجرای دستی یا زمان‌بندی‌شده، و **تاریخچه و لاگ** با استریم زنده از طریق WebSocket.\n\nبک‌اند **FastAPI + SQLModel + PostgreSQL**، صف **Celery + Redis**، فرانت **React 19 + TypeScript + Tailwind**، و استقرار **Docker Compose**. احراز هویت JWT و نقش‌ها (Admin / Developer / Viewer).\n\n## مخزن کد\nکارت گیت‌هاب بالای همین صفحه را ببینید — آمار و زبان‌های ریپو از API گیت‌هاب بارگذاری می‌شود.\n\n## اجرای محلی (از README)\n- API: `http://localhost:8000` — مستندات OpenAPI در `/docs`\n- Frontend: `http://localhost:5173`",
+    "contentEn": "# DataFlow\n\nAn **enterprise-style job & pipeline** control plane: cron schedules, dependency chains, manual runs, and **run history + logs** with live streaming over WebSockets.\n\nStack: **FastAPI + SQLModel + PostgreSQL**, **Celery + Redis**, **React 19 + TypeScript + Tailwind**, **Docker Compose**. JWT auth with RBAC (Admin / Developer / Viewer).\n\n## Source\nUse the GitHub card above — live repo metadata is loaded from GitHub’s API.\n\n## Local run (from README)\n- API: `http://localhost:8000` — OpenAPI at `/docs`\n- Frontend: `http://localhost:5173`",
+    "slug": "dataflow-pipeline-dashboard",
+    "status": "Live",
+    "image": null
   }
 ]
