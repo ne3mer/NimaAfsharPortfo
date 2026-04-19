@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import { notFound } from "next/navigation";
+import type { Work } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
@@ -17,6 +18,10 @@ import {
   PROJECT_SHOWCASE_BY_SLUG,
 } from "@/data/project-showcases";
 import { RepoSourceCard } from "@/components/work/RepoSourceCard";
+import {
+  loadUpworkProjects,
+  workFromJsonRow,
+} from "@/lib/upwork-projects-json";
 import { resolveWorkCopyForLocale } from "@/lib/work-locale";
 
 /** Live URLs for portfolio case studies — iframe preview scrolls like a real browser. */
@@ -52,7 +57,7 @@ export default async function ProjectPage({
   const { slug, locale } = await params;
   const t = await getTranslations("Project");
 
-  let project;
+  let project: Work | null = null;
   try {
     project = await prisma.work.findUnique({
       where: { slug },
@@ -71,7 +76,13 @@ export default async function ProjectPage({
   }
 
   if (!project) {
-    notFound();
+    const jsonRows = loadUpworkProjects();
+    const row = jsonRows.find((r) => r.slug === slug);
+    if (row) {
+      project = workFromJsonRow(row);
+    } else {
+      notFound();
+    }
   }
 
   const copy = resolveWorkCopyForLocale(project, locale);

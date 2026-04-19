@@ -1,4 +1,8 @@
 import { prisma } from "@/lib/prisma";
+import {
+  loadUpworkProjects,
+  mergeWorksWithJson,
+} from "@/lib/upwork-projects-json";
 import { resolveWorkCopyForLocale } from "@/lib/work-locale";
 import { PortfolioCard, WorkCardData } from "@/components/work/PortfolioCard";
 import { getTranslations } from "next-intl/server";
@@ -13,9 +17,11 @@ function mapTags(tags: string) {
 export default async function WorkPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;
   const t = await getTranslations({locale, namespace: "Work"});
-  const works = await prisma.work.findMany({
-    orderBy: { createdAt: "desc" },
+  const jsonRows = loadUpworkProjects();
+  const dbRows = await prisma.work.findMany({
+    where: { slug: { in: jsonRows.map((r) => r.slug) } },
   });
+  const works = mergeWorksWithJson(dbRows, jsonRows);
 
   const cards: WorkCardData[] = works.map((work) => {
     const copy = resolveWorkCopyForLocale(work, locale);
