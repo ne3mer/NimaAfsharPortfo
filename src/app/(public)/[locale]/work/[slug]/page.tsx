@@ -89,6 +89,26 @@ export default async function ProjectPage({
           <div className="prose prose-invert prose-lg max-w-none">
             {/* Simple Markdown Rendering */}
             {(project.content || "").split('\n').map((line, i) => {
+              const trimmed = line.trim();
+              const imageMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+              if (imageMatch) {
+                const alt = imageMatch[1];
+                const src = imageMatch[2];
+                return (
+                  <div
+                    key={i}
+                    className="relative my-8 w-full overflow-hidden rounded-xl border border-white/10 shadow-lg aspect-video not-prose"
+                  >
+                    <NextImage
+                      src={src}
+                      alt={alt || project.title}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 100vw, 66vw"
+                    />
+                  </div>
+                );
+              }
               if (line.startsWith('# ')) return <h2 key={i} className="text-3xl font-bold text-white mt-12 mb-6">{line.replace('# ', '')}</h2>;
               if (line.startsWith('## ')) return <h3 key={i} className="text-2xl font-bold text-white mt-8 mb-4">{line.replace('## ', '')}</h3>;
               if (line.startsWith('- ')) return <li key={i} className="ml-4 list-disc text-muted-foreground mb-2">{line.replace('- ', '')}</li>;
