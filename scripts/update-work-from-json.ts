@@ -34,9 +34,26 @@ async function main() {
   const projects = JSON.parse(raw) as ProjectRow[];
 
   for (const p of projects) {
-    await prisma.work.update({
+    await prisma.work.upsert({
       where: { slug: p.slug },
-      data: {
+      create: {
+        slug: p.slug,
+        title: p.title,
+        client: p.client,
+        services: p.services ?? undefined,
+        year: p.year ?? undefined,
+        description: p.description,
+        tags: p.tags,
+        content: p.content,
+        status: p.status ?? "Live",
+        image: p.image ?? null,
+        titleEn: emptyToNull(p.titleEn),
+        descriptionEn: emptyToNull(p.descriptionEn),
+        contentEn: emptyToNull(p.contentEn),
+        servicesEn: emptyToNull(p.servicesEn),
+        tagsEn: emptyToNull(p.tagsEn),
+      },
+      update: {
         title: p.title,
         client: p.client,
         services: p.services ?? undefined,
@@ -53,7 +70,7 @@ async function main() {
         tagsEn: emptyToNull(p.tagsEn),
       },
     });
-    console.log("updated:", p.slug);
+    console.log("upserted:", p.slug);
   }
 }
 
