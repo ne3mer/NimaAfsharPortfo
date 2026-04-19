@@ -2,7 +2,7 @@
   "Hero": {
     "systemOnline": "Open to senior / lead roles · EU remote",
     "title": "Ship the product.<br /><span class='text-primary'>Earn the room.</span>",
-    "subtitle": "I'm Mohammad Afsharfar — I go by Nima. Full-stack engineer and MBA candidate in Budapest: React & Node platforms, data and automation pipelines, and research-backed decision systems (my thesis work built OptiSupply — explainable ESG scoring aligned with expert benchmarks). This site is the evidence room: live demos, repos, and narrative for both engineering and business reviewers.",
+    "subtitle": "I'm Mohammad Afsharfar — I go by Nima. Full-stack engineer and MBA graduate (Management) in Budapest: React & Node platforms, data and automation pipelines, and research-backed decision systems (my thesis work built OptiSupply — explainable ESG scoring aligned with expert benchmarks). This site is the evidence room: live demos, repos, and narrative for both engineering and business reviewers.",
     "ctaPrimary": "Start a conversation",
     "ctaSecondary": "See selected work",
     "capabilities": {
@@ -103,11 +103,11 @@
   },
   "About": {
     "title": "Engineer · strategist<br /><span class='text-primary'>· researcher.</span>",
-    "subtitle": "Budapest-based. Iranian. BSc in software engineering (outstanding GPA), MBA candidate in management, and founder of NomadSpot. I've led digital and technical initiatives for a major retail holding, co-founded e-commerce, shipped at Zoomit scale, and published thesis-grade work on explainable AI for sustainable supply chains.",
+    "subtitle": "Budapest-based. Iranian. BSc in software engineering (outstanding GPA), MBA in management (Merit), and founder of NomadSpot. I've led digital and technical initiatives for a major retail holding, co-founded e-commerce, shipped at Zoomit scale, and published thesis-grade work on explainable AI for sustainable supply chains.",
     "founderName": "Mohammad Afsharfar (Nima)",
     "founder": {
-      "role": "Founder NomadSpot · MBA candidate · ex strategic tech leadership",
-      "p1": "My path crosses code and board decks: co-founded Shoppermo, served as strategic manager overseeing 20+ cross-functional programs at Arash Holding, developed high-traffic features at Zoomit, and today architect NomadSpot (React, Node.js, MongoDB) while finishing an MBA built around Design Science research.",
+      "role": "Founder NomadSpot · MBA (Management) · ex strategic tech leadership",
+      "p1": "My path crosses code and board decks: co-founded Shoppermo, served as strategic manager overseeing 20+ cross-functional programs at Arash Holding, developed high-traffic features at Zoomit, and today architect NomadSpot (React, Node.js, MongoDB) with an MBA completed around Design Science research on explainable decision systems.",
       "p2": "Technically: React/Next ecosystems, Node & REST, Python for data and automation, SQL/NoSQL, pipelines and observability — the boring parts done properly. On the business side: digital transformation, stakeholder communication, and ESG / procurement analytics informed by regulatory direction (e.g. EU AI Act alignment in my research framing).",
       "p3": "I argue with roadmaps constructively: smaller vertical slices, written trade-offs, and demos that make uncertainty cheap to explore — whether you're a CTO, PM, or procurement lead.",
       "p4": "Languages: English (fluent, academic & professional), Persian (native), Hungarian (foundational). EU-friendly hours; async-first with crisp writing."
@@ -288,7 +288,7 @@
     "interactiveLabFootnote": "Sample JSON from this site’s /api/portfolio-demo route — not your local Python runtime."
   },
   "Footer": {
-    "description": "Mohammad Afsharfar (Nima) — engineer, MBA candidate, founder. Full-stack delivery, data & automation, ESG-informed analytics. Budapest · open to EU-remote roles.",
+    "description": "Mohammad Afsharfar (Nima) — engineer, MBA graduate, founder. Full-stack delivery, data & automation, ESG-informed analytics. Budapest · open to EU-remote roles.",
     "bannerTitle": "Hiring or collaborating?",
     "bannerSubtitle": "Send a short note with context. I read everything and answer within a few days.",
     "bannerCta": "Contact",
