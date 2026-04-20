@@ -64,6 +64,9 @@ export function Hero() {
                   className="text-white/70 font-normal"
                 />
               </div>
+              <p className="max-w-xl text-sm leading-relaxed text-zinc-300 md:text-base">
+                {t("differentiator")}
+              </p>
             </div>
 
             <HeroTopCtaBar />

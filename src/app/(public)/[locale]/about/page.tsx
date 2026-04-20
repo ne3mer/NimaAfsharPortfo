@@ -20,6 +20,9 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           {t("subtitle")}
         </p>
+        <p className="mx-auto mt-4 max-w-2xl text-sm text-zinc-300 md:text-base">
+          {t("differentiator")}
+        </p>
         <p
           className="mx-auto mt-6 max-w-2xl rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.06] px-5 py-3 text-sm text-emerald-100/90 md:text-base"
           dangerouslySetInnerHTML={{ __html: t.raw("lookingFor") }}

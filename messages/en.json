@@ -11,7 +11,8 @@
       "ai": "Product & full-stack delivery",
       "infra": "Data · AI governance · ESG",
       "scale": "Strategy ↔ engineering fluency"
-    }
+    },
+    "differentiator": "I focus on turning complex business problems into practical, technology-driven solutions."
   },
   "Navbar": {
     "work": "Work",
@@ -150,7 +151,8 @@
       "button": "Email me",
       "downloadCv": "Request CV (PDF)",
       "downloadCvHint": "I share Europass or a tailored PDF by email — tell me the role and format you need."
-    }
+    },
+    "differentiator": "I focus on turning complex business problems into practical, technology-driven solutions."
   },
   "Contact": {
     "title": "Get in Touch",
@@ -182,7 +184,13 @@
     "cardProblem": "What I did",
     "cardBuilt": "What I built",
     "cardOutcome": "Result",
-    "empty": "No work published yet. Add your first case study from the admin panel."
+    "empty": "No work published yet. Add your first case study from the admin panel.",
+    "featuredBadge": "Featured project",
+    "featuredTitle": "OptiSupply — Problem → Solution → Result",
+    "featuredProblem": "Problem: ESG teams need supplier scoring they can explain and defend in decision meetings.",
+    "featuredSolution": "Solution: Built a transparent decision-support dashboard with rule-based scoring and PDF/Excel outputs.",
+    "featuredResult": "Result: In thesis validation, scores showed strong alignment with expert evaluation (Pearson r ≈ 0.81).",
+    "featuredCta": "Open full case study"
   },
   "Start": {
     "title": "Beyond the PDF",

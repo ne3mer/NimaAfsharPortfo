@@ -6,6 +6,8 @@ import {
 import { resolveWorkCopyForLocale } from "@/lib/work-locale";
 import { PortfolioCard, WorkCardData } from "@/components/work/PortfolioCard";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/routing";
+import { buttonVariants } from "@/components/ui/Button";
 
 function mapTags(tags: string) {
   return tags
@@ -51,6 +53,26 @@ export default async function WorkPage({params}: {params: Promise<{locale: strin
         <p className="text-muted-foreground text-lg">
           {t("subtitle")}
         </p>
+      </div>
+
+      <div className="mb-10 max-w-3xl rounded-3xl border border-primary/25 bg-primary/10 p-6 md:p-8">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-primary/90">
+          {t("featuredBadge")}
+        </p>
+        <h2 className="mb-4 text-2xl font-bold tracking-tight text-white md:text-3xl">
+          {t("featuredTitle")}
+        </h2>
+        <ul className="space-y-2 text-sm leading-relaxed text-zinc-200 md:text-base">
+          <li>{t("featuredProblem")}</li>
+          <li>{t("featuredSolution")}</li>
+          <li className="text-emerald-200">{t("featuredResult")}</li>
+        </ul>
+        <Link
+          href="/work/optisupply-dashboard"
+          className={buttonVariants({ variant: "premium", size: "lg", className: "mt-5 min-h-11 rounded-xl" })}
+        >
+          {t("featuredCta")}
+        </Link>
       </div>
 
       {cards.length === 0 ? (
