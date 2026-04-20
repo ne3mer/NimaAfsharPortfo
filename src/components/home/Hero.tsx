@@ -10,6 +10,7 @@ import { useTranslations } from "next-intl";
 
 import { HeroOpenToBanner } from "@/components/home/HeroOpenToBanner";
 import { HeroQuickLinks } from "@/components/home/HeroQuickLinks";
+import { HeroTopCtaBar } from "@/components/home/HeroTopCtaBar";
 
 export function Hero() {
   const t = useTranslations("Hero");
@@ -64,6 +65,8 @@ export function Hero() {
                 />
               </div>
             </div>
+
+            <HeroTopCtaBar />
 
             <HeroOpenToBanner />
 

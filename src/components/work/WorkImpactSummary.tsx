@@ -1,18 +1,17 @@
 import { getTranslations } from "next-intl/server";
 
 type Fields = {
-  problem?: string;
+  did?: string;
   built?: string;
-  outcome?: string;
-  outcomeExtra?: string;
+  result?: string;
 };
 
 export async function WorkImpactSummary({
   locale,
   ...fields
 }: Fields & { locale: string }) {
-  const { problem, built, outcome, outcomeExtra } = fields;
-  if (!problem && !built && !outcome && !outcomeExtra) return null;
+  const { did, built, result } = fields;
+  if (!did && !built && !result) return null;
 
   const tWork = await getTranslations({ locale, namespace: "Work" });
   const tProject = await getTranslations({ locale, namespace: "Project" });
@@ -22,35 +21,32 @@ export async function WorkImpactSummary({
       <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-primary/90">
         {tProject("impactSummaryTitle")}
       </h2>
-      <div className="space-y-4 text-[15px] leading-relaxed text-zinc-300 md:text-base">
-        {problem ? (
-          <p>
-            <span className="font-semibold text-zinc-400">
-              {tWork("cardProblem")}:{" "}
-            </span>
-            {problem}
-          </p>
-        ) : null}
+      <ul className="space-y-4 text-[15px] leading-relaxed text-zinc-300 md:text-base">
         {built ? (
-          <p>
+          <li>
             <span className="font-semibold text-zinc-400">
               {tWork("cardBuilt")}:{" "}
             </span>
             {built}
-          </p>
+          </li>
         ) : null}
-        {outcome ? (
-          <p className="text-emerald-100/95">
+        {did ? (
+          <li>
+            <span className="font-semibold text-zinc-400">
+              {tWork("cardProblem")}:{" "}
+            </span>
+            {did}
+          </li>
+        ) : null}
+        {result ? (
+          <li className="text-emerald-100/95">
             <span className="font-semibold text-emerald-400/95">
               {tWork("cardOutcome")}:{" "}
             </span>
-            {outcome}
-          </p>
+            {result}
+          </li>
         ) : null}
-        {outcomeExtra ? (
-          <p className="text-emerald-100/85">{outcomeExtra}</p>
-        ) : null}
-      </div>
+      </ul>
     </div>
   );
 }

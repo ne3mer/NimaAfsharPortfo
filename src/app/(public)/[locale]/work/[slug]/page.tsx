@@ -225,15 +225,14 @@ export default async function ProjectPage({
 
         {/* Content */}
         <div className="container mx-auto px-4 py-16 grid md:grid-cols-[1fr_300px] gap-12">
-          <div className="space-y-10">
+          <div className="max-w-3xl space-y-10">
             <WorkImpactSummary
               locale={locale}
-              problem={pickImpact(jsonRow?.problem, jsonRow?.problemEn)}
+              did={pickImpact(jsonRow?.problem, jsonRow?.problemEn)}
               built={pickImpact(jsonRow?.built, jsonRow?.builtEn)}
-              outcome={pickImpact(jsonRow?.outcome, jsonRow?.outcomeEn)}
-              outcomeExtra={pickImpact(
-                jsonRow?.outcomeExtra,
-                jsonRow?.outcomeExtraEn
+              result={pickImpact(
+                [jsonRow?.outcome, jsonRow?.outcomeExtra].filter(Boolean).join(" "),
+                [jsonRow?.outcomeEn, jsonRow?.outcomeExtraEn].filter(Boolean).join(" ")
               )}
             />
             {repoUrl ? <RepoSourceCard repoUrl={repoUrl} /> : null}

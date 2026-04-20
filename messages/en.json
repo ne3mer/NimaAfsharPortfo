@@ -87,12 +87,12 @@
   },
   "SelectedResults": {
     "title": "Selected impact",
-    "subtitle": "What changed — not just what was built. Ask me for CV / LinkedIn alignment in interview.",
+    "subtitle": "Fast signals a hiring manager can scan in 10 seconds.",
     "items": {
-      "0": "Delivered an explainable ESG decision system whose scores tracked expert judgment (Pearson r ≈ 0.81 in thesis validation).",
-      "1": "Helped coordinate 20+ cross-functional initiatives in retail — fewer hand-offs lost between strategy, ops, and tech.",
-      "2": "Shipped full-stack platforms from idea to live demo — each case study ties problem → build → measurable signal.",
-      "3": "Delivered in EN / FA / HU contexts with EU-friendly async collaboration — less friction for distributed teams."
+      "0": "Built an AI-based ESG decision system with ~0.81 correlation to expert evaluation.",
+      "1": "Developed full-stack platforms (React, Node.js, MongoDB) from idea to deployment.",
+      "2": "Led cross-functional initiatives improving internal workflows and coordination.",
+      "3": "Combined MBA-level business strategy with software engineering execution."
     }
   },
   "TargetRoles": {
@@ -118,9 +118,9 @@
     "founderName": "Mohammad Afsharfar (Nima)",
     "founder": {
       "role": "Founder NomadSpot · MBA (Management) · strategic tech & delivery background",
-      "p1": "My path crosses code and stakeholder rooms: co-founded Shoppermo, worked as a strategic manager with exposure across 20+ cross-functional programs at Arash Holding, shipped high-traffic features at Zoomit, and today I architect NomadSpot (React, Node.js, MongoDB) alongside MBA research on explainable decision systems (Design Science).",
-      "p2": "Technically: React/Next, Node & REST, Python for data and automation, SQL/NoSQL, pipelines and observability — fundamentals done carefully. On the business side: digital transformation, stakeholder communication, and ESG / procurement analytics informed by regulatory direction (e.g. EU AI Act framing in research).",
-      "p3": "I prefer thin vertical slices, written trade-offs, and demos that reduce uncertainty early — whether you're a CTO, PM, or procurement owner.",
+      "p1": "I bridge engineering and stakeholder rooms: co-founded Shoppermo, worked across cross-functional programs at Arash Holding, shipped high-traffic features at Zoomit, and now build NomadSpot (React, Node.js, MongoDB).",
+      "p2": "Core stack: React/Next, Node + REST, Python for data/automation, SQL/NoSQL, and production-minded observability. Business side: digital transformation, stakeholder communication, and ESG/procurement analytics.",
+      "p3": "I prefer thin vertical slices, written trade-offs, and demos that reduce uncertainty early.",
       "p4": "Languages: English (fluent, academic & professional), Persian (native), Hungarian (foundational). EU-friendly hours; async-first with crisp writing."
     },
     "credentialsTitle": "Credentials & anchors",
@@ -178,10 +178,10 @@
   },
   "Work": {
     "title": "Selected work",
-    "subtitle": "Each item: problem → what shipped → outcome. Live or interactive demos where available — the same walkthrough I'd give a hiring manager, technical reviewer, or procurement stakeholder.",
-    "cardProblem": "Problem",
+    "subtitle": "Each project uses the same structure: what I built → what I did → result. Live or interactive demos are included where possible.",
+    "cardProblem": "What I did",
     "cardBuilt": "What I built",
-    "cardOutcome": "Outcome",
+    "cardOutcome": "Result",
     "empty": "No work published yet. Add your first case study from the admin panel."
   },
   "Start": {
