@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import NextImage from "next/image";
 
 export type WorkCardData = {
@@ -11,10 +11,12 @@ export type WorkCardData = {
   description: string;
   tags: string[];
   image: string | null;
+  /** Optional 1-line headline result shown directly on the card (off-image). */
+  outcome?: string;
 };
 
 /**
- * Work grid card: image stays visual-only; title + summary sit below (not on the thumbnail).
+ * Work grid card: image stays visual-only; title + summary + 1-line outcome sit below (not on the thumbnail).
  */
 export function PortfolioCard({ project }: { project: WorkCardData }) {
   return (
@@ -47,6 +49,14 @@ export function PortfolioCard({ project }: { project: WorkCardData }) {
         <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
           {project.description}
         </p>
+
+        {project.outcome ? (
+          <div className="mt-4 flex items-start gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] p-3 text-xs text-emerald-100/95 md:text-[13px]">
+            <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-300" aria-hidden />
+            <span className="line-clamp-2">{project.outcome}</span>
+          </div>
+        ) : null}
+
         <div className="mt-4 flex flex-wrap gap-2">
           {project.tags.slice(0, 4).map((tag) => (
             <span

@@ -3,6 +3,8 @@
     "systemOnline": "Open to EU-remote roles · product-minded full-stack",
     "title": "Ship the product.<br /><span class='text-primary'>Earn the room.</span>",
     "subtitle": "I'm Mohammad Afsharfar — I go by Nima. I ship outcomes you can verify: React & Node platforms, data and automation pipelines, and research-backed decision systems (thesis: OptiSupply — explainable ESG scoring aligned with expert benchmarks, r ≈ 0.81). This site is proof for hiring teams and collaborators (live demos, repos, case studies). Commissioned builds: start from Contact with goals and constraints.",
+    "openToLabel": "Currently open to",
+    "openToRoles": "Business Analyst · Product / Program · Tech-driven Strategy",
     "ctaPrimary": "Start a conversation",
     "ctaSecondary": "See selected work",
     "capabilities": {
@@ -142,6 +144,7 @@
         "desc": "I work with product, marketing, and ops as peers — documentation and handover are part of the definition of done."
       }
     },
+    "lookingFor": "Currently looking for roles in <b>Business Analysis</b>, <b>Product / Program</b>, or <b>Technology Strategy</b> in international (EU-friendly) environments.",
     "cta": {
       "title": "Want a CV packet or a tailored intro?",
       "button": "Email me",
@@ -153,6 +156,7 @@
     "title": "Get in Touch",
     "subtitle": "Hiring? Collaborating? Or comparing notes on product engineering — send a note. I read every message.",
     "quickLinksTitle": "Quick links",
+    "openTo": "Open to job opportunities, collaborations, and tech-driven roles in EU.",
     "info": {
       "title": "Contact Information",
       "email": "Email",

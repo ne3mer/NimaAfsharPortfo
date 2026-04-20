@@ -13,13 +13,17 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
     <div className="min-h-screen bg-background pb-20">
       {/* Hero */}
       <div className="container mx-auto px-4 py-20 text-center">
-        <h1 
+        <h1
           className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-6"
           dangerouslySetInnerHTML={{ __html: t.raw("title") }}
         />
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           {t("subtitle")}
         </p>
+        <p
+          className="mx-auto mt-6 max-w-2xl rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.06] px-5 py-3 text-sm text-emerald-100/90 md:text-base"
+          dangerouslySetInnerHTML={{ __html: t.raw("lookingFor") }}
+        />
       </div>
 
       {/* Founder Story */}
@@ -98,6 +102,10 @@ export default async function AboutPage({params}: {params: Promise<{locale: stri
         </div>
 
         <div className="mt-24 text-center space-y-6">
+          <p
+            className="mx-auto max-w-2xl text-base text-zinc-200 md:text-lg"
+            dangerouslySetInnerHTML={{ __html: t.raw("lookingFor") }}
+          />
           <h2 className="text-3xl font-bold text-white">{t("cta.title")}</h2>
           <p className="mx-auto max-w-lg text-sm text-muted-foreground">
             {t("cta.downloadCvHint")}

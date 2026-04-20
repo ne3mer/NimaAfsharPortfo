@@ -22,8 +22,15 @@ export default async function WorkPage({params}: {params: Promise<{locale: strin
     where: { slug: { in: jsonRows.map((r) => r.slug) } },
   });
   const works = mergeWorksWithJson(dbRows, jsonRows);
+  const en = locale === "en";
+  const pickFirst = (...vals: (string | undefined | null)[]) =>
+    vals.find((v) => typeof v === "string" && v.trim().length > 0)?.trim();
   const cards: WorkCardData[] = works.map((work) => {
     const copy = resolveWorkCopyForLocale(work, locale);
+    const json = jsonRows.find((r) => r.slug === work.slug);
+    const outcome = en
+      ? pickFirst(json?.outcomeEn, json?.outcome)
+      : pickFirst(json?.outcome, json?.outcomeEn);
     return {
       id: work.id,
       slug: work.slug,
@@ -31,6 +38,7 @@ export default async function WorkPage({params}: {params: Promise<{locale: strin
       description: copy.description,
       tags: mapTags(copy.tags),
       image: work.image,
+      outcome,
     };
   });
 
