@@ -42,6 +42,19 @@ export function Hero() {
         handSet: "Hand-set in Budapest",
         setIn: "Set in this volume",
       };
+  const impactLedger = isFa
+    ? [
+        { stat: "5,000+ users", source: "Shoppermo · scale" },
+        { stat: "300+ daily transactions", source: "Shoppermo · peak" },
+        { stat: "~40% onboarding lift", source: "NomadSpot · onboarding" },
+        { stat: "r ≈ 0.81", source: "OptiSupply · thesis" },
+      ]
+    : [
+        { stat: "5,000+ users", source: "Shoppermo · scale" },
+        { stat: "300+ daily transactions", source: "Shoppermo · peak" },
+        { stat: "~40% onboarding lift", source: "NomadSpot · onboarding" },
+        { stat: "r ≈ 0.81", source: "OptiSupply · thesis" },
+      ];
 
   return (
     <section className="relative overflow-hidden bg-paper text-ink">
@@ -106,6 +119,23 @@ export function Hero() {
               <p className="dropcap max-w-[58ch] text-[15px] leading-[1.7] text-ink/85 md:text-[16px]">
                 {t("subtitle")}
               </p>
+            </div>
+            <div className="mt-5 border-y border-ink/20 py-3">
+              <div className="flex flex-wrap gap-2">
+                {impactLedger.map((item) => (
+                  <span
+                    key={item.stat}
+                    className="inline-flex items-center gap-2 border border-ink/20 bg-card px-2.5 py-1"
+                  >
+                    <span className="font-display text-[16px] leading-none text-ink">
+                      {item.stat}
+                    </span>
+                    <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-ink-faint">
+                      {item.source}
+                    </span>
+                  </span>
+                ))}
+              </div>
             </div>
 
             <p className="mt-6 max-w-[58ch] border-l-2 border-sienna pl-4 font-display text-lg italic leading-snug text-ink rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">

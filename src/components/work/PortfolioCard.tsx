@@ -17,6 +17,13 @@ export type WorkCardData = {
   outcome?: string;
 };
 
+const OPEN_SOURCE_BADGE_SLUGS = new Set([
+  "dataflow-pipeline-dashboard",
+  "spanish-football-news-scraper",
+  "automated-pdf-extraction-engine",
+  "echoless-tech",
+]);
+
 /**
  * Editorial portfolio card — looks like a printed catalogue entry.
  */
@@ -64,6 +71,7 @@ export function PortfolioCard({
   ] as const;
   const frame = frameStyles[index % frameStyles.length];
   const concept = getProjectConcept(project, isFa);
+  const showOpenSourceBadge = OPEN_SOURCE_BADGE_SLUGS.has(project.slug);
 
   return (
     <Link
@@ -81,7 +89,12 @@ export function PortfolioCard({
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
-            <ProjectPoster concept={concept} isFa={isFa} />
+            <ProjectPoster
+              concept={concept}
+              isFa={isFa}
+              slug={project.slug}
+              showOpenSourceBadge={showOpenSourceBadge}
+            />
           )}
           <div className={`pointer-events-none absolute inset-0 ${frame.tint}`} />
           <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/20" />
@@ -158,6 +171,8 @@ export function PortfolioCard({
 function ProjectPoster({
   concept,
   isFa,
+  slug,
+  showOpenSourceBadge,
 }: {
   concept: {
     title: string;
@@ -168,6 +183,8 @@ function ProjectPoster({
     Icon: ComponentType<{ className?: string }>;
   };
   isFa: boolean;
+  slug: string;
+  showOpenSourceBadge: boolean;
 }) {
   return (
     <div className={`absolute inset-0 ${concept.palette} text-ink`}>
@@ -196,9 +213,27 @@ function ProjectPoster({
 
       {/* title block */}
       <div className="absolute inset-x-4 bottom-4">
-        <p className="font-mono text-[8px] uppercase tracking-[0.26em] text-ink-faint">
-          {isFa ? "پیش‌نمایش مفهومی پروژه" : "PROJECT CONCEPT PREVIEW"}
-        </p>
+        {showOpenSourceBadge ? (
+          <a
+            href="https://github.com/ne3mer"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(event) => event.stopPropagation()}
+            className="inline-flex border border-ink/25 bg-paper/70 px-2 py-0.5 font-mono text-[8px] uppercase tracking-[0.18em] text-ink hover:text-sienna"
+          >
+            Open source · GitHub ↗
+          </a>
+        ) : (
+          <p className="font-mono text-[8px] uppercase tracking-[0.26em] text-ink-faint">
+            {slug === "optisupply-dashboard" || slug === "nomadspot-budapest"
+              ? isFa
+                ? "نسخه زنده"
+                : "live deployment"
+              : isFa
+                ? "مطالعه موردی"
+                : "case study"}
+          </p>
+        )}
         <h4 className="mt-1 font-display text-[22px] leading-[0.9] text-ink">
           {concept.title}
         </h4>

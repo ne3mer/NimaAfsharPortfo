@@ -16,6 +16,72 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "About" });
+  const isFa = locale === "fa";
+  const shippedEntries = isFa
+    ? [
+        {
+          badge: "Founder",
+          company: "NomadSpot",
+          dates: "Apr 2025–Present · Budapest",
+          points: [
+            "~35% faster load time via lazy loading + API caching",
+            "20+ user interviews → 3 major product iterations",
+            "~40% onboarding improvement from session analytics redesign",
+          ],
+        },
+        {
+          badge: "Co-Founder",
+          company: "Shoppermo",
+          dates: "Jun 2020–Jan 2024 · Tehran→Budapest",
+          points: [
+            "300+ daily transactions at peak load",
+            "~45% faster response via Redis caching + query refactoring",
+            "Scaled to 5,000+ registered users",
+          ],
+        },
+        {
+          badge: "Digital Manager",
+          company: "Arash Mall & Arash Market",
+          dates: "May 2019–May 2023 · Gilan",
+          points: [
+            "~30% fewer inventory errors, saving ~8 hrs/week",
+            "Internal comms response time cut from hours → 15 min",
+            "~20% efficiency gain over 2 years",
+          ],
+        },
+      ]
+    : [
+        {
+          badge: "Founder",
+          company: "NomadSpot",
+          dates: "Apr 2025–Present · Budapest",
+          points: [
+            "~35% faster load time via lazy loading + API caching",
+            "20+ user interviews → 3 major product iterations",
+            "~40% onboarding improvement from session analytics redesign",
+          ],
+        },
+        {
+          badge: "Co-Founder",
+          company: "Shoppermo",
+          dates: "Jun 2020–Jan 2024 · Tehran→Budapest",
+          points: [
+            "300+ daily transactions at peak load",
+            "~45% faster response via Redis caching + query refactoring",
+            "Scaled to 5,000+ registered users",
+          ],
+        },
+        {
+          badge: "Digital Manager",
+          company: "Arash Mall & Arash Market",
+          dates: "May 2019–May 2023 · Gilan",
+          points: [
+            "~30% fewer inventory errors, saving ~8 hrs/week",
+            "Internal comms response time cut from hours → 15 min",
+            "~20% efficiency gain over 2 years",
+          ],
+        },
+      ];
 
   return (
     <div className="bg-paper pb-28">
@@ -61,7 +127,7 @@ export default async function AboutPage({
       <section className="container mx-auto mt-20 px-4">
         <div className="passepartout grid gap-10 bg-card p-6 md:grid-cols-12 md:gap-12 md:p-12">
           <div className="md:col-span-5">
-            <div className="relative aspect-[4/5] border border-ink bg-paper-deep">
+            <div className="relative aspect-4/5 border border-ink bg-paper-deep">
               <svg aria-hidden className="absolute inset-0 h-full w-full opacity-25" viewBox="0 0 200 250" preserveAspectRatio="none">
                 <defs>
                   <pattern id="about-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
@@ -129,6 +195,76 @@ export default async function AboutPage({
             </li>
           ))}
         </ul>
+        <div className="mt-5 grid gap-px bg-ink md:grid-cols-2">
+          <div className="bg-paper p-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
+              Credential memo
+            </p>
+            <p className="mt-2 font-display text-[22px] leading-tight text-ink">
+              EU Residence Permit · Hungary
+            </p>
+            <p className="mt-2 text-[14.5px] leading-relaxed text-ink-mute">
+              eligible for hybrid Budapest + EU remote roles
+            </p>
+          </div>
+          <div className="bg-paper p-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
+              Languages
+            </p>
+            <dl className="mt-3 space-y-2 text-[14.5px]">
+              <div className="flex justify-between gap-4 border-b border-ink/15 pb-2">
+                <dt className="font-display text-ink">English</dt>
+                <dd className="text-ink-mute">Professional fluency</dd>
+              </div>
+              <div className="flex justify-between gap-4 border-b border-ink/15 pb-2">
+                <dt className="font-display text-ink">Persian / Farsi</dt>
+                <dd className="text-ink-mute">Native</dd>
+              </div>
+              <div className="flex justify-between gap-4">
+                <dt className="font-display text-ink">Hungarian</dt>
+                <dd className="text-ink-mute">Foundational</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      {/* Work experience */}
+      <section className="container mx-auto mt-20 px-4">
+        <div className="mb-4 flex items-end justify-between gap-3 border-b border-ink pb-2">
+          <p className="kicker">§03 — Where I&apos;ve shipped</p>
+          <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-faint">
+            Ledger · field roles
+          </span>
+        </div>
+        <div className="grid gap-px bg-ink">
+          {shippedEntries.map((entry, idx) => (
+            <article key={entry.company} className="bg-paper p-6 md:p-8">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-ink/20 pb-3">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
+                    Plate 0{idx + 1}
+                  </p>
+                  <h3 className="mt-1 font-display text-[28px] leading-tight text-ink md:text-[34px]">
+                    {entry.company}
+                  </h3>
+                  <p className="mt-1 text-[14px] text-ink-mute">{entry.dates}</p>
+                </div>
+                <span className="stamp">{entry.badge}</span>
+              </div>
+              <ul className="mt-4 space-y-2">
+                {entry.points.map((point) => (
+                  <li key={point} className="flex gap-3 text-[15px] leading-relaxed text-ink/85">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-sienna pt-1.5">
+                      Fig.
+                    </span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
       </section>
 
       {/* Values */}

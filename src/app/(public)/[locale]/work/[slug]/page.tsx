@@ -186,6 +186,18 @@ export default async function ProjectPage({
                 <p className="max-w-3xl font-display italic text-[18px] leading-snug text-ink-mute md:text-[20px]">
                   {copy.description}
                 </p>
+                {project.slug === "optisupply-dashboard" ? (
+                  <a
+                    href="https://github.com/ne3mer/OptiSupply"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${buttonVariants({ variant: "outline", size: "lg" })} mt-6 inline-flex`}
+                  >
+                    View on GitHub
+                    <span className="mx-2">→</span>
+                    github.com/ne3mer/OptiSupply
+                  </a>
+                ) : null}
               </div>
 
               {project.image && !liveSiteUrl && !hasFullPageImage && (
