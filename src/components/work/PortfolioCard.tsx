@@ -31,31 +31,81 @@ export function PortfolioCard({
   const plateLabel = isFa ? "پلیت" : "Plate";
   const entryLabel = isFa ? "پروژه" : "Project";
   const outcomeLabel = isFa ? "خروجی" : "Outcome";
+  const frameStyles = [
+    {
+      name: isFa ? "ادیشن کلکسیونی" : "Collector's Cut",
+      frame: "border-2 border-ink",
+      mat: "bg-paper p-1.5",
+      tint: "after:bg-sienna/8",
+      deco: "top-left",
+    },
+    {
+      name: isFa ? "نسخه آرشیوی" : "Archive Edition",
+      frame: "border border-ink/70",
+      mat: "bg-paper-soft p-2",
+      tint: "after:bg-olive/8",
+      deco: "top-right",
+    },
+    {
+      name: isFa ? "پریمیم پرینت" : "Premium Print",
+      frame: "border border-ink",
+      mat: "bg-paper p-1",
+      tint: "after:bg-gold/10",
+      deco: "bottom-left",
+    },
+    {
+      name: isFa ? "گالری نایت" : "Gallery Night",
+      frame: "border-2 border-ink/80",
+      mat: "bg-paper-deep p-1.5",
+      tint: "after:bg-ink/12",
+      deco: "bottom-right",
+    },
+  ] as const;
+  const frame = frameStyles[index % frameStyles.length];
 
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group relative flex flex-col bg-paper transition-colors hover:bg-card"
+      className="group relative flex flex-col border border-ink/20 bg-paper transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_36px_-26px_rgba(20,18,16,0.55)]"
     >
-      <div className="relative aspect-4/3 w-full overflow-hidden bg-paper-deep">
-        {project.image ? (
-          <NextImage
-            src={project.image}
-            alt=""
-            fill
-            className="object-cover saturate-[0.85] transition-all duration-500 group-hover:saturate-100 group-hover:scale-[1.02]"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-paper-deep">
-            <span className="font-display text-6xl italic text-ink/30">
-              {String(index + 1).padStart(2, "0")}
-            </span>
+      <div className={`relative m-2 ${frame.frame} ${frame.mat}`}>
+        <div className="relative aspect-4/3 w-full overflow-hidden bg-paper-deep">
+          {project.image ? (
+            <NextImage
+              src={project.image}
+              alt=""
+              fill
+              className="object-cover saturate-[0.84] transition-all duration-500 group-hover:saturate-[1.02] group-hover:scale-[1.03]"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-paper-deep">
+              <span className="font-display text-6xl italic text-ink/30">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </div>
+          )}
+          <div className={`pointer-events-none absolute inset-0 ${frame.tint}`} />
+          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/20" />
+
+          {/* Creative signature marker per card frame */}
+          <span
+            className={[
+              "pointer-events-none absolute inline-flex h-5 min-w-5 items-center justify-center border border-ink/70 bg-paper px-1.5 font-mono text-[8px] uppercase tracking-[0.18em] text-ink-mute",
+              frame.deco === "top-left" && "top-2 left-2",
+              frame.deco === "top-right" && "top-2 right-2",
+              frame.deco === "bottom-left" && "bottom-2 left-2",
+              frame.deco === "bottom-right" && "bottom-2 right-2",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+
+          <div className="absolute left-0 top-0 bg-ink px-2 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-paper">
+            {plateLabel} {String(index + 1).padStart(2, "0")}
           </div>
-        )}
-        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/15" />
-        <div className="absolute left-0 top-0 bg-ink px-2 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-paper">
-          {plateLabel} {String(index + 1).padStart(2, "0")}
         </div>
       </div>
 
@@ -63,6 +113,9 @@ export function PortfolioCard({
         <div className="flex items-baseline justify-between border-b border-ink/15 pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-sienna">
             {entryLabel} {String(index + 1).padStart(3, "0")}
+          </span>
+          <span className="hidden font-mono text-[8px] uppercase tracking-[0.16em] text-ink-faint md:inline">
+            {frame.name}
           </span>
           <ArrowUpRight
             className="h-4 w-4 text-ink-mute transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-sienna"
