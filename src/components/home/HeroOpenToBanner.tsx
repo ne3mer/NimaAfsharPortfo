@@ -1,27 +1,23 @@
 "use client";
 
-import { Briefcase } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 /**
- * Compact "Open to roles" hire-signal under the Hero subtitle.
- * Sits between the H1/sub copy and the primary CTAs to be the first thing a recruiter sees.
+ * "Now hiring me" banner — set as a printer's note: rule lines, mono caption.
  */
 export function HeroOpenToBanner() {
   const t = useTranslations("Hero");
+
   return (
-    <div className="inline-flex max-w-full flex-wrap items-center gap-3 rounded-2xl border border-emerald-500/25 bg-emerald-500/[0.06] px-4 py-3 backdrop-blur">
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30">
-        <Briefcase className="h-4 w-4" aria-hidden />
+    <div className="relative inline-flex max-w-full flex-wrap items-center gap-x-4 gap-y-1 border border-ink bg-paper px-4 py-3">
+      <span className="absolute -left-2 top-1/2 h-3 w-3 -translate-y-1/2 rotate-45 border border-ink bg-paper rtl:left-auto rtl:-right-2" />
+      <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-sienna">
+        {t("openToLabel")}
       </span>
-      <div className="min-w-0">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-300/90">
-          {t("openToLabel")}
-        </p>
-        <p className="text-sm font-semibold text-white md:text-[15px]">
-          {t("openToRoles")}
-        </p>
-      </div>
+      <span className="hidden sm:inline-block h-4 w-px bg-ink/30" />
+      <span className="font-display text-[17px] italic leading-tight text-ink">
+        {t("openToRoles")}
+      </span>
     </div>
   );
 }

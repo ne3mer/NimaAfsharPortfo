@@ -1,38 +1,57 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 
 const stats = [
-  { key: "yearsTrack", value: "~8" },
-  { key: "programs", value: "20+" },
-  { key: "bench", value: "r≈0.81" },
-  { key: "languages", value: "3" },
+  { key: "yearsTrack", value: "08", suffix: "yrs" },
+  { key: "programs", value: "20", suffix: "+" },
+  { key: "bench", value: "0.81", suffix: "r" },
+  { key: "languages", value: "03", suffix: "lang" },
 ];
 
+/**
+ * Stats — typeset like a magazine "by the numbers" page.
+ * Oversized italic serif figures, hairline rules between cells.
+ */
 export function Stats() {
   const t = useTranslations("Stats");
 
   return (
-    <section className="py-20 bg-black border-b border-white/5">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <motion.div
+    <section className="relative bg-paper">
+      <div className="container mx-auto px-4 py-16 md:py-20">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3">
+          <div>
+            <p className="kicker">§02 — By the numbers</p>
+            <h2 className="font-display text-3xl italic text-ink md:text-4xl">
+              A short ledger.
+            </h2>
+          </div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
+            Audited against my own résumé · figures rounded
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 divide-x divide-ink/15 border-y border-ink md:grid-cols-4">
+          {stats.map((stat, i) => (
+            <div
               key={stat.key}
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center"
+              className="group relative flex flex-col items-baseline gap-2 px-5 py-8 md:px-7 md:py-10"
             >
-              <div className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight">
-                {stat.value}
+              <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink-faint">
+                Fig. 0{i + 1}
+              </span>
+              <div className="flex items-baseline gap-2 leading-none">
+                <span className="font-display text-[clamp(3.2rem,7vw,5.5rem)] italic leading-[0.9] text-ink">
+                  {stat.value}
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-sienna">
+                  {stat.suffix}
+                </span>
               </div>
-              <div className="text-sm text-muted-foreground uppercase tracking-widest font-medium">
+              <p className="max-w-[24ch] font-display text-[15px] leading-snug text-ink-mute md:text-base">
                 {t(stat.key)}
-              </div>
-            </motion.div>
+              </p>
+            </div>
           ))}
         </div>
       </div>

@@ -3,60 +3,79 @@
 import { useTranslations } from "next-intl";
 
 const technologies = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "Node.js",
-  "Python",
-  "FastAPI",
-  "PostgreSQL",
-  "MongoDB",
-  "Prisma",
-  "Celery",
-  "Redis",
-  "Docker",
-  "Tailwind CSS",
-  "Framer Motion",
-  "ESG analytics",
-  "Design Science (DSR)",
+  { name: "Next.js", category: "frontend" },
+  { name: "React", category: "frontend" },
+  { name: "TypeScript", category: "frontend" },
+  { name: "Tailwind CSS", category: "frontend" },
+  { name: "Framer Motion", category: "frontend" },
+  { name: "Node.js", category: "backend" },
+  { name: "Python", category: "backend" },
+  { name: "FastAPI", category: "backend" },
+  { name: "Prisma", category: "backend" },
+  { name: "Celery", category: "backend" },
+  { name: "PostgreSQL", category: "data" },
+  { name: "MongoDB", category: "data" },
+  { name: "Redis", category: "data" },
+  { name: "Docker", category: "infra" },
+  { name: "ESG analytics", category: "research" },
+  { name: "Design Science (DSR)", category: "research" },
 ];
 
+const groups = [
+  { key: "frontend", label: "Frontend" },
+  { key: "backend",  label: "Backend & Runtime" },
+  { key: "data",     label: "Data" },
+  { key: "infra",    label: "Infra" },
+  { key: "research", label: "Research" },
+];
+
+/**
+ * "The bench" — typeset as a printed colophon of tools, grouped by lane.
+ * No marquee. No glow. Just a clean type page.
+ */
 export function TechStack() {
   const t = useTranslations("TechStack");
 
   return (
-    <section className="py-20 bg-black border-y border-white/5 overflow-hidden">
-      <div className="container mx-auto px-4 mb-10 text-center">
-        <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
-          {t("title")}
-        </p>
-      </div>
-      
-      <div className="relative flex overflow-x-hidden group">
-        <div className="animate-marquee whitespace-nowrap flex gap-12 items-center">
-          {/* First set of items */}
-          {technologies.map((tech, i) => (
-            <span 
-              key={i} 
-              className="text-2xl font-bold text-white/20 hover:text-white transition-colors cursor-default"
-            >
-              {tech}
-            </span>
-          ))}
-          
-          {/* Second copy — enough for a seamless marquee without visual triple-repeat */}
-          {technologies.map((tech, i) => (
-            <span
-              key={`dup-${i}`}
-              className="text-2xl font-bold text-white/20 hover:text-white transition-colors cursor-default"
-            >
-              {tech}
-            </span>
-          ))}
+    <section className="relative bg-paper">
+      <div className="container mx-auto px-4 py-20 md:py-24">
+        <div className="flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-4">
+          <div>
+            <p className="kicker">§05 — The bench</p>
+            <h2 className="mt-2 font-display text-3xl italic text-ink md:text-4xl">
+              {t("title")}
+            </h2>
+          </div>
+          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
+            Tools I keep on the desk · {technologies.length} listed
+          </p>
         </div>
 
-        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-black to-transparent z-10" />
-        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-black to-transparent z-10" />
+        <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-5">
+          {groups.map((g) => {
+            const tools = technologies.filter((tech) => tech.category === g.key);
+            return (
+              <div key={g.key} className="break-inside-avoid">
+                <p className="mb-3 border-b border-ink pb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-sienna">
+                  {g.label}
+                </p>
+                <ul className="space-y-2">
+                  {tools.map((tech, i) => (
+                    <li
+                      key={tech.name}
+                      className="flex items-baseline gap-3 font-display text-[17px] leading-snug text-ink"
+                    >
+                      <span className="font-mono text-[10px] tracking-[0.18em] text-ink-faint">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      {tech.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

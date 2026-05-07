@@ -1,87 +1,38 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft, Home } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black" />
-      
-      {/* Animated Particles */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute bg-white/10 rounded-full"
-          initial={{
-            x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1000),
-            y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1000),
-            scale: Math.random() * 0.5 + 0.5,
-          }}
-          animate={{
-            y: [null, Math.random() * -100],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: Math.random() * 5 + 5,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          style={{
-            width: Math.random() * 4 + 1 + "px",
-            height: Math.random() * 4 + 1 + "px",
-          }}
-        />
-      ))}
+    <div className="min-h-screen w-full bg-paper paper-grain paper-vignette flex flex-col items-center justify-center px-4">
+      <p className="kicker">— Out of print —</p>
+      <h1 className="mt-6 font-display text-[clamp(7rem,22vw,18rem)] leading-none italic text-sienna">
+        404
+      </h1>
+      <h2 className="mt-2 font-display text-3xl text-ink md:text-[44px]">
+        This page is not in the issue<span className="text-sienna">.</span>
+      </h2>
+      <p className="mt-4 max-w-md text-center text-ink-mute">
+        The coordinates you&rsquo;re looking for may have moved, been renamed, or are set in a future volume.
+      </p>
 
-      <div className="relative z-10 text-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+      <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
+        <Link href="/">
+          <Button variant="ink" size="lg">
+            <Home className="me-2 h-4 w-4" strokeWidth={1.5} />
+            Back to the cover
+          </Button>
+        </Link>
+        <button
+          onClick={() => window.history.back()}
+          className="link-underline inline-flex items-center gap-2 px-3 py-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-mute hover:text-sienna"
         >
-          <h1 className="text-[150px] md:text-[200px] font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/5 select-none">
-            404
-          </h1>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="space-y-6"
-        >
-          <h2 className="text-2xl md:text-4xl font-bold text-white">
-            Lost in the Void
-          </h2>
-          <p className="text-muted-foreground max-w-md mx-auto text-lg">
-            The coordinates you are looking for seem to have drifted away into deep space.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-            <Link href="/">
-              <Button variant="premium" size="lg" className="group">
-                <Home className="mr-2 h-4 w-4" />
-                Return to Base
-              </Button>
-            </Link>
-            <button 
-              onClick={() => window.history.back()}
-              className="text-muted-foreground hover:text-white transition-colors flex items-center gap-2 text-sm font-medium px-6 py-3"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Go Back
-            </button>
-          </div>
-        </motion.div>
+          <ArrowLeft className="h-3.5 w-3.5" strokeWidth={1.5} />
+          Previous page
+        </button>
       </div>
-
-      {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </div>
   );
 }

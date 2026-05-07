@@ -1,39 +1,58 @@
 "use client";
 
-import { Target } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+/**
+ * "Where to place me" — laid out as a paper memo with a sienna stamp.
+ */
 export function TargetRoles() {
   const t = useTranslations("TargetRoles");
 
   return (
-    <section className="border-b border-white/5 py-14 md:py-16">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-950/80 to-zinc-950/40 p-6 md:p-10">
-          <div className="mb-6 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/25">
-              <Target className="h-5 w-5" aria-hidden />
-            </span>
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-400/90">
-                {t("kicker")}
+    <section className="relative bg-paper">
+      <div className="container mx-auto px-4 py-20 md:py-24">
+        <div className="relative mx-auto max-w-4xl">
+          {/* Memo paper */}
+          <div className="passepartout relative bg-card p-8 md:p-12">
+            <span className="absolute -top-4 right-6 stamp">Memo · For hiring teams</span>
+
+            <div className="mb-6 flex items-baseline justify-between border-b border-ink pb-4">
+              <p className="kicker">§04 — {t("kicker")}</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
+                File: org-chart.md
               </p>
-              <h2 className="text-xl font-bold text-white md:text-2xl">
-                {t("title")}
-              </h2>
+            </div>
+
+            <h2 className="font-display text-3xl leading-tight text-ink md:text-[44px]">
+              {t("title")}<span className="text-sienna">.</span>
+            </h2>
+
+            <p className="dropcap mt-6 max-w-[58ch] text-[15px] leading-[1.75] text-ink/85 md:text-[16px]">
+              {t("intro")}
+            </p>
+
+            <ul className="mt-8 space-y-0 divide-y divide-ink/20 border-y border-ink/40">
+              {([0, 1, 2] as const).map((i) => (
+                <li
+                  key={i}
+                  className="grid grid-cols-[3rem_1fr] items-baseline gap-4 py-4"
+                >
+                  <span className="font-display text-2xl italic leading-none text-sienna">
+                    0{i + 1}
+                  </span>
+                  <p className="font-display text-[17px] leading-snug text-ink md:text-[19px]">
+                    {t(`roles.${i}`)}
+                  </p>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-ink/30 pt-4 font-mono text-[10px] uppercase tracking-[0.24em] text-ink-faint">
+              <span>Signed · Nima A.</span>
+              <span className="text-sienna">— ✻ —</span>
+              <span>Open file in Contact</span>
             </div>
           </div>
-          <p className="mb-4 text-sm text-muted-foreground md:text-base">
-            {t("intro")}
-          </p>
-          <ul className="space-y-2 text-sm text-zinc-300 md:text-[15px]">
-            {([0, 1, 2] as const).map((i) => (
-              <li key={i} className="flex gap-2">
-                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary/80" />
-                <span>{t(`roles.${i}`)}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

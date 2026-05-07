@@ -12,7 +12,7 @@ export function NavbarHiringLinks({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex items-center gap-1 border border-white/10 bg-white/[0.04] px-1.5 py-1 rounded-full",
+        "flex items-center divide-x divide-ink/15 border border-ink/25",
         className
       )}
     >
@@ -20,25 +20,25 @@ export function NavbarHiringLinks({ className }: { className?: string }) {
         href={PROFILE_LINKS.linkedin}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex h-9 w-9 items-center justify-center rounded-full text-zinc-400 transition hover:bg-white/10 hover:text-white"
+        className="flex h-9 w-9 items-center justify-center text-ink-mute transition hover:bg-ink hover:text-paper"
         aria-label={t("linkedinAria")}
       >
-        <Linkedin className="h-4 w-4" />
+        <Linkedin className="h-4 w-4" strokeWidth={1.5} />
       </a>
       <a
         href={PROFILE_LINKS.github}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex h-9 w-9 items-center justify-center rounded-full text-zinc-400 transition hover:bg-white/10 hover:text-white"
+        className="flex h-9 w-9 items-center justify-center text-ink-mute transition hover:bg-ink hover:text-paper"
         aria-label={t("githubAria")}
       >
-        <Github className="h-4 w-4" />
+        <Github className="h-4 w-4" strokeWidth={1.5} />
       </a>
       <a
         href={PROFILE_LINKS.cvRequest}
-        className="flex h-9 items-center gap-1 rounded-full px-2.5 text-xs font-semibold text-primary transition hover:bg-primary/15"
+        className="flex h-9 items-center gap-1.5 px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-sienna transition hover:bg-sienna hover:text-paper"
       >
-        <FileText className="h-3.5 w-3.5" aria-hidden />
+        <FileText className="h-3.5 w-3.5" aria-hidden strokeWidth={1.5} />
         {t("cvShort")}
       </a>
     </div>

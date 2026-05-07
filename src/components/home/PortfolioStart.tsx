@@ -3,73 +3,55 @@
 import { Link } from "@/i18n/routing";
 import { buttonVariants } from "@/components/ui/Button";
 import { motion } from "framer-motion";
-import { ArrowRight, Compass, Cpu, Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export function PortfolioStart() {
   const t = useTranslations("Start");
 
-  const cards = [
-    { id: "card1", icon: Sparkles },
-    { id: "card2", icon: Cpu },
-    { id: "card3", icon: Compass },
-  ];
+  const cards = ["card1", "card2", "card3"] as const;
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-12">
+    <div className="w-full max-w-5xl mx-auto space-y-12">
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-transparent p-8 md:p-10 backdrop-blur-sm"
+        className="passepartout bg-card p-8 md:p-12"
       >
-        <p className="text-sm font-mono uppercase tracking-[0.25em] text-primary mb-4">
-          {t("ribbon")}
-        </p>
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">
-          {t("headline")}
+        <p className="kicker mb-3">{t("ribbon")}</p>
+        <h2 className="font-display text-3xl leading-tight text-ink md:text-[44px]">
+          {t("headline")}<span className="italic text-sienna">.</span>
         </h2>
-        <p className="text-muted-foreground leading-relaxed text-lg mb-8">
+        <p className="dropcap mt-6 max-w-[64ch] text-[16px] leading-[1.75] text-ink/85 md:text-[17px]">
           {t("intro")}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Link
-            href="/contact"
-            className={buttonVariants({
-              variant: "premium",
-              size: "lg",
-              className: "h-14 px-8 rounded-full justify-center",
-            })}
-          >
-            {t("primaryCta")}
-            <ArrowRight className="ml-2 h-5 w-5 rtl:rotate-180" />
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link href="/contact" className={buttonVariants({ variant: "sienna", size: "lg" })}>
+            {t("primaryCta")} <span className="ms-2 rtl:rotate-180">→</span>
           </Link>
-          <Link
-            href="/work"
-            className={buttonVariants({
-              variant: "outline",
-              size: "lg",
-              className:
-                "h-14 px-8 rounded-full border-white/15 bg-white/5 justify-center",
-            })}
-          >
+          <Link href="/work" className={buttonVariants({ variant: "outline", size: "lg" })}>
             {t("secondaryCta")}
           </Link>
         </div>
       </motion.div>
 
-      <div className="grid md:grid-cols-3 gap-4">
-        {cards.map(({ id, icon: Icon }, i) => (
+      <div className="grid gap-px bg-ink md:grid-cols-3">
+        {cards.map((id, i) => (
           <motion.div
             key={id}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
-            className="rounded-2xl border border-white/10 bg-black/40 p-6 hover:border-primary/30 transition-colors"
+            className="bg-paper p-6 md:p-8"
           >
-            <Icon className="h-8 w-8 text-primary mb-4" aria-hidden />
-            <h3 className="font-semibold text-white mb-2">{t(`${id}.title`)}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink-faint">
+              Note 0{i + 1}
+            </span>
+            <h3 className="mt-2 font-display text-2xl leading-tight text-ink md:text-[28px]">
+              {t(`${id}.title`)}
+            </h3>
+            <p className="mt-3 text-[14.5px] leading-relaxed text-ink-mute">
               {t(`${id}.desc`)}
             </p>
           </motion.div>

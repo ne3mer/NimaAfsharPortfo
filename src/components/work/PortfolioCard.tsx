@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import NextImage from "next/image";
 
 export type WorkCardData = {
@@ -16,52 +16,72 @@ export type WorkCardData = {
 };
 
 /**
- * Work grid card: image stays visual-only; title + summary + 1-line outcome sit below (not on the thumbnail).
+ * Editorial portfolio card — looks like a printed catalogue entry.
  */
-export function PortfolioCard({ project }: { project: WorkCardData }) {
+export function PortfolioCard({
+  project,
+  index = 0,
+}: {
+  project: WorkCardData;
+  index?: number;
+}) {
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-card transition-colors hover:border-primary/50"
+      className="group relative flex flex-col bg-paper transition-colors hover:bg-card"
     >
-      <div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-paper-deep">
         {project.image ? (
           <NextImage
             src={project.image}
             alt=""
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="object-cover saturate-[0.85] transition-all duration-500 group-hover:saturate-100 group-hover:scale-[1.02]"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-zinc-900 to-black" />
+          <div className="absolute inset-0 flex items-center justify-center bg-paper-deep">
+            <span className="font-display text-6xl italic text-ink/30">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </div>
         )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 transition group-hover:opacity-80" />
+        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/15" />
+        <div className="absolute left-0 top-0 bg-ink px-2 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-paper">
+          Plate {String(index + 1).padStart(2, "0")}
+        </div>
       </div>
 
-      <div className="border-t border-white/5 p-6">
-        <div className="mb-3 flex items-start justify-between gap-3">
-          <h3 className="text-lg font-bold text-white transition-colors group-hover:text-primary md:text-xl">
-            {project.title}
-          </h3>
-          <ArrowUpRight className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-primary" />
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-baseline justify-between border-b border-ink/15 pb-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-sienna">
+            Catalogue No. {String(index + 1).padStart(3, "0")}
+          </span>
+          <ArrowUpRight
+            className="h-4 w-4 text-ink-mute transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-sienna"
+            strokeWidth={1.5}
+          />
         </div>
-        <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+
+        <h3 className="mt-3 font-display text-[24px] leading-tight text-ink transition-colors group-hover:text-sienna md:text-[28px]">
+          {project.title}
+        </h3>
+
+        <p className="mt-3 line-clamp-3 text-[14.5px] leading-relaxed text-ink-mute">
           {project.description}
         </p>
 
         {project.outcome ? (
-          <div className="mt-4 flex items-start gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] p-3 text-xs text-emerald-100/95 md:text-[13px]">
-            <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-300" aria-hidden />
-            <span className="line-clamp-2">{project.outcome}</span>
-          </div>
+          <p className="mt-4 border-l-2 border-olive pl-3 font-display italic text-[14.5px] leading-snug text-ink-soft rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-3">
+            {project.outcome}
+          </p>
         ) : null}
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-5 flex flex-wrap gap-1.5 border-t border-ink/15 pt-4">
           {project.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-white/5 bg-white/5 px-2 py-1 text-xs text-muted-foreground"
+              className="border border-ink/25 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute"
             >
               {tag}
             </span>

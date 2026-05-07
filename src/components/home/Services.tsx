@@ -1,18 +1,22 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/Button";
-import { Check } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 const TIER_KEYS = ["small", "business", "saas", "retainer"] as const;
 
+/**
+ * Services as "Lanes" — laid out like an editorial 2x2 spread.
+ * Featured lane wears a sienna stamp instead of a glowing badge.
+ */
 export function Services() {
   const t = useTranslations("Services");
 
-  const tiers = TIER_KEYS.map((key) => ({
+  const tiers = TIER_KEYS.map((key, i) => ({
     key,
+    index: i,
     name: t(`tiers.${key}.name`),
     tagline: t(`tiers.${key}.tagline`),
     description: t(`tiers.${key}.description`),
@@ -29,63 +33,79 @@ export function Services() {
   }));
 
   return (
-    <section id="services" className="py-24 bg-black relative">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2
-            className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-white"
-            dangerouslySetInnerHTML={{ __html: t.raw("title") }}
-          />
-          <p className="text-muted-foreground">{t("subtitle")}</p>
+    <section id="services" className="relative bg-paper-soft/40">
+      <div className="container mx-auto px-4 py-20 md:py-28">
+        <div className="grid items-end gap-6 border-b border-ink pb-6 md:grid-cols-12">
+          <div className="md:col-span-7">
+            <p className="kicker">§06 — Where I go deepest</p>
+            <h2
+              className="mt-3 font-display text-4xl leading-[0.95] tracking-tight text-ink md:text-[56px]"
+              dangerouslySetInnerHTML={{ __html: t.raw("title") }}
+            />
+          </div>
+          <p className="md:col-span-5 max-w-[44ch] font-display text-[17px] leading-snug text-ink-mute md:text-[18px]">
+            {t("subtitle")}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mt-12 grid grid-cols-1 gap-px bg-ink md:grid-cols-2">
           {tiers.map((tier) => (
-            <div
+            <article
               key={tier.key}
               className={cn(
-                "relative p-6 rounded-2xl border flex flex-col",
-                tier.featured
-                  ? "bg-white/5 border-primary/50 shadow-2xl shadow-primary/10"
-                  : "bg-background border-white/10 hover:border-white/20 transition-colors"
+                "relative flex flex-col bg-paper p-7 md:p-10",
+                tier.featured && "bg-card"
               )}
             >
               {tier.featured && tier.badge && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary text-white text-xs font-bold rounded-full">
-                  {tier.badge}
-                </div>
+                <span className="absolute -top-3 right-6 stamp">{tier.badge}</span>
               )}
 
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-white mb-2">{tier.name}</h3>
-                <div className="text-xs font-mono uppercase tracking-wider text-primary/90 mb-3">
+              <div className="flex items-baseline justify-between border-b border-ink/30 pb-4">
+                <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink-faint">
+                  Lane 0{tier.index + 1}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-sienna">
                   {tier.tagline}
-                </div>
-                <p className="text-sm text-muted-foreground">{tier.description}</p>
+                </span>
               </div>
 
-              <ul className="space-y-3 mb-8 flex-1">
+              <h3 className="mt-5 font-display text-[28px] leading-tight text-ink md:text-[34px]">
+                {tier.name}
+              </h3>
+
+              <p className="mt-3 max-w-[46ch] font-display italic text-[17px] leading-snug text-ink-mute md:text-[18px]">
+                {tier.description}
+              </p>
+
+              <ul className="mt-6 space-y-2">
                 {tier.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
+                    className="grid grid-cols-[1.25rem_1fr] items-baseline gap-3 text-[15px] text-ink/85"
                   >
-                    <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                    {feature}
+                    <span aria-hidden className="font-mono text-sienna">·</span>
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <Link
-                href="/contact"
-                className={buttonVariants({
-                  variant: tier.featured ? "default" : "outline",
-                  className: "w-full",
-                })}
-              >
-                {tier.cta}
-              </Link>
-            </div>
+              <div className="mt-8 pt-6 border-t border-ink/30 flex items-center justify-between gap-4">
+                <Link
+                  href="/contact"
+                  className={buttonVariants({
+                    variant: tier.featured ? "sienna" : "outline",
+                    size: "default",
+                  })}
+                >
+                  {tier.cta}
+                  <span className="ms-2 rtl:rotate-180">→</span>
+                </Link>
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">
+                  scope · async-first
+                </span>
+              </div>
+            </article>
           ))}
         </div>
       </div>

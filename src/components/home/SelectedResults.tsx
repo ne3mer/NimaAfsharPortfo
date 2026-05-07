@@ -1,41 +1,52 @@
 "use client";
 
-import { BarChart3, Globe2, Layers, Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const ICONS = [Sparkles, Layers, BarChart3, Globe2] as const;
-
+/**
+ * Selected impact — laid out like a magazine contents page.
+ * Big folio numbers, rule-line dividers, no icon orbs.
+ */
 export function SelectedResults() {
   const t = useTranslations("SelectedResults");
 
   return (
-    <section className="border-b border-white/5 bg-zinc-950/40 py-16 md:py-20">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto mb-10 max-w-2xl text-center">
-          <h2 className="mb-3 text-2xl font-bold tracking-tight text-white md:text-3xl">
-            {t("title")}
-          </h2>
-          <p className="text-sm text-muted-foreground md:text-base">
-            {t("subtitle")}
-          </p>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:gap-5">
-          {([0, 1, 2, 3] as const).map((i) => {
-            const Icon = ICONS[i];
-            return (
-              <div
+    <section className="relative bg-paper-soft/50">
+      <div className="container mx-auto px-4 py-20 md:py-28">
+        <div className="grid gap-10 md:grid-cols-12 md:gap-14">
+          {/* Spine: section header */}
+          <div className="md:col-span-4">
+            <p className="kicker">§03 — Selected impact</p>
+            <h2 className="mt-3 font-display text-4xl leading-[0.95] tracking-tight text-ink md:text-5xl">
+              Receipts before <span className="italic text-sienna">rhetoric.</span>
+            </h2>
+            <p className="mt-5 max-w-[34ch] font-display text-[17px] leading-snug text-ink-mute">
+              {t("subtitle")}
+            </p>
+            <div className="rule mt-8" />
+            <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
+              Reading time · 10 sec.
+            </p>
+          </div>
+
+          {/* The four entries */}
+          <ol className="md:col-span-8 divide-y divide-ink/20 border-y border-ink">
+            {([0, 1, 2, 3] as const).map((i) => (
+              <li
                 key={i}
-                className="flex gap-4 rounded-2xl border border-white/10 bg-black/40 p-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] md:p-6"
+                className="group grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 py-7 md:grid-cols-[5rem_1fr_auto] md:gap-x-10 md:py-9"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/25">
-                  <Icon className="h-5 w-5" aria-hidden />
+                <span className="font-display text-5xl italic leading-none text-sienna md:text-[64px]">
+                  0{i + 1}
                 </span>
-                <p className="text-sm leading-relaxed text-zinc-300 md:text-[15px]">
+                <p className="font-display text-[19px] leading-snug text-ink md:text-[22px]">
                   {t(`items.${i}`)}
                 </p>
-              </div>
-            );
-          })}
+                <span className="hidden md:inline-flex translate-y-1 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint group-hover:text-sienna transition-colors">
+                  → see proof
+                </span>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>

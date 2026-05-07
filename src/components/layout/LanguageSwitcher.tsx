@@ -2,9 +2,6 @@
 
 import { useLocale } from "next-intl";
 import { usePathname, Link } from "@/i18n/routing";
-import { buttonVariants } from "@/components/ui/Button";
-import { Globe } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export function LanguageSwitcher() {
   const locale = useLocale();
@@ -15,13 +12,11 @@ export function LanguageSwitcher() {
     <Link
       href={pathname}
       locale={nextLocale}
-      className={cn(
-        buttonVariants({ variant: "ghost", size: "sm" }),
-        "flex items-center gap-2 text-white/70 hover:text-white"
-      )}
+      className="flex h-9 items-center gap-1 border border-ink/25 px-2.5 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-mute transition hover:bg-ink hover:text-paper"
     >
-      <Globe className="h-4 w-4" />
-      <span className="uppercase font-bold">{nextLocale === "en" ? "EN" : "FA"}</span>
+      <span className={locale === "en" ? "text-ink" : "text-ink-faint"}>EN</span>
+      <span className="text-ink-faint">/</span>
+      <span className={locale === "fa" ? "text-ink" : "text-ink-faint"}>FA</span>
     </Link>
   );
 }

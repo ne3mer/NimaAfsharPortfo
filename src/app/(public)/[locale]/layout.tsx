@@ -4,27 +4,38 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
+import { Instrument_Serif, Inter_Tight, JetBrains_Mono, Vazirmatn } from "next/font/google";
 import "@/app/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const vazir = Vazirmatn({
   variable: "--font-vazir",
   subsets: ["arabic"],
+  display: "swap",
 });
 
 export const metadata = {
-  title: "NIMA Studio | Custom Software Development",
-  description: "Premium custom software development studio by Nima Afsharfar.",
+  title: "Nima Afsharfar — Atelier Notes",
+  description: "Field notes from a Budapest studio. Engineer, strategist, researcher. Selected work, set in print-feel pages.",
 };
 
 export default async function LocaleLayout({
@@ -35,23 +46,21 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  console.log("Layout Locale:", locale);
-  
-  // Ensure that the incoming `locale` is valid
+
   if (!routing.locales.includes(locale as "en" | "fa")) {
     notFound();
   }
- 
-  // Providing all messages to the client
-  // side is the easiest way to get started
+
   const messages = await getMessages({locale});
-  
+
   return (
-    <html lang={locale} dir={locale === 'fa' ? 'rtl' : 'ltr'} className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${vazir.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}>
+    <html lang={locale} dir={locale === 'fa' ? 'rtl' : 'ltr'}>
+      <body
+        className={`${instrumentSerif.variable} ${interTight.variable} ${jetbrainsMono.variable} ${vazir.variable} paper-grain paper-vignette antialiased bg-paper text-ink min-h-screen flex flex-col`}
+      >
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Navbar />
-          <main className="flex-1 pt-16">
+          <main className="relative z-[2] flex-1 pt-[88px] md:pt-[104px]">
             {children}
           </main>
           <Footer />
