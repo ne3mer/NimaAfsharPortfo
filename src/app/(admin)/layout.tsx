@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { AdminNavbar } from "@/components/layout/AdminNavbar";
 import { Footer } from "@/components/layout/Footer";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "@/app/globals.css";
 
 const geistSans = Geist({
@@ -38,6 +39,7 @@ export default async function AdminLayout({
               {children}
             </main>
          </NextIntlClientProvider>
+         <Analytics />
       </body>
     </html>
   );
