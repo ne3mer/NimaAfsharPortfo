@@ -29,15 +29,15 @@ export function PortfolioCard({
   const locale = useLocale();
   const isFa = locale === "fa";
   const plateLabel = isFa ? "پلیت" : "Plate";
-  const entryLabel = isFa ? "ورودی" : "Entry";
+  const entryLabel = isFa ? "پروژه" : "Project";
   const outcomeLabel = isFa ? "خروجی" : "Outcome";
 
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group relative flex flex-col bg-paper transition-colors hover:bg-card/70"
+      className="group relative flex flex-col bg-paper transition-colors hover:bg-card"
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-paper-deep">
+      <div className="relative aspect-4/3 w-full overflow-hidden bg-paper-deep">
         {project.image ? (
           <NextImage
             src={project.image}
@@ -59,9 +59,9 @@ export function PortfolioCard({
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-5 md:p-6">
         <div className="flex items-baseline justify-between border-b border-ink/15 pb-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-sienna">
+          <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-sienna">
             {entryLabel} {String(index + 1).padStart(3, "0")}
           </span>
           <ArrowUpRight
@@ -70,20 +70,20 @@ export function PortfolioCard({
           />
         </div>
 
-        <h3 className="mt-3 font-display text-[24px] leading-tight text-ink transition-colors group-hover:text-sienna md:text-[28px]">
+        <h3 className="mt-3 font-display text-[23px] leading-tight text-ink transition-colors group-hover:text-sienna md:text-[27px]">
           {project.title}
         </h3>
 
-        <p className="mt-3 line-clamp-3 text-[14.5px] leading-relaxed text-ink-mute">
+        <p className="mt-3 line-clamp-3 text-[14px] leading-relaxed text-ink-mute">
           {project.description}
         </p>
 
         {project.outcome ? (
           <div className="mt-4 border-l-2 border-olive ps-3 rtl:border-l-0 rtl:border-r-2">
-            <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-olive">
+            <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-olive">
               {outcomeLabel}
             </p>
-            <p className="mt-1 font-display italic text-[14.5px] leading-snug text-ink-soft">
+            <p className="mt-1 line-clamp-3 font-display italic text-[14px] leading-snug text-ink-soft">
               {project.outcome}
             </p>
           </div>
@@ -93,7 +93,7 @@ export function PortfolioCard({
           {project.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
-              className="border border-ink/25 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute"
+              className="border border-ink/20 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.16em] text-ink-mute"
             >
               {tag}
             </span>
