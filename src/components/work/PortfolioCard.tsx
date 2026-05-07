@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import NextImage from "next/image";
+import { useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export type WorkCardData = {
   id: string;
@@ -25,10 +26,16 @@ export function PortfolioCard({
   project: WorkCardData;
   index?: number;
 }) {
+  const locale = useLocale();
+  const isFa = locale === "fa";
+  const plateLabel = isFa ? "پلیت" : "Plate";
+  const entryLabel = isFa ? "ورودی" : "Entry";
+  const outcomeLabel = isFa ? "خروجی" : "Outcome";
+
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="group relative flex flex-col bg-paper transition-colors hover:bg-card"
+      className="group relative flex flex-col bg-paper transition-colors hover:bg-card/70"
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-paper-deep">
         {project.image ? (
@@ -48,14 +55,14 @@ export function PortfolioCard({
         )}
         <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-ink/15" />
         <div className="absolute left-0 top-0 bg-ink px-2 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-paper">
-          Plate {String(index + 1).padStart(2, "0")}
+          {plateLabel} {String(index + 1).padStart(2, "0")}
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-baseline justify-between border-b border-ink/15 pb-3">
           <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-sienna">
-            Catalogue No. {String(index + 1).padStart(3, "0")}
+            {entryLabel} {String(index + 1).padStart(3, "0")}
           </span>
           <ArrowUpRight
             className="h-4 w-4 text-ink-mute transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-sienna"
@@ -72,9 +79,14 @@ export function PortfolioCard({
         </p>
 
         {project.outcome ? (
-          <p className="mt-4 border-l-2 border-olive pl-3 font-display italic text-[14.5px] leading-snug text-ink-soft rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-3">
-            {project.outcome}
-          </p>
+          <div className="mt-4 border-l-2 border-olive ps-3 rtl:border-l-0 rtl:border-r-2">
+            <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-olive">
+              {outcomeLabel}
+            </p>
+            <p className="mt-1 font-display italic text-[14.5px] leading-snug text-ink-soft">
+              {project.outcome}
+            </p>
+          </div>
         ) : null}
 
         <div className="mt-5 flex flex-wrap gap-1.5 border-t border-ink/15 pt-4">

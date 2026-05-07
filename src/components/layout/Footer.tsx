@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Github, Linkedin, Mail, Twitter, ArrowUp, type LucideIcon } from "lucide-react";
 
 import { PROFILE_LINKS } from "@/lib/profile-links";
@@ -12,7 +12,30 @@ import { PROFILE_LINKS } from "@/lib/profile-links";
  */
 export function Footer() {
   const t = useTranslations("Footer");
+  const locale = useLocale();
+  const isFa = locale === "fa";
   const currentYear = new Date().getFullYear();
+  const labels = isFa
+    ? {
+        editor: "— نامه از سردبیر —",
+        writeToMe: "— برای من بنویس",
+        colophon: "شناسنامه",
+        pressedIn: "محل چاپ",
+        hours: "ساعات همکاری",
+        setIn: "تایپ‌فیس",
+        stack: "استک",
+        top: "بازگشت به بالا",
+      }
+    : {
+        editor: "— Letter from the editor —",
+        writeToMe: "— write to me",
+        colophon: "Colophon",
+        pressedIn: "Pressed in",
+        hours: "Hours",
+        setIn: "Set in",
+        stack: "Stack",
+        top: "Top of issue",
+      };
 
   const scrollToTop = () => {
     if (typeof window !== "undefined") {
@@ -28,7 +51,7 @@ export function Footer() {
         {/* Closing banner */}
         <div className="grid items-end gap-8 border-b border-ink pb-14 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-8">
-            <p className="kicker">— Letter from the editor —</p>
+            <p className="kicker">{labels.editor}</p>
             <h2 className="mt-3 font-display text-4xl leading-[0.95] tracking-tight text-ink md:text-[64px]">
               {t("bannerTitle")
                 .split(" ")
@@ -50,7 +73,7 @@ export function Footer() {
               <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-sienna">
                 {t("bannerCta")}
               </span>
-              <span className="italic">— write to me</span>
+              <span className="italic">{labels.writeToMe}</span>
               <span className="transition-transform group-hover:translate-x-1 rtl:rotate-180">→</span>
             </Link>
           </div>
@@ -109,13 +132,13 @@ export function Footer() {
 
           {/* Colophon metadata */}
           <div className="md:col-span-4">
-            <p className="kicker mb-4 border-b border-ink pb-2">Colophon</p>
+            <p className="kicker mb-4 border-b border-ink pb-2">{labels.colophon}</p>
             <dl className="space-y-3 text-[14.5px]">
-              <Row label="Pressed in" value="Budapest, Hungary" />
-              <Row label="Hours" value="EU-friendly · async-first" />
+              <Row label={labels.pressedIn} value="Budapest, Hungary" />
+              <Row label={labels.hours} value="EU-friendly · async-first" />
               <Row label="Email" value="ne3mer@gmail.com" href="mailto:ne3mer@gmail.com" />
-              <Row label="Set in" value="Instrument Serif · Inter Tight · JetBrains Mono" />
-              <Row label="Stack" value="Next.js · TypeScript · Prisma" />
+              <Row label={labels.setIn} value="Instrument Serif · Inter Tight · JetBrains Mono" />
+              <Row label={labels.stack} value="Next.js · TypeScript · Prisma" />
             </dl>
           </div>
         </div>
@@ -132,7 +155,7 @@ export function Footer() {
               onClick={scrollToTop}
               className="inline-flex items-center gap-2 transition-colors hover:text-sienna"
             >
-              Top of issue
+              {labels.top}
               <span className="inline-flex h-7 w-7 items-center justify-center border border-ink/40">
                 <ArrowUp className="h-3.5 w-3.5" strokeWidth={1.5} />
               </span>

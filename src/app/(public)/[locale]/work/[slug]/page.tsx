@@ -63,6 +63,26 @@ export default async function ProjectPage({
 }) {
   const { slug, locale } = await params;
   const t = await getTranslations("Project");
+  const isFa = locale === "fa";
+  const labels = isFa
+    ? {
+        projectPlate: "پلیت پروژه · جلد ۱",
+        caseStudy: "— مطالعه موردی —",
+        postscript: "— نکته پایانی —",
+        fallbackServices: "توسعه فول‌استک، UI/UX",
+        pressError: "— خطای سیستم —",
+        errorTitle: "بارگذاری پروژه ناموفق بود",
+        errorHint: "برای جزئیات بیشتر لاگ Vercel را بررسی کنید.",
+      }
+    : {
+        projectPlate: "Project Plate · Vol. I",
+        caseStudy: "— Case study —",
+        postscript: "— Postscript —",
+        fallbackServices: "Full Stack Dev, UI/UX",
+        pressError: "— Press error —",
+        errorTitle: "Something went wrong",
+        errorHint: "Check Vercel logs for more details.",
+      };
 
   let project: Work | null = null;
   try {
@@ -73,12 +93,12 @@ export default async function ProjectPage({
     console.error("Error loading project:", error);
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-paper text-ink p-4">
-        <p className="kicker">— Press error —</p>
-        <h1 className="mt-3 font-display text-3xl text-ink">Something went wrong</h1>
+        <p className="kicker">{labels.pressError}</p>
+        <h1 className="mt-3 font-display text-3xl text-ink">{labels.errorTitle}</h1>
         <pre className="mt-4 max-w-2xl overflow-auto border border-ink bg-paper-soft p-4 font-mono text-[12px] text-stamp">
           {error instanceof Error ? error.message : String(error)}
         </pre>
-        <p className="mt-4 text-ink-mute">Check Vercel logs for more details.</p>
+        <p className="mt-4 text-ink-mute">{labels.errorHint}</p>
       </div>
     );
   }
@@ -138,19 +158,19 @@ export default async function ProjectPage({
               <Link href="/work" className="link-underline inline-flex items-center gap-2 text-ink hover:text-sienna">
                 <ArrowLeft className="h-3.5 w-3.5 rtl:rotate-180" /> {t("back")}
               </Link>
-              <span className="hidden md:inline">Project Plate · Vol. I</span>
+              <span className="hidden md:inline">{labels.projectPlate}</span>
               <span className="text-sienna">{project.year || "2024"}</span>
             </div>
 
             <div
               className={
                 project.image && !liveSiteUrl && !hasFullPageImage
-                  ? "grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,380px)] lg:items-start lg:gap-12"
+                  ? "grid gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(260px,380px)] xl:items-start xl:gap-12"
                   : "grid gap-10"
               }
             >
               <div>
-                <p className="kicker mb-4">— Case study —</p>
+                <p className="kicker mb-4">{labels.caseStudy}</p>
                 <h1 className="font-display text-4xl leading-[0.95] tracking-tight text-ink md:text-[68px] lg:text-[80px]">
                   {copy.title}<span className="italic text-sienna">.</span>
                 </h1>
@@ -169,7 +189,7 @@ export default async function ProjectPage({
               </div>
 
               {project.image && !liveSiteUrl && !hasFullPageImage && (
-                <div className="relative aspect-video w-full overflow-hidden border border-ink lg:aspect-[4/3] lg:max-h-[280px] lg:justify-self-end">
+                <div className="relative aspect-video w-full overflow-hidden border border-ink xl:aspect-4/3 xl:max-h-[280px] xl:justify-self-end">
                   <NextImage
                     src={project.image}
                     alt={copy.title}
@@ -225,7 +245,7 @@ export default async function ProjectPage({
         ) : null}
 
         {/* Content */}
-        <div className="container mx-auto px-4 py-16 grid md:grid-cols-[1fr_300px] gap-12">
+        <div className="container mx-auto px-4 py-16 grid xl:grid-cols-[1fr_300px] gap-12">
           <div className="max-w-3xl space-y-10">
             <WorkImpactSummary
               locale={locale}
@@ -261,7 +281,9 @@ export default async function ProjectPage({
                 </div>
                 <div className="border-b border-ink/15 pb-2">
                   <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">{t("services")}</dt>
-                  <dd className="font-display text-[18px] text-ink">{copy.services || "Full Stack Dev, UI/UX"}</dd>
+                  <dd className="font-display text-[18px] text-ink">
+                    {copy.services || labels.fallbackServices}
+                  </dd>
                 </div>
                 <div>
                   <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">{t("year")}</dt>
@@ -271,7 +293,7 @@ export default async function ProjectPage({
             </div>
 
             <div className="relative border border-ink bg-paper-soft p-6">
-              <span className="absolute -top-3 right-4 stamp">— Postscript —</span>
+              <span className="absolute -top-3 right-4 stamp">{labels.postscript}</span>
               <h3 className="mt-2 font-display text-2xl text-ink md:text-[28px]">{t("ready")}</h3>
               <p className="mt-2 max-w-[36ch] text-[14.5px] leading-relaxed text-ink-mute">
                 {t("readyDesc")}

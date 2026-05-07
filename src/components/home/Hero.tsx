@@ -3,7 +3,7 @@
 import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 import { HeroOpenToBanner } from "@/components/home/HeroOpenToBanner";
@@ -17,6 +17,31 @@ import { HeroQuickLinks } from "@/components/home/HeroQuickLinks";
 
 export function Hero() {
   const t = useTranslations("Hero");
+  const locale = useLocale();
+  const isFa = locale === "fa";
+  const labels = isFa
+    ? {
+        issue: "دفتر آتلیه — شماره ۰۱",
+        solo: "کار مستقل · بوداپست",
+        cover: "داستان جلد",
+        railIntro: "یادداشت‌هایی از یک استودیو یک‌نفره که به‌جای اسلاید، روی نسخه تحویلی تکیه می‌کند.",
+        inThisIssue: "در این شماره",
+        nowSetting: "در حال تنظیم · جلد ۰۱",
+        plate: "پلیت ۱",
+        handSet: "حروف‌چینی در بوداپست",
+        setIn: "در این جلد",
+      }
+    : {
+        issue: "The Atelier — Issue 01",
+        solo: "A Solo Practice · Budapest",
+        cover: "Cover Story",
+        railIntro: "Field notes from a one-person studio that prefers shipped demos to deck slides.",
+        inThisIssue: "In this issue",
+        nowSetting: "Now Setting · Vol. 01",
+        plate: "Plate I",
+        handSet: "Hand-set in Budapest",
+        setIn: "Set in this volume",
+      };
 
   return (
     <section className="relative overflow-hidden bg-paper text-ink">
@@ -27,24 +52,24 @@ export function Hero() {
       <div className="container mx-auto px-4 pt-10 pb-20 md:pt-16 md:pb-28">
         {/* Top metadata strip — like a magazine spine */}
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.32em] text-ink-mute">
-          <span>The Atelier — Issue 01</span>
-          <span className="hidden md:inline">A Solo Practice · Budapest</span>
+          <span>{labels.issue}</span>
+          <span className="hidden md:inline">{labels.solo}</span>
           <span className="text-sienna">{t("systemOnline")}</span>
         </div>
 
-        <div className="grid grid-cols-12 gap-6 md:gap-10">
+        <div className="grid grid-cols-12 gap-6 lg:gap-10">
           {/* Marginalia rail */}
-          <aside className="col-span-12 md:col-span-2 md:order-1">
-            <div className="hidden md:flex flex-col gap-4 border-r border-ink/20 pr-4 rtl:border-r-0 rtl:border-l rtl:pr-0 rtl:pl-4">
+          <aside className="col-span-12 lg:col-span-2 lg:order-1">
+            <div className="hidden lg:flex flex-col gap-4 border-r border-ink/20 pr-4 rtl:border-r-0 rtl:border-l rtl:pr-0 rtl:pl-4">
               <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-sienna">
-                Cover Story
+                {labels.cover}
               </p>
               <p className="font-display text-[15px] italic leading-snug text-ink-mute">
-                Field notes from a one-person studio that prefers shipped demos to deck slides.
+                {labels.railIntro}
               </p>
               <div className="rule mt-2" />
               <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-                In this issue
+                {labels.inThisIssue}
               </p>
               <ul className="space-y-1 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute">
                 <li>§01 — Cover</li>
@@ -58,14 +83,14 @@ export function Hero() {
           </aside>
 
           {/* Headline column */}
-          <div className="col-span-12 md:col-span-7 md:order-2">
+          <div className="col-span-12 lg:col-span-7 lg:order-2">
             <p className="kicker mb-5">{t("openToLabel")}</p>
 
             <motion.h1
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
-              className="font-display text-[clamp(2.6rem,7.4vw,6.4rem)] leading-[0.92] tracking-[-0.01em] text-ink"
+              className="font-display max-w-[12ch] text-[clamp(2rem,8.5vw,4.8rem)] lg:text-[clamp(2.6rem,7.4vw,6.4rem)] leading-[0.92] tracking-[-0.01em] text-ink"
             >
               <span className="block">Ship the</span>
               <span className="hand-underline italic text-sienna">product.</span>
@@ -119,17 +144,17 @@ export function Hero() {
           </div>
 
           {/* Portrait card */}
-          <aside className="col-span-12 md:col-span-3 md:order-3">
-            <PortraitCard />
-            <div className="mt-6 hidden md:block">
-              <CapabilitiesList />
+          <aside className="col-span-12 lg:col-span-3 lg:order-3">
+            <PortraitCard labels={labels} />
+            <div className="mt-6 hidden lg:block">
+              <CapabilitiesList labels={labels} />
             </div>
           </aside>
         </div>
 
         {/* Capabilities visible on mobile under the columns */}
-        <div className="mt-10 md:hidden">
-          <CapabilitiesList />
+        <div className="mt-10 lg:hidden">
+          <CapabilitiesList labels={labels} />
         </div>
       </div>
 
@@ -139,19 +164,23 @@ export function Hero() {
   );
 }
 
-function PortraitCard() {
+function PortraitCard({
+  labels,
+}: {
+  labels: { nowSetting: string; plate: string; handSet: string };
+}) {
   return (
     <div className="relative">
       {/* Stamp tag */}
       <span className="absolute -top-3 -right-3 z-10 stamp">
-        Now Setting · Vol. 01
+        {labels.nowSetting}
       </span>
 
       <div className="passepartout relative bg-paper-deep p-1">
         {/* Hand-set monogram */}
-        <div className="relative aspect-[4/5] overflow-hidden">
+        <div className="relative aspect-4/5 overflow-hidden">
           {/* warm woodcut backdrop */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--paper-soft)_0%,_var(--paper-deep)_60%,_var(--ink)_140%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--paper-soft)_0%,var(--paper-deep)_60%,var(--ink)_140%)]" />
           {/* engraved hatch lines */}
           <svg
             aria-hidden
@@ -182,8 +211,8 @@ function PortraitCard() {
 
           {/* Edition mark */}
           <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between font-mono text-[9px] uppercase tracking-[0.28em] text-ink/65">
-            <span>Plate I</span>
-            <span>Hand-set in Budapest</span>
+            <span>{labels.plate}</span>
+            <span>{labels.handSet}</span>
           </div>
         </div>
       </div>
@@ -195,7 +224,7 @@ function PortraitCard() {
   );
 }
 
-function CapabilitiesList() {
+function CapabilitiesList({ labels }: { labels: { setIn: string } }) {
   const t = useTranslations("Hero");
   const items = [
     { label: t("capabilities.ai") },
@@ -204,9 +233,9 @@ function CapabilitiesList() {
   ];
   return (
     <div className="border-y border-ink py-3">
-      <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-        Set in this volume
-      </p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
+          {labels.setIn}
+        </p>
       <ul className="mt-2 divide-y divide-ink/15">
         {items.map((it, i) => (
           <li

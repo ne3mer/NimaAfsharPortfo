@@ -62,19 +62,19 @@ export function Navbar() {
 
       {/* Masthead */}
       <div className="border-b border-ink bg-paper">
-        <div className="container mx-auto flex items-center justify-between gap-6 px-4 py-3 md:py-4">
+        <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3 md:gap-4 md:py-4">
           {/* Wordmark */}
           <Link href="/" className="group flex items-baseline gap-3">
-            <span className="font-display text-3xl md:text-[34px] leading-none tracking-tight text-ink">
+            <span className="font-display text-[2rem] sm:text-[2.2rem] md:text-[34px] leading-none tracking-tight text-ink">
               Nima<span className="italic text-sienna">.</span>Afsharfar
             </span>
-            <span className="hidden md:inline-flex font-mono text-[9px] uppercase tracking-[0.32em] text-ink-faint">
+            <span className="hidden lg:inline-flex font-mono text-[9px] uppercase tracking-[0.32em] text-ink-faint">
               Atelier · est. 2017
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8 font-mono text-[12px] uppercase tracking-[0.22em]">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 font-mono text-[11px] xl:text-[12px] uppercase tracking-[0.22em]">
             {navLinks.map((link, i) => {
               const active = pathname === link.href;
               return (
@@ -93,14 +93,14 @@ export function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-2 md:gap-3">
+          <div className="flex items-center gap-2 md:gap-2.5">
             <NavbarHiringLinks className="hidden lg:flex" />
             <LanguageSwitcher />
             <Link
               href="/contact"
               className={cn(
                 buttonVariants({ variant: "ink", size: "sm" }),
-                "hidden md:inline-flex"
+                "hidden lg:inline-flex"
               )}
             >
               {t("ctaContact")}
@@ -108,7 +108,7 @@ export function Navbar() {
             </Link>
 
             <button
-              className="md:hidden inline-flex h-10 w-10 items-center justify-center border border-ink text-ink"
+              className="lg:hidden inline-flex h-10 w-10 items-center justify-center border border-ink text-ink"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="menu"
             >
@@ -126,7 +126,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden border-b border-ink bg-paper"
+            className="lg:hidden border-b border-ink bg-paper"
           >
             <div className="container mx-auto flex flex-col gap-1 px-4 py-4">
               {navLinks.map((link, i) => (

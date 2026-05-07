@@ -22,11 +22,17 @@ export default async function WorkPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const isFa = locale === "fa";
   const t = await getTranslations({ locale, namespace: "Work" });
   const jsonRows = loadUpworkProjects();
-  const dbRows = await prisma.work.findMany({
-    where: { slug: { in: jsonRows.map((r) => r.slug) } },
-  });
+  let dbRows: Awaited<ReturnType<typeof prisma.work.findMany>> = [];
+  try {
+    dbRows = await prisma.work.findMany({
+      where: { slug: { in: jsonRows.map((r) => r.slug) } },
+    });
+  } catch (error) {
+    console.error("Work page fallback to JSON data:", error);
+  }
   const works = mergeWorksWithJson(dbRows, jsonRows);
   const en = locale === "en";
   const pickFirst = (...vals: (string | undefined | null)[]) =>
@@ -48,27 +54,61 @@ export default async function WorkPage({
     };
   });
 
+  const labels = isFa
+    ? {
+        masthead: "کارنامه استودیو",
+        issue: "نمونه‌کارها · جلد ۱ · صفحه ۰۲",
+        entries: "ورودی",
+        kicker: "§02 — کاتالوگ",
+        intro:
+          "هر کارت یک فرمت ثابت دارد: چه ساخته شد، نقش من چه بود، و چه چیزی تغییر کرد.",
+        note: "دموی زنده یا خروجی تعاملی هرجا ممکن باشد اضافه شده است.",
+        coverStory: "کیس اصلی",
+        method: "— روش خواندن —",
+        methodDesc:
+          "Problem → Solution → Result در سه خط کوتاه تا مدیر جذب سریع تصمیم بگیرد.",
+        metricFormat: "فرمت",
+        metricAudience: "کاربرد",
+      }
+    : {
+        masthead: "The Atelier — Catalogue",
+        issue: "Selected Work · Vol. I, p. 02",
+        entries: "entries",
+        kicker: "§02 — Catalogue",
+        intro:
+          "Each entry holds the same shape — what was built, what I did, what shifted.",
+        note: "Live or interactive demos included where possible.",
+        coverStory: "Cover Story",
+        method: "— Method —",
+        methodDesc:
+          "Problem → Solution → Result, set in three lines so reviewers can scan it on a phone.",
+        metricFormat: "format",
+        metricAudience: "audience",
+      };
+
   return (
     <div className="container mx-auto px-4 py-16 md:py-20">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.32em] text-ink-mute">
-        <span>The Atelier — Catalogue</span>
-        <span>Selected Work · Vol. I, p. 02</span>
-        <span className="text-sienna">{cards.length} entries</span>
+        <span>{labels.masthead}</span>
+        <span>{labels.issue}</span>
+        <span className="text-sienna">
+          {cards.length} {labels.entries}
+        </span>
       </div>
 
-      <div className="grid grid-cols-12 gap-6 md:gap-10">
-        <div className="col-span-12 md:col-span-3">
-          <p className="kicker">§02 — Catalogue</p>
+      <div className="grid grid-cols-12 gap-6 lg:gap-10">
+        <div className="col-span-12 lg:col-span-3">
+          <p className="kicker">{labels.kicker}</p>
           <p className="mt-3 font-display italic text-[15px] leading-snug text-ink-mute">
-            Each entry holds the same shape — what was built, what I did, what shifted.
+            {labels.intro}
           </p>
           <div className="rule mt-6" />
           <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-            Live or interactive demos included where possible.
+            {labels.note}
           </p>
         </div>
 
-        <div className="col-span-12 md:col-span-9">
+        <div className="col-span-12 lg:col-span-9">
           <h1 className="font-display text-[clamp(2.4rem,6.5vw,5rem)] leading-[0.95] tracking-tight text-ink">
             {t("title")}<span className="italic text-sienna">.</span>
           </h1>
@@ -79,11 +119,11 @@ export default async function WorkPage({
       </div>
 
       {/* Featured project */}
-      <div className="mt-14 grid gap-px bg-ink md:grid-cols-12">
-        <div className="bg-card p-7 md:col-span-7 md:p-10">
+      <div className="mt-14 grid gap-px bg-ink lg:grid-cols-12">
+        <div className="bg-card p-7 lg:col-span-7 md:p-10">
           <div className="flex items-center justify-between border-b border-ink/30 pb-3">
             <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-sienna">
-              Cover Story
+              {labels.coverStory}
             </span>
             <span className="stamp">{t("featuredBadge")}</span>
           </div>
@@ -120,16 +160,16 @@ export default async function WorkPage({
             <span className="ms-2 rtl:rotate-180">→</span>
           </Link>
         </div>
-        <aside className="bg-paper-soft p-7 md:col-span-5 md:p-10">
-          <p className="kicker">— Method —</p>
+        <aside className="bg-paper-soft p-7 lg:col-span-5 md:p-10">
+          <p className="kicker">{labels.method}</p>
           <p className="mt-3 font-display text-[18px] italic leading-snug text-ink-mute">
-            Problem → Solution → Result, set in three lines so reviewers can scan it on a phone.
+            {labels.methodDesc}
           </p>
           <div className="mt-6 grid grid-cols-3 divide-x divide-ink/20 border-y border-ink py-3 text-center">
             {[
               { k: "r ≈", v: "0.81" },
-              { k: "format", v: "PDF · XLS" },
-              { k: "audience", v: "ESG ops" },
+              { k: labels.metricFormat, v: "PDF · XLS" },
+              { k: labels.metricAudience, v: "ESG ops" },
             ].map((it) => (
               <div key={it.k} className="px-2">
                 <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-ink-faint">
