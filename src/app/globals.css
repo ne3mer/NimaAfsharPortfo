@@ -274,6 +274,57 @@ html[dir="rtl"] .link-underline::after { transform-origin: right; }
   background-size: 100% 32px;
 }
 
+/* Torn paper separators for section transitions. */
+.torn-top,
+.torn-bottom {
+  position: relative;
+}
+.torn-top::before,
+.torn-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 24' preserveAspectRatio='none'><path d='M0 12 C 15 4, 28 20, 44 12 C 58 6, 72 19, 88 12 C 102 5, 119 21, 136 12 C 149 4, 167 20, 184 12 C 198 6, 216 20, 240 12 L240 24 L0 24 Z' fill='%23ECE4D2'/></svg>");
+  background-size: 100% 100%;
+}
+.torn-top::before {
+  top: -12px;
+}
+.torn-bottom::after {
+  bottom: -12px;
+  transform: scaleY(-1);
+}
+
+/* Halftone dot patch for accents. */
+.halftone {
+  background-image: radial-gradient(circle, rgba(20, 18, 16, 0.18) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Decorative corner pin marker. */
+.corner-pin {
+  position: relative;
+}
+.corner-pin::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--sienna);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--paper) 75%, transparent);
+}
+html[dir="rtl"] .corner-pin::before {
+  right: auto;
+  left: 10px;
+}
+
 /* Custom scrollbar (paper-y). */
 @media (pointer: fine) {
   * { scrollbar-color: var(--ink-mute) var(--paper-soft); scrollbar-width: thin; }

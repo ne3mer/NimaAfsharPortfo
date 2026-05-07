@@ -3,7 +3,7 @@
 import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const TIER_KEYS = ["small", "business", "saas", "retainer"] as const;
 
@@ -13,6 +13,8 @@ const TIER_KEYS = ["small", "business", "saas", "retainer"] as const;
  */
 export function Services() {
   const t = useTranslations("Services");
+  const locale = useLocale();
+  const isFa = locale === "fa";
 
   const tiers = TIER_KEYS.map((key, i) => ({
     key,
@@ -33,11 +35,12 @@ export function Services() {
   }));
 
   return (
-    <section id="services" className="relative bg-paper-soft/40">
+    <section id="services" className="relative bg-paper-soft/40 torn-top">
+      <div className="pointer-events-none absolute inset-0 halftone opacity-[0.07]" />
       <div className="container mx-auto px-4 py-20 md:py-28">
         <div className="grid items-end gap-6 border-b border-ink pb-6 md:grid-cols-12">
           <div className="md:col-span-7">
-            <p className="kicker">§06 — Where I go deepest</p>
+            <p className="kicker">{isFa ? "§06 — عمق همکاری" : "§06 — Where I go deepest"}</p>
             <h2
               className="mt-3 font-display text-4xl leading-[0.95] tracking-tight text-ink md:text-[56px]"
               dangerouslySetInnerHTML={{ __html: t.raw("title") }}
@@ -53,8 +56,8 @@ export function Services() {
             <article
               key={tier.key}
               className={cn(
-                "relative flex flex-col bg-paper p-7 md:p-10",
-                tier.featured && "bg-card"
+                "relative flex flex-col bg-paper p-7 transition-transform duration-300 hover:-translate-y-0.5 md:p-10",
+                tier.featured && "bg-card shadow-[0_18px_38px_-26px_rgba(20,18,16,0.65)]"
               )}
             >
               {tier.featured && tier.badge && (
@@ -102,7 +105,7 @@ export function Services() {
                   <span className="ms-2 rtl:rotate-180">→</span>
                 </Link>
                 <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">
-                  scope · async-first
+                  {isFa ? "اسکوپ · همکاری async" : "scope · async-first"}
                 </span>
               </div>
             </article>

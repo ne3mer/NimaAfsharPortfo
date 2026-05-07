@@ -119,7 +119,7 @@ export default async function WorkPage({
       </div>
 
       {/* Featured project */}
-      <div className="mt-14 grid gap-px bg-ink lg:grid-cols-12">
+      <div className="torn-top mt-14 grid gap-px bg-ink lg:grid-cols-12">
         <div className="bg-card p-7 lg:col-span-7 md:p-10">
           <div className="flex items-center justify-between border-b border-ink/30 pb-3">
             <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-sienna">
@@ -160,7 +160,7 @@ export default async function WorkPage({
             <span className="ms-2 rtl:rotate-180">→</span>
           </Link>
         </div>
-        <aside className="bg-paper-soft p-7 lg:col-span-5 md:p-10">
+        <aside className="corner-pin bg-paper-soft p-7 lg:col-span-5 md:p-10">
           <p className="kicker">{labels.method}</p>
           <p className="mt-3 font-display text-[18px] italic leading-snug text-ink-mute">
             {labels.methodDesc}
