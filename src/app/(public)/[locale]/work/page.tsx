@@ -1,205 +1,217 @@
-import { prisma } from "@/lib/prisma";
-import {
-  loadUpworkProjects,
-  mergeWorksWithJson,
-} from "@/lib/upwork-projects-json";
-import { resolveWorkCopyForLocale } from "@/lib/work-locale";
-import { PortfolioCard, WorkCardData } from "@/components/work/PortfolioCard";
-import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+import Image from "next/image";
+
 import { Link } from "@/i18n/routing";
-import { buttonVariants } from "@/components/ui/Button";
+import { PortfolioCard } from "@/components/work/PortfolioCard";
+import {
+  ARCHIVE_PROJECT_SLUGS,
+  PORTFOLIO_PROJECTS,
+  type PortfolioProject,
+} from "@/data/portfolio-projects";
+import { loadUpworkProjects } from "@/lib/upwork-projects-json";
 
-function mapTags(tags: string) {
-  return tags
-    .split(",")
-    .map((tag) => tag.trim())
-    .filter(Boolean);
-}
+const SITE_URL = "https://www.nimastudio.site";
 
-export default async function WorkPage({
+export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { locale } = await params;
-  const isFa = locale === "fa";
-  const t = await getTranslations({ locale, namespace: "Work" });
-  const jsonRows = loadUpworkProjects();
-  let dbRows: Awaited<ReturnType<typeof prisma.work.findMany>> = [];
-  try {
-    dbRows = await prisma.work.findMany({
-      where: { slug: { in: jsonRows.map((r) => r.slug) } },
-    });
-  } catch (error) {
-    console.error("Work page fallback to JSON data:", error);
-  }
-  const works = mergeWorksWithJson(dbRows, jsonRows);
-  const en = locale === "en";
-  const pickFirst = (...vals: (string | undefined | null)[]) =>
-    vals.find((v) => typeof v === "string" && v.trim().length > 0)?.trim();
-  const cards: WorkCardData[] = works.map((work) => {
-    const copy = resolveWorkCopyForLocale(work, locale);
-    const json = jsonRows.find((r) => r.slug === work.slug);
-    const outcome = en
-      ? pickFirst(json?.outcomeEn, json?.outcome)
-      : pickFirst(json?.outcome, json?.outcomeEn);
-    return {
-      id: work.id,
-      slug: work.slug,
-      title: copy.title,
-      description: copy.description,
-      tags: mapTags(copy.tags),
-      image: work.image,
-      outcome,
-    };
-  });
+  const path = `/${locale}/work`;
+  const title = "Selected Work — Products, Engineering & Strategy | NIMA Studio";
+  const description =
+    "Seven selected products and systems spanning supplier intelligence, SaaS, data engineering and automation.";
 
-  const labels = isFa
-    ? {
-        masthead: "آتلیه · آرشیو کار",
-        issue: "نمونه‌کارها · جلد ۱ · صفحه ۰۲",
-        entries: "پروژه",
-        kicker: "§02 — پروژه‌های منتخب",
-        intro: "هر پروژه با سه سؤال ثابت معرفی می‌شود: چه ساختیم؟ نقش من چه بود؟ نتیجه چه شد؟",
-        note: "هرجا ممکن باشد، دموی زنده یا نسخه تعاملی هم اضافه شده است.",
-        coverStory: "کیس شاخص",
-        method: "— روش خواندن —",
-        methodDesc: "این صفحه برای اسکن سریع مدیر جذب چیده شده: Problem → Solution → Result.",
-        metricFormat: "خروجی",
-        metricAudience: "مخاطب",
-        ledger: "فهرست پروژه‌ها",
-      }
-    : {
-        masthead: "Atelier · Work Archive",
-        issue: "Selected Work · Vol. I, p. 02",
-        entries: "projects",
-        kicker: "§02 — Selected Work",
-        intro: "Each project follows the same framing: what was built, what I owned, what changed.",
-        note: "Live previews or interactive output are included whenever possible.",
-        coverStory: "Cover Story",
-        method: "— Method —",
-        methodDesc: "This page is composed for quick hiring scans: Problem → Solution → Result.",
-        metricFormat: "output",
-        metricAudience: "audience",
-        ledger: "Project ledger",
-      };
+  return {
+    title,
+    description,
+    alternates: { canonical: `${SITE_URL}${path}` },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `${SITE_URL}${path}`,
+      siteName: "NIMA Studio",
+    },
+  };
+}
+
+export default async function WorkPage({
+  params: _params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  await _params;
+  const historical = loadUpworkProjects();
+  const archive = ARCHIVE_PROJECT_SLUGS.map((slug) =>
+    historical.find((project) => project.slug === slug)
+  ).filter((project) => project !== undefined);
+  const cover = PORTFOLIO_PROJECTS[0];
+  const groups = [
+    {
+      label: "Featured",
+      note: "Product strategy and full-stack systems",
+      projects: PORTFOLIO_PROJECTS.filter((project) => project.section === "Featured"),
+      variant: "wide" as const,
+    },
+    {
+      label: "Selected Systems",
+      note: "SaaS product thinking and studio infrastructure",
+      projects: PORTFOLIO_PROJECTS.filter((project) => project.section === "Selected Systems"),
+      variant: "standard" as const,
+    },
+    {
+      label: "Automation & Data",
+      note: "Python pipelines and operational tooling",
+      projects: PORTFOLIO_PROJECTS.filter((project) => project.section === "Automation & Data"),
+      variant: "standard" as const,
+    },
+  ];
 
   return (
-    <div className="container mx-auto px-4 py-16 md:py-20">
+    <div className="container mx-auto px-4 py-14 md:py-20">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-mute">
-        <span>{labels.masthead}</span>
-        <span>{labels.issue}</span>
-        <span className="text-sienna">
-          {cards.length} {labels.entries}
-        </span>
+        <span>Atelier · Work Archive</span>
+        <span>Selected Work · Vol. II, p. 02</span>
+        <span className="text-sienna">{PORTFOLIO_PROJECTS.length} projects</span>
       </div>
 
       <div className="grid grid-cols-12 gap-6 lg:gap-10">
         <aside className="col-span-12 lg:col-span-4">
-          <p className="kicker">{labels.kicker}</p>
+          <p className="kicker">§02 — Selected Work</p>
           <p className="mt-3 max-w-[34ch] font-display text-[18px] leading-snug text-ink">
-            {labels.intro}
+            Each project follows the same framing: what I built, what I owned, what changed.
           </p>
           <p className="mt-4 max-w-[40ch] text-[14px] leading-relaxed text-ink-mute">
-            {labels.note}
+            A curated record of products and systems—not a catalogue of every technology used.
           </p>
         </aside>
 
         <div className="col-span-12 lg:col-span-8 lg:pt-2">
           <h1 className="font-display text-[clamp(2.4rem,6.5vw,5rem)] leading-[0.95] tracking-tight text-ink">
-            {t("title")}<span className="italic text-sienna">.</span>
+            Products, systems and digital experiences
+            <span className="italic text-sienna">.</span>
           </h1>
           <p className="mt-6 max-w-[60ch] font-display italic text-[18px] leading-snug text-ink-mute md:text-[20px]">
-            {t("subtitle")}
+            Designed across product strategy, full-stack engineering, data and automation.
           </p>
         </div>
       </div>
 
-      {/* Featured project */}
-      <div className="mt-12 grid gap-px bg-ink lg:grid-cols-12">
-        <section className="bg-card p-7 lg:col-span-8 md:p-10">
-          <div className="flex items-center justify-between border-b border-ink/30 pb-3">
-            <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-sienna">
-              {labels.coverStory}
-            </span>
-            <span className="stamp">{t("featuredBadge")}</span>
-          </div>
-          <h2 className="mt-5 font-display text-[32px] leading-tight text-ink md:text-[44px]">
-            {t("featuredTitle")}
-          </h2>
-          <ul className="mt-6 space-y-3 text-[15.5px] leading-relaxed text-ink/85">
-            <li className="flex gap-3">
-              <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-sienna pt-2">
-                P
-              </span>
-              <span>{t("featuredProblem")}</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-sienna pt-2">
-                S
-              </span>
-              <span>{t("featuredSolution")}</span>
-            </li>
-            <li className="flex gap-3 border-t border-ink/15 pt-3">
-              <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-olive pt-2">
-                R
-              </span>
-              <span className="font-display italic text-ink">
-                {t("featuredResult")}
-              </span>
-            </li>
-          </ul>
-          <Link
-            href="/work/optisupply-dashboard"
-            className={`${buttonVariants({ variant: "ink", size: "lg" })} mt-7`}
-          >
-            {t("featuredCta")}
-            <span className="ms-2 rtl:rotate-180">→</span>
-          </Link>
-        </section>
-        <aside className="bg-paper-soft p-7 lg:col-span-4 md:p-10">
-          <p className="kicker">{labels.method}</p>
-          <p className="mt-3 font-display text-[18px] italic leading-snug text-ink-mute">
-            {labels.methodDesc}
+      <section className="mt-12" aria-labelledby="cover-story-heading">
+        <div className="mb-4 flex items-end justify-between border-b border-ink pb-2">
+          <h2 id="cover-story-heading" className="kicker">Cover Story</h2>
+          <span className="stamp">Decision Board</span>
+        </div>
+        <PortfolioCard project={cover} variant="cover" />
+      </section>
+
+      <aside className="mt-6 grid gap-px bg-ink md:grid-cols-12" aria-label="Letter from the editor">
+        <div className="bg-paper-soft p-6 md:col-span-4 md:p-8">
+          <p className="kicker">— Letter from the Editor —</p>
+        </div>
+        <div className="bg-card p-6 md:col-span-8 md:p-8">
+          <p className="max-w-[62ch] font-display text-[20px] italic leading-snug text-ink md:text-[24px]">
+            The archive is arranged by the decisions each project had to make: how to explain risk,
+            operate a system, validate a product idea, or turn unstructured material into usable data.
           </p>
-          <div className="mt-6 grid grid-cols-3 divide-x divide-ink/20 border-y border-ink py-3 text-center">
-            {[
-              { k: "r ≈", v: "0.81" },
-              { k: labels.metricFormat, v: "PDF · XLS" },
-              { k: labels.metricAudience, v: "ESG ops" },
-            ].map((it) => (
-              <div key={it.k} className="px-2">
-                <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-ink-faint">
-                  {it.k}
-                </p>
-                <p className="mt-1 font-display text-[18px] leading-tight text-ink">
-                  {it.v}
-                </p>
-              </div>
+        </div>
+      </aside>
+
+      <div className="mt-16 space-y-16">
+        {groups.map((group, groupIndex) => (
+          <ProjectGroup
+            key={group.label}
+            label={group.label}
+            note={group.note}
+            projects={group.projects}
+            variant={group.variant}
+            index={groupIndex + 1}
+          />
+        ))}
+      </div>
+
+      <section className="mt-20 border-t border-ink pt-5" aria-labelledby="archive-heading">
+        <div className="grid gap-6 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <p className="kicker">Archive Notes</p>
+            <h2 id="archive-heading" className="mt-3 font-display text-3xl text-ink md:text-4xl">
+              Earlier plates<span className="italic text-sienna">.</span>
+            </h2>
+            <p className="mt-3 max-w-[34ch] text-sm leading-relaxed text-ink-mute">
+              Previous work remains available as part of the studio record, without competing with
+              the current selected archive.
+            </p>
+          </div>
+          <div className="grid gap-px bg-ink sm:grid-cols-3 lg:col-span-8">
+            {archive.map((project, index) => (
+              <Link
+                key={project.slug}
+                href={`/work/${project.slug}`}
+                className="group flex min-h-48 flex-col bg-paper p-5 transition-colors hover:bg-paper-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sienna"
+              >
+                <div className="flex items-center justify-between border-b border-ink/20 pb-2">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-faint">
+                    Archive {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span aria-hidden="true" className="text-ink-mute group-hover:text-sienna">↗</span>
+                </div>
+                {project.image ? (
+                  <div className="relative mt-4 aspect-[16/9] overflow-hidden border border-ink/20">
+                    <Image
+                      src={project.image}
+                      alt=""
+                      fill
+                      sizes="(max-width: 640px) 100vw, 220px"
+                      className="object-cover saturate-[0.6]"
+                    />
+                  </div>
+                ) : null}
+                <h3 className="mt-auto pt-5 font-display text-xl leading-tight text-ink group-hover:text-sienna">
+                  {project.titleEn ?? project.title}
+                </h3>
+              </Link>
             ))}
           </div>
-        </aside>
-      </div>
-
-      {cards.length === 0 ? (
-        <div className="mt-16 border border-ink bg-card p-10 text-center text-ink-mute">
-          {t("empty")}
         </div>
-      ) : (
-        <section className="mt-14">
-          <div className="mb-4 flex items-center justify-between border-b border-ink pb-2">
-            <p className="kicker">{labels.ledger}</p>
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">
-              {cards.length} {labels.entries}
-            </span>
-          </div>
-          <div className="grid grid-cols-1 gap-px bg-ink md:grid-cols-2 xl:grid-cols-3">
-          {cards.map((project, i) => (
-            <PortfolioCard key={project.id} project={project} index={i} />
-          ))}
-        </div>
-        </section>
-      )}
+      </section>
     </div>
+  );
+}
+
+function ProjectGroup({
+  label,
+  note,
+  projects,
+  variant,
+  index,
+}: {
+  label: string;
+  note: string;
+  projects: PortfolioProject[];
+  variant: "wide" | "standard";
+  index: number;
+}) {
+  return (
+    <section aria-labelledby={`group-${index}`}>
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-2 border-b border-ink pb-2">
+        <h2 id={`group-${index}`} className="kicker">
+          §0{index + 2} — {label}
+        </h2>
+        <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">{note}</p>
+      </div>
+      <div
+        className={
+          variant === "wide"
+            ? "space-y-5"
+            : "grid gap-px bg-ink md:grid-cols-2"
+        }
+      >
+        {projects.map((project) => (
+          <PortfolioCard key={project.slug} project={project} variant={variant} />
+        ))}
+      </div>
+    </section>
   );
 }

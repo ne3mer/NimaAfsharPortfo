@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Work } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { buttonVariants } from "@/components/ui/Button";
@@ -30,6 +31,13 @@ import {
   workFromJsonRow,
 } from "@/lib/upwork-projects-json";
 import { resolveWorkCopyForLocale } from "@/lib/work-locale";
+import { CuratedCaseStudy } from "@/components/work/CuratedCaseStudy";
+import {
+  getPortfolioProject,
+  LEGACY_PROJECT_ALIASES,
+} from "@/data/portfolio-projects";
+
+const SITE_URL = "https://www.nimastudio.site";
 
 /** Live URLs for portfolio case studies — iframe preview scrolls like a real browser. */
 const LIVE_SITE_URL_BY_SLUG: Record<string, string> = {
@@ -44,6 +52,48 @@ function splitTags(tags: string | null | undefined) {
     .split(",")
     .map((tag) => tag.trim())
     .filter(Boolean);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const canonicalSlug = LEGACY_PROJECT_ALIASES[slug] ?? slug;
+  const curated = getPortfolioProject(canonicalSlug);
+  const legacy = curated ? undefined : loadUpworkProjects().find((project) => project.slug === slug);
+
+  if (!curated && !legacy) return {};
+
+  const title = curated?.title ?? legacy?.titleEn ?? legacy?.title ?? "Project";
+  const description =
+    curated?.summary ?? legacy?.descriptionEn ?? legacy?.description ?? "NIMA Studio project case study.";
+  const image = curated?.image?.src ?? legacy?.image ?? undefined;
+  const url = `${SITE_URL}/${locale}/work/${canonicalSlug}`;
+
+  return {
+    title: `${title} | NIMA Studio`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url,
+      siteName: "NIMA Studio",
+      ...(image
+        ? {
+            images: [
+              {
+                url: image.startsWith("http") ? image : `${SITE_URL}${image}`,
+                alt: curated?.image?.alt ?? title,
+              },
+            ],
+          }
+        : {}),
+    },
+  };
 }
 
 // export async function generateStaticParams() {
@@ -62,6 +112,16 @@ export default async function ProjectPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { slug, locale } = await params;
+  const alias = LEGACY_PROJECT_ALIASES[slug];
+  if (alias) {
+    permanentRedirect(`/${locale}/work/${alias}`);
+  }
+
+  const curatedProject = getPortfolioProject(slug);
+  if (curatedProject) {
+    return <CuratedCaseStudy project={curatedProject} />;
+  }
+
   const t = await getTranslations("Project");
   const isFa = locale === "fa";
   const labels = isFa
@@ -70,18 +130,12 @@ export default async function ProjectPage({
         caseStudy: "— مطالعه موردی —",
         postscript: "— نکته پایانی —",
         fallbackServices: "توسعه فول‌استک، UI/UX",
-        pressError: "— خطای سیستم —",
-        errorTitle: "بارگذاری پروژه ناموفق بود",
-        errorHint: "برای جزئیات بیشتر لاگ Vercel را بررسی کنید.",
       }
     : {
         projectPlate: "Project Plate · Vol. I",
         caseStudy: "— Case study —",
         postscript: "— Postscript —",
         fallbackServices: "Full Stack Dev, UI/UX",
-        pressError: "— Press error —",
-        errorTitle: "Something went wrong",
-        errorHint: "Check Vercel logs for more details.",
       };
 
   let project: Work | null = null;
@@ -90,17 +144,7 @@ export default async function ProjectPage({
       where: { slug },
     });
   } catch (error) {
-    console.error("Error loading project:", error);
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-paper text-ink p-4">
-        <p className="kicker">{labels.pressError}</p>
-        <h1 className="mt-3 font-display text-3xl text-ink">{labels.errorTitle}</h1>
-        <pre className="mt-4 max-w-2xl overflow-auto border border-ink bg-paper-soft p-4 font-mono text-[12px] text-stamp">
-          {error instanceof Error ? error.message : String(error)}
-        </pre>
-        <p className="mt-4 text-ink-mute">{labels.errorHint}</p>
-      </div>
-    );
+    console.warn("Project database unavailable; using JSON archive fallback.", error);
   }
 
   if (!project) {
@@ -264,8 +308,8 @@ export default async function ProjectPage({
               did={pickImpact(jsonRow?.problem, jsonRow?.problemEn)}
               built={pickImpact(jsonRow?.built, jsonRow?.builtEn)}
               result={pickImpact(
-                [jsonRow?.outcome, jsonRow?.outcomeExtra].filter(Boolean).join(" "),
-                [jsonRow?.outcomeEn, jsonRow?.outcomeExtraEn].filter(Boolean).join(" ")
+                jsonRow?.outcome,
+                jsonRow?.outcomeEn
               )}
             />
             {repoUrl ? <RepoSourceCard repoUrl={repoUrl} /> : null}
