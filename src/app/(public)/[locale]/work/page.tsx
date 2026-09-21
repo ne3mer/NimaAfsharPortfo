@@ -107,18 +107,6 @@ export default async function WorkPage({
         <PortfolioCard project={cover} variant="cover" />
       </section>
 
-      <aside className="mt-6 grid gap-px bg-ink md:grid-cols-12" aria-label="Letter from the editor">
-        <div className="bg-paper-soft p-6 md:col-span-4 md:p-8">
-          <p className="kicker">— Letter from the Editor —</p>
-        </div>
-        <div className="bg-card p-6 md:col-span-8 md:p-8">
-          <p className="max-w-[62ch] font-display text-[20px] italic leading-snug text-ink md:text-[24px]">
-            The archive is arranged by the decisions each project had to make: how to explain risk,
-            operate a system, validate a product idea, or turn unstructured material into usable data.
-          </p>
-        </div>
-      </aside>
-
       <div className="mt-16 space-y-16">
         {groups.map((group, groupIndex) => (
           <ProjectGroup
@@ -131,6 +119,18 @@ export default async function WorkPage({
           />
         ))}
       </div>
+
+      <aside className="mt-16 grid gap-px bg-ink md:grid-cols-12" aria-label="Letter from the editor">
+        <div className="bg-paper-soft p-5 md:col-span-4 md:p-6">
+          <p className="kicker">— Letter from the Editor —</p>
+        </div>
+        <div className="bg-card p-5 md:col-span-8 md:p-6">
+          <p className="max-w-[62ch] font-display text-[19px] italic leading-snug text-ink md:text-[22px]">
+            The archive follows the decisions behind each product—how to explain risk, operate a
+            system, or turn unstructured material into useful data.
+          </p>
+        </div>
+      </aside>
 
       <section className="mt-20 border-t border-ink pt-5" aria-labelledby="archive-heading">
         <div className="grid gap-6 lg:grid-cols-12">
@@ -152,7 +152,7 @@ export default async function WorkPage({
                 className="group flex min-h-48 flex-col bg-paper p-5 transition-colors hover:bg-paper-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sienna"
               >
                 <div className="flex items-center justify-between border-b border-ink/20 pb-2">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-faint">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
                     Archive {String(index + 1).padStart(2, "0")}
                   </span>
                   <span aria-hidden="true" className="text-ink-mute group-hover:text-sienna">↗</span>
@@ -199,7 +199,7 @@ function ProjectGroup({
         <h2 id={`group-${index}`} className="kicker">
           §0{index + 2} — {label}
         </h2>
-        <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">{note}</p>
+        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">{note}</p>
       </div>
       <div
         className={

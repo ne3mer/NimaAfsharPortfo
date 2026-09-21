@@ -1,6 +1,9 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
+
+const PROJECTS = ["optisupply", "optisupply-due-diligence", "dataflow-control"] as const;
 
 /**
  * Selected impact — laid out like a magazine contents page.
@@ -45,22 +48,27 @@ export function SelectedResults() {
             </p>
           </div>
 
-          {/* The four entries */}
+          {/* Three project-backed entries */}
           <ol className="md:col-span-8 divide-y divide-ink/20 border-y border-ink bg-paper/40">
-            {([0, 1, 2, 3] as const).map((i) => (
+            {([0, 1, 2] as const).map((i) => (
               <li
                 key={i}
-                className="corner-pin group grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 px-3 py-7 transition-colors hover:bg-paper/60 md:grid-cols-[5rem_1fr_auto] md:gap-x-10 md:px-5 md:py-9"
+                className="corner-pin group px-3 py-7 transition-colors hover:bg-paper/60 md:px-5 md:py-9"
               >
-                <span className="font-display text-5xl italic leading-none text-sienna md:text-[64px]">
-                  0{i + 1}
-                </span>
-                <p className="font-display text-[19px] leading-snug text-ink md:text-[22px]">
-                  {t(`items.${i}`)}
-                </p>
-                <span className="hidden md:inline-flex translate-y-1 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint group-hover:text-sienna transition-colors">
-                  {labels.proof}
-                </span>
+                <Link
+                  href={`/work/${PROJECTS[i]}`}
+                  className="grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 md:grid-cols-[5rem_1fr_auto] md:gap-x-10"
+                >
+                  <span className="font-display text-5xl italic leading-none text-sienna md:text-[64px]">
+                    0{i + 1}
+                  </span>
+                  <p className="font-display text-[19px] leading-snug text-ink md:text-[22px]">
+                    {t(`items.${i}`)}
+                  </p>
+                  <span className="hidden translate-y-1 font-mono text-[10px] uppercase tracking-[0.24em] text-ink-faint transition-colors group-hover:text-sienna md:inline-flex">
+                    {labels.proof}
+                  </span>
+                </Link>
               </li>
             ))}
           </ol>

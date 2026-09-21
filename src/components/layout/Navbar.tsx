@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import { NavbarHiringLinks } from "@/components/layout/NavbarHiringLinks";
 
@@ -31,12 +31,8 @@ export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("Navbar");
-  const [today, setToday] = useState<string>("");
-
-  useEffect(() => {
-    const lang = document.documentElement.lang || "en";
-    setToday(formatEditionDate(lang));
-  }, []);
+  const locale = useLocale();
+  const today = formatEditionDate(locale);
 
   const navLinks = [
     { name: t("work"), href: "/work" },
@@ -53,7 +49,7 @@ export function Navbar() {
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-sienna animate-ink-blink" />
             Vol. VIII · No. 26
           </span>
-          <span className="truncate text-center text-ink/70">{today || "—"}</span>
+          <span suppressHydrationWarning className="truncate text-center text-ink/70">{today}</span>
           <span className="hidden md:inline-flex items-center gap-2">
             Budapest · 47°N · EU-remote
           </span>

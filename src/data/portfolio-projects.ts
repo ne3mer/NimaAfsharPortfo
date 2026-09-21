@@ -3,6 +3,22 @@ export type PortfolioProjectLink = {
   href: string;
 };
 
+export type PortfolioVisual = {
+  src: string;
+  alt: string;
+  label: string;
+  caption: string;
+  aspect?: "landscape" | "wide" | "portrait";
+  fit?: "cover" | "contain";
+  position?: string;
+};
+
+export type PortfolioDiagram = {
+  label: string;
+  nodes: string[];
+  note?: string;
+};
+
 export type PortfolioProject = {
   number: string;
   slug: string;
@@ -11,6 +27,9 @@ export type PortfolioProject = {
   section: "Cover Story" | "Featured" | "Selected Systems" | "Automation & Data";
   category: string;
   role: string;
+  year: string;
+  type: string;
+  layout: "narrative" | "split" | "technical" | "meta";
   summary: string;
   problem: string;
   approach: string;
@@ -25,6 +44,9 @@ export type PortfolioProject = {
     alt: string;
     objectPosition?: string;
   };
+  visuals?: PortfolioVisual[];
+  diagram?: PortfolioDiagram;
+  evidenceNote?: string;
   visualLabel: string;
   assetRequest?: string;
 };
@@ -38,6 +60,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     section: "Cover Story",
     category: "ESG / Supplier Intelligence / Decision Support",
     role: "Product Strategist & Full-Stack Developer",
+    year: "2025–26",
+    type: "Research-led SaaS MVP",
+    layout: "narrative",
     summary:
       "An explainable supplier intelligence product for scoring, risk analysis and sustainable supply-chain decisions.",
     problem:
@@ -69,10 +94,41 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       { label: "GitHub", href: "https://github.com/ne3mer/optisupply" },
     ],
     image: {
-      src: "/images/work/optisupply-dashboard/01-dashboard-top.png",
+      src: "/images/work/optisupply/01-dashboard.png",
       alt: "OptiSupply supplier intelligence dashboard showing ESG analysis",
       objectPosition: "top",
     },
+    visuals: [
+      {
+        src: "/images/work/optisupply/01-dashboard.png",
+        alt: "OptiSupply system overview dashboard",
+        label: "System overview",
+        caption: "The decision workspace brings portfolio signals and supplier risk into one operating view.",
+        aspect: "wide",
+      },
+      {
+        src: "/images/work/optisupply/02-suppliers.png",
+        alt: "OptiSupply supplier registry with risk and ESG filters",
+        label: "Supplier registry",
+        caption: "A filterable registry keeps source records, risk levels and ESG coverage visible before assessment.",
+        aspect: "landscape",
+      },
+      {
+        src: "/images/work/optisupply/03-recommendations.png",
+        alt: "OptiSupply recommendation command view",
+        label: "Scoring & recommendations",
+        caption: "Prioritized actions connect supplier context to environmental, social and governance findings.",
+        aspect: "wide",
+      },
+      {
+        src: "/images/work/optisupply/05-supply-chain.png",
+        alt: "OptiSupply supply-chain relationship graph",
+        label: "Supply-chain graph",
+        caption: "The graph view exposes supplier relationships and risk paths beyond a flat scorecard.",
+        aspect: "landscape",
+        fit: "contain",
+      },
+    ],
     visualLabel: "Decision Board · Application",
   },
   {
@@ -83,6 +139,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     section: "Featured",
     category: "B2B Product / Due Diligence / Compliance",
     role: "Product Strategist & Full-Stack Developer",
+    year: "2026",
+    type: "Productized service concept",
+    layout: "split",
     summary:
       "A focused B2B offering that turns supplier research into a structured compliance dossier workflow.",
     problem:
@@ -106,12 +165,61 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "Public sample dossier as the principal proof artifact",
     ],
     outcome:
-      "The work turns a broad compliance capability into a concrete productized service with a clear input, review method and deliverable. Claims about customer adoption or turnaround performance are intentionally excluded.",
+      "The work turns a broad compliance capability into a focused service concept with a clear input, review method and dossier deliverable.",
     stack: ["Product Strategy", "UX/UI", "JavaScript", "GSAP", "Formspree", "Stripe"],
     links: [{ label: "Website", href: "https://www.optisupply.tech/" }],
+    image: {
+      src: "/images/work/optisupply-due-diligence/01-hero.png",
+      alt: "OptiSupply supplier due-diligence website hero and vetting engine",
+      objectPosition: "top",
+    },
+    visuals: [
+      {
+        src: "/images/work/optisupply-due-diligence/01-hero.png",
+        alt: "OptiSupply due-diligence hero with vetting engine",
+        label: "Vetting engine",
+        caption: "The opening proposition frames the service, investigation scope and supplier submission path.",
+        aspect: "wide",
+      },
+      {
+        src: "/images/work/optisupply-due-diligence/02-now-vetting.png",
+        alt: "OptiSupply now-vetting section",
+        label: "Now vetting",
+        caption: "Active case positioning makes the service feel operational rather than abstract.",
+        aspect: "landscape",
+      },
+      {
+        src: "/images/work/optisupply-due-diligence/03-schematic.png",
+        alt: "OptiSupply supply-chain inspection schematic",
+        label: "Supply-chain schematic",
+        caption: "A visual explanation separates ownership, sanctions, ESG and tier-two inspection work.",
+        aspect: "landscape",
+      },
+      {
+        src: "/images/work/optisupply-due-diligence/04-workflow.png",
+        alt: "OptiSupply three-stage supplier vetting workflow",
+        label: "Three-stage workflow",
+        caption: "Submit, investigate and deliver are presented as a legible service sequence.",
+        aspect: "wide",
+      },
+      {
+        src: "/images/work/optisupply-due-diligence/05-inspection.png",
+        alt: "OptiSupply inspection and dossier presentation",
+        label: "Inspection results",
+        caption: "The dossier surface shows how findings are organized for review.",
+        aspect: "landscape",
+      },
+      {
+        src: "/images/work/optisupply-due-diligence/06-submission.png",
+        alt: "OptiSupply supplier submission flow",
+        label: "Submission flow",
+        caption: "The final intake makes the next action concrete without implying verified delivery performance.",
+        aspect: "wide",
+      },
+    ],
+    evidenceNote:
+      "Turnaround and compliance language shown in the website captures is product positioning.",
     visualLabel: "Product Surface · Due Diligence",
-    assetRequest:
-      "Provide a stable, approved capture of the OptiSupply due-diligence homepage or sample dossier if the live website changes.",
   },
   {
     number: "03",
@@ -121,6 +229,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     section: "Featured",
     category: "Data Engineering / Automation / Full-Stack",
     role: "Full-Stack Developer",
+    year: "2025",
+    type: "Operations prototype",
+    layout: "technical",
     summary:
       "A full-stack control plane for scheduling asynchronous jobs and inspecting their execution history and logs.",
     problem:
@@ -144,7 +255,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "SQLModel and Alembic for persisted operational records",
     ],
     outcome:
-      "The prototype establishes the core operating loop for asynchronous data work and makes execution state visible in one place. Dependency orchestration and broader worker types remain product-development work, not claimed outcomes.",
+      "The prototype establishes the core operating loop for asynchronous data work and makes configuration, execution state and logs visible in one place.",
     stack: ["FastAPI", "React", "TypeScript", "PostgreSQL", "Redis", "Celery", "WebSockets"],
     links: [
       {
@@ -152,6 +263,12 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
         href: "https://github.com/ne3mer/DataFlow-Control-Automation-Data-Pipeline-Dashboard",
       },
     ],
+    diagram: {
+      label: "Control-plane architecture",
+      nodes: ["React", "FastAPI", "Celery", "Redis", "PostgreSQL"],
+      note: "Architecture model — not a runtime screenshot.",
+    },
+    evidenceNote: "The architecture is documented; a local runtime plate remains to be captured.",
     visualLabel: "System Plate · Operations",
     assetRequest:
       "Provide real captures of the dashboard, jobs table and live-log view from a local DataFlow run.",
@@ -164,6 +281,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     section: "Selected Systems",
     category: "SaaS / Sales Automation / Product Prototype",
     role: "Full-Stack Developer",
+    year: "2026",
+    type: "SaaS MVP",
+    layout: "split",
     summary:
       "A client-side SaaS validation prototype connecting lead management, pipeline signals and assisted follow-up drafting.",
     problem:
@@ -190,6 +310,41 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "The MVP provides a realistic surface for evaluating the product flow and interface system. The follow-up assistant uses local templates; no external AI model, backend CRM or measured sales result is implied.",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Recharts"],
     links: [{ label: "GitHub", href: "https://github.com/ne3mer/leadpilot-ai" }],
+    image: {
+      src: "/images/work/leadpilot/01-landing.png",
+      alt: "LeadPilot SaaS MVP landing page",
+      objectPosition: "top",
+    },
+    visuals: [
+      {
+        src: "/images/work/leadpilot/01-landing.png",
+        alt: "LeadPilot SaaS MVP landing page",
+        label: "Product proposition",
+        caption: "The landing page introduces the lead-management and assisted follow-up workflow.",
+        aspect: "wide",
+      },
+      {
+        src: "/images/work/leadpilot/03-dashboard.png",
+        alt: "LeadPilot dashboard with pipeline signals",
+        label: "Dashboard",
+        caption: "Pipeline status, lead activity and trends form the MVP operating surface.",
+        aspect: "landscape",
+      },
+      {
+        src: "/images/work/leadpilot/04-lead-pipeline.png",
+        alt: "LeadPilot lead pipeline and lead table",
+        label: "Lead pipeline",
+        caption: "The lead table supports the prototype's add, qualify and status-update loop.",
+        aspect: "wide",
+      },
+      {
+        src: "/images/work/leadpilot/05-follow-up-analytics.png",
+        alt: "LeadPilot deterministic follow-up composer and analytics",
+        label: "Follow-up & analytics",
+        caption: "Template-driven drafting is presented as an AI-assisted workflow, not model infrastructure.",
+        aspect: "landscape",
+      },
+    ],
     visualLabel: "Product Plate · SaaS MVP",
     assetRequest:
       "Provide real captures of the LeadPilot dashboard, lead table and follow-up composer from a local run.",
@@ -202,6 +357,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     section: "Selected Systems",
     category: "Personal Brand / Product Design / Full-Stack",
     role: "Founder & Full-Stack Developer",
+    year: "2026",
+    type: "Editorial product platform",
+    layout: "meta",
     summary:
       "A personal studio platform that treats technical work as product evidence rather than a list of technologies.",
     problem:
@@ -228,9 +386,49 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "The platform creates one coherent place to evaluate how I frame, design and implement products. Its value is the clarity of the evidence and navigation—not a claim about traffic, conversion or audience size.",
     stack: ["Next.js", "TypeScript", "React", "Tailwind CSS", "next-intl", "Prisma"],
     links: [{ label: "Website", href: "https://www.nimastudio.site/en" }],
+    image: {
+      src: "/images/work/nima-studio/01-home-hero.png",
+      alt: "NIMA Studio homepage positioning and editorial hero",
+      objectPosition: "top",
+    },
+    visuals: [
+      {
+        src: "/images/work/nima-studio/01-home-hero.png",
+        alt: "NIMA Studio homepage hero",
+        label: "Homepage",
+        caption: "The first viewport sets a practical product-engineering position before the editorial line.",
+        aspect: "wide",
+      },
+      {
+        src: "/images/work/nima-studio/02-work-archive.png",
+        alt: "NIMA Studio selected Work archive",
+        label: "Selected Work",
+        caption: "A curated archive gives flagship products more weight than supporting systems.",
+        aspect: "landscape",
+      },
+      {
+        src: "/images/work/nima-studio/03-editorial-system.png",
+        alt: "NIMA Studio editorial typography and paper-based interface",
+        label: "Editorial system",
+        caption: "Display serif, mono marginalia, ink rules and paper tones form a reusable visual grammar.",
+        aspect: "landscape",
+      },
+      {
+        src: "/images/work/nima-studio/04-process.png",
+        alt: "NIMA Studio product engagement process",
+        label: "Process",
+        caption: "The engagement model turns discovery, shaping, building and learning into a readable sequence.",
+        aspect: "wide",
+      },
+      {
+        src: "/images/work/nima-studio/05-case-study.png",
+        alt: "NIMA Studio case-study presentation",
+        label: "Case-study presentation",
+        caption: "The same system carries problem framing, authentic evidence and technical detail.",
+        aspect: "landscape",
+      },
+    ],
     visualLabel: "Issue Plate · NIMA Studio",
-    assetRequest:
-      "Provide an approved full-width capture of the current NIMA Studio homepage if a fixed historical plate is preferred over the live site.",
   },
   {
     number: "06",
@@ -240,6 +438,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     section: "Automation & Data",
     category: "Python / Document Automation / Data Processing",
     role: "Python Developer",
+    year: "2026",
+    type: "Document-processing engine",
+    layout: "technical",
     summary:
       "A modular pipeline that converts text-based business PDFs into normalized, validation-scored datasets.",
     problem:
@@ -263,7 +464,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "Per-document error isolation and logging",
     ],
     outcome:
-      "The engine establishes an auditable path from document to structured output while keeping failures isolated. It does not claim OCR support, benchmarked volume or measured labor savings.",
+      "The engine establishes an auditable path from text-based PDF input to structured output while keeping document-level failures isolated.",
     stack: ["Python", "pdfplumber", "PyMuPDF", "Validation Rules", "JSON", "Excel"],
     links: [
       {
@@ -271,6 +472,57 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
         href: "https://github.com/ne3mer/Automated-PDF-Data-Extraction-Validation-Engine",
       },
     ],
+    image: {
+      src: "/images/work/pdf-engine/01-input-invoice.png",
+      alt: "Generated sample invoice used to verify the PDF extraction engine",
+      objectPosition: "top",
+    },
+    visuals: [
+      {
+        src: "/images/work/pdf-engine/01-input-invoice.png",
+        alt: "Generated sample invoice used as pipeline input",
+        label: "PDF input",
+        caption: "A generated text-based invoice provides a reproducible fixture for the real pipeline run.",
+        aspect: "portrait",
+        fit: "contain",
+      },
+      {
+        src: "/images/work/pdf-engine/05-terminal.png",
+        alt: "Terminal summary from the PDF engine fixture run",
+        label: "Extraction & normalization",
+        caption: "The fixture run extracted twelve fields, isolated validation and wrote each output format.",
+        aspect: "wide",
+        fit: "contain",
+      },
+      {
+        src: "/images/work/pdf-engine/04-validation.png",
+        alt: "Generated PDF validation report",
+        label: "Validation & confidence",
+        caption: "The generated report records a partial result and a 0.75 completeness-derived score.",
+        aspect: "landscape",
+        fit: "contain",
+      },
+      {
+        src: "/images/work/pdf-engine/02-json-output.png",
+        alt: "Structured JSON generated by the PDF engine",
+        label: "JSON output",
+        caption: "Normalized fields and provenance are written to structured JSON.",
+        aspect: "landscape",
+        fit: "contain",
+      },
+      {
+        src: "/images/work/pdf-engine/03-excel-output.png",
+        alt: "Excel workbook preview generated by the PDF engine",
+        label: "Excel output",
+        caption: "The same processed record is exported to a formatted workbook for operational use.",
+        aspect: "wide",
+        fit: "contain",
+      },
+    ],
+    diagram: {
+      label: "Document-processing pipeline",
+      nodes: ["PDF input", "Extraction", "Normalization", "Validation", "Confidence", "JSON / Excel"],
+    },
     visualLabel: "Process Plate · Document Engine",
     assetRequest:
       "Provide a real sample invoice beside its generated JSON and Excel validation report.",
@@ -283,6 +535,9 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     section: "Automation & Data",
     category: "Python / Web Scraping / Translation Pipeline",
     role: "Python Developer",
+    year: "2025",
+    type: "Data ingestion pipeline",
+    layout: "technical",
     summary:
       "A bilingual ingestion pipeline that filters Spanish football coverage before translation and structured export.",
     problem:
@@ -306,9 +561,15 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "Bilingual JSON writer with dated output",
     ],
     outcome:
-      "The project defines a repeatable route from distributed source pages to a stable bilingual dataset. Translation quality, scraping success rates and commercial applications are not presented as measured outcomes.",
+      "The project defines a repeatable route from distributed source pages to a stable bilingual dataset with filtering and deduplication before translation.",
     stack: ["Python", "BeautifulSoup", "Requests", "SQLite", "Translation APIs", "JSON"],
     links: [{ label: "GitHub", href: "https://github.com/ne3mer/news-scrapper" }],
+    diagram: {
+      label: "Bilingual publishing workflow",
+      nodes: ["Sources", "Scraper", "Filtering", "Translation", "Structured JSON"],
+      note: "Workflow model — not a runtime screenshot.",
+    },
+    evidenceNote: "The workflow is documented; an end-to-end runtime plate remains to be captured.",
     visualLabel: "Pipeline Plate · Bilingual Data",
     assetRequest:
       "Provide a real source article beside its translated JSON output from a verified pipeline run.",

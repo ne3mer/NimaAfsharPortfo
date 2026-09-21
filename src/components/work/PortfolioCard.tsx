@@ -1,4 +1,4 @@
-import { ArrowUpRight, ImageIcon } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
 import { Link } from "@/i18n/routing";
@@ -39,11 +39,11 @@ export function PortfolioCard({
       >
         <div className="flex items-start justify-between gap-4 border-b border-ink/25 pb-3">
           <div>
-            <p className="font-mono text-[9px] uppercase tracking-[0.26em] text-sienna">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-sienna">
               Project {project.number}
             </p>
-            <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink-faint">
-              {project.category}
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+              {project.year} · {project.type}
             </p>
           </div>
           <ArrowUpRight
@@ -66,7 +66,7 @@ export function PortfolioCard({
         </p>
 
         <div className="mt-auto pt-7">
-          <div className="flex flex-wrap gap-x-3 gap-y-1 border-t border-ink/20 pt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-ink-faint">
+          <div className="flex flex-wrap gap-x-3 gap-y-1 border-t border-ink/20 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
             {project.stack.slice(0, isCover ? 6 : 4).map((item) => (
               <span key={item}>{item}</span>
             ))}
@@ -115,6 +115,28 @@ function ProjectPlate({
           className="object-cover saturate-[0.82] transition-[filter,transform] duration-500 group-hover:scale-[1.015] group-hover:saturate-100"
           style={{ objectPosition: project.image.objectPosition ?? "center" }}
         />
+      ) : project.diagram ? (
+        <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-sienna">
+            {project.diagram.label}
+          </p>
+          <ol className="space-y-2">
+            {project.diagram.nodes.map((node, index) => (
+              <li
+                key={node}
+                className="flex items-center justify-between border-b border-ink/25 py-2"
+              >
+                <span className="font-mono text-[10px] text-sienna">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display text-xl text-ink md:text-2xl">{node}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+            Architecture / workflow
+          </p>
+        </div>
       ) : (
         <div className="absolute inset-0 flex flex-col justify-between p-5 md:p-7">
           <div className="grid grid-cols-6 gap-2 border-y border-ink/25 py-3" aria-hidden="true">
@@ -123,21 +145,20 @@ function ProjectPlate({
             ))}
           </div>
           <div>
-            <ImageIcon className="h-5 w-5 text-sienna" strokeWidth={1.5} aria-hidden="true" />
             <p className="mt-4 max-w-[20ch] font-display text-[clamp(1.8rem,4vw,3.2rem)] leading-[0.95] text-ink">
               {project.visualLabel}
             </p>
-            <p className="mt-4 border-t border-ink/25 pt-3 font-mono text-[9px] uppercase tracking-[0.2em] text-ink-mute">
-              Product image requested · no synthetic UI
+            <p className="mt-4 border-t border-ink/25 pt-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute">
+              Technical plate
             </p>
           </div>
         </div>
       )}
 
-      <span className="absolute left-0 top-0 bg-ink px-3 py-2 font-mono text-[9px] uppercase tracking-[0.24em] text-paper">
+      <span className="absolute left-0 top-0 bg-ink px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper">
         Plate {project.number}
       </span>
-      <span className="absolute bottom-3 right-3 border border-ink bg-paper/95 px-2 py-1 font-mono text-[8px] uppercase tracking-[0.18em] text-ink-mute">
+      <span className="absolute bottom-3 right-3 border border-ink bg-paper/95 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-mute">
         {project.section}
       </span>
     </div>

@@ -42,20 +42,6 @@ export function Hero() {
         handSet: "Hand-set in Budapest",
         setIn: "Set in this volume",
       };
-  const impactLedger = isFa
-    ? [
-        { stat: "5,000+ users", source: "Shoppermo · scale" },
-        { stat: "300+ daily transactions", source: "Shoppermo · peak" },
-        { stat: "~40% onboarding lift", source: "NomadSpot · onboarding" },
-        { stat: "r ≈ 0.81", source: "OptiSupply · thesis" },
-      ]
-    : [
-        { stat: "5,000+ users", source: "Shoppermo · scale" },
-        { stat: "300+ daily transactions", source: "Shoppermo · peak" },
-        { stat: "~40% onboarding lift", source: "NomadSpot · onboarding" },
-        { stat: "r ≈ 0.81", source: "OptiSupply · thesis" },
-      ];
-
   return (
     <section className="relative overflow-hidden bg-paper text-ink">
       {/* Editorial measurement column on the left edge */}
@@ -97,49 +83,34 @@ export function Hero() {
 
           {/* Headline column */}
           <div className="col-span-12 lg:col-span-7 lg:order-2">
-            <p className="kicker mb-5">{t("openToLabel")}</p>
+            <p className="kicker mb-5">{labels.cover}</p>
 
-            <motion.h1
+            <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
-              className="font-display max-w-[12ch] text-[clamp(2rem,8.5vw,4.8rem)] lg:text-[clamp(2.6rem,7.4vw,6.4rem)] leading-[0.92] tracking-[-0.01em] text-ink"
+              className="border-y border-ink py-5"
             >
-              <span className="block">Ship the</span>
-              <span className="hand-underline italic text-sienna">product.</span>
-              <span className="block">Earn the</span>
-              <span className="block italic">room.</span>
-            </motion.h1>
+              <h1 className="font-display text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.9] tracking-tight text-ink">
+                {t("identityName")}
+              </h1>
+              <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.24em] text-sienna md:text-[12px]">
+                {t("identityRoles")}
+              </p>
+            </motion.div>
 
-            <div className="mt-8 flex items-start gap-4">
+            <div className="mt-7 flex items-start gap-4">
               {/* Folio number */}
               <span className="hidden md:block shrink-0 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint pt-2">
                 p. 01
               </span>
-              <p className="dropcap max-w-[58ch] text-[15px] leading-[1.7] text-ink/85 md:text-[16px]">
-                {t("subtitle")}
+              <p className="max-w-[32ch] font-display text-[clamp(1.7rem,3.2vw,2.8rem)] leading-[1.05] text-ink">
+                {t("positioning")}
               </p>
             </div>
-            <div className="mt-5 border-y border-ink/20 py-3">
-              <div className="flex flex-wrap gap-2">
-                {impactLedger.map((item) => (
-                  <span
-                    key={item.stat}
-                    className="inline-flex items-center gap-2 border border-ink/20 bg-card px-2.5 py-1"
-                  >
-                    <span className="font-display text-[16px] leading-none text-ink">
-                      {item.stat}
-                    </span>
-                    <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-ink-faint">
-                      {item.source}
-                    </span>
-                  </span>
-                ))}
-              </div>
-            </div>
 
-            <p className="mt-6 max-w-[58ch] border-l-2 border-sienna pl-4 font-display text-lg italic leading-snug text-ink rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">
-              {t("differentiator")}
+            <p className="mt-7 max-w-[22ch] border-l-2 border-sienna pl-4 font-display text-[clamp(2rem,4vw,3.6rem)] italic leading-[0.98] text-ink rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">
+              {t("editorialLine")}
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
@@ -231,7 +202,7 @@ function PortraitCard({
             <span className="font-display text-[8.5rem] leading-none">
               M<span className="italic text-sienna">A</span>
             </span>
-            <span className="mt-2 font-mono text-[9px] uppercase tracking-[0.4em] text-ink/70">
+            <span className="mt-2 font-mono text-[10px] uppercase tracking-[0.34em] text-ink/70">
               Mohammad Afsharfar
             </span>
             <span className="mt-1 font-display italic text-base text-ink/70">
@@ -240,7 +211,7 @@ function PortraitCard({
           </div>
 
           {/* Edition mark */}
-          <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between font-mono text-[9px] uppercase tracking-[0.28em] text-ink/65">
+          <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between font-mono text-[10px] uppercase tracking-[0.24em] text-ink/65">
             <span>{labels.plate}</span>
             <span>{labels.handSet}</span>
           </div>

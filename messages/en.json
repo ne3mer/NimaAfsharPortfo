@@ -1,10 +1,14 @@
 {
   "Hero": {
     "systemOnline": "Open to EU-remote roles · product-minded full-stack",
+    "identityName": "NIMA AFSHARFAR",
+    "identityRoles": "FULL-STACK DEVELOPER · PRODUCT BUILDER",
+    "positioning": "I build SaaS products, intelligent workflows, and data-driven digital products.",
+    "editorialLine": "Ship the product. Earn the room.",
     "title": "Ship the product.<br /><span class='text-primary'>Earn the room.</span>",
     "subtitle": "I'm Mohammad Afsharfar — I go by Nima. I ship outcomes you can verify: React & Node platforms, data and automation pipelines, and research-backed decision systems (thesis: OptiSupply — explainable ESG scoring aligned with expert benchmarks, r ≈ 0.81). This site is proof for hiring teams and collaborators (live demos, repos, case studies). Commissioned builds: start from Contact with goals and constraints.",
     "openToLabel": "Currently open to",
-    "openToRoles": "Business Analyst · Product / Program · Tech-driven Strategy",
+    "openToRoles": "Full-stack product engineering · Product building · Technical product strategy",
     "ctaPrimary": "Start a conversation",
     "ctaSecondary": "See selected work",
     "capabilities": {
@@ -88,22 +92,21 @@
   },
   "SelectedResults": {
     "title": "Selected impact",
-    "subtitle": "Fast signals a hiring manager can scan in 10 seconds.",
+    "subtitle": "Three project-backed signals, with the case study one click away.",
     "items": {
-      "0": "Built an AI-based ESG decision system with ~0.81 correlation to expert evaluation.",
-      "1": "Developed full-stack platforms (React, Node.js, MongoDB) from idea to deployment.",
-      "2": "Led cross-functional initiatives improving internal workflows and coordination.",
-      "3": "Combined MBA-level business strategy with software engineering execution."
+      "0": "OptiSupply thesis validation showed Pearson r ≈ 0.81 against expert evaluation.",
+      "1": "OptiSupply Due Diligence turns supplier research into a structured submission, inspection and dossier flow.",
+      "2": "DataFlow models asynchronous operations across React, FastAPI, Celery, Redis and PostgreSQL."
     }
   },
   "TargetRoles": {
     "kicker": "I'm most relevant for",
     "title": "Where to place me on the org chart",
-    "intro": "If the role needs translation between code and business — and a bias toward shipped demos — we're aligned.",
+    "intro": "I work where product judgment and implementation meet. Business analysis supports the work; engineering and product building lead it.",
     "roles": {
-      "0": "Business analyst & digital transformation roles (requirements, process, stakeholder bridges)",
-      "1": "Product / program roles with delivery ownership (roadmaps, thin slices, cross-functional rhythm)",
-      "2": "Tech-driven strategy & internal tooling (dashboards, data ops, governance-aware software)"
+      "0": "Full-stack product engineering — interfaces, APIs, data models and production-minded delivery",
+      "1": "Product building — turning an uncertain idea into a coherent, testable vertical slice",
+      "2": "Technical product strategy — architecture, evidence and business analysis in support of delivery"
     }
   },
   "ProfileLinks": {
