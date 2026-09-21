@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Instrument_Serif, Inter_Tight, JetBrains_Mono, Vazirmatn } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
+import { EditorialCursor } from "@/components/layout/EditorialCursor";
 import "@/app/globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -89,6 +90,7 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer />
+          <EditorialCursor />
         </NextIntlClientProvider>
         <Analytics />
       </body>

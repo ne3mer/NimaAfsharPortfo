@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { Link } from "@/i18n/routing";
 import type { PortfolioProject } from "@/data/portfolio-projects";
+import { EditorialReveal } from "@/components/ui/EditorialReveal";
 
 export function PortfolioCard({
   project,
@@ -15,28 +16,30 @@ export function PortfolioCard({
   const isWide = variant === "wide";
 
   return (
-    <Link
-      href={`/work/${project.slug}`}
-      className={[
-        "group relative grid overflow-hidden border border-ink bg-paper transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna focus-visible:ring-offset-2 focus-visible:ring-offset-paper",
-        isCover && "lg:grid-cols-12",
-        isWide && "md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1.2fr)]",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      aria-label={`View case study: ${project.title}`}
-    >
-      <ProjectPlate project={project} priority={isCover} variant={variant} />
-
-      <div
+    <EditorialReveal className="h-full">
+      <Link
+        href={`/work/${project.slug}`}
         className={[
-          "flex min-w-0 flex-col p-5 md:p-7",
-          isCover && "lg:col-span-5 lg:p-10",
-          isWide && "md:p-8",
+          "group relative grid h-full overflow-hidden border border-ink bg-paper transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna focus-visible:ring-offset-2 focus-visible:ring-offset-paper",
+          isCover && "lg:grid-cols-12",
+          isWide && "md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1.2fr)]",
         ]
           .filter(Boolean)
           .join(" ")}
+        aria-label={`View case study: ${project.title}`}
+        data-cursor-label="OPEN PLATE →"
       >
+        <ProjectPlate project={project} priority={isCover} variant={variant} />
+
+        <div
+          className={[
+            "flex min-w-0 flex-col p-5 md:p-7",
+            isCover && "lg:col-span-5 lg:p-10",
+            isWide && "md:p-8",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
         <div className="flex items-start justify-between gap-4 border-b border-ink/25 pb-3">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-sienna">
@@ -78,8 +81,9 @@ export function PortfolioCard({
             </span>
           </span>
         </div>
-      </div>
-    </Link>
+        </div>
+      </Link>
+    </EditorialReveal>
   );
 }
 

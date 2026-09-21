@@ -89,7 +89,7 @@ export default async function WorkPage({
         <aside className="col-span-12 lg:col-span-4">
           <p className="kicker">§02 — Selected Work</p>
           <p className="mt-3 max-w-[34ch] font-display text-[18px] leading-snug text-ink">
-            Each project follows the same framing: what I built, what I owned, what changed.
+            Each project follows the same framing: what I built, what I owned, what it demonstrates.
           </p>
           <p className="mt-4 max-w-[40ch] text-[14px] leading-relaxed text-ink-mute">
             A curated record of products and systems—not a catalogue of every technology used.

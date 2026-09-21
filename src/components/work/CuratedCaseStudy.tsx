@@ -14,6 +14,11 @@ import {
 
 export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
   const { previous, next } = getAdjacentProjects(project.slug);
+  const isPrototypeResult = [
+    "dataflow-control",
+    "leadpilot",
+    "spanish-football-news",
+  ].includes(project.slug);
 
   return (
     <article className="min-h-screen bg-paper pb-20" dir="ltr">
@@ -163,7 +168,9 @@ export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
               </p>
             </div>
             <div className="border-l-2 border-olive pl-5">
-              <p className="kicker text-olive">Outcome / value</p>
+              <p className="kicker text-olive">
+                {isPrototypeResult ? "Result / demonstration" : "Outcome / value"}
+              </p>
               <p className="mt-4 font-display text-[20px] italic leading-snug text-ink md:text-[22px]">
                 {project.outcome}
               </p>
@@ -192,6 +199,7 @@ export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
             <Link
               href={`/work/${previous.slug}`}
               className="group bg-paper px-5 py-8 transition-colors hover:bg-paper-soft md:px-8 md:py-10"
+              data-cursor-label="OPEN PLATE →"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">
                 <ArrowLeft className="mr-2 inline h-3.5 w-3.5" aria-hidden="true" />
@@ -206,6 +214,7 @@ export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
             <Link
               href={`/work/${next.slug}`}
               className="group bg-paper px-5 py-8 text-right transition-colors hover:bg-paper-soft md:px-8 md:py-10"
+              data-cursor-label="OPEN PLATE →"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">
                 Next project

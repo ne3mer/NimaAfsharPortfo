@@ -565,7 +565,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
       "Bilingual JSON writer with dated output",
     ],
     outcome:
-      "The project defines a repeatable route from distributed source pages to a stable bilingual dataset with filtering and deduplication before translation.",
+      "The project defines a route from distributed source pages to repeatable bilingual JSON output with filtering and deduplication before translation.",
     stack: ["Python", "BeautifulSoup", "Requests", "SQLite", "Translation APIs", "JSON"],
     links: [{ label: "GitHub", href: "https://github.com/ne3mer/news-scrapper" }],
     diagram: {

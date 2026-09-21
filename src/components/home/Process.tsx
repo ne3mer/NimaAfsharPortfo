@@ -28,6 +28,10 @@ export function Process() {
         </div>
 
         <div className="relative mt-14 grid gap-10 md:grid-cols-4 md:gap-6">
+          <span
+            aria-hidden="true"
+            className="absolute left-[8%] right-[8%] top-[2.05rem] hidden h-px bg-ink/20 md:block"
+          />
           {steps.map((stepKey, index) => (
             <motion.div
               key={stepKey}
@@ -35,7 +39,7 @@ export function Process() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="relative"
+              className="relative bg-paper"
             >
               {/* Hand-drawn arrow between cards (desktop) */}
               {index < steps.length - 1 && (

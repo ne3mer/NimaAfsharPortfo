@@ -2,12 +2,13 @@
 
 import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 import { HeroOpenToBanner } from "@/components/home/HeroOpenToBanner";
 import { HeroQuickLinks } from "@/components/home/HeroQuickLinks";
+import { TechnicalSystemPlate } from "@/components/home/TechnicalSystemPlate";
 
 /* ──────────────────────────────────────────────────────────────────
    The Atelier — Issue cover.
@@ -18,6 +19,7 @@ import { HeroQuickLinks } from "@/components/home/HeroQuickLinks";
 export function Hero() {
   const t = useTranslations("Hero");
   const locale = useLocale();
+  const reduceMotion = useReducedMotion();
   const isFa = locale === "fa";
   const labels = isFa
     ? {
@@ -50,11 +52,16 @@ export function Hero() {
 
       <div className="container mx-auto px-4 pt-10 pb-20 md:pt-16 md:pb-28">
         {/* Top metadata strip — like a magazine spine */}
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.32em] text-ink-mute">
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.38, ease: [0.2, 0.8, 0.2, 1] }}
+          className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.32em] text-ink-mute"
+        >
           <span>{labels.issue}</span>
           <span className="hidden md:inline">{labels.solo}</span>
           <span className="text-sienna">{t("systemOnline")}</span>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-12 gap-6 lg:gap-10">
           {/* Marginalia rail */}
@@ -86,9 +93,9 @@ export function Hero() {
             <p className="kicker mb-5">{labels.cover}</p>
 
             <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+              initial={reduceMotion ? false : { opacity: 0, y: 8, clipPath: "inset(0 0 18% 0)" }}
+              animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
+              transition={{ duration: 0.58, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
               className="border-y border-ink py-5"
             >
               <h1 className="font-display text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.9] tracking-tight text-ink">
@@ -102,7 +109,12 @@ export function Hero() {
               </p>
             </motion.div>
 
-            <div className="mt-7 flex items-start gap-4">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.24, ease: [0.2, 0.8, 0.2, 1] }}
+              className="mt-7 flex items-start gap-4"
+            >
               {/* Folio number */}
               <span className="hidden md:block shrink-0 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint pt-2">
                 p. 01
@@ -110,11 +122,16 @@ export function Hero() {
               <p className="max-w-[32ch] font-display text-[clamp(1.7rem,3.2vw,2.8rem)] leading-[1.05] text-ink">
                 {t("positioning")}
               </p>
-            </div>
+            </motion.div>
 
-            <p className="mt-7 max-w-[22ch] border-l-2 border-sienna pl-4 font-display text-[clamp(2rem,4vw,3.6rem)] italic leading-[0.98] text-ink rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4">
+            <motion.p
+              initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.34, ease: [0.2, 0.8, 0.2, 1] }}
+              className="mt-7 max-w-[22ch] border-l-2 border-sienna pl-4 font-display text-[clamp(2rem,4vw,3.6rem)] italic leading-[0.98] text-ink rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-4"
+            >
               {t("editorialLine")}
-            </p>
+            </motion.p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <Link
@@ -150,6 +167,7 @@ export function Hero() {
           {/* Portrait card */}
           <aside className="col-span-12 lg:col-span-3 lg:order-3">
             <PortraitCard labels={labels} />
+            <TechnicalSystemPlate />
             <div className="mt-6 hidden lg:block">
               <CapabilitiesList labels={labels} />
             </div>

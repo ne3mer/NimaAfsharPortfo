@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
 const PROJECTS = ["optisupply", "optisupply-due-diligence", "dataflow-control"] as const;
+const SYSTEMS = ["OptiSupply ESG", "OptiSupply Due Diligence", "DataFlow Control"] as const;
 
 /**
  * Selected impact — laid out like a magazine contents page.
@@ -58,13 +59,19 @@ export function SelectedResults() {
                 <Link
                   href={`/work/${PROJECTS[i]}`}
                   className="grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 md:grid-cols-[5rem_1fr_auto] md:gap-x-10"
+                  data-cursor-label="VIEW CASE →"
                 >
                   <span className="font-display text-5xl italic leading-none text-sienna md:text-[64px]">
                     0{i + 1}
                   </span>
-                  <p className="font-display text-[19px] leading-snug text-ink md:text-[22px]">
-                    {t(`items.${i}`)}
-                  </p>
+                  <div>
+                    <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sienna">
+                      System · {SYSTEMS[i]}
+                    </p>
+                    <p className="font-display text-[19px] leading-snug text-ink md:text-[22px]">
+                      {t(`items.${i}`)}
+                    </p>
+                  </div>
                   <span className="hidden translate-y-1 font-mono text-[10px] uppercase tracking-[0.24em] text-ink-faint transition-colors group-hover:text-sienna md:inline-flex">
                     {labels.proof}
                   </span>

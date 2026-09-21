@@ -27,6 +27,24 @@ const groups = [
   { key: "tooling", label: "Infrastructure & tooling" },
 ];
 
+const projectIndex: Record<string, string> = {
+  "Next.js": "LeadPilot · NIMA Studio",
+  React: "OptiSupply · DataFlow · LeadPilot",
+  TypeScript: "OptiSupply · LeadPilot · NIMA Studio",
+  "Tailwind CSS": "OptiSupply · LeadPilot · NIMA Studio",
+  "Node.js": "OptiSupply",
+  Python: "DataFlow · PDF Engine · Spanish News",
+  FastAPI: "DataFlow Control",
+  Express: "OptiSupply",
+  PostgreSQL: "DataFlow · NIMA Studio",
+  MongoDB: "OptiSupply",
+  Redis: "DataFlow Control",
+  Docker: "DataFlow Control",
+  "REST APIs": "OptiSupply · DataFlow",
+  GitHub: "All source-backed cases",
+  Vercel: "OptiSupply · NIMA Studio",
+};
+
 /**
  * "The bench" — typeset as a printed colophon of tools, grouped by lane.
  * No marquee. No glow. Just a clean type page.
@@ -61,12 +79,17 @@ export function TechStack() {
                   {tools.map((tech, i) => (
                     <li
                       key={tech.name}
-                      className="flex items-baseline gap-3 font-display text-[17px] leading-snug text-ink"
+                      className="group border-b border-ink/0 py-1 font-display text-[17px] leading-snug text-ink transition-colors hover:border-ink/15 hover:text-sienna"
                     >
-                      <span className="font-mono text-[10px] tracking-[0.18em] text-ink-faint">
-                        {String(i + 1).padStart(2, "0")}
+                      <span className="flex items-baseline gap-3">
+                        <span className="font-mono text-[10px] tracking-[0.18em] text-ink-faint">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        {tech.name}
                       </span>
-                      {tech.name}
+                      <span className="mt-1 block max-h-0 overflow-hidden ps-8 font-mono text-[8px] uppercase tracking-[0.12em] text-ink-mute opacity-0 transition-all duration-200 group-hover:max-h-6 group-hover:opacity-100">
+                        Used in · {projectIndex[tech.name]}
+                      </span>
                     </li>
                   ))}
                 </ul>

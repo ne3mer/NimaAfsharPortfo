@@ -325,6 +325,49 @@ html[dir="rtl"] .corner-pin::before {
   left: 10px;
 }
 
+/* Product-system plate: movement is pointer-led and intentionally minute. */
+.technical-system-plate {
+  background-image:
+    linear-gradient(var(--rule-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule-soft) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.technical-system-node {
+  transform: translate3d(0, 0, 0);
+  transition: transform 180ms ease-out;
+}
+
+/* Pointer remains native; this small label is only a secondary project affordance. */
+.editorial-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  pointer-events: none;
+  border: 1px solid var(--ink);
+  background: color-mix(in oklab, var(--paper) 94%, transparent);
+  color: var(--ink);
+  padding: 0.35rem 0.5rem;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 120ms ease, visibility 120ms ease;
+}
+
+.editorial-cursor[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (pointer: coarse), (max-width: 767px) {
+  .editorial-cursor { display: none; }
+  .technical-system-node { transform: none; }
+}
+
 /* Custom scrollbar (paper-y). */
 @media (pointer: fine) {
   * { scrollbar-color: var(--ink-mute) var(--paper-soft); scrollbar-width: thin; }

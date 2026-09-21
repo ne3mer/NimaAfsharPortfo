@@ -2,6 +2,12 @@
 
 import { useTranslations } from "next-intl";
 
+const annotations = [
+  "Interface → API → Data → Delivery",
+  "Idea → Workflow → MVP → Iteration",
+  "Pipeline → Validation → Output",
+] as const;
+
 /**
  * "Where to place me" — laid out as a paper memo with a sienna stamp.
  */
@@ -35,14 +41,19 @@ export function TargetRoles() {
               {([0, 1, 2] as const).map((i) => (
                 <li
                   key={i}
-                  className="grid grid-cols-[3rem_1fr] items-baseline gap-4 py-4"
+                  className="group grid grid-cols-[3rem_1fr] items-baseline gap-4 py-5 transition-[padding] duration-300 hover:px-2 focus-within:px-2"
                 >
                   <span className="font-display text-2xl italic leading-none text-sienna">
                     0{i + 1}
                   </span>
-                  <p className="font-display text-[17px] leading-snug text-ink md:text-[19px]">
-                    {t(`roles.${i}`)}
-                  </p>
+                  <div>
+                    <p className="font-display text-[17px] leading-snug text-ink md:text-[19px]">
+                      {t(`roles.${i}`)}
+                    </p>
+                    <p className="mt-2 max-h-0 overflow-hidden font-mono text-[9px] uppercase tracking-[0.16em] text-sienna opacity-0 transition-all duration-300 group-hover:max-h-6 group-hover:opacity-100 group-focus-within:max-h-6 group-focus-within:opacity-100">
+                      {annotations[i]}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ul>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import type { PortfolioDiagram, PortfolioVisual } from "@/data/portfolio-projects";
+import { EditorialReveal } from "@/components/ui/EditorialReveal";
 
 export function EditorialProjectFigure({
   visual,
@@ -19,33 +20,36 @@ export function EditorialProjectFigure({
         : "aspect-[16/10] md:aspect-[16/9]";
 
   return (
-    <figure className={`border border-ink bg-paper-soft p-2 md:p-3 ${className}`}>
-      <div className={`relative overflow-hidden bg-paper-deep ${aspect}`}>
-        <Image
-          src={visual.src}
-          alt={visual.alt}
-          fill
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
-          className={visual.fit === "contain" ? "object-contain" : "object-cover"}
-          style={{ objectPosition: visual.position ?? "top" }}
-        />
-      </div>
-      <figcaption className="grid gap-2 border-t border-ink/20 px-1 pt-3 md:grid-cols-[180px_1fr]">
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-sienna">
-          {visual.label}
-        </span>
-        <span className="max-w-[64ch] text-[13px] leading-relaxed text-ink-mute">
-          {visual.caption}
-        </span>
-      </figcaption>
-    </figure>
+    <EditorialReveal className={className}>
+      <figure className="border border-ink bg-paper-soft p-2 md:p-3">
+        <div className={`relative overflow-hidden bg-paper-deep ${aspect}`}>
+          <Image
+            src={visual.src}
+            alt={visual.alt}
+            fill
+            priority={priority}
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
+            className={visual.fit === "contain" ? "object-contain" : "object-cover"}
+            style={{ objectPosition: visual.position ?? "top" }}
+          />
+        </div>
+        <figcaption className="grid gap-2 border-t border-ink/20 px-1 pt-3 md:grid-cols-[180px_1fr]">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-sienna">
+            {visual.label}
+          </span>
+          <span className="max-w-[64ch] text-[13px] leading-relaxed text-ink-mute">
+            {visual.caption}
+          </span>
+        </figcaption>
+      </figure>
+    </EditorialReveal>
   );
 }
 
 export function ArchitectureDiagram({ diagram }: { diagram: PortfolioDiagram }) {
   return (
-    <figure className="border-y border-ink bg-card px-5 py-8 md:px-8 md:py-10">
+    <EditorialReveal>
+      <figure className="border-y border-ink bg-card px-5 py-8 md:px-8 md:py-10">
       <figcaption className="mb-7 flex flex-wrap items-center justify-between gap-2">
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-sienna">
           {diagram.label}
@@ -78,7 +82,8 @@ export function ArchitectureDiagram({ diagram }: { diagram: PortfolioDiagram }) 
           </li>
         ))}
       </ol>
-    </figure>
+      </figure>
+    </EditorialReveal>
   );
 }
 
