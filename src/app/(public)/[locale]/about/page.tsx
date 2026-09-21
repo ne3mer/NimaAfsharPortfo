@@ -2,8 +2,42 @@ import { buttonVariants } from "@/components/ui/Button";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, FileText } from "lucide-react";
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 
 import { PROFILE_LINKS } from "@/lib/profile-links";
+
+const SITE_URL = "https://www.nimastudio.site";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const title = "About Nima Afsharfar";
+  const description =
+    "Full-stack developer and product builder with a software-engineering foundation and MBA product context.";
+  const url = `${SITE_URL}/${locale}/about`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [
+        {
+          url: `${SITE_URL}/images/work/nima-studio/01-home-hero.webp`,
+          width: 1440,
+          height: 1000,
+          alt: "NIMA Studio homepage",
+        },
+      ],
+    },
+  };
+}
 
 /**
  * About — laid out as an editorial feature spread.
@@ -24,9 +58,9 @@ export default async function AboutPage({
           company: "NomadSpot",
           dates: "Apr 2025–Present · Budapest",
           points: [
-            "~35% faster load time via lazy loading + API caching",
-            "20+ user interviews → 3 major product iterations",
-            "~40% onboarding improvement from session analytics redesign",
+            "Built the product with React, Node.js and MongoDB",
+            "Used user interviews to inform product iterations",
+            "Implemented lazy loading and API caching",
           ],
         },
         {
@@ -34,9 +68,9 @@ export default async function AboutPage({
           company: "Shoppermo",
           dates: "Jun 2020–Jan 2024 · Tehran→Budapest",
           points: [
-            "300+ daily transactions at peak load",
-            "~45% faster response via Redis caching + query refactoring",
-            "Scaled to 5,000+ registered users",
+            "Co-founded and developed an e-commerce platform",
+            "Worked across React, Node.js and MongoDB",
+            "Implemented Redis caching and query refactoring",
           ],
         },
         {
@@ -44,9 +78,9 @@ export default async function AboutPage({
           company: "Arash Mall & Arash Market",
           dates: "May 2019–May 2023 · Gilan",
           points: [
-            "~30% fewer inventory errors, saving ~8 hrs/week",
-            "Internal comms response time cut from hours → 15 min",
-            "~20% efficiency gain over 2 years",
+            "Contributed to digital and technical initiatives",
+            "Supported internal workflow and communication tooling",
+            "Worked across business, operations and technical stakeholders",
           ],
         },
       ]
@@ -56,9 +90,9 @@ export default async function AboutPage({
           company: "NomadSpot",
           dates: "Apr 2025–Present · Budapest",
           points: [
-            "~35% faster load time via lazy loading + API caching",
-            "20+ user interviews → 3 major product iterations",
-            "~40% onboarding improvement from session analytics redesign",
+            "Built the product with React, Node.js and MongoDB",
+            "Used user interviews to inform product iterations",
+            "Implemented lazy loading and API caching",
           ],
         },
         {
@@ -66,9 +100,9 @@ export default async function AboutPage({
           company: "Shoppermo",
           dates: "Jun 2020–Jan 2024 · Tehran→Budapest",
           points: [
-            "300+ daily transactions at peak load",
-            "~45% faster response via Redis caching + query refactoring",
-            "Scaled to 5,000+ registered users",
+            "Co-founded and developed an e-commerce platform",
+            "Worked across React, Node.js and MongoDB",
+            "Implemented Redis caching and query refactoring",
           ],
         },
         {
@@ -76,9 +110,9 @@ export default async function AboutPage({
           company: "Arash Mall & Arash Market",
           dates: "May 2019–May 2023 · Gilan",
           points: [
-            "~30% fewer inventory errors, saving ~8 hrs/week",
-            "Internal comms response time cut from hours → 15 min",
-            "~20% efficiency gain over 2 years",
+            "Contributed to digital and technical initiatives",
+            "Supported internal workflow and communication tooling",
+            "Worked across business, operations and technical stakeholders",
           ],
         },
       ];

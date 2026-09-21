@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Instrument_Serif, Inter_Tight, JetBrains_Mono, Vazirmatn } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
 import "@/app/globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -34,9 +35,32 @@ const vazir = Vazirmatn({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Nima Afsharfar — Atelier Notes",
-  description: "Field notes from a Budapest studio. Engineer, strategist, researcher. Selected work, set in print-feel pages.",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.nimastudio.site"),
+  title: {
+    default: "Nima Afsharfar — Full-Stack Developer & Product Builder",
+    template: "%s | NIMA Studio",
+  },
+  description:
+    "Full-stack product development, SaaS MVPs, automation and data systems by Nima Afsharfar.",
+  icons: {
+    icon: "/favicon.svg",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "NIMA Studio",
+    title: "Nima Afsharfar — Full-Stack Developer & Product Builder",
+    description:
+      "Selected SaaS products, automation workflows and data systems with technical case studies.",
+    images: [
+      {
+        url: "/images/work/nima-studio/01-home-hero.webp",
+        width: 1440,
+        height: 1000,
+        alt: "NIMA Studio editorial homepage",
+      },
+    ],
+  },
 };
 
 export default async function LocaleLayout({

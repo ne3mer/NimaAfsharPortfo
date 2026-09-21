@@ -129,7 +129,7 @@ export function ContactForm() {
             required
             rows={5}
             className={`${inputClass} resize-none border-b-2 leading-relaxed`}
-            placeholder="Role, stack, timeline — or simply: hello."
+            placeholder={t("briefPlaceholder")}
           />
         </Field>
 

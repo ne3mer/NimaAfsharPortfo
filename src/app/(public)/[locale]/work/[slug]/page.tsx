@@ -69,11 +69,14 @@ export async function generateMetadata({
   const title = curated?.title ?? legacy?.titleEn ?? legacy?.title ?? "Project";
   const description =
     curated?.summary ?? legacy?.descriptionEn ?? legacy?.description ?? "NIMA Studio project case study.";
-  const image = curated?.image?.src ?? legacy?.image ?? undefined;
+  const image =
+    curated?.image?.src ??
+    legacy?.image ??
+    "/images/work/nima-studio/02-work-archive.webp";
   const url = `${SITE_URL}/${locale}/work/${canonicalSlug}`;
 
   return {
-    title: `${title} | NIMA Studio`,
+    title,
     description,
     alternates: { canonical: url },
     openGraph: {
@@ -82,16 +85,12 @@ export async function generateMetadata({
       type: "article",
       url,
       siteName: "NIMA Studio",
-      ...(image
-        ? {
-            images: [
-              {
-                url: image.startsWith("http") ? image : `${SITE_URL}${image}`,
-                alt: curated?.image?.alt ?? title,
-              },
-            ],
-          }
-        : {}),
+      images: [
+        {
+          url: image.startsWith("http") ? image : `${SITE_URL}${image}`,
+          alt: curated?.image?.alt ?? title,
+        },
+      ],
     },
   };
 }

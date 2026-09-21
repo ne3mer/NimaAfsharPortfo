@@ -33,7 +33,7 @@ export function CTA() {
         <div className="grid items-end gap-10 md:grid-cols-12">
           <div className="md:col-span-8">
             <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-paper/60">
-              §08 — Closing column · End of issue
+              §07 — Closing column · End of issue
             </p>
 
             <motion.h2

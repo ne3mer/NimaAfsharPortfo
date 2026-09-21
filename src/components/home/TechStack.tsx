@@ -7,26 +7,24 @@ const technologies = [
   { name: "React", category: "frontend" },
   { name: "TypeScript", category: "frontend" },
   { name: "Tailwind CSS", category: "frontend" },
-  { name: "Framer Motion", category: "frontend" },
   { name: "Node.js", category: "backend" },
   { name: "Python", category: "backend" },
   { name: "FastAPI", category: "backend" },
-  { name: "Prisma", category: "backend" },
-  { name: "Celery", category: "backend" },
+  { name: "Express", category: "backend" },
   { name: "PostgreSQL", category: "data" },
   { name: "MongoDB", category: "data" },
   { name: "Redis", category: "data" },
-  { name: "Docker", category: "infra" },
-  { name: "ESG analytics", category: "research" },
-  { name: "Design Science (DSR)", category: "research" },
+  { name: "Docker", category: "tooling" },
+  { name: "REST APIs", category: "tooling" },
+  { name: "GitHub", category: "tooling" },
+  { name: "Vercel", category: "tooling" },
 ];
 
 const groups = [
   { key: "frontend", label: "Frontend" },
-  { key: "backend",  label: "Backend & Runtime" },
-  { key: "data",     label: "Data" },
-  { key: "infra",    label: "Infra" },
-  { key: "research", label: "Research" },
+  { key: "backend", label: "Backend" },
+  { key: "data", label: "Data" },
+  { key: "tooling", label: "Infrastructure & tooling" },
 ];
 
 /**
@@ -41,7 +39,7 @@ export function TechStack() {
       <div className="container mx-auto px-4 py-20 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-4">
           <div>
-            <p className="kicker">§05 — The bench</p>
+            <p className="kicker">§04 — The bench</p>
             <h2 className="mt-2 font-display text-3xl italic text-ink md:text-4xl">
               {t("title")}
             </h2>
@@ -51,7 +49,7 @@ export function TechStack() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {groups.map((g) => {
             const tools = technologies.filter((tech) => tech.category === g.key);
             return (

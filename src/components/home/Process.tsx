@@ -17,7 +17,7 @@ export function Process() {
       <div className="container mx-auto px-4 py-20 md:py-28">
         <div className="flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-4">
           <div>
-            <p className="kicker">§07 — How I run an engagement</p>
+            <p className="kicker">§06 — How I run an engagement</p>
             <h2 className="mt-2 font-display text-3xl text-ink md:text-[44px]">
               {t("title")}<span className="italic text-sienna">.</span>
             </h2>

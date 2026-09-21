@@ -3,6 +3,7 @@
     "systemOnline": "Open to EU-remote roles · product-minded full-stack",
     "identityName": "NIMA AFSHARFAR",
     "identityRoles": "FULL-STACK DEVELOPER · PRODUCT BUILDER",
+    "secondaryLine": "SAAS · AI INTEGRATIONS · AUTOMATION · DATA SYSTEMS",
     "positioning": "I build SaaS products, intelligent workflows, and data-driven digital products.",
     "editorialLine": "Ship the product. Earn the room.",
     "title": "Ship the product.<br /><span class='text-primary'>Earn the room.</span>",
@@ -12,9 +13,9 @@
     "ctaPrimary": "Start a conversation",
     "ctaSecondary": "See selected work",
     "capabilities": {
-      "ai": "Product & full-stack delivery",
-      "infra": "Data · AI governance · ESG",
-      "scale": "Strategy ↔ engineering fluency"
+      "ai": "Next.js · React · TypeScript",
+      "infra": "Node.js · Python · FastAPI",
+      "scale": "PostgreSQL · MongoDB · Redis"
     },
     "differentiator": "I focus on turning complex business problems into practical, technology-driven solutions."
   },
@@ -30,52 +31,52 @@
   },
   "Services": {
     "title": "Where I go <span class='text-primary'>deepest.</span>",
-    "subtitle": "Two hemispheres, one thread: I translate between engineering and stakeholders. Whether you care about conversion-ready UI, governance-grade dashboards, or how research (DSR / TAM extensions) lands in software — here's how I plug in.",
+    "subtitle": "Technical product work from interface to API, data model and delivery—with product context built into the engineering process.",
     "highlightBadge": "Core lane",
     "tiers": {
       "small": {
-        "name": "Product surfaces & marketing web",
-        "tagline": "Landing · funnels · storytelling",
-        "description": "High-impact pages and lightweight apps that load fast, rank well, and feel premium.",
+        "name": "Product & full-stack development",
+        "tagline": "Interface · API · data",
+        "description": "Coherent product slices across frontend, backend, data modeling and delivery.",
         "cta": "Discuss a fit",
         "features": {
-          "0": "Next.js / React with intentional motion",
-          "1": "SEO-ready structure & performance budgets",
-          "2": "Design systems & reusable UI primitives",
-          "3": "Analytics hooks for measurable conversion",
-          "4": "Accessible, RTL-friendly layouts when needed"
+          "0": "Next.js / React product interfaces",
+          "1": "Node.js or Python service layers",
+          "2": "PostgreSQL, MongoDB and API integration",
+          "3": "Accessible, responsive product systems",
+          "4": "Deployment and handover"
         }
       },
       "business": {
-        "name": "Dashboards & internal tools",
-        "tagline": "Clarity under complexity",
-        "description": "Operational views, role-based access, and integrations that keep teams aligned.",
-        "cta": "Talk through scope",
+        "name": "SaaS / MVP development",
+        "tagline": "Idea · workflow · validation",
+        "description": "Focused MVPs that make the core workflow testable before the product surface expands.",
+        "cta": "Share the product",
         "features": {
-          "0": "Data-dense UIs that stay readable",
-          "1": "Auth patterns & audit-friendly flows",
-          "2": "Charts, exports, and operational alerts",
-          "3": "Payments, webhooks, and third-party APIs",
-          "4": "Hardening for real traffic and edge cases"
+          "0": "Product framing and thin vertical slices",
+          "1": "Reusable frontend and backend foundations",
+          "2": "Auth, forms, dashboards and exports",
+          "3": "Third-party APIs and integrations",
+          "4": "Iteration-ready deployment"
         }
       },
       "saas": {
-        "name": "Full-stack product slices",
-        "tagline": "From idea to shippable",
-        "description": "MVPs and vertical slices that prove the model before you scale the org.",
-        "cta": "Share roadmap",
+        "name": "Automation & data systems",
+        "tagline": "Pipelines · operations · output",
+        "description": "Operational tools and pipelines that turn repetitive or unstructured work into inspectable flows.",
+        "cta": "Map the workflow",
         "features": {
-          "0": "Product narrative & technical roadmap",
-          "1": "Service boundaries & API contracts",
-          "2": "Postgres / Prisma data modeling",
-          "3": "Auth, billing hooks, observability",
-          "4": "Deploy pipelines tuned for iteration speed"
+          "0": "Python automation and document processing",
+          "1": "FastAPI, queues and scheduled work",
+          "2": "Validation, normalization and structured output",
+          "3": "Data dashboards and operational controls",
+          "4": "REST APIs and external integrations"
         }
       },
       "retainer": {
-        "name": "Ongoing craft & mentorship",
-        "tagline": "Long-arc quality",
-        "description": "For teams that want an experienced eye on architecture, reviews, and incremental delivery.",
+        "name": "Architecture, review & mentorship",
+        "tagline": "Secondary lane",
+        "description": "A supporting lane for teams that need a second technical perspective or focused implementation guidance.",
         "cta": "Open conversation",
         "features": {
           "0": "Code & architecture review cadence",
@@ -88,7 +89,7 @@
     }
   },
   "TechStack": {
-    "title": "Stack I reach for most days"
+    "title": "Tools visible in the work"
   },
   "SelectedResults": {
     "title": "Selected impact",
@@ -102,11 +103,11 @@
   "TargetRoles": {
     "kicker": "I'm most relevant for",
     "title": "Where to place me on the org chart",
-    "intro": "I work where product judgment and implementation meet. Business analysis supports the work; engineering and product building lead it.",
+    "intro": "Product thinking and business context are part of how I build—not a replacement for engineering.",
     "roles": {
-      "0": "Full-stack product engineering — interfaces, APIs, data models and production-minded delivery",
-      "1": "Product building — turning an uncertain idea into a coherent, testable vertical slice",
-      "2": "Technical product strategy — architecture, evidence and business analysis in support of delivery"
+      "0": "Full-stack product development — interfaces, APIs, data models and delivery",
+      "1": "SaaS / MVP development — coherent, testable vertical slices",
+      "2": "Data, automation & integrations — operational workflows and structured outputs"
     }
   },
   "ProfileLinks": {
@@ -118,7 +119,7 @@
   },
   "About": {
     "title": "Engineer · strategist<br /><span class='text-primary'>· researcher.</span>",
-    "subtitle": "Budapest-based. Iranian. BSc in software engineering (strong GPA), MBA in management (Merit), and founder of NomadSpot. I've worked on digital and technical initiatives for a major retail holding, co-founded e-commerce, contributed at Zoomit-scale traffic, and completed thesis-grade work on explainable AI for sustainable supply chains.",
+    "subtitle": "Budapest-based. Iranian. BSc in software engineering, MBA in management (Merit), and founder of NomadSpot. I've worked on digital and technical initiatives for a major retail holding, co-founded e-commerce, contributed to a high-traffic technology publication, and completed thesis work on explainable ESG supplier decision support.",
     "founderName": "Mohammad Afsharfar (Nima)",
     "founder": {
       "role": "Founder NomadSpot · MBA (Management) · strategic tech & delivery background",
@@ -148,7 +149,7 @@
         "desc": "I work with product, marketing, and ops as peers — documentation and handover are part of the definition of done."
       }
     },
-    "lookingFor": "Currently looking for roles in <b>Business Analysis</b>, <b>Product / Program</b>, or <b>Technology Strategy</b> in international (EU-friendly) environments.",
+    "lookingFor": "Open to <b>full-stack product development</b>, <b>SaaS / MVP work</b>, and <b>data, automation or integration projects</b> in international environments.",
     "cta": {
       "title": "Want a CV packet or a tailored intro?",
       "button": "Email me",
@@ -178,6 +179,7 @@
       "lastName": "Last Name",
       "email": "Email",
       "message": "Message",
+      "briefPlaceholder": "Project goal, existing stack, timeline, scope, and important constraints.",
       "submit": "Send Message"
     }
   },

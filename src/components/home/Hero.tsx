@@ -97,6 +97,9 @@ export function Hero() {
               <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.24em] text-sienna md:text-[12px]">
                 {t("identityRoles")}
               </p>
+              <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute md:text-[11px]">
+                {t("secondaryLine")}
+              </p>
             </motion.div>
 
             <div className="mt-7 flex items-start gap-4">

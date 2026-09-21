@@ -19,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const path = `/${locale}/work`;
-  const title = "Selected Work — Products, Engineering & Strategy | NIMA Studio";
+  const title = "Selected Work — Products, Engineering & Strategy";
   const description =
     "Seven selected products and systems spanning supplier intelligence, SaaS, data engineering and automation.";
 
@@ -33,6 +33,14 @@ export async function generateMetadata({
       type: "website",
       url: `${SITE_URL}${path}`,
       siteName: "NIMA Studio",
+      images: [
+        {
+          url: `${SITE_URL}/images/work/nima-studio/02-work-archive.webp`,
+          width: 1440,
+          height: 1000,
+          alt: "NIMA Studio selected Work archive",
+        },
+      ],
     },
   };
 }

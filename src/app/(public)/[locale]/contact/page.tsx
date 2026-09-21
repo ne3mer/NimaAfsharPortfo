@@ -4,6 +4,40 @@ import { Mail, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { HeroQuickLinks } from "@/components/home/HeroQuickLinks";
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+
+const SITE_URL = "https://www.nimastudio.site";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const title = "Start a Conversation";
+  const description =
+    "Discuss a full-stack product, SaaS MVP, automation workflow or data-system project with Nima Afsharfar.";
+  const url = `${SITE_URL}/${locale}/contact`;
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [
+        {
+          url: `${SITE_URL}/images/work/nima-studio/01-home-hero.webp`,
+          width: 1440,
+          height: 1000,
+          alt: "NIMA Studio homepage",
+        },
+      ],
+    },
+  };
+}
 
 export default async function ContactPage({
   params,

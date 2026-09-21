@@ -30,8 +30,8 @@ export function Services() {
       t(`tiers.${key}.features.4`),
     ],
     cta: t(`tiers.${key}.cta`),
-    featured: key === "business",
-    badge: key === "business" ? t("highlightBadge") : undefined,
+    featured: key === "small",
+    badge: key === "small" ? t("highlightBadge") : undefined,
   }));
 
   return (
@@ -40,7 +40,7 @@ export function Services() {
       <div className="container mx-auto px-4 py-20 md:py-28">
         <div className="grid items-end gap-6 border-b border-ink pb-6 md:grid-cols-12">
           <div className="md:col-span-7">
-            <p className="kicker">{isFa ? "§06 — عمق همکاری" : "§06 — Where I go deepest"}</p>
+            <p className="kicker">{isFa ? "§05 — عمق همکاری" : "§05 — Where I go deepest"}</p>
             <h2
               className="mt-3 font-display text-4xl leading-[0.95] tracking-tight text-ink md:text-[56px]"
               dangerouslySetInnerHTML={{ __html: t.raw("title") }}

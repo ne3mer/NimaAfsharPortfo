@@ -15,13 +15,13 @@ export function SelectedResults() {
   const isFa = locale === "fa";
   const labels = isFa
     ? {
-        kicker: "§03 — اثر واقعی",
+        kicker: "§02 — اثر واقعی",
         title: "اثر، نه ادعا.",
         readTime: "زمان خواندن · ۱۰ ثانیه",
         proof: "دیدن شواهد ←",
       }
     : {
-        kicker: "§03 — Selected impact",
+        kicker: "§02 — Selected impact",
         title: "Receipts before rhetoric.",
         readTime: "Reading time · 10 sec.",
         proof: "→ see proof",

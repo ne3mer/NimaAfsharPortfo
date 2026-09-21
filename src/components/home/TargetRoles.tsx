@@ -17,7 +17,7 @@ export function TargetRoles() {
             <span className="absolute -top-4 right-6 stamp">Memo · For hiring teams</span>
 
             <div className="mb-6 flex items-baseline justify-between border-b border-ink pb-4">
-              <p className="kicker">§04 — {t("kicker")}</p>
+              <p className="kicker">§03 — {t("kicker")}</p>
               <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
                 File: org-chart.md
               </p>
