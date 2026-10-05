@@ -9,9 +9,6 @@ type Labels = {
   nowSetting: string;
   plate: string;
   handSet: string;
-  specimenType?: string;
-  craftLine?: string;
-  studioEntity?: string;
 };
 
 export function HeroEditorialArtifact({ labels }: { labels: Labels }) {
@@ -47,10 +44,10 @@ export function HeroEditorialArtifact({ labels }: { labels: Labels }) {
   // Parallax offsets for layered depth
   const bgShiftX = reduceMotion ? 0 : coords.x * -3;
   const bgShiftY = reduceMotion ? 0 : coords.y * -3;
-  const plateShiftX = reduceMotion ? 0 : coords.x * 3.5;
-  const plateShiftY = reduceMotion ? 0 : coords.y * 3.5;
-  const typeShiftX = reduceMotion ? 0 : coords.x * 6;
-  const typeShiftY = reduceMotion ? 0 : coords.y * 6;
+  const plateShiftX = reduceMotion ? 0 : coords.x * 3;
+  const plateShiftY = reduceMotion ? 0 : coords.y * 3;
+  const typeShiftX = reduceMotion ? 0 : coords.x * 5;
+  const typeShiftY = reduceMotion ? 0 : coords.y * 5;
 
   return (
     <div className="relative">
@@ -100,7 +97,7 @@ export function HeroEditorialArtifact({ labels }: { labels: Labels }) {
           {/* Precision calibration grid overlay */}
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(20,18,16,0.25)_100%)]" />
 
-          {/* Middle Layer: Translucent Drafting Vellum Plate */}
+          {/* Middle Layer: Translucent Drafting Vellum Plate with generous negative space */}
           <div
             className={cn(
               "relative z-10 m-3 flex h-[calc(100%-1.5rem)] flex-col justify-between border bg-paper/85 p-3.5 backdrop-blur-[2.5px] transition-all duration-300 ease-out",
@@ -135,56 +132,36 @@ export function HeroEditorialArtifact({ labels }: { labels: Labels }) {
               +
             </div>
 
-            {/* Center: Typographic Master Specimen (MA) with drafting axes */}
+            {/* Center: The Typographic Visual Signature (MA) as sole focal point */}
             <div
-              className="relative my-auto flex flex-col items-center justify-center py-2 transition-transform duration-300 ease-out"
+              className="relative my-auto flex flex-col items-center justify-center py-6 transition-transform duration-300 ease-out"
               style={{
                 transform: `translate3d(${typeShiftX}px, ${typeShiftY}px, 20px)`,
               }}
             >
-              {/* Architectural drafting axes */}
+              {/* Subtle architectural drafting axis lines */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-2 top-1/2 h-px -translate-y-1/2 bg-sienna/30"
+                className="pointer-events-none absolute inset-x-4 top-1/2 h-px -translate-y-1/2 bg-sienna/25"
               />
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-ink/20"
-              />
-
-              {/* Technical drafting guides */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-6 top-1/4 h-px border-t border-dashed border-ink/20"
-              />
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-6 bottom-1/4 h-px border-t border-dashed border-ink/20"
+                className="pointer-events-none absolute inset-y-2 left-1/2 w-px -translate-x-1/2 bg-ink/15"
               />
 
-              {/* The Monogram */}
+              {/* The Monogram — Unmistakable focal point */}
               <div className="relative z-10 flex items-baseline tracking-tight">
-                <span className="font-display text-[5.4rem] sm:text-[6.2rem] lg:text-[5rem] xl:text-[5.8rem] leading-none text-ink select-none drop-shadow-[0_1px_2px_rgba(20,18,16,0.15)]">
+                <span className="font-display text-[5.8rem] sm:text-[6.6rem] lg:text-[5.4rem] xl:text-[6.2rem] leading-none text-ink select-none drop-shadow-[0_1px_2px_rgba(20,18,16,0.12)]">
                   M<span className="italic text-sienna font-normal">A</span>
-                </span>
-              </div>
-
-              {/* Architectural typographic label */}
-              <div className="relative z-10 mt-1 flex flex-col items-center text-center">
-                <span className="font-mono text-[9px] uppercase tracking-[0.32em] text-ink font-medium">
-                  Mohammad Afsharfar
-                </span>
-                <span className="mt-0.5 font-display italic text-[13px] text-ink-mute">
-                  Founder & Principal Engineer
                 </span>
               </div>
             </div>
 
-            {/* Bottom vellum technical strip */}
+            {/* Bottom vellum technical strip: Quiet archival locator */}
             <div className="border-t border-ink/20 pt-2">
-              <div className="flex items-center justify-between font-mono text-[8px] uppercase tracking-[0.2em] text-ink-mute">
-                <span className="text-sienna">Digital Craft × Engineering</span>
-                <span className="text-ink-faint">Budapest · 47°N</span>
+              <div className="flex items-center justify-between font-mono text-[8px] uppercase tracking-[0.22em] text-ink-faint">
+                <span>Budapest · 47°N</span>
+                <span>Fig. 01</span>
               </div>
             </div>
           </div>
@@ -200,10 +177,6 @@ export function HeroEditorialArtifact({ labels }: { labels: Labels }) {
         </span>
         <span className="text-ink-faint">EST. 2017</span>
       </div>
-
-      <p className="mt-2 text-center font-display italic text-sm text-ink-mute">
-        Digital Craft · Product Architecture · Systems
-      </p>
     </div>
   );
 }
