@@ -9,11 +9,12 @@ import { cn } from "@/lib/utils";
 import { HeroOpenToBanner } from "@/components/home/HeroOpenToBanner";
 import { HeroQuickLinks } from "@/components/home/HeroQuickLinks";
 import { TechnicalSystemPlate } from "@/components/home/TechnicalSystemPlate";
+import { HeroEditorialArtifact } from "@/components/home/HeroEditorialArtifact";
 
 /* ──────────────────────────────────────────────────────────────────
    The Atelier — Issue cover.
    Magazine-style hero: oversized italic serif title, drop-cap lede,
-   marginalia, hand-drawn underline, portrait stamp card.
+   marginalia, hand-drawn underline, archival specimen artifact.
    ────────────────────────────────────────────────────────────────── */
 
 export function Hero() {
@@ -32,6 +33,9 @@ export function Hero() {
         plate: "پلیت ۱",
         handSet: "حروف‌چینی در بوداپست",
         setIn: "در این جلد",
+        studioName: "استودیو نیما",
+        studioTag: "آتلیه",
+        studioPractice: "استودیوی مستقل محصول",
       }
     : {
         issue: "The Atelier — Issue 01",
@@ -43,6 +47,9 @@ export function Hero() {
         plate: "Plate I",
         handSet: "Hand-set in Budapest",
         setIn: "Set in this volume",
+        studioName: "NIMASTUDIO",
+        studioTag: "THE ATELIER",
+        studioPractice: "AN INDEPENDENT PRODUCT PRACTICE",
       };
   return (
     <section className="relative overflow-hidden bg-paper text-ink">
@@ -98,6 +105,16 @@ export function Hero() {
               transition={{ duration: 0.58, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
               className="border-y border-ink py-5"
             >
+              {/* Studio Provenance Micro-Label */}
+              <div className="mb-3.5 flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-mute">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-sienna" />
+                <span className="font-semibold text-ink">{labels.studioName}</span>
+                <span className="text-ink-faint">/</span>
+                <span>{labels.studioTag}</span>
+                <span className="hidden sm:inline text-ink-faint">·</span>
+                <span className="hidden sm:inline text-ink-faint">{labels.studioPractice}</span>
+              </div>
+
               <h1 className="font-display text-[clamp(2.6rem,6vw,5.4rem)] leading-[0.9] tracking-tight text-ink">
                 {t("identityName")}
               </h1>
@@ -164,9 +181,9 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Portrait card */}
+          {/* Right rail: Archival Specimen Artifact */}
           <aside className="col-span-12 lg:col-span-3 lg:order-3">
-            <PortraitCard labels={labels} />
+            <HeroEditorialArtifact labels={labels} />
             <TechnicalSystemPlate />
             <div className="mt-6 hidden lg:block">
               <CapabilitiesList labels={labels} />
@@ -183,66 +200,6 @@ export function Hero() {
       {/* Bottom rule + colophon spine */}
       <div className="rule-double mt-2" />
     </section>
-  );
-}
-
-function PortraitCard({
-  labels,
-}: {
-  labels: { nowSetting: string; plate: string; handSet: string };
-}) {
-  return (
-    <div className="relative">
-      {/* Stamp tag */}
-      <span className="absolute -top-3 -right-3 z-10 stamp">
-        {labels.nowSetting}
-      </span>
-
-      <div className="passepartout relative bg-paper-deep p-1">
-        {/* Hand-set monogram */}
-        <div className="relative aspect-4/5 overflow-hidden">
-          {/* warm woodcut backdrop */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--paper-soft)_0%,var(--paper-deep)_60%,var(--ink)_140%)]" />
-          {/* engraved hatch lines */}
-          <svg
-            aria-hidden
-            className="absolute inset-0 h-full w-full opacity-25 mix-blend-multiply"
-            viewBox="0 0 200 250"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="6" stroke="#141210" strokeWidth="0.8" />
-              </pattern>
-            </defs>
-            <rect width="200" height="250" fill="url(#hatch)" />
-          </svg>
-
-          {/* Monogram serif */}
-          <div className="relative z-10 flex h-full w-full flex-col items-center justify-center text-ink">
-            <span className="font-display text-[8.5rem] leading-none">
-              M<span className="italic text-sienna">A</span>
-            </span>
-            <span className="mt-2 font-mono text-[10px] uppercase tracking-[0.34em] text-ink/70">
-              Mohammad Afsharfar
-            </span>
-            <span className="mt-1 font-display italic text-base text-ink/70">
-              — Nima
-            </span>
-          </div>
-
-          {/* Edition mark */}
-          <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between font-mono text-[10px] uppercase tracking-[0.24em] text-ink/65">
-            <span>{labels.plate}</span>
-            <span>{labels.handSet}</span>
-          </div>
-        </div>
-      </div>
-
-      <p className="mt-3 px-1 text-center font-display italic text-sm text-ink-mute">
-        Engineer · MBA · Researcher
-      </p>
-    </div>
   );
 }
 
