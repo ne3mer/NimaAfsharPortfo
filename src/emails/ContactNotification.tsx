@@ -62,7 +62,7 @@ export const ContactUserEmail = ({ firstName }: { firstName: string }) => (
         <Text style={text}>
           We have received your message. Nima will review it and get back to you as soon as possible.
         </Text>
-        <Link href="https://nimastudio.vercel.app" style={button}>
+        <Link href={process.env.NEXT_PUBLIC_SITE_URL || "https://www.nimastudio.site"} style={button}>
           Visit Website
         </Link>
       </Container>

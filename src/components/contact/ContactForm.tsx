@@ -14,10 +14,12 @@ export function ContactForm() {
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorMessage(null);
 
     try {
       const response = await fetch("/api/contact", {
@@ -26,14 +28,20 @@ export function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      const data = await response.json().catch(() => null);
+
+      if (response.ok && data?.success && data?.emailSent) {
         setStatus("success");
         setFormData({ firstName: "", lastName: "", email: "", message: "" });
       } else {
         setStatus("error");
+        setErrorMessage(
+          data?.error || "Something went wrong. Please try again."
+        );
       }
     } catch {
       setStatus("error");
+      setErrorMessage("Network error. Please check your connection and try again.");
     }
   };
 
@@ -58,7 +66,14 @@ export function ContactForm() {
         <p className="mt-3 max-w-[40ch] text-ink-mute">
           Thanks for writing. I&rsquo;ll reply personally — usually within a couple of days.
         </p>
-        <Button variant="outline" className="mt-6" onClick={() => setStatus("idle")}>
+        <Button
+          variant="outline"
+          className="mt-6"
+          onClick={() => {
+            setStatus("idle");
+            setErrorMessage(null);
+          }}
+        >
           Send another
         </Button>
       </div>
@@ -77,9 +92,9 @@ export function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-7">
         {status === "error" && (
           <div className="flex items-center gap-3 border border-stamp bg-stamp/[0.08] px-4 py-3 text-stamp">
-            <AlertCircle className="h-5 w-5" strokeWidth={1.5} />
+            <AlertCircle className="h-5 w-5 shrink-0" strokeWidth={1.5} />
             <p className="text-sm font-medium">
-              Something went wrong. Please try again.
+              {errorMessage || "Something went wrong. Please try again."}
             </p>
           </div>
         )}
