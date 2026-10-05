@@ -39,7 +39,8 @@ export default async function AdminWorkPage() {
 
       <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
         <div className="overflow-hidden rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl">
-          <table className="w-full text-left text-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[600px] text-left text-sm">
             <thead className="bg-white/5 text-xs uppercase tracking-widest text-white/50">
               <tr>
                 <th className="px-6 py-4 font-medium">Title</th>
@@ -97,6 +98,7 @@ export default async function AdminWorkPage() {
               )}
             </tbody>
           </table>
+          </div>
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-black/40 p-6 backdrop-blur-xl">

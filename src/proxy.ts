@@ -8,7 +8,6 @@ const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const { nextUrl } = req;
-  console.log("Middleware hit:", nextUrl.pathname);
   
   if (!nextUrl.pathname.startsWith('/admin') && !nextUrl.pathname.startsWith('/api')) {
     return intlMiddleware(req);

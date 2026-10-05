@@ -1,24 +1,14 @@
-import { auth } from "@/auth";
-import { prisma } from "@/lib/prisma";
+import { verifyAdminSession } from "@/auth";
 import { updateProfile, changePassword } from "@/lib/actions/settings";
 import { Button } from "@/components/ui/Button";
 import { Save, Lock, User } from "lucide-react";
 import { redirect } from "next/navigation";
 
 export default async function SettingsPage() {
-  const session = await auth();
-
-  if (!session?.user?.email) {
-    redirect("/admin/login");
-  }
-
-  const admin = await prisma.admin.findUnique({
-    where: { email: session.user.email },
-  });
+  const admin = await verifyAdminSession();
 
   if (!admin) {
-    // Should not happen if session is valid, but handle gracefully
-    return <div>Admin not found</div>;
+    redirect("/admin/login");
   }
 
   return (

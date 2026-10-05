@@ -1,7 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { AdminNavbar } from "@/components/layout/AdminNavbar";
-import { Footer } from "@/components/layout/Footer";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "@/app/globals.css";
@@ -21,25 +19,22 @@ export const metadata = {
   description: "Admin Panel",
 };
 
-export default async function AdminLayout({
+export default async function AdminRootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   // Force English for admin
   const locale = 'en';
-  const messages = await getMessages({locale});
+  const messages = await getMessages({ locale });
 
   return (
     <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}>
-         <NextIntlClientProvider messages={messages}>
-            <AdminNavbar /> 
-            <main className="flex-1 pt-16">
-              {children}
-            </main>
-         </NextIntlClientProvider>
-         <Analytics />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen`}>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
