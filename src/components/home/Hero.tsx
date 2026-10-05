@@ -35,7 +35,7 @@ export function Hero() {
         setIn: "در این جلد",
         studioName: "استودیو نیما",
         studioTag: "آتلیه",
-        studioPractice: "استودیوی مستقل محصول",
+        studioPractice: "مهندسی محصول",
       }
     : {
         issue: "The Atelier — Issue 01",
@@ -49,7 +49,7 @@ export function Hero() {
         setIn: "Set in this volume",
         studioName: "NIMASTUDIO",
         studioTag: "THE ATELIER",
-        studioPractice: "AN INDEPENDENT PRODUCT PRACTICE",
+        studioPractice: "PRODUCT ENGINEERING",
       };
   return (
     <section className="relative overflow-hidden bg-paper text-ink">
