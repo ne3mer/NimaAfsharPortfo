@@ -31,4 +31,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-})
+});
+
+/**
+ * Validates that the current request is authenticated AND backed by an active
+ * record in the Prisma Admin table. Returns the Admin record or null.
+ */
+export async function verifyAdminSession() {
+  const session = await auth();
+  if (!session?.user?.email) {
+    return null;
+  }
+
+  const admin = await prisma.admin.findUnique({
+    where: { email: session.user.email },
+    select: { id: true, email: true, name: true },
+  });
+
+  return admin;
+}
+

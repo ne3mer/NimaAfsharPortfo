@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@/auth";
+import { verifyAdminSession } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -13,8 +13,8 @@ function generateSlug(input: string) {
 }
 
 export async function createWork(formData: FormData) {
-  const session = await auth();
-  if (!session?.user?.email) {
+  const admin = await verifyAdminSession();
+  if (!admin) {
     throw new Error("Unauthorized");
   }
 
@@ -88,8 +88,8 @@ export async function createWork(formData: FormData) {
 }
 
 export async function updateWork(id: string, formData: FormData) {
-  const session = await auth();
-  if (!session?.user?.email) {
+  const admin = await verifyAdminSession();
+  if (!admin) {
     return { success: false, error: "Unauthorized" };
   }
 

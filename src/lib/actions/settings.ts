@@ -1,13 +1,13 @@
 "use server";
 
-import { auth } from "@/auth";
+import { verifyAdminSession } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 
 export async function updateProfile(formData: FormData) {
-  const session = await auth();
-  if (!session?.user?.email) {
+  const admin = await verifyAdminSession();
+  if (!admin) {
     throw new Error("Unauthorized");
   }
 
@@ -20,7 +20,7 @@ export async function updateProfile(formData: FormData) {
 
   try {
     await prisma.admin.update({
-      where: { email: session.user.email },
+      where: { id: admin.id },
       data: { name, email },
     });
   } catch (error) {
@@ -32,8 +32,8 @@ export async function updateProfile(formData: FormData) {
 }
 
 export async function changePassword(formData: FormData) {
-  const session = await auth();
-  if (!session?.user?.email) {
+  const admin = await verifyAdminSession();
+  if (!admin) {
     throw new Error("Unauthorized");
   }
 
@@ -57,15 +57,15 @@ export async function changePassword(formData: FormData) {
     throw new Error("Password must be at least 6 characters");
   }
 
-  const admin = await prisma.admin.findUnique({
-    where: { email: session.user.email },
+  const fullAdmin = await prisma.admin.findUnique({
+    where: { id: admin.id },
   });
 
-  if (!admin) {
+  if (!fullAdmin) {
     throw new Error("Admin not found");
   }
 
-  const passwordsMatch = await bcrypt.compare(currentPassword, admin.password);
+  const passwordsMatch = await bcrypt.compare(currentPassword, fullAdmin.password);
 
   if (!passwordsMatch) {
     throw new Error("Incorrect current password");
@@ -75,7 +75,7 @@ export async function changePassword(formData: FormData) {
 
   try {
     await prisma.admin.update({
-      where: { email: session.user.email },
+      where: { id: admin.id },
       data: { password: hashedPassword },
     });
   } catch (error) {
