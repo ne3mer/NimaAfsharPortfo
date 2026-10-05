@@ -1,57 +1,19 @@
-import fs from "fs";
-import path from "path";
-
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import type { Work } from "@prisma/client";
-import { prisma } from "@/lib/prisma";
-import { buttonVariants } from "@/components/ui/Button";
-import { Link } from "@/i18n/routing";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { getTranslations } from "next-intl/server";
-import NextImage from "next/image";
 
-import { LiveSitePreview } from "@/components/work/LiveSitePreview";
-import { ProjectShowcaseSection } from "@/components/work/ProjectShowcaseSection";
-import { PORTFOLIO_REPO_BY_SLUG } from "@/data/portfolio-repos";
-import {
-  hasProjectShowcaseContent,
-  PROJECT_SHOWCASE_BY_SLUG,
-} from "@/data/project-showcases";
-import { RepoSourceCard } from "@/components/work/RepoSourceCard";
-import { CaseStudyContent } from "@/components/work/CaseStudyContent";
-import { WorkImpactSummary } from "@/components/work/WorkImpactSummary";
-import { ProjectInteractiveLab } from "@/components/work/ProjectInteractiveLab";
-import {
-  hasInteractiveLab,
-  PROJECT_INTERACTIVE_LAB_BY_SLUG,
-} from "@/data/project-interactive-labs";
-import {
-  loadUpworkProjects,
-  workFromJsonRow,
-} from "@/lib/upwork-projects-json";
-import { resolveWorkCopyForLocale } from "@/lib/work-locale";
 import { CuratedCaseStudy } from "@/components/work/CuratedCaseStudy";
 import {
+  PORTFOLIO_PROJECTS,
   getPortfolioProject,
   LEGACY_PROJECT_ALIASES,
 } from "@/data/portfolio-projects";
 
 const SITE_URL = "https://www.nimastudio.site";
 
-/** Live URLs for portfolio case studies — iframe preview scrolls like a real browser. */
-const LIVE_SITE_URL_BY_SLUG: Record<string, string> = {
-  "nomadspot-budapest": "https://wfc-dun.vercel.app/",
-  "optisupply-dashboard": "https://optisupply.vercel.app/dashboard",
-  "gameclub-iran": "https://nextplay-eight.vercel.app/",
-};
-
-function splitTags(tags: string | null | undefined) {
-  if (!tags) return [];
-  return tags
-    .split(",")
-    .map((tag) => tag.trim())
-    .filter(Boolean);
+export function generateStaticParams() {
+  return PORTFOLIO_PROJECTS.map((project) => ({
+    slug: project.slug,
+  }));
 }
 
 export async function generateMetadata({
@@ -61,18 +23,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const canonicalSlug = LEGACY_PROJECT_ALIASES[slug] ?? slug;
-  const curated = getPortfolioProject(canonicalSlug);
-  const legacy = curated ? undefined : loadUpworkProjects().find((project) => project.slug === slug);
+  const project = getPortfolioProject(canonicalSlug);
 
-  if (!curated && !legacy) return {};
+  if (!project) return {};
 
-  const title = curated?.title ?? legacy?.titleEn ?? legacy?.title ?? "Project";
-  const description =
-    curated?.summary ?? legacy?.descriptionEn ?? legacy?.description ?? "NIMA Studio project case study.";
+  const title = `${project.title} — Case Study`;
+  const description = project.summary;
   const image =
-    curated?.image?.src ??
-    legacy?.image ??
-    "/images/work/nima-studio/02-work-archive.webp";
+    project.image?.src ?? "/images/work/nima-studio/02-work-archive.webp";
   const url = `${SITE_URL}/${locale}/work/${canonicalSlug}`;
 
   return {
@@ -88,22 +46,12 @@ export async function generateMetadata({
       images: [
         {
           url: image.startsWith("http") ? image : `${SITE_URL}${image}`,
-          alt: curated?.image?.alt ?? title,
+          alt: project.image?.alt ?? title,
         },
       ],
     },
   };
 }
-
-// export async function generateStaticParams() {
-//   const works = await prisma.work.findMany({
-//     select: { slug: true },
-//   });
-
-//   return works.map((project) => ({
-//     slug: project.slug,
-//   }));
-// }
 
 export default async function ProjectPage({
   params,
@@ -116,249 +64,15 @@ export default async function ProjectPage({
     permanentRedirect(`/${locale}/work/${alias}`);
   }
 
-  const curatedProject = getPortfolioProject(slug);
-  if (curatedProject) {
-    return <CuratedCaseStudy project={curatedProject} />;
-  }
-
-  const t = await getTranslations("Project");
-  const isFa = locale === "fa";
-  const labels = isFa
-    ? {
-        projectPlate: "پلیت پروژه · جلد ۱",
-        caseStudy: "— مطالعه موردی —",
-        postscript: "— نکته پایانی —",
-        fallbackServices: "توسعه فول‌استک، UI/UX",
-      }
-    : {
-        projectPlate: "Project Plate · Vol. I",
-        caseStudy: "— Case study —",
-        postscript: "— Postscript —",
-        fallbackServices: "Full Stack Dev, UI/UX",
-      };
-
-  let project: Work | null = null;
-  try {
-    project = await prisma.work.findUnique({
-      where: { slug },
-    });
-  } catch (error) {
-    console.warn("Project database unavailable; using JSON archive fallback.", error);
-  }
-
+  const project = getPortfolioProject(slug);
   if (!project) {
-    const jsonRows = loadUpworkProjects();
-    const row = jsonRows.find((r) => r.slug === slug);
-    if (row) {
-      project = workFromJsonRow(row);
-    } else {
-      notFound();
-    }
+    notFound();
   }
 
-  const copy = resolveWorkCopyForLocale(project, locale);
+  // Draft projects are hidden in production
+  if (project.status === "draft" && process.env.NODE_ENV === "production") {
+    notFound();
+  }
 
-  const jsonRow = loadUpworkProjects().find((r) => r.slug === project.slug);
-  const en = locale === "en";
-  const pickImpact = (fa?: string, enVal?: string) => {
-    if (!fa && !enVal) return undefined;
-    if (en) return (enVal ?? fa)?.trim() || undefined;
-    return (fa ?? enVal)?.trim() || undefined;
-  };
-
-  const liveSiteUrl = LIVE_SITE_URL_BY_SLUG[project.slug];
-    const fullPageImageDisk = path.join(
-      process.cwd(),
-      "public",
-      "images",
-      "work",
-      project.slug,
-      "full-page.png"
-    );
-    const hasFullPageImage =
-      !liveSiteUrl && fs.existsSync(fullPageImageDisk);
-  const fullPageImageSrc = hasFullPageImage
-    ? `/images/work/${project.slug}/full-page.png`
-    : null;
-
-  const showcaseRaw = PROJECT_SHOWCASE_BY_SLUG[project.slug];
-  const showcaseConfig = hasProjectShowcaseContent(showcaseRaw)
-    ? showcaseRaw
-    : undefined;
-
-  const repoUrl = PORTFOLIO_REPO_BY_SLUG[project.slug];
-  const interactiveLabRaw = PROJECT_INTERACTIVE_LAB_BY_SLUG[project.slug];
-  const interactiveLabConfig = hasInteractiveLab(interactiveLabRaw)
-    ? interactiveLabRaw
-    : undefined;
-
-  return (
-    <article className="min-h-screen bg-paper pb-20">
-        {/* Hero Header */}
-        <div className="border-b border-ink bg-paper py-12 md:py-16">
-          <div className="container mx-auto px-4">
-            <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.32em] text-ink-mute">
-              <Link href="/work" className="link-underline inline-flex items-center gap-2 text-ink hover:text-sienna">
-                <ArrowLeft className="h-3.5 w-3.5 rtl:rotate-180" /> {t("back")}
-              </Link>
-              <span className="hidden md:inline">{labels.projectPlate}</span>
-              <span className="text-sienna">{project.year || "2024"}</span>
-            </div>
-
-            <div
-              className={
-                project.image && !liveSiteUrl && !hasFullPageImage
-                  ? "grid gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(260px,380px)] xl:items-start xl:gap-12"
-                  : "grid gap-10"
-              }
-            >
-              <div>
-                <p className="kicker mb-4">{labels.caseStudy}</p>
-                <h1 className="font-display text-4xl leading-[0.95] tracking-tight text-ink md:text-[68px] lg:text-[80px]">
-                  {copy.title}<span className="italic text-sienna">.</span>
-                </h1>
-                
-                <div className="my-8 flex flex-wrap gap-1.5">
-                  {splitTags(copy.tags).map((tag) => (
-                    <span key={tag} className="border border-ink/30 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-mute">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <p className="max-w-3xl font-display italic text-[18px] leading-snug text-ink-mute md:text-[20px]">
-                  {copy.description}
-                </p>
-                {project.slug === "optisupply-dashboard" ? (
-                  <a
-                    href="https://github.com/ne3mer/OptiSupply"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${buttonVariants({ variant: "outline", size: "lg" })} mt-6 inline-flex`}
-                  >
-                    View on GitHub
-                    <span className="mx-2">→</span>
-                    github.com/ne3mer/OptiSupply
-                  </a>
-                ) : null}
-              </div>
-
-              {project.image && !liveSiteUrl && !hasFullPageImage && (
-                <div className="relative aspect-video w-full overflow-hidden border border-ink xl:aspect-4/3 xl:max-h-[280px] xl:justify-self-end">
-                  <NextImage
-                    src={project.image}
-                    alt={copy.title}
-                    fill
-                    className="object-cover object-top saturate-[0.9]"
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 380px"
-                  />
-                </div>
-              )}
-            </div>
-
-            {liveSiteUrl ? (
-              <LiveSitePreview
-                url={liveSiteUrl}
-                title={copy.title}
-                sectionTitle={t("livePreviewTitle")}
-                hint={t("livePreviewHint")}
-                openLabel={t("openLiveSite")}
-              />
-            ) : hasFullPageImage && fullPageImageSrc ? (
-              <div className="mt-10 space-y-3">
-                <p className="kicker">{t("livePreviewTitle")}</p>
-                <div className="overflow-hidden border border-ink bg-paper-deep">
-                  <div className="max-h-[min(85vh,920px)] overflow-y-auto overscroll-y-contain [scrollbar-gutter:stable]">
-                    {/* eslint-disable-next-line @next/next/no-img-element -- tall stitched screenshot; avoid layout shift from unknown height */}
-                    <img
-                      src={fullPageImageSrc}
-                      alt=""
-                      className="block h-auto w-full select-none"
-                      loading="lazy"
-                    />
-                  </div>
-                  <p className="border-t border-ink/30 bg-paper-soft px-4 py-3 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-ink-mute">
-                    {t("livePreviewHint")}
-                  </p>
-                </div>
-              </div>
-            ) : null}
-          </div>
-        </div>
-
-        {showcaseConfig ? (
-          <div className="border-b border-ink bg-paper-soft/40">
-            <div className="container mx-auto px-4 py-12 md:py-16">
-              <ProjectShowcaseSection
-                config={showcaseConfig}
-                locale={locale}
-                terminalHint={t("showcaseTerminalHint")}
-              />
-            </div>
-          </div>
-        ) : null}
-
-        {/* Content */}
-        <div className="container mx-auto px-4 py-16 grid xl:grid-cols-[1fr_300px] gap-12">
-          <div className="max-w-3xl space-y-10">
-            <WorkImpactSummary
-              locale={locale}
-              did={pickImpact(jsonRow?.problem, jsonRow?.problemEn)}
-              built={pickImpact(jsonRow?.built, jsonRow?.builtEn)}
-              result={pickImpact(
-                jsonRow?.outcome,
-                jsonRow?.outcomeEn
-              )}
-            />
-            {repoUrl ? <RepoSourceCard repoUrl={repoUrl} /> : null}
-            {interactiveLabConfig ? (
-              <ProjectInteractiveLab
-                workSlug={project.slug}
-                config={interactiveLabConfig}
-                locale={locale}
-              />
-            ) : null}
-            <CaseStudyContent
-              content={copy.content || ""}
-              locale={locale === "fa" ? "fa" : "en"}
-            />
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-8">
-            <div className="border border-ink bg-card p-6">
-              <p className="kicker mb-3 border-b border-ink/30 pb-2">{t("info")}</p>
-              <dl className="space-y-3 text-sm">
-                <div className="border-b border-ink/15 pb-2">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">{t("client")}</dt>
-                  <dd className="font-display text-[18px] text-ink">{project.client}</dd>
-                </div>
-                <div className="border-b border-ink/15 pb-2">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">{t("services")}</dt>
-                  <dd className="font-display text-[18px] text-ink">
-                    {copy.services || labels.fallbackServices}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">{t("year")}</dt>
-                  <dd className="font-display text-[18px] text-ink">{project.year || "2024"}</dd>
-                </div>
-              </dl>
-            </div>
-
-            <div className="relative border border-ink bg-paper-soft p-6">
-              <span className="absolute -top-3 right-4 stamp">{labels.postscript}</span>
-              <h3 className="mt-2 font-display text-2xl text-ink md:text-[28px]">{t("ready")}</h3>
-              <p className="mt-2 max-w-[36ch] text-[14.5px] leading-relaxed text-ink-mute">
-                {t("readyDesc")}
-              </p>
-              <Link href="/contact" className={`${buttonVariants({ variant: "sienna" })} mt-4 w-full`}>
-                {t("start")} <ArrowRight className="ms-2 h-4 w-4 rtl:rotate-180" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </article>
-  );
+  return <CuratedCaseStudy project={project} />;
 }

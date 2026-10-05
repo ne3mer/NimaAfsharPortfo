@@ -26,28 +26,6 @@ model Lead {
   status    String   @default("NEW") // NEW, CONTACTED, CLOSED
 }
 
-model Work {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  title       String
-  slug        String   @unique
-  description String
-  client      String
-  services    String?  // New field
-  year        String?  // New field
-  tags        String
-  image       String?
-  content     String
-  status      String   @default("Live")
-  /// English copy for `/en/...` routes (optional; falls back to primary fields)
-  titleEn       String?
-  descriptionEn String?
-  contentEn     String?
-  servicesEn    String?
-  tagsEn        String?
-}
-
 model Admin {
   id        String   @id @default(cuid())
   email     String   @unique

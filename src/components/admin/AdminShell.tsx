@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
-  Briefcase,
   Mail,
   Users,
   Settings,
@@ -25,7 +24,6 @@ interface AdminShellProps {
 
 const NAV_LINKS = [
   { href: "/admin/dashboard", label: "Overview", icon: LayoutDashboard },
-  { href: "/admin/work", label: "Projects", icon: Briefcase },
   { href: "/admin/messages", label: "Messages", icon: Mail },
   { href: "/admin/leads", label: "Leads", icon: Users },
   { href: "/admin/settings", label: "Settings", icon: Settings },

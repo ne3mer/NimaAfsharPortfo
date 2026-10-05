@@ -4,11 +4,9 @@ import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { PortfolioCard } from "@/components/work/PortfolioCard";
 import {
-  ARCHIVE_PROJECT_SLUGS,
   PORTFOLIO_PROJECTS,
   type PortfolioProject,
 } from "@/data/portfolio-projects";
-import { loadUpworkProjects } from "@/lib/upwork-projects-json";
 
 const SITE_URL = "https://www.nimastudio.site";
 
@@ -21,7 +19,7 @@ export async function generateMetadata({
   const path = `/${locale}/work`;
   const title = "Selected Work — Products, Engineering & Strategy";
   const description =
-    "Seven selected products and systems spanning supplier intelligence, SaaS, data engineering and automation.";
+    "Selected products and systems spanning supplier intelligence, SaaS, data engineering and automation.";
 
   return {
     title,
@@ -51,28 +49,28 @@ export default async function WorkPage({
   params: Promise<{ locale: string }>;
 }) {
   await _params;
-  const historical = loadUpworkProjects();
-  const archive = ARCHIVE_PROJECT_SLUGS.map((slug) =>
-    historical.find((project) => project.slug === slug)
-  ).filter((project) => project !== undefined);
-  const cover = PORTFOLIO_PROJECTS[0];
+  const published = PORTFOLIO_PROJECTS.filter((p) => p.status === "published");
+  const archive = PORTFOLIO_PROJECTS.filter(
+    (p) => p.section === "Archive" || p.status === "archive"
+  );
+  const cover = published.find((p) => p.section === "Cover Story") ?? published[0];
   const groups = [
     {
       label: "Featured",
       note: "Product strategy and full-stack systems",
-      projects: PORTFOLIO_PROJECTS.filter((project) => project.section === "Featured"),
+      projects: published.filter((project) => project.section === "Featured"),
       variant: "wide" as const,
     },
     {
       label: "Selected Systems",
       note: "SaaS product thinking and studio infrastructure",
-      projects: PORTFOLIO_PROJECTS.filter((project) => project.section === "Selected Systems"),
+      projects: published.filter((project) => project.section === "Selected Systems"),
       variant: "standard" as const,
     },
     {
       label: "Automation & Data",
       note: "Python pipelines and operational tooling",
-      projects: PORTFOLIO_PROJECTS.filter((project) => project.section === "Automation & Data"),
+      projects: published.filter((project) => project.section === "Automation & Data"),
       variant: "standard" as const,
     },
   ];
@@ -82,7 +80,7 @@ export default async function WorkPage({
       <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-mute">
         <span>Atelier · Work Archive</span>
         <span>Selected Work · Vol. II, p. 02</span>
-        <span className="text-sienna">{PORTFOLIO_PROJECTS.length} projects</span>
+        <span className="text-sienna">{published.length} projects</span>
       </div>
 
       <div className="grid grid-cols-12 gap-6 lg:gap-10">
@@ -168,8 +166,8 @@ export default async function WorkPage({
                 {project.image ? (
                   <div className="relative mt-4 aspect-[16/9] overflow-hidden border border-ink/20">
                     <Image
-                      src={project.image}
-                      alt=""
+                      src={project.image.src}
+                      alt={project.image.alt || ""}
                       fill
                       sizes="(max-width: 640px) 100vw, 220px"
                       className="object-cover saturate-[0.6]"
@@ -177,7 +175,7 @@ export default async function WorkPage({
                   </div>
                 ) : null}
                 <h3 className="mt-auto pt-5 font-display text-xl leading-tight text-ink group-hover:text-sienna">
-                  {project.titleEn ?? project.title}
+                  {project.shortTitle || project.title}
                 </h3>
               </Link>
             ))}

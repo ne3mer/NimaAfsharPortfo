@@ -7,7 +7,9 @@ import {
   EvidenceNote,
 } from "@/components/work/EditorialProjectFigure";
 import { Link } from "@/i18n/routing";
+import { LiveSitePreview } from "@/components/work/LiveSitePreview";
 import {
+  PORTFOLIO_PROJECTS,
   getAdjacentProjects,
   type PortfolioProject,
 } from "@/data/portfolio-projects";
@@ -30,7 +32,7 @@ export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
               Back to Work
             </Link>
             <span>Project Plate · Vol. II</span>
-            <span className="text-sienna">{project.number} / 07</span>
+            <span className="text-sienna">{project.number} / {String(PORTFOLIO_PROJECTS.length).padStart(2, "0")}</span>
           </div>
 
           <div className="grid gap-10 py-9 lg:grid-cols-12 lg:gap-12 lg:py-14">
@@ -114,6 +116,17 @@ export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
             </div>
           ) : null}
           {project.visuals?.length ? <VisualStory project={project} /> : null}
+          {project.livePreviewUrl ? (
+            <div className="mt-8">
+              <LiveSitePreview
+                url={project.livePreviewUrl}
+                title={project.title}
+                sectionTitle="Live in-frame preview"
+                hint="Live deployed surface — scroll and explore like a real browser."
+                openLabel="Open live app"
+              />
+            </div>
+          ) : null}
         </section>
 
         <section className="border-b border-ink py-12 md:py-16" aria-labelledby="technical-heading">

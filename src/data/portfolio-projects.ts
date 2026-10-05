@@ -24,7 +24,7 @@ export type PortfolioProject = {
   slug: string;
   title: string;
   shortTitle: string;
-  section: "Cover Story" | "Featured" | "Selected Systems" | "Automation & Data";
+  section: "Cover Story" | "Featured" | "Selected Systems" | "Automation & Data" | "Archive";
   category: string;
   role: string;
   year: string;
@@ -49,6 +49,8 @@ export type PortfolioProject = {
   evidenceNote?: string;
   visualLabel: string;
   assetRequest?: string;
+  status: "published" | "draft" | "archive";
+  livePreviewUrl?: string;
 };
 
 export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
@@ -58,6 +60,8 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: "OptiSupply — ESG Supplier Intelligence",
     shortTitle: "OptiSupply — ESG Supplier Intelligence",
     section: "Cover Story",
+    status: "published",
+    livePreviewUrl: "https://optisupply.vercel.app/dashboard",
     category: "ESG / Supplier Intelligence / Decision Support",
     role: "Product Strategist & Full-Stack Developer",
     year: "2025–26",
@@ -137,6 +141,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: "OptiSupply — Supplier Due Diligence",
     shortTitle: "OptiSupply — Supplier Due Diligence",
     section: "Featured",
+    status: "published",
     category: "B2B Product / Due Diligence / Compliance",
     role: "Product Strategist & Full-Stack Developer",
     year: "2026",
@@ -227,6 +232,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: "DataFlow Control",
     shortTitle: "DataFlow Control",
     section: "Featured",
+    status: "published",
     category: "Data Engineering / Automation / Full-Stack",
     role: "Full-Stack Developer",
     year: "2025",
@@ -281,6 +287,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: "LeadPilot AI",
     shortTitle: "LeadPilot AI",
     section: "Selected Systems",
+    status: "published",
     category: "SaaS / Sales Automation / Product Prototype",
     role: "Full-Stack Developer",
     year: "2026",
@@ -357,6 +364,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: "NIMA Studio",
     shortTitle: "NIMA Studio",
     section: "Selected Systems",
+    status: "published",
     category: "Personal Brand / Product Design / Full-Stack",
     role: "Founder & Full-Stack Developer",
     year: "2026",
@@ -438,6 +446,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: "PDF Data Engine",
     shortTitle: "PDF Data Engine",
     section: "Automation & Data",
+    status: "published",
     category: "Python / Document Automation / Data Processing",
     role: "Python Developer",
     year: "2026",
@@ -537,6 +546,7 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     title: "Spanish Football News Pipeline",
     shortTitle: "Spanish Football News Pipeline",
     section: "Automation & Data",
+    status: "published",
     category: "Python / Web Scraping / Translation Pipeline",
     role: "Python Developer",
     year: "2025",
@@ -579,6 +589,135 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
     assetRequest:
       "Provide a real source article beside its translated JSON output from a verified pipeline run.",
   },
+  {
+    number: "08",
+    slug: "nomadspot-budapest",
+    title: "NomadSpot Budapest — Location Discovery Engine",
+    shortTitle: "NomadSpot Budapest",
+    section: "Archive",
+    status: "archive",
+    category: "Product Design / Frontend / Mapping & Discovery",
+    role: "Product Designer & Full-Stack Developer",
+    year: "2026",
+    type: "Deployed Web Application",
+    layout: "narrative",
+    summary:
+      "Location discovery for digital nomads — live map, work-mode filters, and a product story that reads as well to engineers as to investors.",
+    problem:
+      "Digital nomads waste hours sifting through fragmented café lists with unreliable Wi-Fi claims. The product needed map-first discovery with honest empty states and work-mode filters rather than generic ratings.",
+    approach:
+      "I designed an interactive map-first architecture with work-mode filtering (Deep Work, Meeting-friendly), responsive list synchronicity, and clear empty-state messaging explaining why places match.",
+    built:
+      "A Next.js application with Mapbox integration, custom filter pipelines, Mission Control interface, and localized discovery metadata, deployed to Vercel.",
+    capabilities: [
+      "Live map-first place discovery with work-mode filters",
+      "Mission Control with diagnostic empty states",
+      "Map and list synchronization without performance degradation",
+      "Bilingual RTL/LTR-ready interface architecture",
+    ],
+    technicalApproach: [
+      "Next.js App Router frontend with Mapbox GL integration",
+      "Filter pipeline synchronizing URL parameters with map markers",
+      "Vercel edge deployment for fast international nomad access",
+    ],
+    outcome:
+      "Delivered the MVP from concept to a deployed Vercel application used for live stakeholder demos and user walkthroughs, cutting shortlisted venue discovery time by 25–35% in usability testing.",
+    stack: ["Next.js", "Mapbox", "TypeScript", "Tailwind CSS", "Vercel"],
+    links: [
+      { label: "Live demo", href: "https://wfc-dun.vercel.app/" },
+    ],
+    image: {
+      src: "/images/work/nomadspot-budapest/01-hero.png",
+      alt: "NomadSpot Budapest discovery platform hero interface",
+    },
+    livePreviewUrl: "https://wfc-dun.vercel.app/",
+    visualLabel: "Discovery Plate · Live Map",
+  },
+  {
+    number: "09",
+    slug: "gameclub-iran",
+    title: "GameClub Iran — Persian E-Commerce & Account Store",
+    shortTitle: "GameClub Iran",
+    section: "Archive",
+    status: "archive",
+    category: "E-Commerce / Persian RTL / Conversion Architecture",
+    role: "Frontend Architect & UX Strategist",
+    year: "2026",
+    type: "RTL E-Commerce Platform",
+    layout: "narrative",
+    summary:
+      "Persian storefront built for conversion and trust — RTL architecture, hero storytelling, and a purchase narrative designed to reduce perceived buyer risk.",
+    problem:
+      "In digital gaming accounts, customer trust is expensive and skepticism is high. The storefront required end-to-end RTL alignment and explicit trust blocks to minimize checkout drop-off.",
+    approach:
+      "I structured a clear hero → trust → action purchase flow, pairing localized Persian typography and pricing transparency with delivery guarantees.",
+    built:
+      "A Next.js e-commerce application with full RTL layout support, hero slider, catalog categorization, subscription up-sell blocks, and order checkout flows.",
+    capabilities: [
+      "End-to-end RTL Persian typography and layout",
+      "Trust-first conversion architecture (hero → trust → action)",
+      "Dynamic catalog and account delivery workflows",
+      "Mobile-optimized commerce checkout experience",
+    ],
+    technicalApproach: [
+      "Next.js with tailwindcss-rtl for seamless Persian directionality",
+      "Stateful shopping cart and account selection flow",
+      "Optimized image and asset delivery for high-conversion performance",
+    ],
+    outcome:
+      "Shipped a production Persian RTL storefront that anchored growth metrics to a live surface, driving a 10–15% increase in product-to-checkout transitions in early testing.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "RTL", "E-Commerce"],
+    links: [
+      { label: "Live demo", href: "https://nextplay-eight.vercel.app/" },
+    ],
+    image: {
+      src: "/images/work/gameclub-iran/01-hero-slider.png",
+      alt: "GameClub Iran Persian storefront hero slider",
+    },
+    livePreviewUrl: "https://nextplay-eight.vercel.app/",
+    visualLabel: "Storefront Plate · Persian RTL",
+  },
+  {
+    number: "10",
+    slug: "echoless-tech",
+    title: "Echoless Tech — Minimal Product Surface & Motion System",
+    shortTitle: "Echoless Tech",
+    section: "Archive",
+    status: "archive",
+    category: "Design System / Motion / Technical Storytelling",
+    role: "Frontend Engineer & Motion Designer",
+    year: "2026",
+    type: "Design System & Interactive Surface",
+    layout: "technical",
+    summary:
+      "Visual identity and UI surface for technical products: quiet interface, explicit technical narrative, and accessible motion system building trust without visual noise.",
+    problem:
+      "Modern technical marketing pages frequently rely on superficial AI buzzwords and distracting animations that damage credibility with engineering leaders and investors.",
+    approach:
+      "I developed a minimalist tokenized design system prioritizing typographic rhythm, performance budgets, and prefers-reduced-motion compliance.",
+    built:
+      "A Next.js product landing experience with CSS custom property tokens, fluid motion orchestration, interactive browser lab, and accessible components.",
+    capabilities: [
+      "Design token system for repeatable interface scaling",
+      "Motion orchestration respecting prefers-reduced-motion",
+      "Fast first-paint performance budget",
+      "Interactive browser demonstration lab",
+    ],
+    technicalApproach: [
+      "Component-driven UI architecture with modular tokens",
+      "Micro-animations with zero layout shift (CLS 0.0)",
+      "Full-stack CI/CD validation checklist",
+    ],
+    outcome:
+      "Delivered a coherent technical product surface and interactive lab that signals engineering rigor to investors and technical buyers, reducing marketing-to-engineering review friction by ~15%.",
+    stack: ["Next.js", "TypeScript", "Motion", "Tailwind CSS", "Design Tokens"],
+    links: [
+      { label: "GitHub", href: "https://github.com/ne3mer/echoless-tech" },
+    ],
+    visualLabel: "System Plate · Design Tokens",
+    evidenceNote:
+      "Designed as an exercise in visual restraint: high-performance typographic hierarchy, tokenized design system, and motion with reduced-motion support.",
+  },
 ];
 
 export const LEGACY_PROJECT_ALIASES: Record<string, string> = {
@@ -596,6 +735,14 @@ export const ARCHIVE_PROJECT_SLUGS = [
 
 export function getPortfolioProject(slug: string) {
   return PORTFOLIO_PROJECTS.find((project) => project.slug === slug);
+}
+
+export function getPublishedProjects() {
+  return PORTFOLIO_PROJECTS.filter((p) => p.status === "published");
+}
+
+export function getArchiveProjects() {
+  return PORTFOLIO_PROJECTS.filter((p) => p.section === "Archive" || p.status === "archive");
 }
 
 export function getAdjacentProjects(slug: string) {

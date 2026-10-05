@@ -1,5 +1,5 @@
 /**
- * Link each case study `slug` (same as in `upwork_projects.json` / DB) to its **public** GitHub repo.
+ * Link each case study `slug` (same as in `portfolio-projects.ts`) to its **public** GitHub repo.
  * When you share repositories with the project, paste the HTTPS URL here — the case study page will
  * show a live metadata card (languages, stars, description) via GitHub’s public API.
  *

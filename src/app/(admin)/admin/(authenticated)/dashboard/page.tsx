@@ -3,10 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { Briefcase, Users, Mail, ArrowUpRight, MessageSquare, Clock } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
+import { getPublishedProjects } from "@/data/portfolio-projects";
 
 export default async function DashboardPage() {
-  const [workCount, messageCount, leadCount, recentMessages, recentLeads] = await Promise.all([
-    prisma.work.count(),
+  const publishedProjects = getPublishedProjects();
+  const workCount = publishedProjects.length;
+
+  const [messageCount, leadCount, recentMessages, recentLeads] = await Promise.all([
     prisma.contactMessage.count(),
     prisma.lead.count(),
     prisma.contactMessage.findMany({
@@ -86,12 +89,13 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-extrabold text-white">{workCount}</div>
-            <p className="mt-1 text-xs text-white/50">Database case study records</p>
+            <p className="mt-1 text-xs text-white/50">Curated portfolio case studies</p>
             <Link
-              href="/admin/work"
+              href="/work"
+              target="_blank"
               className="mt-4 inline-flex items-center text-xs font-medium text-amber-400 hover:underline"
             >
-              Manage projects <ArrowUpRight className="ml-1 h-3 w-3" />
+              View live portfolio <ArrowUpRight className="ml-1 h-3 w-3" />
             </Link>
           </CardContent>
         </Card>
