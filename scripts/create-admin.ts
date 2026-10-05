@@ -4,8 +4,15 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = "admin@nima.studio";
-  const password = "password123";
+  const email = process.env.ADMIN_INITIAL_EMAIL || "admin@nima.studio";
+  const password = process.env.ADMIN_INITIAL_PASSWORD;
+
+  if (!password) {
+    throw new Error(
+      "ADMIN_INITIAL_PASSWORD environment variable is required. Please set it before running this script."
+    );
+  }
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const admin = await prisma.admin.upsert({

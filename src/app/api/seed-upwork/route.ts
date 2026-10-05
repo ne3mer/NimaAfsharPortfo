@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 import fs from "fs";
 import path from "path";
 
@@ -24,6 +25,18 @@ type ProjectData = {
 };
 
 export async function GET() {
+  const session = await auth();
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (process.env.NODE_ENV === "production" && process.env.ALLOW_SEED !== "true") {
+    return NextResponse.json(
+      { error: "Database seeding is disabled in production" },
+      { status: 403 }
+    );
+  }
+
   try {
     const jsonPath = path.join(process.cwd(), "upwork_projects.json");
     

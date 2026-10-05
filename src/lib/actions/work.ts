@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -12,7 +13,11 @@ function generateSlug(input: string) {
 }
 
 export async function createWork(formData: FormData) {
-  console.log("createWork action called");
+  const session = await auth();
+  if (!session?.user?.email) {
+    throw new Error("Unauthorized");
+  }
+
   const title = formData.get("title");
   const client = formData.get("client");
   const services = formData.get("services") as string | null;
@@ -83,6 +88,11 @@ export async function createWork(formData: FormData) {
 }
 
 export async function updateWork(id: string, formData: FormData) {
+  const session = await auth();
+  if (!session?.user?.email) {
+    return { success: false, error: "Unauthorized" };
+  }
+
   const title = formData.get("title");
   const client = formData.get("client");
   const services = formData.get("services") as string | null;
