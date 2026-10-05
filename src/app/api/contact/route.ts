@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getEmailConfig, getResendClient } from "@/lib/resend";
 import { prisma } from "@/lib/prisma";
 import { ContactAdminEmail, ContactUserEmail } from "@/emails/ContactNotification";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 // Validation Schema
 const contactSchema = z.object({
@@ -10,10 +11,35 @@ const contactSchema = z.object({
   lastName: z.string().trim().min(2, "Last name must be at least 2 characters"),
   email: z.string().trim().email("Please provide a valid email address"),
   message: z.string().trim().min(10, "Message must be at least 10 characters"),
+  companyUrl: z.string().optional(), // Honeypot field
 });
 
 export async function POST(request: Request) {
-  // 1. Validate request payload
+  // 1. Rate limiting check (max 5 submissions per 10 minutes per IP)
+  const clientIp = getClientIp(request);
+  const rateLimit = checkRateLimit(clientIp, "contact_api", {
+    limit: 5,
+    windowSeconds: 600,
+  });
+
+  if (!rateLimit.success) {
+    return NextResponse.json(
+      {
+        success: false,
+        saved: false,
+        emailSent: false,
+        error: "Too many messages sent. Please wait a few minutes before trying again.",
+      },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(rateLimit.resetInSeconds),
+        },
+      }
+    );
+  }
+
+  // 2. Validate request payload
   let validatedData;
   try {
     const body = await request.json();
@@ -28,6 +54,15 @@ export async function POST(request: Request) {
     }
     return NextResponse.json(
       { success: false, saved: false, emailSent: false, error: "Invalid JSON request body" },
+      { status: 400 }
+    );
+  }
+
+  // 3. Honeypot check: reject automated bot submissions silently or with error
+  if (validatedData.companyUrl && validatedData.companyUrl.trim().length > 0) {
+    console.warn(`[Contact API] Honeypot triggered from IP ${clientIp}. Rejecting.`);
+    return NextResponse.json(
+      { success: false, saved: false, emailSent: false, error: "Submission rejected." },
       { status: 400 }
     );
   }

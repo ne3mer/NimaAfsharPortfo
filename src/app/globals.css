@@ -14,7 +14,7 @@
   --ink:          #141210;   /* rich ink, never pure black */
   --ink-soft:     #2A2620;
   --ink-mute:     #6B6354;   /* secondary copy */
-  --ink-faint:    #9A8E76;   /* tertiary / set-in caption */
+  --ink-faint:    #685E4C;   /* tertiary / set-in caption — WCAG AA compliant */
   --rule:         #1B1815;   /* hairline rule color */
   --rule-soft:    rgba(20, 18, 16, 0.18);
 

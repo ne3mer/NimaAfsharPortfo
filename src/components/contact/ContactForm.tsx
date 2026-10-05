@@ -12,6 +12,7 @@ export function ContactForm() {
     lastName: "",
     email: "",
     message: "",
+    companyUrl: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -32,16 +33,16 @@ export function ContactForm() {
 
       if (response.ok && data?.success && data?.emailSent) {
         setStatus("success");
-        setFormData({ firstName: "", lastName: "", email: "", message: "" });
+        setFormData({ firstName: "", lastName: "", email: "", message: "", companyUrl: "" });
       } else {
         setStatus("error");
         setErrorMessage(
-          data?.error || "Something went wrong. Please try again."
+          data?.error || t("errorGeneric")
         );
       }
     } catch {
       setStatus("error");
-      setErrorMessage("Network error. Please check your connection and try again.");
+      setErrorMessage(t("networkError"));
     }
   };
 
@@ -52,7 +53,7 @@ export function ContactForm() {
   };
 
   const inputClass =
-    "w-full bg-transparent border-0 border-b-2 border-ink/30 px-0 py-3 text-ink placeholder:text-ink-faint focus:outline-none focus:border-sienna transition-colors font-display text-[19px]";
+    "w-full bg-transparent border-0 border-b-2 border-ink/30 px-1 py-3 text-ink placeholder:text-ink-faint focus:outline-none focus:border-sienna focus-visible:ring-2 focus-visible:ring-sienna focus-visible:ring-offset-2 focus-visible:ring-offset-paper transition-all font-display text-[19px]";
 
   if (status === "success") {
     return (
@@ -61,10 +62,10 @@ export function ContactForm() {
           <CheckCircle className="h-6 w-6" strokeWidth={1.5} />
         </span>
         <h3 className="mt-5 font-display text-3xl italic text-ink md:text-[40px]">
-          Message sent.
+          {t("successTitle")}
         </h3>
         <p className="mt-3 max-w-[40ch] text-ink-mute">
-          Thanks for writing. I&rsquo;ll reply personally — usually within a couple of days.
+          {t("successDesc")}
         </p>
         <Button
           variant="outline"
@@ -74,7 +75,7 @@ export function ContactForm() {
             setErrorMessage(null);
           }}
         >
-          Send another
+          {t("sendAnother")}
         </Button>
       </div>
     );
@@ -90,11 +91,29 @@ export function ContactForm() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-7">
+        {/* Honeypot field for bot spam protection - hidden from human users */}
+        <div
+          className="absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0 pointer-events-none"
+          aria-hidden="true"
+          tabIndex={-1}
+        >
+          <label htmlFor="companyUrl">Leave this field blank</label>
+          <input
+            type="text"
+            id="companyUrl"
+            name="companyUrl"
+            value={formData.companyUrl}
+            onChange={handleChange}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
         {status === "error" && (
           <div className="flex items-center gap-3 border border-stamp bg-stamp/[0.08] px-4 py-3 text-stamp">
             <AlertCircle className="h-5 w-5 shrink-0" strokeWidth={1.5} />
             <p className="text-sm font-medium">
-              {errorMessage || "Something went wrong. Please try again."}
+              {errorMessage || t("errorGeneric")}
             </p>
           </div>
         )}
@@ -108,7 +127,7 @@ export function ContactForm() {
               required
               type="text"
               className={inputClass}
-              placeholder="First name"
+              placeholder={t("firstNamePlaceholder")}
             />
           </Field>
           <Field label={t("lastName")} index="02">
@@ -119,7 +138,7 @@ export function ContactForm() {
               required
               type="text"
               className={inputClass}
-              placeholder="Last name"
+              placeholder={t("lastNamePlaceholder")}
             />
           </Field>
         </div>
@@ -132,7 +151,7 @@ export function ContactForm() {
             required
             type="email"
             className={inputClass}
-            placeholder="you@studio.com"
+            placeholder={t("emailPlaceholder")}
           />
         </Field>
 
@@ -157,7 +176,7 @@ export function ContactForm() {
           {status === "loading" ? (
             <>
               <Loader2 className="me-2 h-4 w-4 animate-spin" />
-              Sending…
+              {t("sending")}
             </>
           ) : (
             <>

@@ -23,11 +23,11 @@ export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
   ].includes(project.slug);
 
   return (
-    <article className="min-h-screen bg-paper pb-20" dir="ltr">
+    <article className="min-h-screen bg-paper pb-20 text-left" dir="ltr">
       <header className="border-b border-ink">
         <div className="container mx-auto px-4 py-10 md:py-16">
           <div className="flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-mute">
-            <Link href="/work" className="link-underline inline-flex items-center gap-2 text-ink">
+            <Link href="/work" className="link-underline inline-flex items-center gap-2 text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna">
               <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
               Back to Work
             </Link>
@@ -211,7 +211,7 @@ export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
           {previous ? (
             <Link
               href={`/work/${previous.slug}`}
-              className="group bg-paper px-5 py-8 transition-colors hover:bg-paper-soft md:px-8 md:py-10"
+              className="group bg-paper px-5 py-8 transition-colors hover:bg-paper-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sienna md:px-8 md:py-10"
               data-cursor-label="OPEN PLATE →"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">
@@ -226,7 +226,7 @@ export function CuratedCaseStudy({ project }: { project: PortfolioProject }) {
           {next ? (
             <Link
               href={`/work/${next.slug}`}
-              className="group bg-paper px-5 py-8 text-right transition-colors hover:bg-paper-soft md:px-8 md:py-10"
+              className="group bg-paper px-5 py-8 text-right transition-colors hover:bg-paper-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sienna md:px-8 md:py-10"
               data-cursor-label="OPEN PLATE →"
             >
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint">

@@ -1,4 +1,41 @@
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+
+const SITE_URL = "https://www.nimastudio.site";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const title = "Privacy Policy";
+  const description = "Privacy Policy and data practices for NIMA Studio.";
+  const url = `${SITE_URL}/${locale}/privacy`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${SITE_URL}/en/privacy`,
+        fa: `${SITE_URL}/fa/privacy`,
+        "x-default": `${SITE_URL}/en/privacy`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
 
 export default async function PrivacyPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;

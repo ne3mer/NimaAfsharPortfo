@@ -58,10 +58,10 @@ export function Navbar() {
 
       {/* Masthead */}
       <div className="border-b border-ink bg-paper">
-        <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3 md:gap-4 md:py-4">
+        <div className="container mx-auto flex items-center justify-between gap-2 px-3 py-2.5 sm:gap-4 sm:px-4 sm:py-4">
           {/* Wordmark */}
-          <Link href="/" className="group flex items-baseline gap-3">
-            <span className="font-display text-[2rem] sm:text-[2.2rem] md:text-[34px] leading-none tracking-tight text-ink">
+          <Link href="/" className="group flex items-baseline gap-2 sm:gap-3">
+            <span className="font-display text-[1.35rem] min-[380px]:text-[1.8rem] sm:text-[2.2rem] md:text-[34px] leading-none tracking-tight text-ink">
               Nima<span className="italic text-sienna">.</span>Afsharfar
             </span>
             <span className="hidden lg:inline-flex font-mono text-[9px] uppercase tracking-[0.32em] text-ink-faint">
@@ -70,7 +70,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 font-mono text-[11px] xl:text-[12px] uppercase tracking-[0.22em]">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 font-mono text-[11px] xl:text-[12px] uppercase tracking-[0.22em]" aria-label="Desktop navigation">
             {navLinks.map((link, i) => {
               const active = pathname === link.href;
               return (
@@ -89,7 +89,7 @@ export function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-2 md:gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             <NavbarHiringLinks className="hidden lg:flex" />
             <LanguageSwitcher />
             <Link
@@ -104,11 +104,15 @@ export function Navbar() {
             </Link>
 
             <button
-              className="lg:hidden inline-flex h-10 w-10 items-center justify-center border border-ink text-ink"
+              type="button"
+              id="mobile-menu-button"
+              className="lg:hidden inline-flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border border-ink text-ink transition-colors hover:bg-ink hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label="menu"
+              aria-label={isOpen ? t("closeMenu") : t("openMenu")}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
             >
-              {isOpen ? <X size={18} /> : <Menu size={18} />}
+              {isOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -118,6 +122,9 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-navigation"
+            role="region"
+            aria-label={t("mobileNav")}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
@@ -138,10 +145,19 @@ export function Navbar() {
                   {link.name}
                 </Link>
               ))}
+
+              {/* CV & hiring profile links inside mobile navigation */}
+              <div className="pt-3 pb-2 border-b border-ink/15">
+                <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-ink-faint mb-2">
+                  {t("hiringLinksLabel")}
+                </p>
+                <NavbarHiringLinks className="w-full justify-between" />
+              </div>
+
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className={cn(buttonVariants({ variant: "sienna", size: "lg" }), "mt-4 w-full")}
+                className={cn(buttonVariants({ variant: "sienna", size: "lg" }), "mt-3 w-full")}
               >
                 {t("ctaContact")} ↗
               </Link>

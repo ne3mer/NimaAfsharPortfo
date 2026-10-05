@@ -12,7 +12,8 @@ export function LanguageSwitcher() {
     <Link
       href={pathname}
       locale={nextLocale}
-      className="flex h-9 items-center gap-1 border border-ink/25 px-2.5 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-mute transition hover:bg-ink hover:text-paper"
+      aria-label={locale === "en" ? "تغییر زبان به فارسی" : "Switch language to English"}
+      className="flex h-9 items-center gap-1 border border-ink/25 px-2 sm:px-2.5 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-mute transition hover:bg-ink hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna"
     >
       <span className={locale === "en" ? "text-ink" : "text-ink-faint"}>EN</span>
       <span className="text-ink-faint">/</span>

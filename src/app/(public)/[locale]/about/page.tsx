@@ -14,27 +14,44 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const title = "About Nima Afsharfar";
-  const description =
-    "Full-stack developer and product builder with a software-engineering foundation and MBA product context.";
+  const isFa = locale === "fa";
+  const title = isFa ? "درباره نیما افشارفر" : "About Nima Afsharfar";
+  const description = isFa
+    ? "توسعه‌دهنده فول‌استک و سازنده محصول با پایه مهندسی نرم‌افزار و زمینه کسب‌وکار MBA."
+    : "Full-stack developer and product builder with a software-engineering foundation and MBA product context.";
   const url = `${SITE_URL}/${locale}/about`;
+
+  const imageUrl = `${SITE_URL}/images/work/nima-studio/03-editorial-system.webp`;
 
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${SITE_URL}/en/about`,
+        fa: `${SITE_URL}/fa/about`,
+        "x-default": `${SITE_URL}/en/about`,
+      },
+    },
     openGraph: {
       title,
       description,
       url,
       images: [
         {
-          url: `${SITE_URL}/images/work/nima-studio/01-home-hero.webp`,
+          url: imageUrl,
           width: 1440,
           height: 1000,
-          alt: "NIMA Studio homepage",
+          alt: "About Nima Afsharfar — Editorial system and engineering",
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
     },
   };
 }
@@ -117,25 +134,79 @@ export default async function AboutPage({
         },
       ];
 
+  const labels = isFa
+    ? {
+        feature: "آتلیه — ویژگی",
+        vol: "درباره من · جلد ۱، ص ۴",
+        coverStory: "داستان جلد",
+        profileKicker: "§01 — پروفایل",
+        profileDesc: "زندگی‌نامه‌ای کوتاه به زبان استودیو — مهندس، MBA، پژوهشگر ESG.",
+        readingTime: "زمان خواندن · ۲ دقیقه",
+        authorPortrait: "پلیت ۲ — تصویر مؤلف",
+        authorPractice: "مؤلف · کار مستقل",
+        authorKicker: "مؤلف",
+        credentialMemo: "یادداشت مدارک",
+        residencePermit: "اجازه اقامت اتحادیه اروپا · مجارستان",
+        residenceDesc: "مناسب برای موقعیت‌های هیبریدی بوداپست و دورکاری اروپا",
+        languages: "زبان‌ها",
+        langEnglish: "انگلیسی",
+        langEnglishFluency: "تسلط حرفه‌ای",
+        langPersian: "فارسی",
+        langPersianFluency: "زبان مادری",
+        langHungarian: "مجاری",
+        langHungarianFluency: "پایه‌ای",
+        shippedKicker: "§03 — سوابق و خروجی‌ها",
+        shippedSub: "دفترچه · نقش‌های اجرایی",
+        operatingNotes: "§02 — اصول کاری",
+        noteNum: "یادداشت",
+        personalNote: "— یادداشت شخصی —",
+      }
+    : {
+        feature: "The Atelier — Feature",
+        vol: "About · Vol. I, p. 04",
+        coverStory: "Cover Story",
+        profileKicker: "§01 — Profile",
+        profileDesc: "A short biography in the studio voice — engineer, MBA, ESG researcher.",
+        readingTime: "Reading time · 2 min.",
+        authorPortrait: "Plate II — Author Portrait",
+        authorPractice: "Author · Solo practice",
+        authorKicker: "Author",
+        credentialMemo: "Credential memo",
+        residencePermit: "EU Residence Permit · Hungary",
+        residenceDesc: "eligible for hybrid Budapest + EU remote roles",
+        languages: "Languages",
+        langEnglish: "English",
+        langEnglishFluency: "Professional fluency",
+        langPersian: "Persian / Farsi",
+        langPersianFluency: "Native",
+        langHungarian: "Hungarian",
+        langHungarianFluency: "Foundational",
+        shippedKicker: "§03 — Where I've shipped",
+        shippedSub: "Ledger · field roles",
+        operatingNotes: "§02 — Operating notes",
+        noteNum: "Note",
+        personalNote: "— Personal note —",
+      };
+
   return (
     <div className="bg-paper pb-28">
       {/* Cover header */}
       <header className="container mx-auto px-4 pt-12 md:pt-16">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.32em] text-ink-mute">
-          <span>The Atelier — Feature</span>
-          <span>About · Vol. I, p. 04</span>
-          <span className="text-sienna">Cover Story</span>
+          <span>{labels.feature}</span>
+          <span>{labels.vol}</span>
+          <span className="text-sienna">{labels.coverStory}</span>
         </div>
 
         <div className="grid grid-cols-12 gap-6 md:gap-10">
           <div className="col-span-12 md:col-span-3">
-            <p className="kicker">§01 — Profile</p>
+            <p className="kicker">{labels.profileKicker}</p>
             <p className="mt-3 font-display text-[15px] italic leading-snug text-ink-mute">
-              A short biography in the studio voice — engineer, MBA, ESG researcher.
+              {labels.profileDesc}
             </p>
             <div className="rule mt-6" />
             <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-              Reading time · 2 min.
+              {labels.readingTime}
             </p>
           </div>
           <div className="col-span-12 md:col-span-9">
@@ -175,14 +246,14 @@ export default async function AboutPage({
                   M<span className="italic text-sienna">A</span>
                 </span>
                 <span className="mt-2 font-mono text-[9px] uppercase tracking-[0.4em] text-ink/70">
-                  Plate II — Author Portrait
+                  {labels.authorPortrait}
                 </span>
               </div>
-              <span className="absolute -top-3 -right-3 stamp">Author · Solo practice</span>
+              <span className="absolute -top-3 -right-3 stamp">{labels.authorPractice}</span>
             </div>
           </div>
           <div className="md:col-span-7">
-            <p className="kicker">Author</p>
+            <p className="kicker">{labels.authorKicker}</p>
             <h2 className="mt-2 font-display text-[40px] leading-tight text-ink md:text-[52px]">
               {t("founderName")}
             </h2>
@@ -232,31 +303,31 @@ export default async function AboutPage({
         <div className="mt-5 grid gap-px bg-ink md:grid-cols-2">
           <div className="bg-paper p-6">
             <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-              Credential memo
+              {labels.credentialMemo}
             </p>
             <p className="mt-2 font-display text-[22px] leading-tight text-ink">
-              EU Residence Permit · Hungary
+              {labels.residencePermit}
             </p>
             <p className="mt-2 text-[14.5px] leading-relaxed text-ink-mute">
-              eligible for hybrid Budapest + EU remote roles
+              {labels.residenceDesc}
             </p>
           </div>
           <div className="bg-paper p-6">
             <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-              Languages
+              {labels.languages}
             </p>
             <dl className="mt-3 space-y-2 text-[14.5px]">
               <div className="flex justify-between gap-4 border-b border-ink/15 pb-2">
-                <dt className="font-display text-ink">English</dt>
-                <dd className="text-ink-mute">Professional fluency</dd>
+                <dt className="font-display text-ink">{labels.langEnglish}</dt>
+                <dd className="text-ink-mute">{labels.langEnglishFluency}</dd>
               </div>
               <div className="flex justify-between gap-4 border-b border-ink/15 pb-2">
-                <dt className="font-display text-ink">Persian / Farsi</dt>
-                <dd className="text-ink-mute">Native</dd>
+                <dt className="font-display text-ink">{labels.langPersian}</dt>
+                <dd className="text-ink-mute">{labels.langPersianFluency}</dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="font-display text-ink">Hungarian</dt>
-                <dd className="text-ink-mute">Foundational</dd>
+                <dt className="font-display text-ink">{labels.langHungarian}</dt>
+                <dd className="text-ink-mute">{labels.langHungarianFluency}</dd>
               </div>
             </dl>
           </div>
@@ -266,9 +337,9 @@ export default async function AboutPage({
       {/* Work experience */}
       <section className="container mx-auto mt-20 px-4">
         <div className="mb-4 flex items-end justify-between gap-3 border-b border-ink pb-2">
-          <p className="kicker">§03 — Where I&apos;ve shipped</p>
+          <p className="kicker">{labels.shippedKicker}</p>
           <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-ink-faint">
-            Ledger · field roles
+            {labels.shippedSub}
           </span>
         </div>
         <div className="grid gap-px bg-ink">
@@ -303,12 +374,12 @@ export default async function AboutPage({
 
       {/* Values */}
       <section className="container mx-auto mt-20 px-4">
-        <p className="kicker mb-4 border-b border-ink pb-2">§02 — Operating notes</p>
+        <p className="kicker mb-4 border-b border-ink pb-2">{labels.operatingNotes}</p>
         <div className="grid gap-px bg-ink md:grid-cols-3">
           {(["global", "speed", "partners"] as const).map((k, i) => (
             <div key={k} className="bg-paper p-7">
               <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink-faint">
-                Note 0{i + 1}
+                {labels.noteNum} 0{i + 1}
               </span>
               <h3 className="mt-2 font-display text-2xl leading-tight text-ink md:text-[28px]">
                 {t(`values.${k}.title`)}
@@ -326,7 +397,7 @@ export default async function AboutPage({
         <div className="border border-ink bg-card p-8 md:p-12">
           <div className="grid items-end gap-6 md:grid-cols-12">
             <div className="md:col-span-7">
-              <p className="kicker">— Personal note —</p>
+              <p className="kicker">{labels.personalNote}</p>
               <h2 className="mt-3 font-display text-3xl leading-tight text-ink md:text-[44px]">
                 {t("cta.title")}
               </h2>

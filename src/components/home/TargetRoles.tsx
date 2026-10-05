@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const annotations = [
   "Interface → API → Data → Delivery",
@@ -13,6 +13,8 @@ const annotations = [
  */
 export function TargetRoles() {
   const t = useTranslations("TargetRoles");
+  const locale = useLocale();
+  const isFa = locale === "fa";
 
   return (
     <section className="relative bg-paper">
@@ -20,12 +22,14 @@ export function TargetRoles() {
         <div className="relative mx-auto max-w-4xl">
           {/* Memo paper */}
           <div className="passepartout relative bg-card p-8 md:p-12">
-            <span className="absolute -top-4 right-6 stamp">Memo · For hiring teams</span>
+            <span className="absolute -top-4 right-6 stamp">
+              {isFa ? "یادداشت · برای تیم‌های استخدام" : "Memo · For hiring teams"}
+            </span>
 
             <div className="mb-6 flex items-baseline justify-between border-b border-ink pb-4">
               <p className="kicker">§03 — {t("kicker")}</p>
               <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-                File: org-chart.md
+                {isFa ? "پرونده: org-chart.md" : "File: org-chart.md"}
               </p>
             </div>
 
@@ -59,9 +63,9 @@ export function TargetRoles() {
             </ul>
 
             <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-ink/30 pt-4 font-mono text-[10px] uppercase tracking-[0.24em] text-ink-faint">
-              <span>Signed · Nima A.</span>
+              <span>{isFa ? "امضا · نیما الف." : "Signed · Nima A."}</span>
               <span className="text-sienna">— ✻ —</span>
-              <span>Open file in Contact</span>
+              <span>{isFa ? "امکان ارتباط در صفحه تماس" : "Open file in Contact"}</span>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { buttonVariants } from "@/components/ui/Button";
 import { motion } from "framer-motion";
@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
  */
 export function CTA() {
   const t = useTranslations("CTA");
+  const locale = useLocale();
+  const isFa = locale === "fa";
 
   return (
     <section className="relative bg-ink text-paper">
@@ -33,7 +35,7 @@ export function CTA() {
         <div className="grid items-end gap-10 md:grid-cols-12">
           <div className="md:col-span-8">
             <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-paper/60">
-              §07 — Closing column · End of issue
+              {isFa ? "§07 — ستون پایانی · پایان شماره" : "§07 — Closing column · End of issue"}
             </p>
 
             <motion.h2
@@ -83,18 +85,20 @@ export function CTA() {
           <div className="md:col-span-4">
             <div className="relative border border-paper/40 p-6 text-paper">
               <span className="absolute -top-3 -left-3 stamp" style={{ borderColor: "#ECE4D2", color: "#ECE4D2", background: "rgba(236,228,210,0.06)" }}>
-                Postmark · BUD
+                {isFa ? "مهر پستی · بوداپست" : "Postmark · BUD"}
               </span>
               <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-paper/60">
-                Yours sincerely,
+                {isFa ? "با احترام،" : "Yours sincerely,"}
               </p>
               <p className="mt-3 font-display text-[40px] italic leading-none">
                 Nima
               </p>
               <p className="mt-3 max-w-[32ch] text-sm text-paper/70">
-                Mohammad Afsharfar — engineer, MBA graduate, founder. Replies in EN, FA, or HU.
+                {isFa
+                  ? "محمد افشارفر — مهندس، فارغ‌التحصیل MBA، بنیان‌گذار. پاسخ‌گویی به انگلیسی، فارسی یا مجاری."
+                  : "Mohammad Afsharfar — engineer, MBA graduate, founder. Replies in EN, FA, or HU."}
               </p>
-              <div className="mt-5 grid grid-cols-3 divide-x divide-paper/20 border-t border-paper/30 pt-3 text-center font-mono text-[10px] uppercase tracking-[0.22em]">
+              <div className="mt-5 grid grid-cols-3 divide-x divide-paper/20 border-t border-paper/30 pt-3 text-center font-mono text-[10px] uppercase tracking-[0.22em] rtl:divide-x-reverse">
                 <span>BUD</span>
                 <span>EU</span>
                 <span>RMT</span>

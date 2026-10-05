@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const technologies = [
   { name: "Next.js", category: "frontend" },
@@ -21,10 +21,10 @@ const technologies = [
 ];
 
 const groups = [
-  { key: "frontend", label: "Frontend" },
-  { key: "backend", label: "Backend" },
-  { key: "data", label: "Data" },
-  { key: "tooling", label: "Infrastructure & tooling" },
+  { key: "frontend", labelEn: "Frontend", labelFa: "فرانت‌اند" },
+  { key: "backend", labelEn: "Backend", labelFa: "بک‌اند" },
+  { key: "data", labelEn: "Data", labelFa: "داده" },
+  { key: "tooling", labelEn: "Infrastructure & tooling", labelFa: "زیرساخت و ابزارها" },
 ];
 
 const projectIndex: Record<string, string> = {
@@ -51,19 +51,23 @@ const projectIndex: Record<string, string> = {
  */
 export function TechStack() {
   const t = useTranslations("TechStack");
+  const locale = useLocale();
+  const isFa = locale === "fa";
 
   return (
     <section className="relative bg-paper">
       <div className="container mx-auto px-4 py-20 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-4">
           <div>
-            <p className="kicker">§04 — The bench</p>
+            <p className="kicker">{isFa ? "§04 — ابزارها" : "§04 — The bench"}</p>
             <h2 className="mt-2 font-display text-3xl italic text-ink md:text-4xl">
               {t("title")}
             </h2>
           </div>
           <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-            Tools I keep on the desk · {technologies.length} listed
+            {isFa
+              ? `ابزارهای کاری · ${technologies.length} ابزار`
+              : `Tools I keep on the desk · ${technologies.length} listed`}
           </p>
         </div>
 
@@ -73,7 +77,7 @@ export function TechStack() {
             return (
               <div key={g.key} className="break-inside-avoid">
                 <p className="mb-3 border-b border-ink pb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-sienna">
-                  {g.label}
+                  {isFa ? g.labelFa : g.labelEn}
                 </p>
                 <ul className="space-y-2">
                   {tools.map((tech, i) => (

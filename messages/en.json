@@ -27,7 +27,11 @@
     "ctaContact": "Contact",
     "linkedinAria": "LinkedIn profile",
     "githubAria": "GitHub profile",
-    "cvShort": "CV"
+    "cvShort": "CV",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "mobileNav": "Mobile navigation",
+    "hiringLinksLabel": "Hiring & Profiles"
   },
   "Services": {
     "title": "Where I go <span class='text-primary'>deepest.</span>",
@@ -180,7 +184,16 @@
       "email": "Email",
       "message": "Message",
       "briefPlaceholder": "Project goal, existing stack, timeline, scope, and important constraints.",
-      "submit": "Send Message"
+      "submit": "Send Message",
+      "sending": "Sending…",
+      "firstNamePlaceholder": "First name",
+      "lastNamePlaceholder": "Last name",
+      "emailPlaceholder": "you@studio.com",
+      "successTitle": "Message sent.",
+      "successDesc": "Thanks for writing. I’ll reply personally — usually within a couple of days.",
+      "sendAnother": "Send another",
+      "errorGeneric": "Something went wrong. Please try again.",
+      "networkError": "Network error. Please check your connection and try again."
     }
   },
   "Work": {
@@ -195,7 +208,31 @@
     "featuredProblem": "Problem: ESG teams need supplier scoring they can explain and defend in decision meetings.",
     "featuredSolution": "Solution: Built a transparent decision-support dashboard with rule-based scoring and PDF/Excel outputs.",
     "featuredResult": "Result: In thesis validation, scores showed strong alignment with expert evaluation (Pearson r ≈ 0.81).",
-    "featuredCta": "Open full case study"
+    "featuredCta": "Open full case study",
+    "kicker": "§02 — Selected Work",
+    "archiveNotes": "Archive Notes",
+    "earlierPlates": "Earlier plates",
+    "earlierDesc": "Previous work remains available as part of the studio record, without competing with the current selected archive.",
+    "letterTitle": "— Letter from the Editor —",
+    "letterBody": "The archive follows the decisions behind each product—how to explain risk, operate a system, or turn unstructured material into useful data.",
+    "projectsCount": "{count} projects",
+    "volume": "Selected Work · Vol. II, p. 02",
+    "colophon": "Atelier · Work Archive",
+    "framing": "Each project follows the same framing: what I built, what I owned, what it demonstrates.",
+    "curatedRecord": "A curated record of products and systems—not a catalogue of every technology used.",
+    "heroTitle": "Products, systems and digital experiences",
+    "heroSubtitle": "Designed across product strategy, full-stack engineering, data and automation.",
+    "coverStory": "Cover Story",
+    "decisionBoard": "Decision Board",
+    "groupFeatured": "Featured",
+    "groupFeaturedNote": "Product strategy and full-stack systems",
+    "groupSystems": "Selected Systems",
+    "groupSystemsNote": "SaaS product thinking and studio infrastructure",
+    "groupData": "Automation & Data",
+    "groupDataNote": "Python pipelines and operational tooling",
+    "viewCaseStudy": "View case study",
+    "project": "Project",
+    "archiveNumber": "Archive {num}"
   },
   "Start": {
     "title": "Beyond the PDF",
@@ -225,6 +262,7 @@
     "languages": "Working languages (EN · FA · HU)"
   },
   "Process": {
+    "kicker": "§06 — How I run an engagement",
     "title": "How I run an engagement",
     "subtitle": "A lightweight loop you can map to sprint calendars — discovery first, thin vertical slices, instrumentation early.",
     "steps": {

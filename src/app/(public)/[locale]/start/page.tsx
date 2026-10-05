@@ -1,5 +1,53 @@
+import type { Metadata } from "next";
 import { PortfolioStart } from "@/components/home/PortfolioStart";
 import { getTranslations } from "next-intl/server";
+
+const SITE_URL = "https://www.nimastudio.site";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const title = "Collaboration & Product Field Guide";
+  const description =
+    "Notes on engineering collaboration, async-first rituals, and delivery methodology by Nima Afsharfar.";
+  const url = `${SITE_URL}/${locale}/start`;
+  const imageUrl = `${SITE_URL}/images/work/nima-studio/05-case-study.webp`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${SITE_URL}/en/start`,
+        fa: `${SITE_URL}/fa/start`,
+        "x-default": `${SITE_URL}/en/start`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [
+        {
+          url: imageUrl,
+          width: 1440,
+          height: 1000,
+          alt: "Collaboration Field Guide — NIMA Studio",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
 
 export default async function StartPage({
   params,

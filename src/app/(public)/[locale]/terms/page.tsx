@@ -1,4 +1,41 @@
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
+
+const SITE_URL = "https://www.nimastudio.site";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const title = "Terms of Service";
+  const description = "Terms of Service and conditions of engagement for NIMA Studio.";
+  const url = `${SITE_URL}/${locale}/terms`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${SITE_URL}/en/terms`,
+        fa: `${SITE_URL}/fa/terms`,
+        "x-default": `${SITE_URL}/en/terms`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  };
+}
 
 export default async function TermsPage({params}: {params: Promise<{locale: string}>}) {
   const {locale} = await params;

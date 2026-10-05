@@ -14,27 +14,44 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const title = "Start a Conversation";
-  const description =
-    "Discuss a full-stack product, SaaS MVP, automation workflow or data-system project with Nima Afsharfar.";
+  const isFa = locale === "fa";
+  const title = isFa ? "ارتباط با من" : "Start a Conversation";
+  const description = isFa
+    ? "گفتگو درباره پروژه‌های توسعه محصول، SaaS MVP، اتوماسیون گردش‌کار یا سیستم‌های داده با نیما افشارفر."
+    : "Discuss a full-stack product, SaaS MVP, automation workflow or data-system project with Nima Afsharfar.";
   const url = `${SITE_URL}/${locale}/contact`;
+
+  const imageUrl = `${SITE_URL}/images/work/nima-studio/04-process.webp`;
 
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${SITE_URL}/en/contact`,
+        fa: `${SITE_URL}/fa/contact`,
+        "x-default": `${SITE_URL}/en/contact`,
+      },
+    },
     openGraph: {
       title,
       description,
       url,
       images: [
         {
-          url: `${SITE_URL}/images/work/nima-studio/01-home-hero.webp`,
+          url: imageUrl,
           width: 1440,
           height: 1000,
-          alt: "NIMA Studio homepage",
+          alt: "Start a conversation with Nima Afsharfar",
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
     },
   };
 }
@@ -46,28 +63,52 @@ export default async function ContactPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Contact" });
+  const isFa = locale === "fa";
+  const labels = isFa
+    ? {
+        correspondence: "آتلیه — مکاتبات",
+        vol: "تماس · جلد ۱، ص ۶",
+        replyTime: "پاسخ طی ۴۸ ساعت",
+        kicker: "§01 — ارسال پیام",
+        intro: "برای جذب نیرو، تعریف پروژه یا گفتگو درباره سیستم‌ها — مستقیماً پیام دهید.",
+        sender: "فرستنده · شما",
+        receiver: "گیرنده · نیما",
+        sideNote: "— یادداشت جانبی —",
+        city: "بوداپست، مجارستان",
+      }
+    : {
+        correspondence: "The Atelier — Correspondence",
+        vol: "Contact · Vol. I, p. 06",
+        replyTime: "Reply within 48h",
+        kicker: "§01 — Send word",
+        intro: "Whether it’s a hire, a brief, or notes on shipped work — write to me directly.",
+        sender: "Sender · You",
+        receiver: "Receiver · Nima",
+        sideNote: "— Side note —",
+        city: "Budapest, Hungary",
+      };
 
   return (
     <div className="bg-paper pb-24">
       <div className="container mx-auto px-4 pt-12 md:pt-16">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-3 border-b border-ink pb-3 font-mono text-[10px] uppercase tracking-[0.32em] text-ink-mute">
-          <span>The Atelier — Correspondence</span>
-          <span>Contact · Vol. I, p. 06</span>
-          <span className="text-sienna">Reply within 48h</span>
+          <span>{labels.correspondence}</span>
+          <span>{labels.vol}</span>
+          <span className="text-sienna">{labels.replyTime}</span>
         </div>
 
         <div className="grid grid-cols-12 gap-6 md:gap-10">
           <aside className="col-span-12 md:col-span-3">
-            <p className="kicker">§01 — Send word</p>
+            <p className="kicker">{labels.kicker}</p>
             <p className="mt-3 font-display text-[15px] italic leading-snug text-ink-mute">
-              Whether it&rsquo;s a hire, a brief, or notes on shipped work — write to me directly.
+              {labels.intro}
             </p>
             <div className="rule mt-6" />
             <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-              Sender · You
+              {labels.sender}
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-ink-faint">
-              Receiver · Nima
+              {labels.receiver}
             </p>
           </aside>
 
@@ -126,7 +167,7 @@ export default async function ContactPage({
                     {t("info.office")}
                   </div>
                   <span className="font-display text-[20px] text-ink">
-                    Budapest, Hungary
+                    {labels.city}
                   </span>
                 </div>
               </div>
@@ -134,7 +175,7 @@ export default async function ContactPage({
           </div>
 
           <div className="border border-ink bg-paper-soft/60 p-6 md:p-8">
-            <p className="kicker">— Side note —</p>
+            <p className="kicker">{labels.sideNote}</p>
             <h3 className="mt-2 font-display text-2xl text-ink md:text-[28px]">
               {t("cta.title")}
             </h3>

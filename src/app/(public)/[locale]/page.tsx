@@ -23,7 +23,14 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${SITE_URL}/en`,
+        fa: `${SITE_URL}/fa`,
+        "x-default": `${SITE_URL}/en`,
+      },
+    },
     openGraph: {
       title,
       description,
@@ -36,6 +43,12 @@ export async function generateMetadata({
           alt: "NIMA Studio homepage",
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`${SITE_URL}/images/work/nima-studio/01-home-hero.webp`],
     },
   };
 }

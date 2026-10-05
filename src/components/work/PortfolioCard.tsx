@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import type { PortfolioProject } from "@/data/portfolio-projects";
 import { EditorialReveal } from "@/components/ui/EditorialReveal";
+import { useTranslations } from "next-intl";
 
 export function PortfolioCard({
   project,
@@ -12,6 +13,7 @@ export function PortfolioCard({
   project: PortfolioProject;
   variant?: "cover" | "wide" | "standard";
 }) {
+  const t = useTranslations("Work");
   const isCover = variant === "cover";
   const isWide = variant === "wide";
 
@@ -43,14 +45,14 @@ export function PortfolioCard({
         <div className="flex items-start justify-between gap-4 border-b border-ink/25 pb-3">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-sienna">
-              Project {project.number}
+              {t("project")} {project.number}
             </p>
             <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
               {project.year} · {project.type}
             </p>
           </div>
           <ArrowUpRight
-            className="h-4 w-4 shrink-0 text-ink-mute transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-sienna"
+            className="h-4 w-4 shrink-0 text-ink-mute transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-sienna rtl:rotate-[-90deg]"
             strokeWidth={1.5}
             aria-hidden="true"
           />
@@ -75,8 +77,8 @@ export function PortfolioCard({
             ))}
           </div>
           <span className="mt-5 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-ink group-hover:text-sienna">
-            View case study
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+            {t("viewCaseStudy")}
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1 rtl:rotate-180">
               →
             </span>
           </span>

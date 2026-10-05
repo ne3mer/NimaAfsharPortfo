@@ -8,12 +8,19 @@ import {
   LEGACY_PROJECT_ALIASES,
 } from "@/data/portfolio-projects";
 
+import { ProjectJsonLd } from "@/components/seo/JsonLd";
+
 const SITE_URL = "https://www.nimastudio.site";
 
+import { routing } from "@/i18n/routing";
+
 export function generateStaticParams() {
-  return PORTFOLIO_PROJECTS.map((project) => ({
-    slug: project.slug,
-  }));
+  return routing.locales.flatMap((locale) =>
+    PORTFOLIO_PROJECTS.map((project) => ({
+      locale,
+      slug: project.slug,
+    }))
+  );
 }
 
 export async function generateMetadata({
@@ -32,11 +39,19 @@ export async function generateMetadata({
   const image =
     project.image?.src ?? "/images/work/nima-studio/02-work-archive.webp";
   const url = `${SITE_URL}/${locale}/work/${canonicalSlug}`;
+  const absoluteImageUrl = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        en: `${SITE_URL}/en/work/${canonicalSlug}`,
+        fa: `${SITE_URL}/fa/work/${canonicalSlug}`,
+        "x-default": `${SITE_URL}/en/work/${canonicalSlug}`,
+      },
+    },
     openGraph: {
       title,
       description,
@@ -45,10 +60,16 @@ export async function generateMetadata({
       siteName: "NIMA Studio",
       images: [
         {
-          url: image.startsWith("http") ? image : `${SITE_URL}${image}`,
+          url: absoluteImageUrl,
           alt: project.image?.alt ?? title,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [absoluteImageUrl],
     },
   };
 }
@@ -74,5 +95,10 @@ export default async function ProjectPage({
     notFound();
   }
 
-  return <CuratedCaseStudy project={project} />;
+  return (
+    <>
+      <ProjectJsonLd project={project} />
+      <CuratedCaseStudy project={project} />
+    </>
+  );
 }
